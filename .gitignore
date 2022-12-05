@@ -21,3 +21,54 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+*target*
+*.jar
+*.war
+*.ear
+*.class
+
+# eclipse specific git ignore
+*.pydevproject
+.project
+.metadata/*
+.metadata/
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+SAE_ESporter_App/*.pydevproject
+SAE_ESporter_App/.project
+SAE_ESporter_App/.metadata/*
+SAE_ESporter_App/.metadata/
+SAE_ESporter_App/bin/**
+SAE_ESporter_App/tmp/**
+SAE_ESporter_App/tmp/**/*
+SAE_ESporter_App/*.tmp
+SAE_ESporter_App/*.bak
+SAE_ESporter_App/*.swp
+SAE_ESporter_App/*~.nib
+SAE_ESporter_App/local.properties
+SAE_ESporter_App/.classpath
+SAE_ESporter_App/.settings/
+SAE_ESporter_App/.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# ingore login to BD
+SAE_ESporter_App\src\SAE_Esporter\src\Login.java
+.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+.metadata/.log
+.metadata/version.ini
+SAE_ESporter_App/project
