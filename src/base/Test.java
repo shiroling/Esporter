@@ -1,13 +1,5 @@
 package base;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
-
-import modeleBD.ControleurBD;
-import modeleBD.Rencontre;
-import modeleBD.Tournoi;
-
 public class Test {
 
 	@SuppressWarnings({"unused" })
@@ -28,7 +20,7 @@ public class Test {
 		int i[] = {(1), (2)};  
 		Tournoi.insererTournoisMultigaming("bébouMulti", Portee.NATIONAL, dfi, ddt, dft, i, 3);
 	*/
-		for (String string : Portee.toStrings2()) {
+		for (String string : Portee.toString()) {
 			System.out.println(string);
 		}
 	}
