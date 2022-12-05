@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipe {
+public class Equipe implements Comparable {
 	private final int id;
 	private String nom;
 	private int idJeu;
@@ -107,9 +107,32 @@ public class Equipe {
 		return this.getNom();
 	}
 
-	public String getManager() {
+	@Override
+	public int compareTo(Object o) throws IllegalArgumentException {
+		if(!(o instanceof Equipe)) {
+			throw new IllegalArgumentException("l'objet en entrée n'est pas une instance d'équipe");
+		}
+		Equipe e = (Equipe) o;
+
+		if(this.getId() == e.getId()) {
+			return 0;
+		}
+		
+		int diff = this.getPoints() - this.getPoints();
+		if(diff != 0) {
+			return diff;
+		}
+		
+		
+		// TODO A finir, il faut checker les ages moyen
+
+		
+		return -1;
+	}
+
+	private int getPoints() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 }
