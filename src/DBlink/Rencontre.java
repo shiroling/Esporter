@@ -79,7 +79,7 @@ public class Rencontre {
 		return ControleurBD.estResultatRenseigne(getId());
 	}
 	
-	public Poule getArbitre() {
+	public Poule getPoule() {
 		return new Poule(this.idPoule);
 	}
 	
