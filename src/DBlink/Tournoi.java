@@ -3,7 +3,7 @@ package DBlink;
 import java.sql.Date;
 import java.util.List;
 
-import SAE_Esporter.Portee;
+import base.Portee;
 
 public class Tournoi {
 	private int id;

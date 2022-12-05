@@ -20,7 +20,7 @@ public class Test {
 		int i[] = {(1), (2)};  
 		Tournoi.insererTournoisMultigaming("bébouMulti", Portee.NATIONAL, dfi, ddt, dft, i, 3);
 	*/
-		for (String string : Portee.toString()) {
+		for (String string : Portee.toStrings()) {
 			System.out.println(string);
 		}
 	}

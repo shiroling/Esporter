@@ -1,15 +1,12 @@
 package IHM;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import Controller.ControleurAccueil;
-
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import Controleur.ControleurAccueil;
 
 public class Test {
 

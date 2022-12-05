@@ -7,11 +7,11 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -22,19 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
-import Controller.ControleurAccueil;
-import modeleBD.Ecurie;
-import modeleBD.Equipe;
-import modeleBD.Jeu;
-import modeleBD.Rencontre;
-import modeleBD.Tournoi;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.List;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
+import Controleur.ControleurAccueil;
+import DBlink.Ecurie;
+import DBlink.Equipe;
+import DBlink.Jeu;
+import DBlink.Rencontre;
+import DBlink.Tournoi;
 
 public class AccueilV2 {
 

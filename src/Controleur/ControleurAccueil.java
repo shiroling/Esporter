@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import Controller.ConnexionUtilisateur.ConnexionState;
+import Controleur.ConnexionUtilisateur.ConnexionState;
+import DBlink.ControleurBD;
 import IHM.AccueilV2;
 import IHM.CreerTournoi;
-import modeleBD.ControleurBD;
 
 public class ControleurAccueil implements ActionListener {
 

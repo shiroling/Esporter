@@ -19,10 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import modeleBD.Jeu;
-import modeleBD.Tournoi;
-
-import java.awt.Font;
+import DBlink.Jeu;
+import DBlink.Tournoi;
 
 public class CreerTournoi {
 

@@ -8,8 +8,7 @@ import java.util.List;
 import javax.swing.JButton;
 
 import IHM.FormCreerTournoi;
-import modeleBD.ControleurBD;
-import modeleBD.Jeu;
+import DBlink.*;
 
 public class ControleurFromCreerTournoi implements ActionListener {
 	

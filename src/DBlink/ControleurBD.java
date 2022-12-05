@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-import SAE_Esporter.Portee;
+import base.Portee;
 
 public class ControleurBD {
 
