@@ -1,4 +1,4 @@
-package Controller;
+package Controleur;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

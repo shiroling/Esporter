@@ -1,4 +1,4 @@
-package modeleBD;
+package DBlink;
 
 import java.util.List;
 

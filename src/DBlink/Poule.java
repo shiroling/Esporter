@@ -1,4 +1,4 @@
-package modeleBD;
+package DBlink;
 
 public class Poule {
     private final int idPoule;

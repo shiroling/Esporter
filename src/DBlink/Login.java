@@ -1,4 +1,4 @@
-package modeleBD;
+package DBlink;
 
 
 public class Login {

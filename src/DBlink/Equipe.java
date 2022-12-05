@@ -1,4 +1,4 @@
-package modeleBD;
+package DBlink;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
