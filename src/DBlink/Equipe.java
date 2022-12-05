@@ -66,6 +66,10 @@ public class Equipe implements Comparable {
 	public List<Joueur> getListJoueur() {
 		return ControleurBD.getListeJoueursFromEquipe(getId());
 	}
+	
+	public List<Rencontre> getRencontresJouees() {
+		return ControleurBD.getListeRencontreFromEquipe(getId());
+	}
 
 	public static List<Equipe> getToutesLesEquipes() {
 		Connection connex = ConnexionBase.getConnectionBase();

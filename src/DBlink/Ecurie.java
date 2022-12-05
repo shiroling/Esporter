@@ -59,7 +59,6 @@ public class Ecurie {
 		return result;
 	}
 
-
 	@Override
 	public String toString() {
 		return ""+ this.getNom() +" ("+this.getNomManager()+ ")";
