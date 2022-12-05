@@ -168,7 +168,7 @@ public class CreerTournoi {
 					if(idJeux.size() == 1) {
 						Tournoi.insererTournoi(textNom.getText(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
 					} else {
-						Tournoi.insererTournoi(textNom.getText() + " - " + j.getNomJeu(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
+						Tournoi.insererTournoi(textNom.getText() + " - " + j.getNom(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
 					}
 				}
 				CreerTournoi.fermer();
@@ -184,7 +184,7 @@ public class CreerTournoi {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				comboJeu.addItem(lblJeu.getText());
-				CreerTournoi.this.idJeux.remove(Jeu.getIdJeu(lblJeu.getText()));
+				CreerTournoi.this.idJeux.remove(Jeu.getId(lblJeu.getText()));
 				CreerTournoi.this.panel_8.remove(lblJeu);
 			}
 		});

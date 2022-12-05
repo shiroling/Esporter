@@ -20,13 +20,12 @@ public class ControleurBD {
 	public static void initEcurie(Ecurie e) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery(
-					"Select Nom_Ecurie, Nom_Manager, mdp_Manager from Ecurie where Id_Ecurie = " + e.getId());
-			rs.next();
-			e.setNom(rs.getString("Nom_Ecurie"));
-			e.setNomManager(rs.getString("Nom_Manager"));
-			e.setMdpManager(rs.getString("mdp_Manager"));
-
+			ResultSet rs = st.executeQuery("Select Nom_Ecurie, Nom_Manager, mdp_Manager from Ecurie where Id_Ecurie = " + e.getId());
+			if(rs.next()) {
+				e.setNom(rs.getString("Nom_Ecurie"));
+				e.setNomManager(rs.getString("Nom_Manager"));
+				e.setMdpManager(rs.getString("mdp_Manager"));
+			}
 			st.close();
 		} catch (Exception err) {
 			err.printStackTrace();
@@ -194,7 +193,7 @@ public class ControleurBD {
 			ResultSet rs = st.executeQuery("SELECT id_equipe from equipe");
 			List<Equipe> equipes = new ArrayList<>();
 			while (rs.next()) {
-				equipes.add(new Equipe(rs.getInt(1)));
+				equipes.add(new Equipe(rs.getInt("id_equipe")));
 			}
 			rs.close();
 			st.close();
