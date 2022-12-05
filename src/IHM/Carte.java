@@ -1,10 +1,10 @@
 package IHM;
 
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Carte extends JPanel {
 
