@@ -15,6 +15,10 @@ public enum Mois {
 	}
 	
 	public static String[] toStrings() {
-		return Stream.of(Mois.values()).toArray(String[]::new);
+		String[] mois = new String[Mois.values().length];
+		for (int i = 0; i < Mois.values().length ; i++) {
+			mois[i] = Mois.values()[i].getDenomination();
+		}
+		return mois;
 	}
 }

@@ -33,6 +33,7 @@ public class FormCreerTournoi extends JDialog {
 	private JComboBox comboMoiFinInscription;
 	private JComboBox comboAnneeFinInscription;
 	private JComboBox comboJeux;
+	private JButton btnAjouterJeu;
 
 	/**
 	 * Launch the application.
@@ -47,13 +48,13 @@ public class FormCreerTournoi extends JDialog {
 		}
 	}
 	
-	public void ajouterJeuDansPanel(String nomJeu) {
-		JLabel lblNomJeu = new JLabel(nomJeu);
-		this.panelJeuxAjoutes.add(lblNomJeu);		
-		this.panelJeuxAjoutes.updateUI();
+	public JPanel getPanelJeuxAjoutes() {
+		return this.panelJeuxAjoutes;
 	}
 	
-	
+	public JButton getBtnAjouterJeux() {
+		return this.btnAjouterJeu;
+	}
 	
 	public JComboBox getComboJeux() {
 		return this.comboJeux;
@@ -163,7 +164,7 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelLbl.add(panel);
 				{
-					JButton btnAjouterJeu = new JButton("Ajouter Jeu");
+					btnAjouterJeu = new JButton("Ajouter Jeu");
 					btnAjouterJeu.addActionListener(c);
 					btnAjouterJeu.setName("btnAjouterJeu");
 					panel.add(btnAjouterJeu);
@@ -203,16 +204,22 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourDebutTournoi = new JComboBox();
+					comboJourDebutTournoi.addActionListener(c);
+					comboJourDebutTournoi.setName("combo");
 					comboJourDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourDebutTournoi);
 				}
 				{
 					comboMoiDebutTournoi = new JComboBox();
+					comboMoiDebutTournoi.addActionListener(c);
+					comboMoiDebutTournoi.setName("combo");
 					comboMoiDebutTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiDebutTournoi);
 				}
 				{
 					comboAnneeDebutTournoi = new JComboBox();
+					comboAnneeDebutTournoi.addActionListener(c);
+					comboAnneeDebutTournoi.setName("combo");
 					comboAnneeDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeDebutTournoi);
 				}
@@ -224,16 +231,22 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourFinTournoi = new JComboBox();
+					comboJourFinTournoi.addActionListener(c);
+					comboJourFinTournoi.setName("combo");
 					comboJourFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinTournoi);
 				}
 				{
 					comboMoiFinTournoi = new JComboBox();
+					comboMoiFinTournoi.addActionListener(c);
+					comboMoiFinTournoi.setName("combo");
 					comboMoiFinTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiFinTournoi);
 				}
 				{
 					comboAnneeFinTournoi = new JComboBox();
+					comboAnneeFinTournoi.addActionListener(c);
+					comboAnneeFinTournoi.setName("combo");
 					comboAnneeFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinTournoi);
 				}
@@ -245,16 +258,22 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourFinInscription = new JComboBox();
+					comboJourFinInscription.addActionListener(c);
+					comboJourFinInscription.setName("combo");
 					comboJourFinInscription.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinInscription);
 				}
 				{
 					comboMoiFinInscription = new JComboBox();
+					comboMoiFinInscription.addActionListener(c);
+					comboMoiFinInscription.setName("combo");
 					comboMoiFinInscription.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiFinInscription);
 				}
 				{
 					comboAnneeFinInscription = new JComboBox();
+					comboAnneeFinInscription.addActionListener(c);
+					comboAnneeFinInscription.setName("combo");
 					comboAnneeFinInscription.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinInscription);
 				}

@@ -274,7 +274,24 @@ public class ControleurBD {
 	public static List<Rencontre> getListeRencontreFromPoule(int idPoule) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select id_tournoi from tournoi WHERE id_Poule = " + idPoule);
+			ResultSet rs = st.executeQuery("Select id_rencontre from rencontre WHERE id_Poule = " + idPoule);
+
+			List<Rencontre> t = new ArrayList<>();
+			while (rs.next()) {
+				t.add(new Rencontre(rs.getInt(1)));
+			}
+			st.close();
+			return t;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public static List<Rencontre> getListeRencontreFromEquipe(int idEquipe) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("Select id_rencontre from rencontre, composer WHERE composer.id_equipe = " + idEquipe + "AND composer.id_poule = rencontre.id_poule");
 
 			List<Rencontre> t = new ArrayList<>();
 			while (rs.next()) {
@@ -626,16 +643,11 @@ public class ControleurBD {
         }
     }
 
-    public static boolean isManager(String id, String mdp) {
-        Connection connex = ConnexionBase.getConnectionBase();
+    public static boolean isManager(String nom, String mdp) {
         try {
-            CallableStatement st = connex.prepareCall("{? = call IS_MANAGER (?, ?)}");
-            st.registerOutParameter(1, java.sql.Types.VARCHAR);
-            st.setString(2, id);
-            st.setString(3, mdp);
-            ResultSet rs = st.executeQuery();
-            rs.next();
-            return (rs.getInt(1) == 1);
+        	Statement st = ConnexionBase.getConnectionBase().createStatement();
+        	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM Ecurie where nom_manager = '"+ nom +"' AND mdp_manager = '" + mdp + "'");
+            return (rs.next());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
