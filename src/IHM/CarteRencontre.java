@@ -3,6 +3,8 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+import DBlink.Rencontre;
+
 public class CarteRencontre extends Carte {
 
 	/**
@@ -18,6 +20,11 @@ public class CarteRencontre extends Carte {
 			lblgagnant.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			add(lblgagnant);
 		}
+	}
+
+	public CarteRencontre(Rencontre rencontre) {
+		
+		// TODO Auto-generated constructor stub
 	}
 
 }

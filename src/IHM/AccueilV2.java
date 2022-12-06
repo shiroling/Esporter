@@ -310,16 +310,7 @@ public class AccueilV2 {
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for(Rencontre rencontre : rencontres) {
-			ct = new CarteRencontre(
-					rencontre.getEquipes().get(0).getNom(), 
-					rencontre.getEquipes().get(1).getNom(), 
-					rencontre.getDate().toString(), 
-					rencontre.getVainqueur().getNom());
-			
-			ct.setName("CarteRencontre");
-			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
-			ct.addMouseListener(null);
-			panel_main.add(ct);
+			ct = new CarteRencontre(rencontre);
 		}
 		ajusterGrille();
 

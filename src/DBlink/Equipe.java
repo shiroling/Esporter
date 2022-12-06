@@ -122,21 +122,25 @@ public class Equipe implements Comparable {
 			return 0;
 		}
 		
-		int diff = this.getPoints() - this.getPoints();
-		if(diff != 0) {
-			return diff;
+		int diffPoints = this.getPoints() - e.getPoints();
+		if(diffPoints != 0) {
+			return diffPoints;
 		}
 		
+		int diffAges = this.getAgesMoyens() - e.getAgesMoyens();
+		if(diffAges != 0) {
+			return diffAges;
+		}
 		
-		// TODO A finir, il faut checker les ages moyen
+		return this.getNom().compareTo(e.getNom());
+	}
 
-		
-		return -1;
+	private int getAgesMoyens() {
+		return ControleurBD.getAgeMoyenEquipe(this.getId());
 	}
 
 	private int getPoints() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ControleurBD.getPointsEquipes(this.getId());
 	}
 
 }
