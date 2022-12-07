@@ -2,6 +2,8 @@ package DBlink;
 
 import java.util.List;
 
+import javax.swing.Spring;
+
 public class Jeu {
 	private int id;
 	private String nom;
@@ -54,6 +56,8 @@ public class Jeu {
 		return this.getNom();
 	}
 	
-	
+	public static Jeu getIdFromName(String name) {
+		return new Jeu(BDSelect.getIdJeu(name));
+	}
 
 }
