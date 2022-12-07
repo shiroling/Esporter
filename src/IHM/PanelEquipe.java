@@ -20,7 +20,7 @@ public class PanelEquipe extends JPanel {
 	 */
 	public PanelEquipe(Equipe eq) {
 		JPanel panel_main = new JPanel();
-		panel_main.setLayout(new GridLayout(3, 1, 0, 0));;
+		panel_main.setLayout(new GridLayout(5, 1, 0, 0));;
 		setLayout(new BorderLayout(0, 0));
 		add(panel_main);
 		
