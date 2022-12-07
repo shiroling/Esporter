@@ -2,7 +2,6 @@ package IHM;
 
 import javax.swing.JPanel;
 
-import DBlink.ControleurBD;
 import DBlink.Jeu;
 
 public class PanelJeu extends JPanel {

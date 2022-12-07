@@ -1,18 +1,16 @@
 package IHM;
 
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import Controleur.ControleurAccueil;
-import DBlink.ControleurBD;
+import DBlink.BDSelect;
 import DBlink.Ecurie;
 import DBlink.Equipe;
-
-import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 public class PanelEcurie extends JPanel {
 
@@ -38,7 +36,7 @@ public class PanelEcurie extends JPanel {
 		JPanel panel = new JPanel();
 		scroll.setViewportView(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		for (Equipe eq : ControleurBD.getListeEquipesFromEcurie(ec.getId())) {
+		for (Equipe eq : BDSelect.getListeEquipesFromEcurie(ec.getId())) {
 			JLabel lblequipe = new JLabel(eq.getNom());
 			lblequipe.setName("Equipe");
 			lblequipe.setHorizontalAlignment(SwingConstants.LEFT);
