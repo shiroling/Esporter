@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import Controleur.ConnexionUtilisateur.ConnexionState;
 import DBlink.BDSelect;
 import IHM.AccueilV2;
+import IHM.Connexion;
 import IHM.CreerTournoi;
+import IHM.FormCreerTournoi;
+import base.ConnexionState;
 
 public class ControleurAccueil implements ActionListener  {
 
@@ -16,11 +18,13 @@ public class ControleurAccueil implements ActionListener  {
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
-	private ConnexionUtilisateur.ConnexionState connexionState;
+	private ConnexionState connexionState;
+	private int idLog;
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
 		this.vue = vue;
+		this.idLog = -1;
 		connexionState = ConnexionState.NON_CONNECTE;
 	}
 
@@ -35,8 +39,8 @@ public class ControleurAccueil implements ActionListener  {
 			btn = (JButton) obj;
 			switch (this.state) {
 			case ACCUEIL_SANS_VOLET:
-				switch (btn.getText()) {
-				case "Creer Tournoi":
+				switch (btn.getName()) {
+				case "btnCreerTournoi":
 					procedureCreerTournoi();
 					break;
 				case "Tournois":
@@ -93,16 +97,20 @@ public class ControleurAccueil implements ActionListener  {
 		
 	}
 
-	public void setConnexionState(ConnexionUtilisateur.ConnexionState c) {
+	public void setConnexionState(ConnexionState c) {
 		this.connexionState = c;
+	}
+	
+	public void setIdLog(int id) {
+		this.idLog = id;
 	}
 
 	private void procedureCreerTournoi() {
-		if (connexionState != ConnexionUtilisateur.ConnexionState.GESTIONNAIRE) {
-			IHM.Connexion fenetreConnnexion = new IHM.Connexion(this, ConnexionState.GESTIONNAIRE);
+		if (connexionState != ConnexionState.GESTIONNAIRE) {
+			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
 		}
-		if (connexionState == ConnexionUtilisateur.ConnexionState.GESTIONNAIRE) {
-			CreerTournoi formTournoi = new CreerTournoi();
+		if (connexionState == ConnexionState.GESTIONNAIRE) {
+			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
 		}
 	}
 

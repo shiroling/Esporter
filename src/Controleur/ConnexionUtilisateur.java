@@ -10,10 +10,6 @@ import DBlink.ConnexionBase;
 
 public class ConnexionUtilisateur {
 	
-	public static enum ConnexionState {
-		NON_CONNECTE, GESTIONNAIRE, MANAGER, ARBITRE;
-	}
-	
 	public static boolean isGestionnaire(String id, String mdp) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
