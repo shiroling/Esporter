@@ -357,6 +357,47 @@ public class ControleurBD {
 			return null;
 		}
 	}
+	
+	public static int getPointsEquipe(int idEquipe) {
+		try {
+			int points = 0;
+			List<Rencontre> listeMatchs = ControleurBD.getListeRencontreFromEquipe(idEquipe);
+			for (Rencontre r : listeMatchs) {
+				Statement st = ConnexionBase.getConnectionBase().createStatement();
+				ResultSet rs = st.executeQuery("Select id_tournoi from rencontre r, poule p WHERE r.id_rencontre = " + r.getId() + " AND r.id_poule = p.id_poule;");
+				Tournoi t = new Tournoi(rs.getInt(1));
+				if (r.getVainqueur().getId() == idEquipe) {
+					switch (t.getPortee()) {
+					case LOCAL:
+						points += 1;
+						break;
+					case NATIONAL:
+						points += 2;
+						break;
+					case INTERNATIONAL:
+						points += 3;
+						break;
+					}
+				}
+			}
+			return points;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
+	
+	public static int getAgeMoyenEquipe(int idEquipe) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("Select round(avg(CURRENT_DATE - DATE_DE_NAISSANCE)/365.25) FROM Joueur WHERE ID_EQUIPE = " + idEquipe);
+			st.close();
+			return rs.getInt(1);
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
 
 	public static List<Equipe> getListeEquipesFromEcurie(int id) {
 		try {
