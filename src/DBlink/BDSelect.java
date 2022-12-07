@@ -429,6 +429,7 @@ public class BDSelect {
 	}
 
 	
+	
 	// Acquisitions calculées
 	public static int getPointsEquipe(int idEquipe) {
 		try {
@@ -466,6 +467,22 @@ public class BDSelect {
 			st.close();
 			return rs.getInt(1);
 		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
+
+	public static int getIdJeu(String string) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery(
+					"Select id_jeu from Jouer where nom_jeu = " + string);
+			rs.next();
+			int var = rs.getInt("id_jeu");
+			rs.close();
+			st.close();
+			return var;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return -1;
 		}

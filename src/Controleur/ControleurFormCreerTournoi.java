@@ -10,9 +10,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import DBlink.BDSelect;
-import DBlink.ControleurBD;
 import DBlink.Jeu;
 import DBlink.Tournoi;
 import IHM.CreerTournoi;
@@ -21,13 +18,13 @@ import base.Mois;
 import base.Portee;
 import base.PreDate;
 
-public class ControleurFromCreerTournoi implements ActionListener {
+public class ControleurFormCreerTournoi implements ActionListener {
 
 	private FormCreerTournoi vue;
 	private JButton btn;
 	private List<Jeu> jeux;
 
-	public ControleurFromCreerTournoi(FormCreerTournoi vue) {
+	public ControleurFormCreerTournoi(FormCreerTournoi vue) {
 		this.vue = vue;
 		this.jeux = new ArrayList<>();
 	}
@@ -37,7 +34,7 @@ public class ControleurFromCreerTournoi implements ActionListener {
 		this.btn = (JButton) e.getSource();
 		switch (btn.getName()) {
 		case "btnAjouterJeu":
-			this.jeux.add(new Jeu(BDSelect.getIdJeu(this.vue.getComboJeux().getSelectedItem().toString())));// Stockage du jeu selectionné
+			this.jeux.add(Jeu.getIdFromName(this.vue.getComboJeux().getSelectedItem().toString()));// Stockage du jeu selectionné
 			this.vue.getPanelJeuxAjoutes().setLayout(new GridLayout(this.jeux.size(), 1, 0, 0));
 			JLabel lblNomJeu = new JLabel(this.vue.getComboJeux().getSelectedItem().toString()); // Créer le label concernant le jeu selectionné dans le combo
 			this.vue.getPanelJeuxAjoutes().add(lblNomJeu);		// Ajout du label dans le pannel
@@ -114,9 +111,9 @@ public class ControleurFromCreerTournoi implements ActionListener {
 			
 			if(this.estFormulaireValide()) {
 				if(this.jeux.size() == 1) {
-					Tournoi.insererTournoi(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux.get(0));
+					Tournoi.insererTournoi(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux.get(0), this.vue.getIdGerant());
 				} else {
-					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux);
+					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux, this.vue.getIdGerant());
 				}
 				this.vue.dispose();
 			}
