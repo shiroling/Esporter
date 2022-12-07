@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DBPredicats {
+import base.Portee;
+
+public class BDPredicats {
 
 	public static boolean estResultatRenseigne(int idRencontre) {
 		try {
@@ -126,6 +128,54 @@ public class DBPredicats {
 	        return false;
 		}
 	}
-	
 
+	
+	public static boolean estTournoiSurJeu(int id, int idJeu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estTournoiDePortee(int id, Portee p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estTournoiMulti(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estMatchSurJeu(int idMatch, int idTournoi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estMatchTournoi(int idMatch, int idTournoi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estMatchAvecEquipe(int idMatch, int idEquipe) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static boolean estMatchPoule(int idMatch, int idPoule) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public static boolean estEquipeFromEcurie(int idEquipe, int idEcurie) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public static boolean estEquipeSurJeu(int idEquipe, int idJeu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

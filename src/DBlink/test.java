@@ -5,14 +5,20 @@ import java.util.List;
 public class test {
 	
 	public static void main(String[] args) {
-		Rencontre re = new Rencontre(1);
-		List<Equipe> eeee = re.getEquipes();
+		Jeu j = new Jeu(1);
 		
-		System.out.println(eeee.get(0));
-		System.out.println(eeee.get(1));
+		System.out.println(j);
 		
+		String sj = j.getNom();
 		
+		System.out.println(sj);
 		
+		String[] lsj = Jeu.toStrings();
+		
+		for (String string : lsj) {
+			System.out.println(string);
+
+		}
 		
 	}
 	
