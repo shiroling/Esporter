@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import Controleur.ConnexionUtilisateur.ConnexionState;
-import DBlink.ControleurBD;
+import DBlink.BDSelect;
 import IHM.AccueilV2;
 import IHM.CreerTournoi;
 
@@ -41,23 +41,23 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				case "Tournois":
 					vue.viderCartes();
-					vue.ajouterCartesTournois(ControleurBD.getListeTournois());
+					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					break;
 				case "Match":
 					vue.viderCartes();
-					vue.ajouterCartesMatch(ControleurBD.getListeRencontre());
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					break;
 				case "Jeu":
 					vue.viderCartes();
-					vue.ajouterCartesJeu(ControleurBD.getListeJeux());
+					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					break;
 				case"Equipe":
 					vue.viderCartes();
-					vue.ajouterCartesEquipe(ControleurBD.getListeEquipes());
+					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					break;
 				case"Ecurie":
 					vue.viderCartes();
-					vue.ajouterCartesEcurie(ControleurBD.getListeEcurie());
+					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
@@ -67,23 +67,23 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				case "Tournois":
 					vue.viderCartes();
-					vue.ajouterCartesTournois(ControleurBD.getListeTournois());
+					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					break;
 				case "Match":
 					vue.viderCartes();
-					vue.ajouterCartesMatch(ControleurBD.getListeRencontre());
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					break;
 				case "Jeu":
 					vue.viderCartes();
-					vue.ajouterCartesJeu(ControleurBD.getListeJeux());
+					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					break;
 				case"Equipe":
 					vue.viderCartes();
-					vue.ajouterCartesEquipe(ControleurBD.getListeEquipes());
+					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					break;
 				case"Ecurie":
 					vue.viderCartes();
-					vue.ajouterCartesEcurie(ControleurBD.getListeEcurie());
+					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
 				break;

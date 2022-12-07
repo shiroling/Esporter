@@ -20,7 +20,7 @@ public class Test {
 		Date ddt = java.sql.Date.valueOf(LocalDate.of(1914, 7, 28));
 		Date dft = java.sql.Date.valueOf(LocalDate.of(1918, 7, 28));
 		int i[] = {(1), (2)};  
-		Tournoi.insererTournoisMultigaming("bébouMulti", Portee.NATIONAL, dfi, ddt, dft, i, 3);
+		Tournoi.insererTournoisMultigaming("bï¿½bouMulti", Portee.NATIONAL, dfi, ddt, dft, i, 3);
 		*/
 		for (String string : Portee.toStrings()) {
 			System.out.println(string);

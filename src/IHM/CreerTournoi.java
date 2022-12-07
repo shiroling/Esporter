@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import DBlink.ControleurBD;
+import DBlink.BDSelect;
 import DBlink.Jeu;
 import DBlink.Tournoi;
 
@@ -148,7 +148,7 @@ public class CreerTournoi {
 		panel_1.add(panel_8);
 
 		comboJeu = new JComboBox();
-		comboJeu.setModel(new DefaultComboBoxModel(Jeu.toStrings(ControleurBD.getListeJeux())  ));
+		comboJeu.setModel(new DefaultComboBoxModel(Jeu.toStrings(BDSelect.getListeJeux())  ));
 		comboJeu.setToolTipText("Jeux");
 		panel_7.add(comboJeu);
 		idJeux = new ArrayList<>();

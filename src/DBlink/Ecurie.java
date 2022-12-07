@@ -15,7 +15,7 @@ public class Ecurie {
 	}
 	
 	private void init() {
-		ControleurBD.initEcurie(this);
+		BDinit.initEcurie(this);
 	}
 
 	public int getId() {

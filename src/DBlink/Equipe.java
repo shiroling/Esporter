@@ -20,7 +20,7 @@ public class Equipe implements Comparable {
 	}
 
 	private void init() {
-		ControleurBD.initEquipe(this);
+		BDinit.initEquipe(this);
 	}
 
 	public void setNom(String nom) {
@@ -64,11 +64,11 @@ public class Equipe implements Comparable {
 	}
 	
 	public List<Joueur> getListJoueur() {
-		return ControleurBD.getListeJoueursFromEquipe(getId());
+		return BDSelect.getListeJoueursFromEquipe(getId());
 	}
 	
 	public List<Rencontre> getRencontresJouees() {
-		return ControleurBD.getListeRencontreFromEquipe(getId());
+		return BDSelect.getListeRencontreFromEquipe(getId());
 	}
 
 	public static List<Equipe> getToutesLesEquipes() {
@@ -136,11 +136,11 @@ public class Equipe implements Comparable {
 	}
 
 	private int getAgeMoyen() {
-		return ControleurBD.getAgeMoyenEquipe(this.getId());
+		return BDSelect.getAgeMoyenEquipe(this.getId());
 	}
 
 	private int getPoints() {
-		return ControleurBD.getPointsEquipe(this.getId());
+		return BDSelect.getPointsEquipe(this.getId());
 	}
 
 }

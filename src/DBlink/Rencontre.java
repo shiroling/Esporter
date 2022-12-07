@@ -17,7 +17,7 @@ public class Rencontre {
 	}
 	
 	private void init() {
-		ControleurBD.initRencontre(this);
+		BDinit.initRencontre(this);
 	}
 	
 	public Date getDate() {
@@ -58,25 +58,25 @@ public class Rencontre {
 	}
 
 	public List<Equipe> getEquipes() {
-		return ControleurBD.getEquipesFromRencontre(this.getId());
+		return BDSelect.getEquipesFromRencontre(this.getId());
 	}
 
 	public Equipe getVainqueur() throws NullPointerException {
 		if(!estResultatRenseigne()) {
 			throw new NullPointerException("Le résultat de la rencontre n'as pas été renseigné");
 		}
-		return ControleurBD.getVainqueurRencontre(getId());
+		return BDSelect.getVainqueurRencontre(getId());
 	}
 
 	public Equipe getPerdant() {
 		if(estResultatRenseigne()) {
 			throw new IllegalArgumentException("Le résultat de la rencontre n'as pas été renseigné");
 		}
-		return ControleurBD.getPerdantRencontre(id);
+		return BDSelect.getPerdantRencontre(id);
 	}
 	
 	public boolean estResultatRenseigne() {
-		return ControleurBD.estResultatRenseigne(getId());
+		return BDSelect.estResultatRenseigne(getId());
 	}
 	
 	public Poule getPoule() {
