@@ -33,7 +33,7 @@ import DBlink.Rencontre;
 import DBlink.Tournoi;
 
 public class AccueilV2 {
-	private MouseAdapter ma;
+	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panel_side;
 	private JPanel panel_main;
@@ -72,7 +72,7 @@ public class AccueilV2 {
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		frame.setBounds(100, 100, 960, 540);
+		frame.setBounds(100, 100, 1479, 912);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -181,6 +181,7 @@ public class AccueilV2 {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object obj = e.getSource();
+				System.out.println(obj);
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET: 
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
@@ -242,6 +243,10 @@ public class AccueilV2 {
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 						System.out.println(cr);
+					}else if(obj instanceof JLabel) {
+						JLabel jl = (JLabel) obj;
+						System.out.println(jl.getName());
+						System.out.println(jl.getText());
 					}
 					break;
 				default:
@@ -352,4 +357,10 @@ public class AccueilV2 {
 		}
 		ajusterGrille();
 	}
+
+	public static MouseAdapter getMa() {
+		return ma;
+	}
+	
+	
 }

@@ -1,9 +1,13 @@
 package IHM;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import Controleur.ControleurAccueil;
+import DBlink.ControleurBD;
 import DBlink.Ecurie;
+import DBlink.Equipe;
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,19 +27,25 @@ public class PanelEcurie extends JPanel {
 		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		add(lblNom);
 		
-		JLabel lblNewLabel_1 = new JLabel(ec.getNomManager());
-		lblNom.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		add(lblNewLabel_1);
+		JLabel lblmanager = new JLabel("Manager : "+ec.getNomManager());
+		lblmanager.setHorizontalAlignment(SwingConstants.LEFT);
+		lblmanager.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		add(lblmanager);
+		
+		JScrollPane scroll = new JScrollPane();
+		add(scroll);
 		
 		JPanel panel = new JPanel();
-		add(panel);
+		scroll.setViewportView(panel);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		for (Equipe eq : ControleurBD.getListeEquipes()) {
+			JLabel lblequipe = new JLabel(eq.getNom());
+			lblequipe.setHorizontalAlignment(SwingConstants.LEFT);
+			lblequipe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblequipe.addMouseListener(AccueilV2.getMa());
+			panel.add(lblequipe);
+		}
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1);
-		
-		JButton btnNewButton = new JButton("New button");
-		add(btnNewButton);
 
 	}
 
