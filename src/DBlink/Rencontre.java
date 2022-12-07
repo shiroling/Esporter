@@ -62,7 +62,7 @@ public class Rencontre {
 	}
 
 	public Equipe getVainqueur() throws NullPointerException {
-		if(estResultatRenseigne()) {
+		if(!estResultatRenseigne()) {
 			throw new NullPointerException("Le résultat de la rencontre n'as pas été renseigné");
 		}
 		return ControleurBD.getVainqueurRencontre(getId());

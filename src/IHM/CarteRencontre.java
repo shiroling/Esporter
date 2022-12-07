@@ -12,7 +12,7 @@ public class CarteRencontre extends Carte {
 	 */
 	public CarteRencontre(Rencontre r) {
 		
-		super("Match",r.getEquipes().get(0).toString()+" - "+r.getEquipes().get(1).toString());
+		super("Match", nomCopose(r));
 		JLabel lbldate = new JLabel(r.getDate().toString());
 		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbldate);
@@ -23,6 +23,9 @@ public class CarteRencontre extends Carte {
 		}
 	}
 
+	public static String nomCopose(Rencontre r) {
+		return r.getEquipes().get(0).toString()+ " - " +r.getEquipes().get(1).toString();
+	}
 
 
 }
