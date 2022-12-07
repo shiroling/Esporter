@@ -475,13 +475,11 @@ public class BDSelect {
 
 	public static int getIdJeu(String string) {
 		try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_jeu from Jouer where nom_jeu = ?");
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_jeu from Jeu where nom_jeu = ?");
 			st.setString(1, string);
 			ResultSet rs = st.executeQuery();
 			rs.next();
 			int var = rs.getInt("id_jeu");
-			System.out.println("Var = " +var);
-			rs.close();
 			st.close();
 			return var;
 		} catch (Exception e) {

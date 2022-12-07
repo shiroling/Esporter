@@ -14,8 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Controleur.ConnexionUtilisateur;
-import Controleur.ConnexionUtilisateur.ConnexionState;
 import Controleur.ControleurAccueil;
+import base.ConnexionState;
 
 public class Connexion extends JDialog {
 
@@ -26,7 +26,7 @@ public class Connexion extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Connexion(ControleurAccueil controleur, ConnexionUtilisateur.ConnexionState connexionVisee) {
+	public Connexion(ControleurAccueil controleur, ConnexionState connexionVisee) {
 		setType(Type.POPUP);
 		setResizable(false);
 		setModal(true);
@@ -72,6 +72,7 @@ public class Connexion extends JDialog {
 						case GESTIONNAIRE :
 							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
 								controleur.setConnexionState(ConnexionState.GESTIONNAIRE);
+								controleur.setIdLog(truc);
 							} else {
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}

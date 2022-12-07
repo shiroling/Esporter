@@ -159,14 +159,14 @@ public class Tournoi {
 			throw new IllegalArgumentException("Les dates données ne corélent pas");
 		}	
 		if(!isvalidGerant(idGerant)) {
-			throw new IllegalArgumentException("Le gérant n'existe pas");
+			throw new IllegalArgumentException("Le gérant"+ idGerant +" n'existe pas");
 		}
 		
 		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, j.getId(), idGerant);
 	}
 	
 	public static boolean isvalidGerant(int i ) {
-		return DBPredicats.existeGerant(i);
+		return BDPredicats.existeGerant(i);
 	}
 	
 	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, List<Jeu> jeux, int idGerant) {
@@ -176,11 +176,11 @@ public class Tournoi {
 	}
 
 	private static boolean isValidDates(Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi) {
-		return dateFinInscription.before(dateDebutTournoi) && dateDebutTournoi.before(dateFinTournoi);
+		return !dateFinInscription.after(dateDebutTournoi) && !dateDebutTournoi.after(dateFinTournoi);
 	}
 
 	private static boolean isValidNom(String nomTounoi) {
-		return !DBPredicats.existeNomTournoi(nomTounoi);
+		return !BDPredicats.existeNomTournoi(nomTounoi);
 	}
 
 

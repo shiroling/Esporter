@@ -115,6 +115,8 @@ public class AccueilV2 {
 		panel_admin.add(lbladmin);
 
 		JButton btnCreeTournois = new JButton("Cr\u00E9er tournois");
+		btnCreeTournois.setName("btnCreerTournoi");
+		btnCreeTournois.addActionListener(controleur);
 		panel_admin.add(btnCreeTournois);
 
 		JLabel lblNewLabel_2 = new JLabel("Connecte:gestionaire");
