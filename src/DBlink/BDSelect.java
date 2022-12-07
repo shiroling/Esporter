@@ -132,6 +132,7 @@ public class BDSelect {
 		}
 	}
 
+	
 	//Partie acquisition listes avec filtres	
 	public static List<Rencontre> getListeRencontreFromPoule(int idPoule) {
 		try {
@@ -361,7 +362,6 @@ public class BDSelect {
 		}
 	}
 
-	
   
 	// Acquisitions données toutes seules
 	public String getNomArbitre(int idArbitre) {
@@ -428,6 +428,7 @@ public class BDSelect {
 		}
 	}
 
+	
 	// Acquisitions calculées
 	public static int getPointsEquipe(int idEquipe) {
 		try {

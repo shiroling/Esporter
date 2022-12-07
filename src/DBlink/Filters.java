@@ -1,5 +1,7 @@
 package DBlink;
 
-public class Filters {
+import java.util.function.Predicate;
 
+public class Filters {
+	Predicate<Integer> estTournoiEnCours = id -> 
 }
