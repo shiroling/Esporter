@@ -29,7 +29,7 @@ public class Tournoi {
 	
 	
 	private void init() {
-		ControleurBD.initTournoi(this);
+		BDinit.initTournoi(this);
 	}
 	
 	public int getId() {
@@ -115,7 +115,7 @@ public class Tournoi {
 	}
 
 	public List<Equipe> getListEquipesParticipantes() {
-		return ControleurBD.getListeEquipesFromTournoi(this.getId());
+		return BDSelect.getListeEquipesFromTournoi(this.getId());
 	}
 
 	public static String[] toStrings(List<Tournoi> l) {
@@ -135,19 +135,19 @@ public class Tournoi {
 	}
 	
 	public Date getDateInscriptionEquipe(int idEquipe) {
-		return ControleurBD.getDateInscriptionEquipe(this.getId(), idEquipe);
+		return BDSelect.getDateInscriptionEquipe(this.getId(), idEquipe);
 	}
 	
 	public static List<Tournoi> getTournoisEnCours() {
-		return ControleurBD.getTournoisEnCours();
+		return BDSelect.getTournoisEnCours();
 	}
 	
 	public static List<Tournoi> getTournoisFinis() {
-		return ControleurBD.getTournoisFinis();
+		return BDSelect.getTournoisFinis();
 	}
 	
 	public static List<Tournoi> getTournoisAVenir() {
-		return ControleurBD.getTournoisAVenir();
+		return BDSelect.getTournoisAVenir();
 	}
 	
 	public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) throws IllegalArgumentException {
@@ -162,16 +162,16 @@ public class Tournoi {
 			throw new IllegalArgumentException("Le gérant n'existe pas");
 		}
 		
-		ControleurBD.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, idJeu, idGerant);
+		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, idJeu, idGerant);
 	}
 	
 	public static boolean isvalidGerant(int i ) {
-		return ControleurBD.existeGerant(i);
+		return DBPredicats.existeGerant(i);
 	}
 	
-	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu[], int idGerant) {
-		for (int i : idJeu) {
-			insererTournoi(nomTournoi + " - " + ControleurBD.getNomJeu(i), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, i, idGerant);
+	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, List<Jeu> jeux, int idGerant) {
+		for (Jeu j :jeux) {
+			insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j.getId(), idGerant);
 		}
 	}
 
@@ -180,7 +180,7 @@ public class Tournoi {
 	}
 
 	private static boolean isValidNom(String nomTounoi) {
-		return !ControleurBD.existeNomTournoi(nomTounoi);
+		return !DBPredicats.existeNomTournoi(nomTounoi);
 	}
 
 

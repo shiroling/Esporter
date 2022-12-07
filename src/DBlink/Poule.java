@@ -15,7 +15,7 @@ public class Poule {
 	}
     
     private void init() {
-		ControleurBD.initPoule(this);
+		BDinit.initPoule(this);
 	}
 
     public int getId() {
