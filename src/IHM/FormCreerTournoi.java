@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import Controleur.ControleurFromCreerTournoi;
+import Controleur.ControleurFormCreerTournoi;
 import DBlink.Jeu;
 import base.Mois;
 import java.awt.Color;
@@ -40,18 +40,23 @@ public class FormCreerTournoi extends JDialog {
 	private JComboBox comboJeux;
 	private JButton btnAjouterJeu;
 	private JLabel lblJeuxAjoutes;
+	private int idGerant;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			FormCreerTournoi dialog = new FormCreerTournoi();
+			FormCreerTournoi dialog = new FormCreerTournoi(2);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int getIdGerant() {
+		return this.idGerant;
 	}
 	
 	public JTextField getTextFieldNom() {
@@ -133,8 +138,8 @@ public class FormCreerTournoi extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FormCreerTournoi() {
-		ControleurFromCreerTournoi c = new ControleurFromCreerTournoi(this);
+	public FormCreerTournoi(int idGerant) {
+		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this);
 		setBounds(100, 100, 379, 438);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
