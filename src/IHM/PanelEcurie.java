@@ -40,6 +40,7 @@ public class PanelEcurie extends JPanel {
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		for (Equipe eq : ControleurBD.getListeEquipesFromEcurie(ec.getId())) {
 			JLabel lblequipe = new JLabel(eq.getNom());
+			lblequipe.setName("Equipe");
 			lblequipe.setHorizontalAlignment(SwingConstants.LEFT);
 			lblequipe.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			lblequipe.addMouseListener(AccueilV2.getMa());

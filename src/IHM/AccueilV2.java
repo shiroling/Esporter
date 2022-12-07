@@ -234,9 +234,25 @@ public class AccueilV2 {
 						panel_side.updateUI();
 					}else if(obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
-						/*
-						 * ajouter une ouverture de pop up
-						 */
+						switch (jl.getName()) {
+						case "Joueur": 
+							
+							break;
+						case "Equipe":
+						
+							break;
+						case "Ecurie":
+							
+							break;
+						case "Tournoi":
+							
+							break;
+						case "Rencontre":
+						
+							break;
+						default:
+							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
+						}
 					}
 					break;
 				default:
