@@ -37,7 +37,7 @@ public class PreDate {
 			}
 		}
 		if(this.getMonth() == 1) {
-			if(this.getDay() == 29 || this.getDay() == 30) {
+			if(this.getDay() >= 29) {
 				return false;
 			}
 		}
