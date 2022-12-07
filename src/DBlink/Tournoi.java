@@ -150,7 +150,7 @@ public class Tournoi {
 		return BDSelect.getTournoisAVenir();
 	}
 	
-	public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu, int idGerant) throws IllegalArgumentException {
+	public static void insererTournoi(String nomTounoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, Jeu j, int idGerant) throws IllegalArgumentException {
 		if(!isValidNom(nomTounoi)) {
 			throw new IllegalArgumentException("Le nom donné au tournoi est déjà pris");
 		}
@@ -162,7 +162,7 @@ public class Tournoi {
 			throw new IllegalArgumentException("Le gérant n'existe pas");
 		}
 		
-		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, idJeu, idGerant);
+		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, j.getId(), idGerant);
 	}
 	
 	public static boolean isvalidGerant(int i ) {
@@ -171,7 +171,7 @@ public class Tournoi {
 	
 	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, List<Jeu> jeux, int idGerant) {
 		for (Jeu j :jeux) {
-			insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j.getId(), idGerant);
+			insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j, idGerant);
 		}
 	}
 

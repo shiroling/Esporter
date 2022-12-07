@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import DBlink.ControleurBD;
 import DBlink.Jeu;
 import DBlink.Tournoi;
 import IHM.CreerTournoi;
@@ -20,13 +18,13 @@ import base.Mois;
 import base.Portee;
 import base.PreDate;
 
-public class ControleurFromCreerTournoi implements ActionListener {
+public class ControleurFormCreerTournoi implements ActionListener {
 
 	private FormCreerTournoi vue;
 	private JButton btn;
 	private List<Jeu> jeux;
 
-	public ControleurFromCreerTournoi(FormCreerTournoi vue) {
+	public ControleurFormCreerTournoi(FormCreerTournoi vue) {
 		this.vue = vue;
 		this.jeux = new ArrayList<>();
 	}
@@ -113,9 +111,9 @@ public class ControleurFromCreerTournoi implements ActionListener {
 			
 			if(this.estFormulaireValide()) {
 				if(this.jeux.size() == 1) {
-					Tournoi.insererTournoi(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux.get(0));
+					Tournoi.insererTournoi(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux.get(0), this.vue.getIdGerant());
 				} else {
-					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux);
+					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux, this.vue.getIdGerant());
 				}
 				this.vue.dispose();
 			}
