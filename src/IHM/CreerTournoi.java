@@ -48,6 +48,7 @@ public class CreerTournoi {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		cTournois = new JDialog();
 		cTournois.setType(Type.POPUP);
@@ -94,6 +95,7 @@ public class CreerTournoi {
 		JLabel labelPortee = new JLabel("Port\u00E9e");
 		panel_3.add(labelPortee);
 
+		@SuppressWarnings("rawtypes")
 		JComboBox comboPortee = new JComboBox();
 		comboPortee.setModel(new DefaultComboBoxModel(new String[] {"Local", "National", "International"}));
 		panel_3.add(comboPortee);

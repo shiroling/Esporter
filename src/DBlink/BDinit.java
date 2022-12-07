@@ -62,8 +62,7 @@ public class BDinit {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery("Select nom_jeu from Jeu where Id_Jeu = " + j.getId());
 			rs.next();
-			j.setNom(rs.getString("nom_jeu"));
-	
+			j.setNom(rs.getString(1));
 			st.close();
 		} catch (Exception err) {
 			err.printStackTrace();
