@@ -84,10 +84,48 @@ public class DBPredicats {
 	}
 	
 	public static boolean estTournoiEnCours(int id) {
-		
-		
-		
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datedebuttournoi < CURRENT_DATE AND tournoi.datefintournoi > CURRENT_DATE AND id_tournoi = " + id);
+	    	return rs.next();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
+	
+	public static boolean estTournoiFini(int id) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datefintournoi < CURRENT_DATE AND id_tournoi = " + id);
+	    	return rs.next();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
+	}
+	
+	public static boolean estTournoiAVenir(int id) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datedebuttournoi > CURRENT_DATE AND id_tournoi = " + id);
+	    	return rs.next();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
+	}
+	
+	public static boolean sontInscriptionsFinies(int id) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datefininscrtiptions < CURRENT_DATE AND id_tournoi = " + id);
+	    	return rs.next();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
+	}
+	
 
 }
