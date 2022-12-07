@@ -181,7 +181,6 @@ public class AccueilV2 {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object obj = e.getSource();
-				System.out.println(obj);
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET: 
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
@@ -189,29 +188,24 @@ public class AccueilV2 {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
-						System.out.println(ce);
 					}else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
-						System.out.println(ct);
 					}else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
-						System.out.println(ce);
 						
 					}else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
 						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
-						System.out.println(ce);
 						
 					}else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
-						System.out.println(cr);
 					}
 				break;
 				case ACCUEIL_AVEC_VOLET:
@@ -220,33 +214,29 @@ public class AccueilV2 {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
-						System.out.println(ce);
 					}else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
-						System.out.println(ct);
 					}else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
-						System.out.println(ce);
 						
 					}else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
 						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
-						System.out.println(ce);
 						
 					}else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
-						System.out.println(cr);
 					}else if(obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
-						System.out.println(jl.getName());
-						System.out.println(jl.getText());
+						/*
+						 * ajouter une ouverture de pop up
+						 */
 					}
 					break;
 				default:
