@@ -604,8 +604,7 @@ public class ControleurBD {
 	public static boolean estResultatRenseigne(int idRencontre) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery(
-					"Select id_equipe from Jouer where id_Rencontre = " + idRencontre + " and a_gagne = 0");
+			ResultSet rs = st.executeQuery("Select id_equipe from Jouer where id_Rencontre = " + idRencontre + " and a_gagne = 1");
 			boolean check = rs.next();
 			st.close();
 			if (check) {
@@ -708,16 +707,5 @@ public class ControleurBD {
 			System.out.println(e.getMessage());
 			return null;
 		}
-    }
-
-	public static int getAgeMoyenEquipe(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public static int getPointsEquipes(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-    
+    }    
 }
