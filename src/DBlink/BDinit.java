@@ -63,7 +63,6 @@ public class BDinit {
 			ResultSet rs = st.executeQuery("Select nom_jeu from Jeu where Id_Jeu = " + j.getId());
 			rs.next();
 			j.setNom(rs.getString("nom_jeu"));
-	
 			st.close();
 		} catch (Exception err) {
 			err.printStackTrace();

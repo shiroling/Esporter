@@ -2,8 +2,6 @@ package DBlink;
 
 import java.util.List;
 
-import javax.swing.Spring;
-
 public class Jeu {
 	private int id;
 	private String nom;
