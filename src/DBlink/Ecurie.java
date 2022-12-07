@@ -58,6 +58,10 @@ public class Ecurie {
 		}
 		return result;
 	}
+	
+	public List<Equipe> getListeEquipe(){
+		return BDSelect.getListeEquipesFromEcurie(getId());
+	}
 
 	@Override
 	public String toString() {
