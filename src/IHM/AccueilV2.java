@@ -23,6 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
+import Controleur.ControleurAccueil.Etat;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
@@ -180,28 +181,40 @@ public class AccueilV2 {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Object obj = e.getSource();
-				if (obj instanceof CarteEcurie) {
-					CarteEcurie ce = (CarteEcurie) obj;
-					panel_side.add(new PanelEcurie());
-					panel_side.updateUI();
-					System.out.println(ce);
+				switch (controleur.getState()) {
+				case ACCUEIL_SANS_VOLET: 
+					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
+					if (obj instanceof CarteEcurie) {
+						CarteEcurie ce = (CarteEcurie) obj;
+						panel_side.add(new PanelEcurie(ce.getEcurie()));
+						panel_side.updateUI();
+						System.out.println(ce);
+					}else if (obj instanceof CarteTournois) {
+						CarteTournois ct = (CarteTournois) obj;
+						panel_side.add(new PanelTournois(ct.getTournoi()));
+						panel_side.updateUI();
+						System.out.println(ct);
+					}
+				break;
+				case ACCUEIL_AVEC_VOLET:
+					viderSide();
+					if (obj instanceof CarteEcurie) {
+						CarteEcurie ce = (CarteEcurie) obj;
+						panel_side.add(new PanelEcurie(ce.getEcurie()));
+						panel_side.updateUI();
+						System.out.println(ce);
+					}else if (obj instanceof CarteTournois) {
+						CarteTournois ct = (CarteTournois) obj;
+						panel_side.add(new PanelTournois(ct.getTournoi()));
+						panel_side.updateUI();
+						System.out.println(ct);
+					}
+					break;
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + controleur.getState());
 				}
+				
 
-				System.out.println(obj.getClass());
-
-				String equipes[] = new String[16];
-				for (int i = 0; i < equipes.length; i++) {
-					equipes[i] = i + " aaaaaaaaaaa";
-				}
-				if (panel_side.getComponentCount() >= 1) {
-					JPanel temp = (JPanel) panel_side.getComponent(0);
-					temp = new PanelTournois("Bouboule", "dateD", "DateF", equipes);
-				} else {
-					panel_side.add(new PanelTournois("Bouboule", "12/12/22", "12/01/23", equipes));
-					panel_side.getComponent(0).setMinimumSize(new Dimension(frame.getWidth() / 4, 0));
-					panel_side.setSize(0, panel_main.getHeight());
-					panel_side.updateUI();
-				}
 			}
 		};
 	}
@@ -282,10 +295,10 @@ public class AccueilV2 {
 	public void ajouterCartesJeu(List<Jeu> jeux) {
 		CarteJeu ct;
 		for (Jeu jeu : jeux) {
-			ct = new CarteJeu(jeu.getNom());
+			ct = new CarteJeu(new Jeu(0));
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
-			ct.addMouseListener(null);
+			ct.addMouseListener(ma);
 			;
 			panel_main.add(ct);
 		}
@@ -300,7 +313,7 @@ public class AccueilV2 {
 			ct = new CarteEquipe(equipe);
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
-			ct.addMouseListener(null);
+			ct.addMouseListener(ma);
 			panel_main.add(ct);
 		}
 		ajusterGrille();

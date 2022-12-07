@@ -14,6 +14,9 @@ public class Carte extends JPanel {
 	public Carte(String categ,String nom) {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		JLabel lblCat = new JLabel(categ);
+		lblCat.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		add(lblCat);
+		
 		JLabel lblNom = new JLabel(nom);
 		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblNom);

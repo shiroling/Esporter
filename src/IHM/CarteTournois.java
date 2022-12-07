@@ -17,5 +17,9 @@ public class CarteTournois extends Carte {
 		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbldate);
 	}
+	public Tournoi getTournoi() {
+		return tournoi;
+	}
 
+	
 }

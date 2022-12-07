@@ -1,6 +1,9 @@
 package IHM;
 
 import javax.swing.JPanel;
+
+import DBlink.Ecurie;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -10,7 +13,7 @@ public class PanelEcurie extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelEcurie() {
+	public PanelEcurie(Ecurie ec) {
 		setLayout(new GridLayout(5, 1, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("New label");
