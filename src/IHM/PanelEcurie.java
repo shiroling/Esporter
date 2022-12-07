@@ -36,7 +36,7 @@ public class PanelEcurie extends JPanel {
 		JPanel panel = new JPanel();
 		scroll.setViewportView(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		for (Equipe eq : BDSelect.getListeEquipesFromEcurie(ec.getId())) {
+		for (Equipe eq : ec.getListeEquipe()) {
 			JLabel lblequipe = new JLabel(eq.getNom());
 			lblequipe.setName("Equipe");
 			lblequipe.setHorizontalAlignment(SwingConstants.LEFT);
