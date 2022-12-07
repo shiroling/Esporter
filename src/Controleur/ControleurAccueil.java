@@ -10,7 +10,7 @@ import DBlink.ControleurBD;
 import IHM.AccueilV2;
 import IHM.CreerTournoi;
 
-public class ControleurAccueil implements ActionListener {
+public class ControleurAccueil implements ActionListener  {
 
 	private Etat state;
 	private AccueilV2 vue;
@@ -24,7 +24,7 @@ public class ControleurAccueil implements ActionListener {
 		connexionState = ConnexionState.NON_CONNECTE;
 	}
 
-	private enum Etat {
+	public enum Etat {
 		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET, CONNEXION, FORMULAIRE;
 	}
 
@@ -61,6 +61,31 @@ public class ControleurAccueil implements ActionListener {
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
+				switch (btn.getText()) {
+				case "Creer Tournoi":
+					procedureCreerTournoi();
+					break;
+				case "Tournois":
+					vue.viderCartes();
+					vue.ajouterCartesTournois(ControleurBD.getListeTournois());
+					break;
+				case "Match":
+					vue.viderCartes();
+					vue.ajouterCartesMatch(ControleurBD.getListeRencontre());
+					break;
+				case "Jeu":
+					vue.viderCartes();
+					vue.ajouterCartesJeu(ControleurBD.getListeJeux());
+					break;
+				case"Equipe":
+					vue.viderCartes();
+					vue.ajouterCartesEquipe(ControleurBD.getListeEquipes());
+					break;
+				case"Ecurie":
+					vue.viderCartes();
+					vue.ajouterCartesEcurie(ControleurBD.getListeEcurie());
+					break;
+				}
 				break;
 			case CONNEXION:
 				break;
@@ -88,5 +113,15 @@ public class ControleurAccueil implements ActionListener {
 			this.state = Etat.ACCUEIL_SANS_VOLET;
 		}
 	}
+
+	public Etat getState() {
+		return state;
+	}
+
+	public void setState(Etat state) {
+		this.state = state;
+	}
+	
+	
 
 }

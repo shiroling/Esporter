@@ -10,21 +10,19 @@ public class CarteRencontre extends Carte {
 	/**
 	 * Create the panel.
 	 */
-	public CarteRencontre(String equipe1,String equipe2,String date,String gagnant) {
-		super(equipe1+" - "+equipe2);
-		JLabel lbldate = new JLabel(date);
+	public CarteRencontre(Rencontre r) {
+		
+		super("Match",r.getEquipes().get(0).toString()+" - "+r.getEquipes().get(1).toString());
+		JLabel lbldate = new JLabel(r.getDate().toString());
 		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbldate);
-		if (gagnant != null) {
-			JLabel lblgagnant = new JLabel(gagnant);
+		if (r.estResultatRenseigne()) {
+			JLabel lblgagnant = new JLabel(r.getVainqueur().toString());
 			lblgagnant.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			add(lblgagnant);
 		}
 	}
 
-	public CarteRencontre(Rencontre rencontre) {
-		
-		// TODO Auto-generated constructor stub
-	}
+
 
 }
