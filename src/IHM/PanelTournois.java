@@ -27,11 +27,10 @@ public class PanelTournois extends JPanel {
 		
 		JLabel lblNom = new JLabel(t.getNom());
 		lblNom.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		panel.add(lblNom);
 		
 		JLabel lblDates = new JLabel(t.getDateDebut()+" - "+t.getDateFin());
-		lblDates.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDates.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblDates);
 		

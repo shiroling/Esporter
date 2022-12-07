@@ -194,6 +194,23 @@ public class AccueilV2 {
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
 						System.out.println(ct);
+					}else if (obj instanceof CarteEquipe) {
+						CarteEquipe ce = (CarteEquipe) obj;
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
+						panel_side.updateUI();
+						System.out.println(ce);
+						
+					}else if (obj instanceof CarteJeu) {
+						CarteJeu ce = (CarteJeu) obj;
+						panel_side.add(new PanelJeu(ce.getJeu()));
+						panel_side.updateUI();
+						System.out.println(ce);
+						
+					}else if (obj instanceof CarteRencontre) {
+						CarteRencontre cr = (CarteRencontre) obj;
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
+						panel_side.updateUI();
+						System.out.println(cr);
 					}
 				break;
 				case ACCUEIL_AVEC_VOLET:
@@ -208,6 +225,23 @@ public class AccueilV2 {
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
 						System.out.println(ct);
+					}else if (obj instanceof CarteEquipe) {
+						CarteEquipe ce = (CarteEquipe) obj;
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
+						panel_side.updateUI();
+						System.out.println(ce);
+						
+					}else if (obj instanceof CarteJeu) {
+						CarteJeu ce = (CarteJeu) obj;
+						panel_side.add(new PanelJeu(ce.getJeu()));
+						panel_side.updateUI();
+						System.out.println(ce);
+						
+					}else if (obj instanceof CarteRencontre) {
+						CarteRencontre cr = (CarteRencontre) obj;
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
+						panel_side.updateUI();
+						System.out.println(cr);
 					}
 					break;
 				default:
@@ -295,7 +329,7 @@ public class AccueilV2 {
 	public void ajouterCartesJeu(List<Jeu> jeux) {
 		CarteJeu ct;
 		for (Jeu jeu : jeux) {
-			ct = new CarteJeu(new Jeu(0));
+			ct = new CarteJeu(jeu);
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);

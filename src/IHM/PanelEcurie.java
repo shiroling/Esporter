@@ -1,9 +1,11 @@
 package IHM;
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import DBlink.Ecurie;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -16,10 +18,14 @@ public class PanelEcurie extends JPanel {
 	public PanelEcurie(Ecurie ec) {
 		setLayout(new GridLayout(5, 1, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		add(lblNewLabel);
+		JLabel lblNom = new JLabel(ec.getNom());
+		lblNom.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		add(lblNom);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel(ec.getNomManager());
+		lblNom.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		add(lblNewLabel_1);
 		
 		JPanel panel = new JPanel();

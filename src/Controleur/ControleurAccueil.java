@@ -25,7 +25,7 @@ public class ControleurAccueil implements ActionListener  {
 	}
 
 	public enum Etat {
-		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET, CONNEXION, FORMULAIRE;
+		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET
 	}
 
 	@Override
@@ -87,10 +87,6 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				}
 				break;
-			case CONNEXION:
-				break;
-			case FORMULAIRE:
-				break;
 			}
 
 		}
@@ -103,14 +99,10 @@ public class ControleurAccueil implements ActionListener  {
 
 	private void procedureCreerTournoi() {
 		if (connexionState != ConnexionUtilisateur.ConnexionState.GESTIONNAIRE) {
-			this.state = Etat.CONNEXION;
 			IHM.Connexion fenetreConnnexion = new IHM.Connexion(this, ConnexionState.GESTIONNAIRE);
-			this.state = Etat.ACCUEIL_SANS_VOLET;
 		}
 		if (connexionState == ConnexionUtilisateur.ConnexionState.GESTIONNAIRE) {
-			this.state = Etat.FORMULAIRE;
 			CreerTournoi formTournoi = new CreerTournoi();
-			this.state = Etat.ACCUEIL_SANS_VOLET;
 		}
 	}
 
