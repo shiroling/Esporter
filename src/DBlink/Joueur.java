@@ -18,7 +18,7 @@ public class Joueur {
 	}
 
 	private void init() {
-		ControleurBD.initJoueur(this);
+		BDinit.initJoueur(this);
 	}
 
     public int getId() {

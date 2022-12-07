@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import DBlink.BDSelect;
 import DBlink.Jeu;
 import DBlink.Tournoi;
 
@@ -147,7 +148,7 @@ public class CreerTournoi {
 		panel_1.add(panel_8);
 
 		comboJeu = new JComboBox();
-		comboJeu.setModel(new DefaultComboBoxModel(Jeu.getStringJeux()));
+		comboJeu.setModel(new DefaultComboBoxModel(Jeu.toStrings(BDSelect.getListeJeux())  ));
 		comboJeu.setToolTipText("Jeux");
 		panel_7.add(comboJeu);
 		idJeux = new ArrayList<>();
@@ -166,9 +167,12 @@ public class CreerTournoi {
 				for(int id : idJeux) {
 					Jeu j = new Jeu(id);
 					if(idJeux.size() == 1) {
-						Tournoi.insererTournoi(textNom.getText(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
+						Tournoi.insererTournoi(textNom.getText(), null, null, null, null, id, id);
+						//Tournoi.insererTournoi(textNom.getText(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
 					} else {
-						Tournoi.insererTournoi(textNom.getText() + " - " + j.getNom(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
+						Tournoi.insererTournoi(textNom.getText() + " - " + j.getNom(), null, null, null, null, id, id);
+
+						//Tournoi.insererTournoi(textNom.getText() + " - " + j.getNom(), comboPortee.getSelectedItem().toString(), texDateFinIscription.getText(), textDateDebut.getText(), textDateFin.getText(), id);
 					}
 				}
 				CreerTournoi.fermer();

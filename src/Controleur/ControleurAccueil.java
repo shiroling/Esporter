@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import Controleur.ConnexionUtilisateur.ConnexionState;
-import DBlink.ControleurBD;
+import DBlink.BDSelect;
 import IHM.AccueilV2;
 import IHM.CreerTournoi;
 
-public class ControleurAccueil implements ActionListener {
+public class ControleurAccueil implements ActionListener  {
 
 	private Etat state;
 	private AccueilV2 vue;
@@ -24,7 +24,7 @@ public class ControleurAccueil implements ActionListener {
 		connexionState = ConnexionState.NON_CONNECTE;
 	}
 
-	private enum Etat {
+	public enum Etat {
 		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET, CONNEXION, FORMULAIRE;
 	}
 
@@ -41,26 +41,51 @@ public class ControleurAccueil implements ActionListener {
 					break;
 				case "Tournois":
 					vue.viderCartes();
-					vue.ajouterCartesTournois(ControleurBD.getListeTournois());
+					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					break;
 				case "Match":
 					vue.viderCartes();
-					vue.ajouterCartesMatch(ControleurBD.getListeRencontre());
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					break;
 				case "Jeu":
 					vue.viderCartes();
-					vue.ajouterCartesJeu(ControleurBD.getListeJeux());
+					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					break;
 				case"Equipe":
 					vue.viderCartes();
-					vue.ajouterCartesEquipe(ControleurBD.getListeEquipes());
+					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					break;
 				case"Ecurie":
 					vue.viderCartes();
-					vue.ajouterCartesEcurie(ControleurBD.getListeEcurie());
+					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
+				switch (btn.getText()) {
+				case "Creer Tournoi":
+					procedureCreerTournoi();
+					break;
+				case "Tournois":
+					vue.viderCartes();
+					vue.ajouterCartesTournois(BDSelect.getListeTournois());
+					break;
+				case "Match":
+					vue.viderCartes();
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+					break;
+				case "Jeu":
+					vue.viderCartes();
+					vue.ajouterCartesJeu(BDSelect.getListeJeux());
+					break;
+				case"Equipe":
+					vue.viderCartes();
+					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+					break;
+				case"Ecurie":
+					vue.viderCartes();
+					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
+					break;
+				}
 				break;
 			case CONNEXION:
 				break;
@@ -88,5 +113,15 @@ public class ControleurAccueil implements ActionListener {
 			this.state = Etat.ACCUEIL_SANS_VOLET;
 		}
 	}
+
+	public Etat getState() {
+		return state;
+	}
+
+	public void setState(Etat state) {
+		this.state = state;
+	}
+	
+	
 
 }

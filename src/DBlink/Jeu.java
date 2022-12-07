@@ -12,7 +12,7 @@ public class Jeu {
 	}
 	
 	private void init() {
-		ControleurBD.initJeu(this);
+		BDinit.initJeu(this);
 	}
 
 
@@ -32,8 +32,16 @@ public class Jeu {
 	}
 
 
+	public static String[] toStrings(List<Jeu> jeux) {
+		String[] nomJeux = new String[jeux.size()];
+		for(int i = 0; i < jeux.size() ; i++) {
+			nomJeux[i] = jeux.get(i).toString();
+		}
+		return nomJeux;
+	}
+	
 	public static String[] toStrings() {
-		List<Jeu> jeux = ControleurBD.getListeJeux();
+		List<Jeu> jeux = BDSelect.getListeJeux();
 		String[] nomJeux = new String[jeux.size()];
 		for(int i = 0; i < jeux.size() ; i++) {
 			nomJeux[i] = jeux.get(i).toString();
