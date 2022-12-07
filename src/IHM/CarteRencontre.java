@@ -22,4 +22,9 @@ public class CarteRencontre extends Carte {
 		}
 	}
 
+	public CarteRencontre(Rencontre rencontre) {
+		
+		// TODO Auto-generated constructor stub
+	}
+
 }

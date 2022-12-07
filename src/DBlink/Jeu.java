@@ -32,6 +32,14 @@ public class Jeu {
 	}
 
 
+	public static String[] toStrings(List<Jeu> jeux) {
+		String[] nomJeux = new String[jeux.size()];
+		for(int i = 0; i < jeux.size() ; i++) {
+			nomJeux[i] = jeux.get(i).toString();
+		}
+		return nomJeux;
+	}
+	
 	public static String[] toStrings() {
 		List<Jeu> jeux = ControleurBD.getListeJeux();
 		String[] nomJeux = new String[jeux.size()];

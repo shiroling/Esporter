@@ -351,7 +351,7 @@ public class AccueilV2 {
 
 	public void ajouterCartesEquipe(List<Equipe> equipes) {
 		CarteEquipe ct;
-		for (Equipe equipe : equipes) {
+		for(Equipe equipe : equipes) {
 			Ecurie e = equipe.getEcurie();
 			ct = new CarteEquipe(equipe);
 			ct.setName("CarteJeu");
