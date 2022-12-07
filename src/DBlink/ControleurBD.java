@@ -709,5 +709,15 @@ public class ControleurBD {
 			return null;
 		}
     }
+
+	public static int getAgeMoyenEquipe(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int getPointsEquipes(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
