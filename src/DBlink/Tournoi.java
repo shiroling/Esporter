@@ -169,9 +169,9 @@ public class Tournoi {
 		return DBPredicats.existeGerant(i);
 	}
 	
-	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu[], int idGerant) {
-		for (int i : idJeu) {
-			insererTournoi(nomTournoi + " - " + BDSelect.getNomJeu(i), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, i, idGerant);
+	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, List<Jeu> jeux, int idGerant) {
+		for (Jeu j :jeux) {
+			insererTournoi(nomTournoi + " - " + j.getNom(), porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j.getId(), idGerant);
 		}
 	}
 
