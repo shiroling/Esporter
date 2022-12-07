@@ -7,7 +7,7 @@ public class CarteJeu extends Carte {
 	 * Create the panel.
 	 */
 	public CarteJeu(String nom) {
-		super(nom);
+		super("Jeu",nom);
 	}
 
 }

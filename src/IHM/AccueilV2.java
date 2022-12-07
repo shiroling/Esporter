@@ -26,6 +26,8 @@ import Controleur.ControleurAccueil;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
+import DBlink.Joueur;
+import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 
@@ -164,15 +166,15 @@ public class AccueilV2 {
 		panel_13.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_13);
 
-		CarteRencontre panel_12 = new CarteRencontre("mdr", "kc", "12/12/12", "mdr");
+		CarteRencontre panel_12 = new CarteRencontre(new Rencontre(0));
 		panel_12.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_12);
 
-		CarteRencontre panel_15 = new CarteRencontre("mdr", "vita", "12/12/22", (String) null);
+		CarteRencontre panel_15 = new CarteRencontre(new Rencontre(1));
 		panel_15.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_15);
 
-		CartePoule panel_11 = new CartePoule("hiho", "LES");
+		CartePoule panel_11 = new CartePoule(new Poule(0));
 		panel_11.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_11);
 
@@ -180,15 +182,15 @@ public class AccueilV2 {
 		panel_8.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_8);
 
-		CarteEquipe panel_9 = new CarteEquipe("ha", "manager", "ecurie");
+		CarteEquipe panel_9 = new CarteEquipe(new Equipe(1));
 		panel_9.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_9);
 
-		CarteJoueur panel_10 = new CarteJoueur("hi", "MDR");
+		CarteJoueur panel_10 = new CarteJoueur(new Joueur(0));
 		panel_10.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_10);
 
-		CarteTournois panel_7 = new CarteTournois("hoho", "12/12/22", "12/01/23");
+		CarteTournois panel_7 = new CarteTournois(new Tournoi(1));
 		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_main.add(panel_7);
 
@@ -310,8 +312,7 @@ public class AccueilV2 {
 	public void ajouterCartesTournois(List<Tournoi> tournois) {
 		CarteTournois ct;
 		for (Tournoi tournoi : tournois) {
-			ct = new CarteTournois(tournoi.getNom(), tournoi.getDateDebut().toString(),
-					tournoi.getDateFin().toString());
+			ct = new CarteTournois(tournoi);
 			ct.setName("CarteTournois");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
@@ -323,8 +324,7 @@ public class AccueilV2 {
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for (Rencontre rencontre : rencontres) {
-			ct = new CarteRencontre(rencontre.getEquipes().get(0).getNom(), rencontre.getEquipes().get(1).getNom(),
-					rencontre.getDate().toString(), rencontre.getVainqueur().getNom());
+			ct = new CarteRencontre(rencontre);
 
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -353,7 +353,7 @@ public class AccueilV2 {
 		CarteEquipe ct;
 		for (Equipe equipe : equipes) {
 			Ecurie e = equipe.getEcurie();
-			ct = new CarteEquipe(equipe.getNom(), e.getNomManager(), e.getNom());
+			ct = new CarteEquipe(equipe);
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(null);
