@@ -76,7 +76,7 @@ public class Rencontre {
 	}
 	
 	public boolean estResultatRenseigne() {
-		return BDSelect.estResultatRenseigne(getId());
+		return DBPredicats.estResultatRenseigne(getId());
 	}
 	
 	public Poule getPoule() {

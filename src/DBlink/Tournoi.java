@@ -166,7 +166,7 @@ public class Tournoi {
 	}
 	
 	public static boolean isvalidGerant(int i ) {
-		return BDSelect.existeGerant(i);
+		return DBPredicats.existeGerant(i);
 	}
 	
 	public static void insererTournoisMultigaming(String nomTournoi, Portee porteeTournoi, Date dateFinInscription, Date dateDebutTournoi, Date dateFinTournoi, int idJeu[], int idGerant) {
@@ -180,7 +180,7 @@ public class Tournoi {
 	}
 
 	private static boolean isValidNom(String nomTounoi) {
-		return !BDSelect.existeNomTournoi(nomTounoi);
+		return !DBPredicats.existeNomTournoi(nomTounoi);
 	}
 
 

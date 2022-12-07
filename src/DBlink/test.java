@@ -10,6 +10,10 @@ public class test {
 		
 		System.out.println(eeee.get(0));
 		System.out.println(eeee.get(1));
+		
+		
+		
+		
 	}
 	
 }

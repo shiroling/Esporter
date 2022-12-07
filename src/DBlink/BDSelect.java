@@ -1,6 +1,5 @@
 package DBlink;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,6 +13,7 @@ public class BDSelect {
 		super();
 	}
 
+	// Partie acquisition Listes Simples
 	public static List<Poule> getListePoules() {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
@@ -132,6 +132,7 @@ public class BDSelect {
 		}
 	}
 
+	//Partie acquisition listes avec filtres	
 	public static List<Rencontre> getListeRencontreFromPoule(int idPoule) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
@@ -219,47 +220,6 @@ public class BDSelect {
 		}
 	}
 	
-	public static int getPointsEquipe(int idEquipe) {
-		try {
-			int points = 0;
-			List<Rencontre> listeMatchs = BDSelect.getListeRencontreFromEquipe(idEquipe);
-			for (Rencontre r : listeMatchs) {
-				Statement st = ConnexionBase.getConnectionBase().createStatement();
-				ResultSet rs = st.executeQuery("Select id_tournoi from rencontre r, poule p WHERE r.id_rencontre = " + r.getId() + " AND r.id_poule = p.id_poule;");
-				Tournoi t = new Tournoi(rs.getInt(1));
-				if (r.getVainqueur().getId() == idEquipe) {
-					switch (t.getPortee()) {
-					case LOCAL:
-						points += 1;
-						break;
-					case NATIONAL:
-						points += 2;
-						break;
-					case INTERNATIONAL:
-						points += 3;
-						break;
-					}
-				}
-			}
-			return points;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return -1;
-		}
-	}
-	
-	public static int getAgeMoyenEquipe(int idEquipe) {
-		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select round(avg(CURRENT_DATE - DATE_DE_NAISSANCE)/365.25) FROM Joueur WHERE ID_EQUIPE = " + idEquipe);
-			st.close();
-			return rs.getInt(1);
-		} catch(Exception e) {
-			System.out.println(e.getMessage());
-			return -1;
-		}
-	}
-
 	public static List<Equipe> getListeEquipesFromEcurie(int id) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
@@ -329,29 +289,12 @@ public class BDSelect {
 		}
 	}
 
-	public static Date getDateInscriptionEquipe(int idTournoi, int idEquipe) {
-		Connection connex = ConnexionBase.getConnectionBase();
-		try {
-			Statement st = connex.createStatement();
-			ResultSet rs = st.executeQuery("Select dateInscription from inscrit where id_tournoi = " + idTournoi
-					+ " and id_equipe = " + idEquipe);
-			rs.next();
-			Date result = rs.getDate(1);
-			rs.close();
-			st.close();
-			return result;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-	}
-
 	public static List<Tournoi> getTournoisEnCours() {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			Statement st = connex.createStatement();
 			ResultSet rs = st.executeQuery(
-					"SELECT id_tournoi FROM Tournoi where DateDebutTournoi <= date() and DateFinTournoi >= getDate()");
+					"SELECT id_tournoi FROM Tournoi where DateDebutTournoi <= CURRENT_DATE and DateFinTournoi >= CURRENT_DATE");
 			List<Tournoi> tournois = new ArrayList<>();
 			while (rs.next()) {
 				tournois.add(new Tournoi(rs.getInt(1)));
@@ -368,7 +311,7 @@ public class BDSelect {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			Statement st = connex.createStatement();
-			ResultSet rs = st.executeQuery("SELECT id_tournoi FROM Tournoi where DateFinTournoi < Date()");
+			ResultSet rs = st.executeQuery("SELECT id_tournoi FROM Tournoi where DateFinTournoi < CURRENT_DATE");
 			List<Tournoi> tournois = new ArrayList<>();
 			while (rs.next()) {
 				tournois.add(new Tournoi(rs.getInt(1)));
@@ -399,6 +342,41 @@ public class BDSelect {
 			return null;
 		}
 	}
+
+	public static List<Tournoi> getTournoisIscriptionsNonFinies() {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			Statement st = connex.createStatement();
+			ResultSet rs = st.executeQuery("SELECT id_tournoi FROM Tournoi where DateDebutTournoi > CURRENT_DATE");
+			List<Tournoi> tournois = new ArrayList<>();
+			while (rs.next()) {
+				tournois.add(new Tournoi(rs.getInt("id_tournoi")));
+			}
+			rs.close();
+			st.close();
+			return tournois;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
+  
+	// Acquisitions données toutes seules
+	public String getNomArbitre(int idArbitre) {
+    	try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("Select nom from Arbitre where id_arbitre = " + idArbitre);
+			rs.next();
+			String var = rs.getString(1);
+			rs.close();
+			st.close();
+			return var;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+    }    
 
 	public static Equipe getVainqueurRencontre(int idRencontre) {
 		try {
@@ -432,125 +410,63 @@ public class BDSelect {
 		}
 	}
 
-	public static String getNomJeu(int idJeu) {
+	public static Date getDateInscriptionEquipe(int idTournoi, int idEquipe) {
+		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select nom_jeu from Jeu where id_Jeu = " + idJeu);
+			Statement st = connex.createStatement();
+			ResultSet rs = st.executeQuery("Select dateInscription from inscrit where id_tournoi = " + idTournoi
+					+ " and id_equipe = " + idEquipe);
 			rs.next();
-			String var = rs.getString(1);
+			Date result = rs.getDate(1);
 			rs.close();
 			st.close();
-			return var;
+			return result;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
 	}
 
-	public static int getIdJeu(String nomJeu) {
+	// Acquisitions calculées
+	public static int getPointsEquipe(int idEquipe) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select id_jeu from Jeu where nom_jeu = " + nomJeu);
-			rs.next();
-			int var = rs.getInt(1);
-			rs.close();
-			st.close();
-			return var;
+			int points = 0;
+			List<Rencontre> listeMatchs = BDSelect.getListeRencontreFromEquipe(idEquipe);
+			for (Rencontre r : listeMatchs) {
+				Statement st = ConnexionBase.getConnectionBase().createStatement();
+				ResultSet rs = st.executeQuery("Select id_tournoi from rencontre r, poule p WHERE r.id_rencontre = " + r.getId() + " AND r.id_poule = p.id_poule;");
+				Tournoi t = new Tournoi(rs.getInt(1));
+				if (r.getVainqueur().getId() == idEquipe) {
+					switch (t.getPortee()) {
+					case LOCAL:
+						points += 1;
+						break;
+					case NATIONAL:
+						points += 2;
+						break;
+					case INTERNATIONAL:
+						points += 3;
+						break;
+					}
+				}
+			}
+			return points;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return -1;
 		}
 	}
-
-	public static boolean estResultatRenseigne(int idRencontre) {
-		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select id_equipe from Jouer where id_Rencontre = " + idRencontre + " and a_gagne = 1");
-			boolean check = rs.next();
-			st.close();
-			if (check) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
-
-	public static boolean existeNomTournoi(String nomTournoi) {
-		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select id_tournoi from Tournoi where nom = '" + nomTournoi + "'");
-			boolean check = rs.next();
-			st.close();
-			if (check) {
-				return true;
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
-		return false;
-	}
 	
-	public static boolean existeGerant(int IdGerant) {
-        try {
-            Statement st = ConnexionBase.getConnectionBase().createStatement();
-            ResultSet rs = st.executeQuery("Select nom from Gerant where id_gerant = "+ IdGerant);
-            boolean check = rs.next();
-            st.close();
-            if (check) {
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return false;
-    }
-
-	public static boolean isGestionnaire(String id, String mdp) {
-        Connection connex = ConnexionBase.getConnectionBase();
-        try {
-            CallableStatement st = connex.prepareCall("{? = call IS_GESTIONNAIRE (?, ?)}");
-            st.registerOutParameter(1, java.sql.Types.INTEGER);
-            st.setString(2, id);
-            st.setString(3, mdp);
-            st.execute();
-            System.out.println(st.getInt(1));
-            return (st.getInt(1) == 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean isManager(String nom, String mdp) {
-        try {
-        	Statement st = ConnexionBase.getConnectionBase().createStatement();
-        	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM Ecurie where nom_manager = '"+ nom +"' AND mdp_manager = '" + mdp + "'");
-            return (rs.next());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-    
-    public String getNomArbitre(int idArbitre) {
-    	try {
+	public static int getAgeMoyenEquipe(int idEquipe) {
+		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select nom from Arbitre where id_arbitre = " + idArbitre);
-			rs.next();
-			String var = rs.getString(1);
-			rs.close();
+			ResultSet rs = st.executeQuery("Select round(avg(CURRENT_DATE - DATE_DE_NAISSANCE)/365.25) FROM Joueur WHERE ID_EQUIPE = " + idEquipe);
 			st.close();
-			return var;
-		} catch (Exception e) {
+			return rs.getInt(1);
+		} catch(Exception e) {
 			System.out.println(e.getMessage());
-			return null;
+			return -1;
 		}
-    }    
-  
+	}
+
 }
