@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class BDSelect {
@@ -474,11 +475,12 @@ public class BDSelect {
 
 	public static int getIdJeu(String string) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery(
-					"Select id_jeu from Jouer where nom_jeu = " + string);
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_jeu from Jouer where nom_jeu = ?");
+			st.setString(1, string);
+			ResultSet rs = st.executeQuery();
 			rs.next();
 			int var = rs.getInt("id_jeu");
+			System.out.println("Var = " +var);
 			rs.close();
 			st.close();
 			return var;
