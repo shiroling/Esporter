@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import DBlink.BDSelect;
 import DBlink.ControleurBD;
 import DBlink.Jeu;
 import DBlink.Tournoi;
