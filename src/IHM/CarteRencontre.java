@@ -11,6 +11,7 @@ public class CarteRencontre extends Carte {
 	 * Create the panel.
 	 */
 	public CarteRencontre(Rencontre r) {
+		
 		super("Match",r.getEquipes().get(0).toString()+" - "+r.getEquipes().get(1).toString());
 		JLabel lbldate = new JLabel(r.getDate().toString());
 		lbldate.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -22,9 +23,6 @@ public class CarteRencontre extends Carte {
 		}
 	}
 
-	public CarteRencontre(Rencontre rencontre) {
-		
-		// TODO Auto-generated constructor stub
-	}
+
 
 }

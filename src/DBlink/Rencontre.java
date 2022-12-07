@@ -61,9 +61,9 @@ public class Rencontre {
 		return ControleurBD.getEquipesFromRencontre(this.getId());
 	}
 
-	public Equipe getVainqueur() throws IllegalArgumentException {
+	public Equipe getVainqueur() throws NullPointerException {
 		if(estResultatRenseigne()) {
-			throw new IllegalArgumentException("Le résultat de la rencontre n'as pas été renseigné");
+			throw new NullPointerException("Le résultat de la rencontre n'as pas été renseigné");
 		}
 		return ControleurBD.getVainqueurRencontre(getId());
 	}

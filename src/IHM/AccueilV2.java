@@ -158,61 +158,6 @@ public class AccueilV2 {
 		scrollPane.setViewportView(panel_main);
 		panel_main.setLayout(new GridLayout(12, 3, 10, 10));
 
-		JPanel panel_14 = new JPanel();
-		panel_14.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_14);
-
-		JPanel panel_13 = new JPanel();
-		panel_13.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_13);
-
-		CarteRencontre panel_12 = new CarteRencontre(new Rencontre(0));
-		panel_12.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_12);
-
-		CarteRencontre panel_15 = new CarteRencontre(new Rencontre(1));
-		panel_15.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_15);
-
-		CartePoule panel_11 = new CartePoule(new Poule(0));
-		panel_11.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_11);
-
-		CarteJeu panel_8 = new CarteJeu("Vervatch");
-		panel_8.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_8);
-
-		CarteEquipe panel_9 = new CarteEquipe(new Equipe(1));
-		panel_9.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_9);
-
-		CarteJoueur panel_10 = new CarteJoueur(new Joueur(0));
-		panel_10.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_10);
-
-		CarteTournois panel_7 = new CarteTournois(new Tournoi(1));
-		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_7);
-
-		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_6);
-
-		JPanel panel_6_1 = new JPanel();
-		panel_6_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_6_1);
-
-		JPanel panel_6_3 = new JPanel();
-		panel_6_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_6_3);
-
-		JPanel panel_6_2 = new JPanel();
-		panel_6_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_6_2);
-
-		JPanel panel_6_4 = new JPanel();
-		panel_6_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_main.add(panel_6_4);
 
 		panel_side = new JPanel();
 		frame.getContentPane().add(panel_side, BorderLayout.EAST);
@@ -224,7 +169,6 @@ public class AccueilV2 {
 		for (Component ie : panel_main.getComponents()) {
 			ie.addMouseListener(ma);
 		}
-		panel_7.addMouseListener(ma);
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
 				ajusterGrille();
