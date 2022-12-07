@@ -82,5 +82,9 @@ public class DBPredicats {
 	        return false;
 	    }
 	}
+	
+	public static boolean estTournoiEnCours(int id) {
+		
+	}
 
 }
