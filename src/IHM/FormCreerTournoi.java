@@ -16,11 +16,13 @@ import javax.swing.border.EmptyBorder;
 import Controleur.ControleurFromCreerTournoi;
 import DBlink.Jeu;
 import base.Mois;
+import java.awt.Color;
 
 public class FormCreerTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField textFieldNom;
+	private JLabel lblNom;
 	private JPanel panelJeuxAjoutes;
 	private JComboBox comboPortee;
 	private JComboBox comboJourDebutTournoi;
@@ -32,8 +34,12 @@ public class FormCreerTournoi extends JDialog {
 	private JComboBox comboJourFinInscription;
 	private JComboBox comboMoiFinInscription;
 	private JComboBox comboAnneeFinInscription;
+	private JLabel lblDateDebutTournoi;
+	private JLabel lblDateFinTournoi;
+	private JLabel lblDateFinInscription;
 	private JComboBox comboJeux;
 	private JButton btnAjouterJeu;
+	private JLabel lblJeuxAjoutes;
 
 	/**
 	 * Launch the application.
@@ -48,6 +54,14 @@ public class FormCreerTournoi extends JDialog {
 		}
 	}
 	
+	public JTextField getTextFieldNom() {
+		return this.textFieldNom;
+	}
+	
+	public JLabel getLabelNom() {
+		return this.lblNom;
+	}
+	
 	public JPanel getPanelJeuxAjoutes() {
 		return this.panelJeuxAjoutes;
 	}
@@ -56,8 +70,28 @@ public class FormCreerTournoi extends JDialog {
 		return this.btnAjouterJeu;
 	}
 	
+	public JLabel getLabelJeuxAjoutes() {
+		return this.lblJeuxAjoutes;
+	}
+	
+	public JLabel getLabelDateDebutTournoi() {
+		return this.lblDateDebutTournoi;
+	}
+	
+	public JLabel getLabelDateFinTournoi() {
+		return this.lblDateFinTournoi;
+	}
+	
+	public JLabel getLabelDateFinInscription() {
+		return this.lblDateFinInscription;
+	}
+	
 	public JComboBox getComboJeux() {
 		return this.comboJeux;
+	}
+	
+	public JComboBox getComboPortee() {
+		return this.comboPortee;
 	}
 	
 	public String getSelectedValueComboAnneeDebutTournoi() {
@@ -101,7 +135,7 @@ public class FormCreerTournoi extends JDialog {
 	 */
 	public FormCreerTournoi() {
 		ControleurFromCreerTournoi c = new ControleurFromCreerTournoi(this);
-		setBounds(100, 100, 364, 430);
+		setBounds(100, 100, 379, 438);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -116,7 +150,7 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelLbl.add(panel);
 				{
-					JLabel lblNom = new JLabel("Nom ");
+					lblNom = new JLabel("Nom ");
 					panel.add(lblNom);
 				}
 			}
@@ -136,7 +170,7 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelLbl.add(panel);
 				{
-					JLabel lblDateDebutTournoi = new JLabel("Date Début Tournoi");
+					lblDateDebutTournoi = new JLabel("Date Début Tournoi");
 					panel.add(lblDateDebutTournoi);
 				}
 			}
@@ -146,15 +180,15 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelLbl.add(panel);
 				{
-					JLabel lblDateFinTournois = new JLabel("Date Fin Tournois");
-					panel.add(lblDateFinTournois);
+					lblDateFinTournoi = new JLabel("Date Fin Tournoi");
+					panel.add(lblDateFinTournoi);
 				}
 			}
 			{
 				JPanel panel = new JPanel();
 				PanelLbl.add(panel);
 				{
-					JLabel lblDateFinInscription = new JLabel("Date Fin Inscription");
+					lblDateFinInscription = new JLabel("Date Fin Inscription");
 					panel.add(lblDateFinInscription);
 				}
 			}
@@ -181,9 +215,10 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					textField = new JTextField();
-					panel.add(textField);
-					textField.setColumns(15);
+					textFieldNom = new JTextField();
+					textFieldNom.setText("");
+					panel.add(textFieldNom);
+					textFieldNom.setColumns(15);
 				}
 			}
 			{
@@ -204,21 +239,18 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourDebutTournoi = new JComboBox();
-					comboJourDebutTournoi.addActionListener(c);
 					comboJourDebutTournoi.setName("combo");
 					comboJourDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourDebutTournoi);
 				}
 				{
 					comboMoiDebutTournoi = new JComboBox();
-					comboMoiDebutTournoi.addActionListener(c);
 					comboMoiDebutTournoi.setName("combo");
 					comboMoiDebutTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiDebutTournoi);
 				}
 				{
 					comboAnneeDebutTournoi = new JComboBox();
-					comboAnneeDebutTournoi.addActionListener(c);
 					comboAnneeDebutTournoi.setName("combo");
 					comboAnneeDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeDebutTournoi);
@@ -231,21 +263,18 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourFinTournoi = new JComboBox();
-					comboJourFinTournoi.addActionListener(c);
 					comboJourFinTournoi.setName("combo");
 					comboJourFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinTournoi);
 				}
 				{
 					comboMoiFinTournoi = new JComboBox();
-					comboMoiFinTournoi.addActionListener(c);
 					comboMoiFinTournoi.setName("combo");
 					comboMoiFinTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiFinTournoi);
 				}
 				{
 					comboAnneeFinTournoi = new JComboBox();
-					comboAnneeFinTournoi.addActionListener(c);
 					comboAnneeFinTournoi.setName("combo");
 					comboAnneeFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinTournoi);
@@ -258,21 +287,18 @@ public class FormCreerTournoi extends JDialog {
 				PanelChampsSaisie.add(panel);
 				{
 					comboJourFinInscription = new JComboBox();
-					comboJourFinInscription.addActionListener(c);
 					comboJourFinInscription.setName("combo");
 					comboJourFinInscription.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinInscription);
 				}
 				{
 					comboMoiFinInscription = new JComboBox();
-					comboMoiFinInscription.addActionListener(c);
 					comboMoiFinInscription.setName("combo");
 					comboMoiFinInscription.setModel(new DefaultComboBoxModel(Mois.toStrings()));
 					panel.add(comboMoiFinInscription);
 				}
 				{
 					comboAnneeFinInscription = new JComboBox();
-					comboAnneeFinInscription.addActionListener(c);
 					comboAnneeFinInscription.setName("combo");
 					comboAnneeFinInscription.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinInscription);
@@ -295,7 +321,7 @@ public class FormCreerTournoi extends JDialog {
 			contentPanel.add(panelJeux, BorderLayout.SOUTH);
 			panelJeux.setLayout(new BorderLayout(0, 0));
 			{
-				JLabel lblJeuxAjoutes = new JLabel("Jeux Ajoutés :"); 
+				lblJeuxAjoutes = new JLabel("Jeux Ajoutés :"); 
 				panelJeux.add(lblJeuxAjoutes, BorderLayout.NORTH);
 			}
 			{
@@ -309,6 +335,7 @@ public class FormCreerTournoi extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnInserer = new JButton("Créer");
+				btnInserer.addActionListener(c);
 				btnInserer.setName("btnInserer");
 				btnInserer.setActionCommand("OK");
 				buttonPane.add(btnInserer);
@@ -317,6 +344,7 @@ public class FormCreerTournoi extends JDialog {
 			{
 				JButton cancelButton = new JButton("Annuler");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(c);
 				cancelButton.setName("btnCancel");
 				buttonPane.add(cancelButton);
 			}

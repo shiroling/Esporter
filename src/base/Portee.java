@@ -10,7 +10,7 @@ public enum Portee {
 	
 	private final String name;
 
-	Portee(String s) {
+	private Portee(String s) {
 		name = s;
 	}
 	
@@ -18,8 +18,19 @@ public enum Portee {
 		return Stream.of(Portee.values()).toArray(String[]::new) ;
 	}
 	
+	public static Portee stringToPortee(String str) {
+		switch(str) {
+			case "Local":
+				return Portee.LOCAL;
+			case "National":
+				return Portee.NATIONAL;
+			case "International" :
+				return Portee.INTERNATIONAL;
+			default :
+				return null;
+		}
+	}
 	
-
 	public String getName() {
 		return name;
 	}
