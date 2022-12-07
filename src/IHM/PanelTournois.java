@@ -27,11 +27,10 @@ public class PanelTournois extends JPanel {
 		
 		JLabel lblNom = new JLabel(t.getNom());
 		lblNom.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		panel.add(lblNom);
 		
 		JLabel lblDates = new JLabel(t.getDateDebut()+" - "+t.getDateFin());
-		lblDates.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDates.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		panel.add(lblDates);
 		
@@ -50,10 +49,11 @@ public class PanelTournois extends JPanel {
 		main.setLayout(new GridLayout(16, 1, 0, 0));
 		System.out.println(t.getListEquipesParticipantes());
 		for (Equipe eq : t.getListEquipesParticipantes()) {
-			JLabel temp = new JLabel(eq.toString());
-			temp.setHorizontalAlignment(SwingConstants.CENTER);
-			temp.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			main.add(temp);
+			JLabel lblequipe = new JLabel(eq.toString());
+			lblequipe.setName("Equipe");
+			lblequipe.setHorizontalAlignment(SwingConstants.CENTER);
+			lblequipe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			main.add(lblequipe);
 		}
 
 	}

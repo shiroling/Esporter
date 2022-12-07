@@ -33,7 +33,7 @@ import DBlink.Rencontre;
 import DBlink.Tournoi;
 
 public class AccueilV2 {
-	private MouseAdapter ma;
+	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panel_side;
 	private JPanel panel_main;
@@ -72,7 +72,7 @@ public class AccueilV2 {
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		frame.setBounds(100, 100, 960, 540);
+		frame.setBounds(100, 100, 1479, 912);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -188,12 +188,24 @@ public class AccueilV2 {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
-						System.out.println(ce);
 					}else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
-						System.out.println(ct);
+					}else if (obj instanceof CarteEquipe) {
+						CarteEquipe ce = (CarteEquipe) obj;
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
+						panel_side.updateUI();
+						
+					}else if (obj instanceof CarteJeu) {
+						CarteJeu ce = (CarteJeu) obj;
+						panel_side.add(new PanelJeu(ce.getJeu()));
+						panel_side.updateUI();
+						
+					}else if (obj instanceof CarteRencontre) {
+						CarteRencontre cr = (CarteRencontre) obj;
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
+						panel_side.updateUI();
 					}
 				break;
 				case ACCUEIL_AVEC_VOLET:
@@ -202,12 +214,45 @@ public class AccueilV2 {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
-						System.out.println(ce);
 					}else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
-						System.out.println(ct);
+					}else if (obj instanceof CarteEquipe) {
+						CarteEquipe ce = (CarteEquipe) obj;
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
+						panel_side.updateUI();
+						
+					}else if (obj instanceof CarteJeu) {
+						CarteJeu ce = (CarteJeu) obj;
+						panel_side.add(new PanelJeu(ce.getJeu()));
+						panel_side.updateUI();
+						
+					}else if (obj instanceof CarteRencontre) {
+						CarteRencontre cr = (CarteRencontre) obj;
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
+						panel_side.updateUI();
+					}else if(obj instanceof JLabel) {
+						JLabel jl = (JLabel) obj;
+						switch (jl.getName()) {
+						case "Joueur": 
+							
+							break;
+						case "Equipe":
+						
+							break;
+						case "Ecurie":
+							
+							break;
+						case "Tournoi":
+							
+							break;
+						case "Rencontre":
+						
+							break;
+						default:
+							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
+						}
 					}
 					break;
 				default:
@@ -295,7 +340,7 @@ public class AccueilV2 {
 	public void ajouterCartesJeu(List<Jeu> jeux) {
 		CarteJeu ct;
 		for (Jeu jeu : jeux) {
-			ct = new CarteJeu(new Jeu(0));
+			ct = new CarteJeu(jeu);
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
@@ -318,4 +363,10 @@ public class AccueilV2 {
 		}
 		ajusterGrille();
 	}
+
+	public static MouseAdapter getMa() {
+		return ma;
+	}
+	
+	
 }
