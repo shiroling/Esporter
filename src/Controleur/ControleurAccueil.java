@@ -65,8 +65,8 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
-				switch (btn.getText()) {
-				case "Creer Tournoi":
+				switch (btn.getName()) {
+				case "btnCreerTournoi":
 					procedureCreerTournoi();
 					break;
 				case "Tournois":

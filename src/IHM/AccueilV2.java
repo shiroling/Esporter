@@ -221,36 +221,37 @@ public class AccueilV2 {
 				case ACCUEIL_AVEC_VOLET:
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
-						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						viderSide();
+						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
-						panel_side.add(new PanelTournois(ct.getTournoi()));
 						viderSide();
+						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
-						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						viderSide();
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
-						panel_side.add(new PanelJeu(ce.getJeu()));
 						viderSide();
+						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						viderSide();
+						System.out.println("marche");
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 					} else if (obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							System.out.println(jl.getText());
+							System.out.println(  Joueur.getJoueurFromPseudo(jl.getName()));
 							break;
 						case "Equipe":
 							System.out.println(jl.getText());

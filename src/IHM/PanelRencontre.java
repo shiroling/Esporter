@@ -1,8 +1,12 @@
 package IHM;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import DBlink.Poule;
 import DBlink.Rencontre;
+import DBlink.Tournoi;
+
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 
@@ -16,6 +20,9 @@ public class PanelRencontre extends JPanel {
 		
 		JPanel panelRencontre = new JPanel();
 		add(panelRencontre);
+		
+		JLabel lblNomRencontre = new JLabel(new Tournoi(new Poule(r.getIdPoule()).getIdTournoi()).getNom());
+		panelRencontre.add(lblNomRencontre);
 		
 		JPanel panelEquipe1 = new JPanel();
 		add(panelEquipe1);
