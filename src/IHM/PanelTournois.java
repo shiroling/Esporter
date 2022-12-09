@@ -28,10 +28,12 @@ public class PanelTournois extends JPanel {
 		JLabel lblNom = new JLabel(t.getNom());
 		lblNom.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNom.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblNom.setName("Tournoi");
 		panel.add(lblNom);
 		
 		JLabel lblDates = new JLabel(t.getDateDebut()+" - "+t.getDateFin());
 		lblDates.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDates.setName("Date");
 		panel.add(lblDates);
 		
 		JPanel panel_1 = new JPanel();
@@ -47,7 +49,6 @@ public class PanelTournois extends JPanel {
 		JPanel main = new JPanel();
 		add(main, BorderLayout.CENTER);
 		main.setLayout(new GridLayout(16, 1, 0, 0));
-		System.out.println(t.getListEquipesParticipantes());
 		for (Equipe eq : t.getListEquipesParticipantes()) {
 			JLabel lblequipe = new JLabel(eq.toString());
 			lblequipe.setName("Equipe");

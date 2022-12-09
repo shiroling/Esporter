@@ -28,6 +28,7 @@ public class PanelEcurie extends JPanel {
 		JLabel lblmanager = new JLabel("Manager : "+ec.getNomManager());
 		lblmanager.setHorizontalAlignment(SwingConstants.LEFT);
 		lblmanager.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblmanager.setName("Manager");
 		add(lblmanager);
 		
 		JScrollPane scroll = new JScrollPane();

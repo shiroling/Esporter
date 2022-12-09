@@ -103,6 +103,6 @@ public class Rencontre {
 		return " [ " + this.getEquipes().get(0) + " / " + this.getEquipes().get(1) + " ] ";
 	}
 
-	
+	//aaa
 
 }
