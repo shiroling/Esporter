@@ -91,15 +91,15 @@ public class BDinit {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery(
-					"Select NOM, PORTÃ‰E, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
+					"Select NOM, portée, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
 							+ t.getId());
 			rs.next();
-			t.setNom(rs.getString(1));
-			t.setDateFinInscriptions(rs.getDate(3));
-			t.setDateDebut(rs.getDate(4));
-			t.setDateFin(rs.getDate(5));
-			t.setIdJeu(rs.getInt(6));
-			t.setIdGerant(rs.getInt(7));
+			t.setNom(rs.getString("NOM"));
+			t.setDateFinInscriptions(rs.getDate("DATEFININSRIPTIONS"));
+			t.setDateDebut(rs.getDate("DATEDEBUTTOURNOI"));
+			t.setDateFin(rs.getDate("DATEFINTOURNOI"));
+			t.setIdJeu(rs.getInt("ID_JEU"));
+			t.setIdGerant(rs.getInt("ID_GERANT"));
 	
 			String s = rs.getString(2);
 			switch (s) {
