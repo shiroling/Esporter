@@ -72,7 +72,7 @@ public class Connexion extends JDialog {
 						case GESTIONNAIRE :
 							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
 								controleur.setConnexionState(ConnexionState.GESTIONNAIRE);
-								controleur.setIdLog(truc);
+								controleur.setIdLog(truc);;
 							} else {
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}

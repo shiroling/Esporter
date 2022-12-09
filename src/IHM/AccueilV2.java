@@ -61,6 +61,7 @@ public class AccueilV2 {
 	 */
 	public AccueilV2() {
 		initialize();
+
 	}
 
 	/**
@@ -132,26 +133,31 @@ public class AccueilV2 {
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTournois.addActionListener(controleur);
+		btnTournois.setName("Tournois");
 		panel_16.add(btnTournois);
 
 		JButton btnMatch = new JButton("Match");
 		btnMatch.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnMatch.addActionListener(controleur);
+		btnMatch.setName("Match");
 		panel_16.add(btnMatch);
 
 		JButton btnJeu = new JButton("Jeu");
 		btnJeu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnJeu.addActionListener(controleur);
+		btnJeu.setName("Jeu");
 		panel_16.add(btnJeu);
 
 		JButton btnEquipe = new JButton("Equipe");
 		btnEquipe.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEquipe.addActionListener(controleur);
+		btnEquipe.setName("Equipe");
 		panel_16.add(btnEquipe);
 
 		JButton btnEcurie = new JButton("Ecurie");
 		btnEcurie.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEcurie.addActionListener(controleur);
+		btnEcurie.setName("Ecurie");
 		panel_16.add(btnEcurie);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -160,7 +166,6 @@ public class AccueilV2 {
 		panel_main = new JPanel();
 		scrollPane.setViewportView(panel_main);
 		panel_main.setLayout(new GridLayout(12, 3, 10, 10));
-
 
 		panel_side = new JPanel();
 		frame.getContentPane().add(panel_side, BorderLayout.EAST);
@@ -184,73 +189,78 @@ public class AccueilV2 {
 			public void mouseClicked(MouseEvent e) {
 				Object obj = e.getSource();
 				switch (controleur.getState()) {
-				case ACCUEIL_SANS_VOLET: 
+				case ACCUEIL_SANS_VOLET:
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
-					}else if (obj instanceof CarteTournois) {
+					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
-					}else if (obj instanceof CarteEquipe) {
+					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
-						
-					}else if (obj instanceof CarteJeu) {
+
+					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
 						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
-						
-					}else if (obj instanceof CarteRencontre) {
+
+					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 					}
-				break;
+					break;
 				case ACCUEIL_AVEC_VOLET:
-					viderSide();
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
+						viderSide();
 						panel_side.updateUI();
-					}else if (obj instanceof CarteTournois) {
+					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
+						viderSide();
 						panel_side.updateUI();
-					}else if (obj instanceof CarteEquipe) {
+					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						panel_side.add(new PanelEquipe(ce.getEquipe()));
+						viderSide();
 						panel_side.updateUI();
-						
-					}else if (obj instanceof CarteJeu) {
+
+					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
 						panel_side.add(new PanelJeu(ce.getJeu()));
+						viderSide();
 						panel_side.updateUI();
-						
-					}else if (obj instanceof CarteRencontre) {
+
+					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
+						viderSide();
 						panel_side.updateUI();
-					}else if(obj instanceof JLabel) {
+					} else if (obj instanceof JLabel) {
+						System.out.println("bouboule");
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
-						case "Joueur": 
-							
+						case "Joueur":
+							System.out.println(jl.getText());
 							break;
 						case "Equipe":
-						
+
 							break;
 						case "Ecurie":
-							
+
 							break;
 						case "Tournoi":
-							
+
 							break;
 						case "Rencontre":
-						
+
 							break;
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
@@ -260,7 +270,6 @@ public class AccueilV2 {
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + controleur.getState());
 				}
-				
 
 			}
 		};
@@ -355,7 +364,7 @@ public class AccueilV2 {
 
 	public void ajouterCartesEquipe(List<Equipe> equipes) {
 		CarteEquipe ct;
-		for(Equipe equipe : equipes) {
+		for (Equipe equipe : equipes) {
 			Ecurie e = equipe.getEcurie();
 			ct = new CarteEquipe(equipe);
 			ct.setName("CarteJeu");
@@ -369,6 +378,5 @@ public class AccueilV2 {
 	public static MouseAdapter getMa() {
 		return ma;
 	}
-	
-	
+
 }

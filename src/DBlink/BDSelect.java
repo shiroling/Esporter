@@ -245,7 +245,7 @@ public class BDSelect {
 			ResultSet rs = st.executeQuery("SELECT id_equipe from inscrit WHERE id_tournoi = " + id);
 			List<Equipe> equipes = new ArrayList<>();
 			while (rs.next()) {
-				equipes.add(new Equipe(rs.getInt(1)));
+				equipes.add(new Equipe(rs.getInt("id_equipe")));
 			}
 			st.close();
 			return equipes;
