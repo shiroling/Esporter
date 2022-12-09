@@ -32,6 +32,7 @@ import DBlink.Joueur;
 import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -89,6 +90,7 @@ public class AccueilV2 {
 		panel.add(lblNewLabel, BorderLayout.CENTER);
 
 		JPanel panel_17 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_17.getLayout();
 		panel.add(panel_17, BorderLayout.WEST);
 
 		JPanel panel_1 = new JPanel();
@@ -194,6 +196,7 @@ public class AccueilV2 {
 				Object obj = e.getSource();
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET:
+					System.out.println("bouboule");
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
@@ -214,6 +217,7 @@ public class AccueilV2 {
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
+						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
@@ -243,6 +247,7 @@ public class AccueilV2 {
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
+						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
 						viderSide();
 						System.out.println("marche");
@@ -252,7 +257,7 @@ public class AccueilV2 {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							System.out.println(  Joueur.getJoueurFromPseudo(jl.getName()));
+							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
 							System.out.println(jl.getText());
@@ -345,7 +350,7 @@ public class AccueilV2 {
 
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
-			ct.addMouseListener(null);
+			ct.addMouseListener(ma);
 			panel_main.add(ct);
 		}
 		ajusterGrille();

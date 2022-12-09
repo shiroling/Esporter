@@ -20,7 +20,7 @@ public class Filters {
 	// Match
 	Predicate<Integer> estMatchFini = id -> BDPredicats.estTournoiFini(id);
 	Predicate<Integer> estMatchAVenir = estMatchFini.negate();
-	BiPredicate<Integer, Integer> estMatchSurJeu = (idMatch, idTournoi) -> BDPredicats.estMatchSurJeu(idMatch, idTournoi);
+	BiPredicate<Integer, Integer> estMatchSurJeu = (idMatch, idJeu) -> BDPredicats.estMatchSurJeu(idMatch, idJeu);
 	BiPredicate<Integer, Integer> estMatchDansTournoi = (idMatch, idTournoi) -> BDPredicats.estMatchTournoi(idMatch, idTournoi);
 	BiPredicate<Integer, Integer> estMatchDansPoule = (idMatch, idPoule) -> BDPredicats.estMatchPoule(idMatch, idPoule);
 	BiPredicate<Integer, Integer> estMatchAvecEquipe = (idMatch, idEquipe)  -> BDPredicats.estMatchAvecEquipe(idMatch, idEquipe);
