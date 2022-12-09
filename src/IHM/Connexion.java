@@ -76,7 +76,6 @@ public class Connexion extends JDialog {
 								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
 								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
 							} else {
-								System.out.println("Fils de pute de tes morts");
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}
 							break;

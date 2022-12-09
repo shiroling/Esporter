@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 import DBlink.BDSelect;
 import IHM.AccueilV2;
@@ -111,6 +112,8 @@ public class ControleurAccueil implements ActionListener  {
 		}
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
 			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
+			formTournoi.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			formTournoi.setVisible(true);
 		}
 	}
 
