@@ -488,4 +488,47 @@ public class BDSelect {
 		}
 	}
 
+	public static int getIdJoueurFromPseudo(String pseudo) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_joueur from Joueur where PSEUDO = ?");
+			st.setString(1, pseudo);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+			int var = rs.getInt("id_joueur");
+			st.close();
+			return var;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
+
+	public static int getIdEquipeFromNom(String nom) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_equipe from Equipe where NOM_EQUIPE = ?");
+			st.setString(1, nom);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+			int var = rs.getInt("id_equipe");
+			st.close();
+			return var;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+	}
+	
+	public static int getIdGerantFromLogs(String nom, String mdp) {
+	    try {
+	    	Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT ID_GERANT FROM Gerant where nom = '"+ nom +"' AND mdp = '" + mdp + "'");
+	        rs.next();
+	        int var = rs.getInt("ID_GERANT");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return -1;
+	    }
+	}
 }

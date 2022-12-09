@@ -101,7 +101,11 @@ public class Joueur {
 	
     @Override 
     public String toString() {
-    	return "[" + this.getPseudo() +"] " + this.getNom() + " " + this.getPrenom() + "  --- " + this.getDateNaissance().toString(); 
+    	return "[" + this.getPseudo() +"] " + this.getNom() + " " + this.getPrenom() + " --- " + this.getDateNaissance().toString(); 
     }
+    
+	public static Joueur getJoueurFromPseudo(String pseudo) {
+		return new Joueur(BDSelect.getIdJoueurFromPseudo(pseudo));
+	}
 
 }

@@ -54,7 +54,7 @@ public class Jeu {
 		return this.getNom();
 	}
 	
-	public static Jeu getIdFromName(String name) {
+	public static Jeu getJeuFromName(String name) {
 		return new Jeu(BDSelect.getIdJeu(name));
 	}
 

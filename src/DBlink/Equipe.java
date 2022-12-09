@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipe implements Comparable {
+public class Equipe implements Comparable<Equipe> {
 	private final int id;
 	private String nom;
 	private int idJeu;
@@ -112,7 +112,7 @@ public class Equipe implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) throws IllegalArgumentException {
+	public int compareTo(Equipe o) throws IllegalArgumentException {
 		if(!(o instanceof Equipe)) {
 			throw new IllegalArgumentException("l'objet en entrée n'est pas une instance d'équipe");
 		}
@@ -142,5 +142,8 @@ public class Equipe implements Comparable {
 	private int getPoints() {
 		return BDSelect.getPointsEquipe(this.getId());
 	}
-
+	
+	public static Joueur getEquipeFromNom(String nom) {
+		return new Joueur(BDSelect.getIdEquipeFromNom(nom));
+	}
 }

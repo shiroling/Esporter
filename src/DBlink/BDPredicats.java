@@ -73,6 +73,8 @@ public class BDPredicats {
 	        return false;
 	    }
 	}
+	
+	
 
 	public static boolean isManager(String nom, String mdp) {
 	    try {
