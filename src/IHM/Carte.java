@@ -12,9 +12,7 @@ import Controleur.HoverCarte;
 public class Carte extends JPanel {
 	
 	private List<JPanel> listPanelAHover;
-	/**
-	 * Create the panel.
-	 */
+	
 	public Carte() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 	}

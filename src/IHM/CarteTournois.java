@@ -13,12 +13,11 @@ import javax.swing.SwingConstants;
 import DBlink.Tournoi;
 
 public class CarteTournois extends Carte {
+	
 	private Tournoi tournoi;
 	private JPanel panelDate;
 	private JPanel panelNom;
-	/**
-	 * Create the panel.
-	 */
+	
 	public CarteTournois(Tournoi tournoi) {
 		super();
 		this.tournoi = tournoi;
@@ -30,7 +29,7 @@ public class CarteTournois extends Carte {
 		add(panelNom);
 		panelNom.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
 		
-		JLabel lblNomTournoi = new JLabel("Rl pro LAN Series");
+		JLabel lblNomTournoi = new JLabel(tournoi.getNom());
 		lblNomTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		lblNomTournoi.setHorizontalAlignment(SwingConstants.CENTER);
 		panelNom.add(lblNomTournoi);
@@ -40,7 +39,7 @@ public class CarteTournois extends Carte {
 		add(panelDate);
 		panelDate.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 		
-		JLabel lblDateDebutFinTournoi = new JLabel("10/02/2022 -- 15/02/2022");
+		JLabel lblDateDebutFinTournoi = new JLabel(tournoi.getDateDebut().getDay() + "/" + tournoi.getDateDebut().getMonth() + "/" + tournoi.getDateDebut().getYear() + " -- " + tournoi.getDateFin().getDay() + "/" + tournoi.getDateFin().getMonth() + "/" + tournoi.getDateFin().getYear());
 		lblDateDebutFinTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelDate.add(lblDateDebutFinTournoi);
 		
