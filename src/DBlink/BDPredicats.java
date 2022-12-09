@@ -183,36 +183,84 @@ public class BDPredicats {
 		}
 	}
 
-	public static boolean estMatchSurJeu(int idMatch, int idTournoi) {
-		// TODO Auto-generated method stub
-		return false;
+	public static boolean estMatchSurJeu(int idMatch, int idJeu) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT tournoi.id_tournoi FROM tournoi t, poule p, rencontre r WHERE r.id_rencontre = " + idMatch + " AND r.id_poule = p.id_poule AND p.id_tournoi = t.id_tournoi");
+	    	int idTournoi = rs.getInt(1);
+	    	st.close();
+	    	return estTournoiSurJeu(idTournoi, idJeu);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	public static boolean estMatchTournoi(int idMatch, int idTournoi) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT tournoi.id_tournoi FROM tournoi t, poule p, rencontre r WHERE r.id_rencontre = " + idMatch + " AND r.id_poule = p.id_poule AND p.id_tournoi = t.id_tournoi AND id_tournoi = " + idTournoi);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
-
+	
 	public static boolean estMatchAvecEquipe(int idMatch, int idEquipe) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM jouer WHERE id_equipe = " + idEquipe + " AND id_rencontre = " + idMatch);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	public static boolean estMatchPoule(int idMatch, int idPoule) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_poule FROM rencontre WHERE id_rencontre = " + idMatch + " AND id_poule = " + idPoule);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 
 	public static boolean estEquipeFromEcurie(int idEquipe, int idEcurie) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM equipe WHERE id_equipe = " + idEquipe + " AND id_ecurie = " + idEcurie);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 
 	public static boolean estEquipeSurJeu(int idEquipe, int idJeu) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM equipe WHERE id_equipe = " + idEquipe + " AND id_jeu = " + idJeu);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	

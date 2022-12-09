@@ -91,7 +91,7 @@ public class BDinit {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery(
-					"Select NOM, PORTÃ‰E, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
+					"Select NOM, portée, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
 							+ t.getId());
 			rs.next();
 			t.setNom(rs.getString("NOM"));

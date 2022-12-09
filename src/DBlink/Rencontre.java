@@ -9,11 +9,15 @@ public class Rencontre {
 	private int idPoule;
 	private Date date;
 
+	//add this bc it uses often and need lots of prosses
+	private int idTournoi;
+	
 	public Rencontre(int id) {
 		super();
 		this.id = id;
 		this.idArbitre = -1;
 		this.idPoule = -1;
+		this.idTournoi = -1;
 	}
 	
 	private void init() {
@@ -103,6 +107,19 @@ public class Rencontre {
 		return " [ " + this.getEquipes().get(0) + " / " + this.getEquipes().get(1) + " ] ";
 	}
 
-	//aaa
+	public int getIdTournoi() {
+		if(this.idTournoi == -1) {
+			this.setIdTournoi((new Poule(this.getIdPoule())).getIdTournoi());
+		}
+		return idTournoi;
+	}
 
+	public void setIdTournoi(int idTournoi) {
+		this.idTournoi = idTournoi;
+	}
+	
+	public Tournoi getTournoi() {
+		return new Tournoi(this.getIdTournoi());
+	}
+	
 }
