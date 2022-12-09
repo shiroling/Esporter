@@ -260,16 +260,16 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(jl.getText());
+							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
-							System.out.println(jl.getText());
+							System.out.println(Ecurie.getEcurieFromNom(jl.getText()));
 							break;
 						case "Tournoi":
-							System.out.println(jl.getText());
+							System.out.println(Tournoi.getTournoiFromNom(jl.getText()));
 							break;
 						case "Rencontre":
-							System.out.println(jl.getText());
+							System.out.println("lol je sais pas comment faire pour ca");
 							break;
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
