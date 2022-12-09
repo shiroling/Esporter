@@ -72,14 +72,15 @@ public class BDinit {
 	public static void initPoule(Poule p) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select finale, id_tournoi from poule where Id_Equipe = " + p.getId());
-			if (rs.getInt(0) > 0) {
+			ResultSet rs = st.executeQuery("Select finale, id_tournoi from poule where Id_poule = " + p.getId());
+			rs.next();
+			if (rs.getInt("finale") > 0) {
 				p.setIsFinale(true);
 			} else {
 				p.setIsFinale(false);
 			}
 	
-			p.setIdTournoi(rs.getInt(1));
+			p.setIdTournoi(rs.getInt("id_tournoi"));
 	
 			st.close();
 		} catch (Exception err) {
@@ -91,7 +92,7 @@ public class BDinit {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery(
-					"Select NOM, portée, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
+					"Select NOM, portee, DATEFININSRIPTIONS, DATEDEBUTTOURNOI, DATEFINTOURNOI, ID_JEU, ID_GERANT from tournoi where Id_tournoi = "
 							+ t.getId());
 			rs.next();
 			t.setNom(rs.getString("NOM"));
@@ -101,7 +102,7 @@ public class BDinit {
 			t.setIdJeu(rs.getInt("ID_JEU"));
 			t.setIdGerant(rs.getInt("ID_GERANT"));
 	
-			String s = rs.getString(2);
+			String s = rs.getString("portee");
 			switch (s) {
 			case "Local": {
 				t.setPortee(Portee.LOCAL);
