@@ -520,9 +520,11 @@ public class BDSelect {
 	
 	public static int getIdGerantFromLogs(String nom, String mdp) {
 	    try {
-	    	Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT ID_GERANT FROM Gerant where nom = '"+ nom +"' AND mdp = '" + mdp + "'");
-	        rs.next();
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_GERANT FROM Gerant where nom = ? AND mdp = ?");
+			st.setString(1, nom);
+			st.setString(1, mdp);
+			ResultSet rs = st.executeQuery();
+	    	rs.next();
 	        int var = rs.getInt("ID_GERANT");
 			st.close();
 			return var;	        
@@ -531,4 +533,36 @@ public class BDSelect {
 	        return -1;
 	    }
 	}
+
+	public static int getIdEcurieFromNom(String nomEcurie) {
+	    try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_ecurie FROM Ecurie where Nom_Ecurie = ?");
+			st.setString(1, nomEcurie);
+			ResultSet rs = st.executeQuery();
+	        rs.next();
+	        int var = rs.getInt("ID_ecurie");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return -1;
+	    }
+	}
+
+	public static int getIdTournoiFromNom(String nom) {
+	    try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT Id_Tournoi FROM Tournoi where nom = ?");
+			st.setString(1, nom);
+			ResultSet rs = st.executeQuery();
+	        rs.next();
+	        int var = rs.getInt("Id_Tournoi");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return -1;
+	    }
+	}
+	
+	
 }

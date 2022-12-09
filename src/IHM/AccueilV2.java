@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import DBlink.ConnexionBase;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
@@ -31,6 +32,7 @@ import DBlink.Joueur;
 import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -38,6 +40,7 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
+	private Connexion conx;
 
 	/**
 	 * 
@@ -68,12 +71,13 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		frame.setBounds(100, 100, 1479, 912);
+		frame.setBounds(100, 100, 812, 912);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -85,6 +89,7 @@ public class AccueilV2 {
 		panel.add(lblNewLabel, BorderLayout.CENTER);
 
 		JPanel panel_17 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_17.getLayout();
 		panel.add(panel_17, BorderLayout.WEST);
 
 		JPanel panel_1 = new JPanel();
@@ -190,6 +195,7 @@ public class AccueilV2 {
 				Object obj = e.getSource();
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET:
+					System.out.println("bouboule");
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
@@ -210,6 +216,7 @@ public class AccueilV2 {
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
+						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
@@ -218,49 +225,50 @@ public class AccueilV2 {
 				case ACCUEIL_AVEC_VOLET:
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
-						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						viderSide();
+						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
-						panel_side.add(new PanelTournois(ct.getTournoi()));
 						viderSide();
+						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
-						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						viderSide();
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
-						panel_side.add(new PanelJeu(ce.getJeu()));
 						viderSide();
+						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
+						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						viderSide();
+						System.out.println("marche");
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 					} else if (obj instanceof JLabel) {
-						System.out.println("bouboule");
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							System.out.println(jl.getText());
+							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-
+							System.out.println(jl.getText());
 							break;
 						case "Ecurie":
-
+							System.out.println(jl.getText());
 							break;
 						case "Tournoi":
-
+							System.out.println(jl.getText());
 							break;
 						case "Rencontre":
-
+							System.out.println(jl.getText());
 							break;
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
@@ -341,7 +349,7 @@ public class AccueilV2 {
 
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
-			ct.addMouseListener(null);
+			ct.addMouseListener(ma);
 			panel_main.add(ct);
 		}
 		ajusterGrille();

@@ -6,9 +6,7 @@ public class Ecurie {
 	private final int id;
 	private String nom;
 	private String nomManager;
-	private String mdpManager;
 
-	
 	public Ecurie(int id) {
 		super();
 		this.id = id;
@@ -41,7 +39,6 @@ public class Ecurie {
 	}
 
 	protected void setMdpManager(String mdpManager) {
-		this.mdpManager = mdpManager;
 	}
 
 	protected void setNomManager(String nomManager) {
@@ -68,4 +65,7 @@ public class Ecurie {
 		return ""+ this.getNom() +" ("+this.getNomManager()+ ")";
 	}
 	
+	public static Joueur getEcurieFromNom(String nomEcurie) {
+		return new Joueur(BDSelect.getIdEcurieFromNom(nomEcurie));
+	}
 }

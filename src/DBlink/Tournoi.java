@@ -182,6 +182,10 @@ public class Tournoi {
 	private static boolean isValidNom(String nomTounoi) {
 		return !BDPredicats.existeNomTournoi(nomTounoi);
 	}
+	
+	public static Joueur getTournoiFromNom(String nom) {
+		return new Joueur(BDSelect.getIdTournoiFromNom(nom));
+	}
 
 
 }
