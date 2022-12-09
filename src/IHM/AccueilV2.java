@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import DBlink.ConnexionBase;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
@@ -38,6 +39,7 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
+	private Connexion conx;
 
 	/**
 	 * 
@@ -68,6 +70,7 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
@@ -244,23 +247,22 @@ public class AccueilV2 {
 						viderSide();
 						panel_side.updateUI();
 					} else if (obj instanceof JLabel) {
-						System.out.println("bouboule");
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
 							System.out.println(jl.getText());
 							break;
 						case "Equipe":
-
+							System.out.println(jl.getText());
 							break;
 						case "Ecurie":
-
+							System.out.println(jl.getText());
 							break;
 						case "Tournoi":
-
+							System.out.println(jl.getText());
 							break;
 						case "Rencontre":
-
+							System.out.println(jl.getText());
 							break;
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + jl.getName());

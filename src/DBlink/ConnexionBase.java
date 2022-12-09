@@ -30,6 +30,7 @@ public class ConnexionBase {
 	
 	public static Connection getConnectionBase() {
 		if(ConnexionBase.instance == null) {
+			System.out.println("j'instantie juste avec un c guillemet c guillemet");
 			instance = ConnexionBase.instanceBuilder();
 		} 
 		return instance;

@@ -43,7 +43,7 @@ public class PanelEquipe extends JPanel {
 		scroll.setViewportView(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		for (Joueur j : eq.getListJoueur()) {
-			lbljoueur = new JLabel(j.getNom());
+			lbljoueur = new JLabel(j.getPseudo());
 			lbljoueur.setName("Joueur");
 			lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
 			lbljoueur.setFont(new Font("Tahoma", Font.PLAIN, 16));
