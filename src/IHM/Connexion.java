@@ -68,20 +68,18 @@ public class Connexion extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						switch (connexionVisee) {
-						case ARBITRE :
+						case ARBITRE : 
 							break;
 						case GESTIONNAIRE :
 							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
 								controleur.setConnexionState(ConnexionState.GESTIONNAIRE);
-								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
-								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
+								controleur.setIdLog(truc);
 							} else {
-								System.out.println("Fils de pute de tes morts");
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}
 							break;
 						case MANAGER :
-							break; 
+							break;
 						default :
 							controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 						}
