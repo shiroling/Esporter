@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import DBlink.ConnexionBase;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
@@ -38,6 +39,7 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
+	private Connexion conx;
 
 	/**
 	 * 
@@ -68,6 +70,7 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
@@ -218,49 +221,49 @@ public class AccueilV2 {
 				case ACCUEIL_AVEC_VOLET:
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
-						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						viderSide();
+						panel_side.add(new PanelEcurie(ce.getEcurie()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
-						panel_side.add(new PanelTournois(ct.getTournoi()));
 						viderSide();
+						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
-						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						viderSide();
+						panel_side.add(new PanelEquipe(ce.getEquipe()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
-						panel_side.add(new PanelJeu(ce.getJeu()));
 						viderSide();
+						panel_side.add(new PanelJeu(ce.getJeu()));
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						viderSide();
+						System.out.println("marche");
+						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 					} else if (obj instanceof JLabel) {
-						System.out.println("bouboule");
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							System.out.println(jl.getText());
+							System.out.println(  Joueur.getJoueurFromPseudo(jl.getName()));
 							break;
 						case "Equipe":
-
+							System.out.println(jl.getText());
 							break;
 						case "Ecurie":
-
+							System.out.println(jl.getText());
 							break;
 						case "Tournoi":
-
+							System.out.println(jl.getText());
 							break;
 						case "Rencontre":
-
+							System.out.println(jl.getText());
 							break;
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + jl.getName());

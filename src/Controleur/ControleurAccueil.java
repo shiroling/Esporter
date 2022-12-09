@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 import DBlink.BDSelect;
 import IHM.AccueilV2;
 import IHM.Connexion;
-import IHM.CreerTournoi;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
 
@@ -65,8 +65,8 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
-				switch (btn.getText()) {
-				case "Creer Tournoi":
+				switch (btn.getName()) {
+				case "btnCreerTournoi":
 					procedureCreerTournoi();
 					break;
 				case "Tournois":
@@ -111,6 +111,8 @@ public class ControleurAccueil implements ActionListener  {
 		}
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
 			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
+			formTournoi.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			formTournoi.setVisible(true);
 		}
 	}
 
