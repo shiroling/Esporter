@@ -80,7 +80,9 @@ public class BDPredicats {
 	    try {
 	    	Statement st = ConnexionBase.getConnectionBase().createStatement();
 	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM Ecurie where nom_manager = '"+ nom +"' AND mdp_manager = '" + mdp + "'");
-	        return (rs.next());
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
 	    } catch (Exception e) {
 	        System.out.println(e.getMessage());
 	        return false;
@@ -91,7 +93,9 @@ public class BDPredicats {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datedebuttournoi < CURRENT_DATE AND tournoi.datefintournoi > CURRENT_DATE AND id_tournoi = " + id);
-	    	return rs.next();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
@@ -102,7 +106,9 @@ public class BDPredicats {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datefintournoi < CURRENT_DATE AND id_tournoi = " + id);
-	    	return rs.next();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
@@ -113,7 +119,9 @@ public class BDPredicats {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datedebuttournoi > CURRENT_DATE AND id_tournoi = " + id);
-	    	return rs.next();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
@@ -124,7 +132,9 @@ public class BDPredicats {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datefininscrtiptions < CURRENT_DATE AND id_tournoi = " + id);
-	    	return rs.next();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
@@ -133,50 +143,76 @@ public class BDPredicats {
 
 	
 	public static boolean estTournoiSurJeu(int id, int idJeu) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.id_jeu = " + idJeu + " AND tournoi.id_tournoi = " + id);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	public static boolean estTournoiDePortee(int id, Portee p) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portée = " + p.toString() + " AND tournoi.id_tournoi = " + id);
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	public static boolean estTournoiMulti(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Tournoi t = new Tournoi(id);
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom() + "%'");
+	    	rs.next();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
 	}
 
 	public static boolean estMatchSurJeu(int idMatch, int idTournoi) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	public static boolean estMatchTournoi(int idMatch, int idTournoi) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	public static boolean estMatchAvecEquipe(int idMatch, int idEquipe) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	public static boolean estMatchPoule(int idMatch, int idPoule) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 
 	public static boolean estEquipeFromEcurie(int idEquipe, int idEcurie) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 
 	public static boolean estEquipeSurJeu(int idEquipe, int idJeu) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	
