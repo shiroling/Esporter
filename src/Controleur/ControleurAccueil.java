@@ -9,7 +9,6 @@ import javax.swing.JDialog;
 import DBlink.BDSelect;
 import IHM.AccueilV2;
 import IHM.Connexion;
-import IHM.CreerTournoi;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
 

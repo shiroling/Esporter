@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import DBlink.Jeu;
 import DBlink.Tournoi;
-import IHM.CreerTournoi;
 import IHM.FormCreerTournoi;
 import base.Mois;
 import base.Portee;
