@@ -8,9 +8,4 @@ public class test {
 		List<Equipe> l = BDSelect.getListeEquipesFromTournoi(1);
 		System.out.println(l);
 	}
-	
-	
-	alooooors
-	
-	
 }
