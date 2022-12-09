@@ -68,7 +68,7 @@ public class Connexion extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						switch (connexionVisee) {
-						case ARBITRE : 
+						case ARBITRE :
 							break;
 						case GESTIONNAIRE :
 							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
