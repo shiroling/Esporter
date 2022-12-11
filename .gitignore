@@ -75,3 +75,5 @@ SAE_ESporter_App/project
 /bin/
 src/base/Test.java
 src/DBlink/test.java
+src/IHM/classTest.java
+src/IHM/Test.java

@@ -121,7 +121,9 @@ public class AccueilV2 {
 		JLabel lbladmin = new JLabel("administration");
 		panel_admin.add(lbladmin);
 
-		JButton btnCreeTournois = new JButton("Cr\u00E9er tournois");
+		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		btnCreeTournois.setText("Creer Tournoi");
+		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
 		panel_admin.add(btnCreeTournois);
@@ -129,8 +131,10 @@ public class AccueilV2 {
 		JLabel lblNewLabel_2 = new JLabel("Connecte:gestionaire");
 		panel_admin.add(lblNewLabel_2);
 
-		JButton btnDeconnection = new JButton("D\u00E9connection");
-		panel_admin.add(btnDeconnection);
+		BtnStyle btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		btnDeconnexion.setText("Se déconnecter");
+		btnDeconnexion.setForeground(Color.WHITE);
+		panel_admin.add(btnDeconnexion);
 
 		JPanel panel_16 = new JPanel();
 		panel_3.add(panel_16, BorderLayout.NORTH);
