@@ -6,21 +6,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipe implements Comparable<Equipe>, BDEntity {
-	private final int id;
+public class Equipe extends BDEntity implements Comparable<Equipe> {
 	private String nom;
 	private int idJeu;
 	private int idEcurie;
 	
 	public Equipe(int id) {
-		super();
-		this.id = id;
+		super(id);
 		this.idJeu = -1;
 		this.idEcurie = -1;
 	}
 
 	public void init() {
-		BDinit.initEquipe(this);
+		BDinit.init(this);
 	}
 
 	public void setNom(String nom) {
@@ -39,7 +37,7 @@ public class Equipe implements Comparable<Equipe>, BDEntity {
 
 
 	public int getId() {
-		return id;
+		return super.getId();
 	}
 
 	public String getNom() {

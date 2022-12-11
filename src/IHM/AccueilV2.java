@@ -29,7 +29,6 @@ import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Joueur;
-import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 import java.awt.FlowLayout;
@@ -40,7 +39,6 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
-	private Connexion conx;
 
 	/**
 	 * 

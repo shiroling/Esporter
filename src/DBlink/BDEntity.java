@@ -1,9 +1,20 @@
 package DBlink;
 
+import java.util.List;
 
-public interface BDEntity {
-
-	public void init();
-	public int getId();
-	public String toString();
+public abstract class BDEntity {
+	private final int id;
+	
+	public BDEntity(int id) {
+		super();
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public abstract void init();
+	
+	public abstract String toString();
 }

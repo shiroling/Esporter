@@ -5,8 +5,7 @@ import java.util.List;
 
 import base.Portee;
 
-public class Tournoi implements BDEntity {
-	private int id;
+public class Tournoi extends BDEntity {
 	private String nom;
 	private Portee portee;
 	private Date dateFinInscriptions;
@@ -16,8 +15,7 @@ public class Tournoi implements BDEntity {
 	private int idGerant;
 	
 	public Tournoi(int id) {
-		super();
-		this.id = id;
+		super(id);
 		this.nom = null;
 		this.portee = null;
 		this.dateFinInscriptions = null;
@@ -28,11 +26,11 @@ public class Tournoi implements BDEntity {
 	}
 	
 	public void init() {
-		BDinit.initTournoi(this);
+		BDinit.init(this);
 	}
 	
 	public int getId() {
-		return id;
+		return super.getId();
 	}
 	
 	public String getNom() {

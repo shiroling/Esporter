@@ -2,7 +2,9 @@ package DBlink;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import base.Portee;
@@ -28,34 +30,31 @@ public class BDPredicats {
 
 	public static boolean existeNomTournoi(String nomTournoi) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select id_tournoi from Tournoi where nom = '" + nomTournoi + "'");
-			boolean check = rs.next();
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select Count(id_tournoi)as count from Tournoi where nom LIKE '%?%';");
+			st.setString(0, nomTournoi);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+			boolean b  = rs.getInt("count") > 0;
 			st.close();
-			if (check) {
-				return true;
-			}
+			return b;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		return false;
 	}
 
-	public static boolean existeGerant(int IdGerant) {
+	public static boolean existeGerant(int IdGerant){
 	    try {
-	        Statement st = ConnexionBase.getConnectionBase().createStatement();
-	        ResultSet rs = st.executeQuery("Select nom from Gerant where id_gerant = "+ IdGerant);
-	        boolean check = rs.next();
-	        st.close();
-	        if (check) {
-	            return true;
-	        }
+	        PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select count(nom) as count from Gerant where id_gerant = ?");
+	        st.setInt(0, IdGerant);
+	        ResultSet rs = st.executeQuery();
+	        boolean b  = rs.getInt("count") > 0;
+			st.close();
+			return b;
 	    } catch (Exception e) {
 	        System.out.println(e.getMessage());
 	        return false;
 	    }
-	    return false;
 	}
 
 	public static boolean isGestionnaire(String id, String mdp) {
@@ -73,8 +72,6 @@ public class BDPredicats {
 	        return false;
 	    }
 	}
-	
-	
 
 	public static boolean isManager(String nom, String mdp) {
 	    try {
@@ -158,7 +155,7 @@ public class BDPredicats {
 	public static boolean estTournoiDePortee(int id, Portee p) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portée = " + p.toString() + " AND tournoi.id_tournoi = " + id);
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portee = " + p.toString() + " AND tournoi.id_tournoi = " + id);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
