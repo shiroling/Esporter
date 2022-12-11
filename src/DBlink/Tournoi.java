@@ -5,7 +5,7 @@ import java.util.List;
 
 import base.Portee;
 
-public class Tournoi {
+public class Tournoi implements BDEntity {
 	private int id;
 	private String nom;
 	private Portee portee;
@@ -27,8 +27,7 @@ public class Tournoi {
 		this.idGerant = -1;
 	}
 	
-	
-	private void init() {
+	public void init() {
 		BDinit.initTournoi(this);
 	}
 	
@@ -186,6 +185,4 @@ public class Tournoi {
 	public static Joueur getTournoiFromNom(String nom) {
 		return new Joueur(BDSelect.getIdTournoiFromNom(nom));
 	}
-
-
 }

@@ -1,6 +1,6 @@
 package DBlink;
 
-public class Poule {
+public class Poule implements BDEntity {
     private final int idPoule;
     private Boolean isFinale;
     private int idTournoi;
@@ -14,7 +14,7 @@ public class Poule {
 		this.idTournoi = -1;
 	}
     
-    private void init() {
+    public void init() {
 		BDinit.initPoule(this);
 	}
 

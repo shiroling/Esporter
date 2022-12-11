@@ -8,13 +8,13 @@ import base.Portee;
 
 public class Filters {
 	// Tournoi
-	Predicate<Integer> estTournoiEnCours = id -> BDPredicats.estTournoiEnCours(id);
-	Predicate<Integer> estTournoiFini = id -> BDPredicats.estTournoiFini(id);
-	Predicate<Integer> estTournoiAVenir = id -> BDPredicats.estTournoiAVenir(id);
+	Predicate<Integer> esBDEntityournoiEnCours = id -> BDPredicats.estTournoiEnCours(id);
+	Predicate<Integer> esBDEntityournoiFini = id -> BDPredicats.estTournoiFini(id);
+	Predicate<Integer> esBDEntityournoiAVenir = id -> BDPredicats.estTournoiAVenir(id);
 	Predicate<Integer> sontInscriptionsFinies = id -> BDPredicats.sontInscriptionsFinies(id);
-	Predicate<Integer> estTournoiMulti = id -> BDPredicats.estTournoiMulti(id);
-	BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
-	BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
+	Predicate<Integer> esBDEntityournoiMulti = id -> BDPredicats.estTournoiMulti(id);
+	BiPredicate<Integer, Integer> esBDEntityournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
+	BiPredicate<Integer, Portee> esBDEntityournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
 	
 	// Rencontre
 	Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);
@@ -28,41 +28,40 @@ public class Filters {
 	BiPredicate<Integer, Integer> estEquipeFromEcurie = (idEquipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(idEquipe, idEcurie);
 	BiPredicate<Integer, Integer> estEquipeSurJeu = (idEquipe, idJeu) -> BDPredicats.estEquipeSurJeu(idEquipe, idJeu);
 
-
 	
-	public static List<Tournoi> tournoi(List<Tournoi> lt, Predicate<Integer> p) {
-		for(Tournoi t : lt) {
+	/// don't min me np
+	
+	
+	public static List<BDEntity> tournois(List<BDEntity> lt, List<Predicate<Integer>> lp) {
+		for(Predicate<Integer> p : lp) {
+			 lt = Filters.tournois(lt, p);
+		}
+		return lt;
+	}
+
+	public static <T> List<BDEntity> tournois(List<BDEntity> lt, List<BiPredicate<Integer, T>> lp, T secondPart) {
+		for(BiPredicate<Integer, T> p : lp) {
+			 lt = Filters.tournois(lt, p, secondPart);
+		}
+		return lt;
+	}
+	
+	
+	public static List<BDEntity> tournois(List<BDEntity> lt, Predicate<Integer> p) {
+		for(BDEntity t : lt) {
 			if( !p.test(t.getId())) {
 				lt.remove(t);
 			};
 		}
 		return lt;
 	}	
-	public static <T> List<Tournoi> tournoi(List<Tournoi> lt, BiPredicate<Integer, T> p, T secondPart) {
-		for(Tournoi t : lt) {
+	
+	public static <T> List<BDEntity> tournois(List<BDEntity> lt, BiPredicate<Integer, T> p, T secondPart) {
+		for(BDEntity t : lt) {
 			if( !p.test(t.getId(), secondPart)) {
 				lt.remove(t);
 			};
 		}
 		return lt;
 	}
-	
-	public static List<Rencontre> rencontres(List<Rencontre> lt, Predicate<Integer> p) {
-		for(Rencontre r : lt) {
-			if( !p.test(r.getId())) {
-				lt.remove(r);
-			};
-		}
-		return lt;
-	}	
-	public static <T> List<Rencontre> Rencontre(List<Rencontre> lt, BiPredicate<Integer, T> p, T secondPart) {
-		for(Rencontre r : lt) {
-			if( !p.test(r.getId(), secondPart)) {
-				lt.remove(r);
-			};
-		}
-		return lt;
-	}
-
-	
 }

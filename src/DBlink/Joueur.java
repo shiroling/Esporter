@@ -3,7 +3,7 @@ package DBlink;
 import java.util.Date;
 import java.util.List;
 
-public class Joueur {
+public class Joueur implements BDEntity {
     private int idJoueur;
     private String nom;
     private String prenom;
@@ -17,7 +17,7 @@ public class Joueur {
 		this.idEquipe = -1;
 	}
 
-	private void init() {
+	public void init() {
 		BDinit.initJoueur(this);
 	}
 

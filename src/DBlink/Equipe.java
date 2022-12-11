@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipe implements Comparable<Equipe> {
+public class Equipe implements Comparable<Equipe>, BDEntity {
 	private final int id;
 	private String nom;
 	private int idJeu;
@@ -19,7 +19,7 @@ public class Equipe implements Comparable<Equipe> {
 		this.idEcurie = -1;
 	}
 
-	private void init() {
+	public void init() {
 		BDinit.initEquipe(this);
 	}
 
@@ -71,6 +71,10 @@ public class Equipe implements Comparable<Equipe> {
 		return BDSelect.getListeRencontreFromEquipe(getId());
 	}
 
+	public List<Equipe> getAll() {
+		return Equipe.getToutesLesEquipes();
+	}
+	
 	public static List<Equipe> getToutesLesEquipes() {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
@@ -146,4 +150,6 @@ public class Equipe implements Comparable<Equipe> {
 	public static Joueur getEquipeFromNom(String nom) {
 		return new Joueur(BDSelect.getIdEquipeFromNom(nom));
 	}
+
+
 }

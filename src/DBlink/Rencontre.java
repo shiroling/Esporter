@@ -3,7 +3,7 @@ package DBlink;
 import java.sql.Date;
 import java.util.List;
 
-public class Rencontre {
+public class Rencontre implements BDEntity {
 	private final int id;
 	private int idArbitre;
 	private int idPoule;
@@ -20,7 +20,7 @@ public class Rencontre {
 		this.idTournoi = -1;
 	}
 	
-	private void init() {
+	public void init() {
 		BDinit.initRencontre(this);
 	}
 	
@@ -104,7 +104,7 @@ public class Rencontre {
 
 	@Override
 	public String toString() {
-		return " [ " + this.getEquipes().get(0) + " / " + this.getEquipes().get(1) + " ] ";
+		return this.getEquipes().get(0) + " vs " + this.getEquipes().get(1);
 	}
 
 	public int getIdTournoi() {

@@ -2,7 +2,7 @@ package DBlink;
 
 import java.util.List;
 
-public class Ecurie {
+public class Ecurie implements BDEntity {
 	private final int id;
 	private String nom;
 	private String nomManager;
@@ -12,7 +12,7 @@ public class Ecurie {
 		this.id = id;
 	}
 	
-	private void init() {
+	public void init() {
 		BDinit.initEcurie(this);
 	}
 

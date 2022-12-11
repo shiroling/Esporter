@@ -2,7 +2,7 @@ package DBlink;
 
 import java.util.List;
 
-public class Jeu {
+public class Jeu implements Comparable<Jeu>, BDEntity {
 	private int id;
 	private String nom;
 
@@ -11,7 +11,7 @@ public class Jeu {
 		this.id = idJeu;
 	}
 	
-	private void init() {
+	public void init() {
 		BDinit.initJeu(this);
 	}
 
@@ -58,4 +58,11 @@ public class Jeu {
 		return new Jeu(BDSelect.getIdJeu(name));
 	}
 
+	@Override
+	public int compareTo(Jeu o) {
+		if (this.getNom().compareTo("Valorant") == 0) {
+			return 1;
+		}
+		return 0;
+	}
 }
