@@ -28,11 +28,10 @@ public class PreDate {
 
 	public boolean estDateValide() {
 		if (this.getDay() == 31) {
-			if(this.getMonth() == 1 ||
-					this.getMonth() == 3 ||
-					this.getMonth() == 5 ||
-					this.getMonth() == 8 ||
-					this.getMonth() == 10) {
+			if( this.getMonth() == 3 ||
+				this.getMonth() == 5 ||
+				this.getMonth() == 8 ||
+				this.getMonth() == 10) {
 				return false;
 			}
 		}
@@ -44,6 +43,7 @@ public class PreDate {
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Date toDate() {
 		return new Date(year, month, day);
 	}
