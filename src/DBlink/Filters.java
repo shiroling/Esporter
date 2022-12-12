@@ -38,7 +38,7 @@ public class Filters {
 		for(Predicate<BDEntity> p : lp) {
 			 lt = Filters.filtrer(lt, p);
 		}
-		return lt;	
+		return lt;
 	}
 	
 
