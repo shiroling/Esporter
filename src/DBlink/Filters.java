@@ -9,13 +9,13 @@ import base.Portee;
 
 public class Filters {
 	// Tournoi
-	public static Predicate<Integer> esBDEntityournoiEnCours = id -> BDPredicats.estTournoiEnCours(id);
-	public static Predicate<Integer> esBDEntityournoiFini = id -> BDPredicats.estTournoiFini(id);
-	public static Predicate<Integer> esBDEntityournoiAVenir = id -> BDPredicats.estTournoiAVenir(id);
+	public static Predicate<Integer> estTournoiEnCours = id -> BDPredicats.estTournoiEnCours(id);
+	public static Predicate<Integer> estTournoiFini = id -> BDPredicats.estTournoiFini(id);
+	public static Predicate<Integer> estTournoiAVenir = id -> BDPredicats.estTournoiAVenir(id);
 	public static Predicate<Integer> sontInscriptionsFinies = id -> BDPredicats.sontInscriptionsFinies(id);
-	public static Predicate<Integer> esBDEntityournoiMulti = id -> BDPredicats.estTournoiMulti(id);
-	public static BiPredicate<Integer, Integer> esBDEntityournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
-	public static BiPredicate<Integer, Portee> esBDEntityournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
+	public static Predicate<Integer> estTournoiMulti = id -> BDPredicats.estTournoiMulti(id);
+	public static BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
+	public static BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
 	
 	// Rencontre
 	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);

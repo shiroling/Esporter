@@ -19,17 +19,9 @@ class TestFiltres {
 		tl.add(new Tournoi(2556501)); // tournoi TestPast
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
-		
-		for (BDEntity bdEntity : tl) {
-			bdEntity.init();
-		}
-		
-		try {
-			Filters.filter(tl, Filters.esBDEntityournoiEnCours);
+			
+		tl = Filters.filter(tl, Filters.estTournoiFini);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		System.out.println(tl);
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556501);
 	}
@@ -41,7 +33,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
 		
-		Filters.filter(tl, Filters.esBDEntityournoiEnCours);
+		tl = Filters.filter(tl, Filters.estTournoiAVenir);
 		
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556502);
 	}
@@ -53,7 +45,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
 		
-		Filters.filter(tl, Filters.esBDEntityournoiEnCours);
+		tl = Filters.filter(tl, Filters.estTournoiEnCours);
 		
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556503);
 	}
