@@ -34,8 +34,8 @@ public class Filters {
 	/// don't min me np
 	
 	
-	public static <T extends BDEntity> List<T> filtrer(List<T> lt, List<Predicate<T>> lp) {
-		for(Predicate<T> p : lp) {
+	public static List<BDEntity> filtrerListe(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
+		for(Predicate<BDEntity> p : lp) {
 			 lt = Filters.filtrer(lt, p);
 		}
 		return lt;
@@ -43,19 +43,19 @@ public class Filters {
 		
 	}
 
-	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, List<BiPredicate<T, TypeSecondPart>> lp, TypeSecondPart secondPart) {
+	public static <T extends BDEntity, TypeSecondPart> List<T> filtrerBiListe(List<T> lt, List<BiPredicate<T, TypeSecondPart>> lp, TypeSecondPart secondPart) {
 		for(BiPredicate<T, TypeSecondPart> p : lp) {
-			 lt = Filters.filtrer(lt, p, secondPart);
+			 lt = Filters.filtrerBi(lt, p, secondPart);
 		}
 		return lt;
 	}
 	
 	
-	public static <T extends BDEntity> List<T> filtrer(List<T> lt, Predicate<T> p) {
+	public static List<BDEntity> filtrer(List<BDEntity> lt, Predicate<BDEntity> p) {
 		return lt.stream().filter(p).collect(Collectors.toList());
 	}
 	
-	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, BiPredicate<T, TypeSecondPart> p, TypeSecondPart secondPart) {
+	public static <T extends BDEntity, TypeSecondPart> List<T> filtrerBi(List<T> lt, BiPredicate<T, TypeSecondPart> p, TypeSecondPart secondPart) {
 		List<T> includedList = new ArrayList<>();
 
 		for(T t : lt) {
@@ -64,6 +64,5 @@ public class Filters {
 			}
 		}
 		return includedList;
-		return lt.stream().filter(p).
 	}
 }

@@ -20,7 +20,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
 			
-		tl = Filters.filter(tl, Filters.estTournoiFini);
+		tl = Filters.filtrer(tl, Filters.estTournoiFini);
 
 		System.out.println(tl);
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556501);
