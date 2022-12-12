@@ -529,7 +529,7 @@ public class BDSelect {
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return -1;
 	    }
 	}
