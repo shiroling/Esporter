@@ -172,12 +172,8 @@ public class BDPredicats {
 		try {
 			Tournoi t = new Tournoi(id);
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom() + "%'");
+	    	ResultSet rs = st.executeQuery("SELECT count(id_tournoi) FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom().split("-")[0] + "%'");
 	    	rs.next();
-	    	boolean check = rs.next();
-	    	st.close();
-	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
@@ -237,10 +233,8 @@ public class BDPredicats {
 	}
 
 
-	public static boolean estEquipeFromEcurie(Equipe equipe, int idEcurie) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM equipe WHERE id_equipe = " + equipe.getId() + " AND id_ecurie = " + idEcurie);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -251,10 +245,8 @@ public class BDPredicats {
 	}
 
 
-	public static boolean estEquipeSurJeu(Equipe equipe, int idJeu) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM equipe WHERE id_equipe = " + equipe.getId() + " AND id_jeu = " + idJeu);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
