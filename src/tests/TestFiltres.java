@@ -4,22 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
 
-import DBlink.BDEntity;
-import DBlink.BDPredicats;
 import DBlink.Filters;
 import DBlink.Tournoi;
-import base.Portee;
 
 class TestFiltres {
 
 	@Test
 	void testTournoisFini() {
-		List<BDEntity> tl = new ArrayList<>();
+		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556501)); // tournoi TestPast
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
@@ -32,7 +26,7 @@ class TestFiltres {
 
 	@Test
 	void testTournoisAVenir() {
-		List<BDEntity> tl = new ArrayList<>();
+		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556501)); // tournoi TestPast
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
@@ -44,7 +38,7 @@ class TestFiltres {
 	
 	@Test
 	void testTournoisEnCours() {
-		List<BDEntity> tl = new ArrayList<>();
+		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556501)); // tournoi TestPast
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
@@ -56,13 +50,13 @@ class TestFiltres {
 	
 	@Test
 	void testInscriptionEnCours() {
-		List<BDEntity> tl = new ArrayList<>();
+		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556504)); // tournoi TestPast
 		tl.add(new Tournoi(2556505)); // tournoi TestFuture 
 		
-		tl = Filters.filter(tl, Filters.sontInscriptionsFinies);
+		tl = Filters.filtrer(tl, Filters.sontInscriptionsFinies);
 		
-		assertTrue(tl.size() == 1 && tl.get(0).getId() == ????);
+		assertTrue(tl.size() == 1 && tl.get(0).getId() == 1);
 	}
 	
 	
