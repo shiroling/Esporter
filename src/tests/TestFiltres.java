@@ -20,7 +20,6 @@ class TestFiltres {
 			
 		tl = Filters.filtrer(tl, Filters.estTournoiFini);
 
-		System.out.println(tl);
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556501);
 	}
 
@@ -49,14 +48,14 @@ class TestFiltres {
 	}
 	
 	@Test
-	void testInscriptionEnCours() {
+	void testInscriptionFinies() {
 		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556504)); // tournoi TestPast
 		tl.add(new Tournoi(2556505)); // tournoi TestFuture 
 		
 		tl = Filters.filtrer(tl, Filters.sontInscriptionsFinies);
 		
-		assertTrue(tl.size() == 1 && tl.get(0).getId() == 1);
+		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556505);
 	}
 	
 	

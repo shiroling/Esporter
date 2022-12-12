@@ -126,10 +126,12 @@ public class BDPredicats {
 	
 	public static boolean sontInscriptionsFinies(int id) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.datefininscrtiptions < CURRENT_DATE AND id_tournoi = " + id);
-	    	boolean check = rs.next();
-	    	st.close();
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT count(id_tournoi)as count FROM tournoi t WHERE t.datefininsriptions < CURRENT_DATE AND id_tournoi = ?");
+	    	st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+	    	boolean check = rs.getInt("count") > 0;
+			st.close();
 	    	return check;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

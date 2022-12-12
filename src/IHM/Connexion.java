@@ -17,18 +17,21 @@ import Controleur.ConnexionUtilisateur;
 import Controleur.ControleurAccueil;
 import DBlink.BDSelect;
 import base.ConnexionState;
+import java.awt.Color;
 
 public class Connexion extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldID;
 	private JPasswordField textFieldMDP;
+	private JLabel lblIdentifiantOuMDPIncorrect;
 
 	/**
 	 * Create the dialog.
 	 */
 	public Connexion(ControleurAccueil controleur, ConnexionState connexionVisee) {
 		setType(Type.POPUP);
+		setTitle("Connexion");
 		setResizable(false);
 		setModal(true);
 		setBounds(100, 100, 264, 214);
@@ -60,6 +63,12 @@ public class Connexion extends JDialog {
 			textFieldMDP.setColumns(10);
 		}
 		{
+			lblIdentifiantOuMDPIncorrect = new JLabel("Identifiant ou mot de passe incorrect*");
+			lblIdentifiantOuMDPIncorrect.setForeground(new Color(255, 0, 0));
+			lblIdentifiantOuMDPIncorrect.setVisible(false);
+			contentPanel.add(lblIdentifiantOuMDPIncorrect);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -73,8 +82,12 @@ public class Connexion extends JDialog {
 						case GESTIONNAIRE :
 							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
 								controleur.setConnexionState(ConnexionState.GESTIONNAIRE);
+								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
 								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
+								Connexion.this.dispose();
+
 							} else {
+								lblIdentifiantOuMDPIncorrect.setVisible(true);
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}
 							break;
@@ -83,7 +96,6 @@ public class Connexion extends JDialog {
 						default :
 							controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 						}
-						Connexion.this.dispose();
 					}
 				});
 				okButton.setActionCommand("OK");
