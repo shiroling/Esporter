@@ -32,7 +32,7 @@ public class PanelEquipe extends JPanel {
 		JLabel lblmanager = new JLabel(eq.getEcurie().getNomManager());
 		lblmanager.setHorizontalAlignment(SwingConstants.LEFT);
 		lblmanager.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblmanager.addMouseListener(AccueilV2.getMa());
+		lblmanager.setName("lblmanager");
 		panel_main.add(lblmanager);
 		JLabel lbljoueur;
 		

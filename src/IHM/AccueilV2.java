@@ -280,7 +280,7 @@ public class AccueilV2 {
 							System.out.println("lol je sais pas comment faire pour ca");
 							break;
 						default:
-							throw new IllegalArgumentException("Unexpected value: " + jl.getName());
+							break;
 						}
 					}
 					break;
