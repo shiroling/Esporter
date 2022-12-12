@@ -72,11 +72,12 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
+		frame.setTitle("ESporter");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		frame.setBounds(100, 100, 933, 592);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			Pour l'app directement en full screen décommenter cette ligne
+		//frame.setBounds(100, 100, 933, 592);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			//Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -119,7 +120,9 @@ public class AccueilV2 {
 		JLabel lbladmin = new JLabel("administration");
 		panel_admin.add(lbladmin);
 
-		JButton btnCreeTournois = new JButton("Cr\u00E9er tournois");
+		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		btnCreeTournois.setText("Creer Tournoi");
+		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
 		panel_admin.add(btnCreeTournois);
@@ -127,8 +130,10 @@ public class AccueilV2 {
 		JLabel lblNewLabel_2 = new JLabel("Connecte:gestionaire");
 		panel_admin.add(lblNewLabel_2);
 
-		JButton btnDeconnection = new JButton("D\u00E9connection");
-		panel_admin.add(btnDeconnection);
+		BtnStyle btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		btnDeconnexion.setText("Se déconnecter");
+		btnDeconnexion.setForeground(Color.WHITE);
+		panel_admin.add(btnDeconnexion);
 
 		JPanel panel_16 = new JPanel();
 		panel_3.add(panel_16, BorderLayout.NORTH);
@@ -258,6 +263,7 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
+							System.out.println(jl.getName()+"   "+ jl.getText() );
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
@@ -303,6 +309,7 @@ public class AccueilV2 {
 	 */
 	public void viderSide() {
 		panel_side.removeAll();
+		panel_side.updateUI();
 	}
 
 	/**
@@ -383,6 +390,15 @@ public class AccueilV2 {
 
 	public static MouseAdapter getMa() {
 		return ma;
+	}
+	
+	private Component getBtn(String string, ControleurAccueil controleur2) {
+
+		JButton j = new JButton(string);
+		j.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		j.addActionListener(controleur2);
+		j.setName(string);
+		return j;
 	}
 
 }

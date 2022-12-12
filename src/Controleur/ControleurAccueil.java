@@ -41,6 +41,7 @@ public class ControleurAccueil implements ActionListener  {
 			case ACCUEIL_SANS_VOLET:
 				switch (btn.getName()) {
 				case "btnCreerTournoi":
+					System.out.println("coucou1");
 					procedureCreerTournoi();
 					break;
 				case "Tournois":
@@ -64,9 +65,12 @@ public class ControleurAccueil implements ActionListener  {
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
+				break;
 			case ACCUEIL_AVEC_VOLET:
+				
 				switch (btn.getName()) {
 				case "btnCreerTournoi":
+					System.out.println("coucou2");
 					procedureCreerTournoi();
 					break;
 				case "Tournois":
@@ -90,6 +94,7 @@ public class ControleurAccueil implements ActionListener  {
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
+				vue.viderSide();
 				break;
 			}
 
