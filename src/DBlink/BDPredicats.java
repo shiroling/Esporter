@@ -45,9 +45,11 @@ public class BDPredicats {
 	public static boolean existeGerant(int IdGerant){
 	    try {
 	        PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select count(nom) as count from Gerant where id_gerant = ?");
-	        st.setInt(0, IdGerant);
+	        st.setInt(1, IdGerant);
+	        
 	        ResultSet rs = st.executeQuery();
-	        boolean b  = rs.getInt("count") > 0;
+	        rs.next();
+	        boolean b  = rs.getInt(1) > 0;
 			st.close();
 			return b;
 	    } catch (Exception e) {
