@@ -100,7 +100,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			}
 			
 			if(dateFinInscription.toDate().compareTo(dateDebutTournois.toDate()) > 0) {
-				if (!(this.vue.getLabelDateFinTournoi().getForeground().equals(new Color(255, 0, 0)))) {
+				if (!(this.vue.getLabelDateFinInscription().getForeground().equals(new Color(255, 0, 0)))) {
 					this.vue.getLabelDateFinInscription().setText(this.vue.getLabelDateFinInscription().getText() + "*");
 					this.vue.getLabelDateFinInscription().setForeground(new Color(255, 0, 0));
 				}
