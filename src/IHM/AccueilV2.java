@@ -80,94 +80,90 @@ public class AccueilV2 {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			//Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new BorderLayout(0, 0));
+		JPanel panelHeader = new JPanel();
+		frame.getContentPane().add(panelHeader, BorderLayout.NORTH);
+		panelHeader.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("Nom App");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel.add(lblNewLabel, BorderLayout.CENTER);
+		JLabel lblNomApp = new JLabel("Nom App");
+		lblNomApp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelHeader.add(lblNomApp, BorderLayout.CENTER);
 
-		JPanel panel_17 = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel_17.getLayout();
-		panel.add(panel_17, BorderLayout.WEST);
+		JPanel panelEspace = new JPanel();
+		FlowLayout fl_panelEspace = (FlowLayout) panelEspace.getLayout();
+		panelHeader.add(panelEspace, BorderLayout.WEST);
 
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.WEST);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel panelFonctionalites = new JPanel();
+		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
+		panelFonctionalites.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_3 = new JPanel();
-		panel_1.add(panel_3, BorderLayout.CENTER);
-		panel_3.setLayout(new BorderLayout(20, 10));
+		JPanel panelFiltrePlusAdmin = new JPanel();
+		panelFiltrePlusAdmin.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panelFonctionalites.add(panelFiltrePlusAdmin);
+		panelFiltrePlusAdmin.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.add(panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
+		JComboBox comboFiltre = new JComboBox();
+		comboFiltre.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboFiltre.setModel(new DefaultComboBoxModel(new String[] { "tri", "tri2", "tri 3" }));
+		panelFiltrePlusAdmin.add(comboFiltre, BorderLayout.NORTH);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "tri", "tri2", "tri 3" }));
-		panel_2.add(comboBox, BorderLayout.NORTH);
+		JPanel panelFiltre = new JPanel();
+		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
 
-		JPanel panel_filtre = new JPanel();
-		panel_2.add(panel_filtre, BorderLayout.CENTER);
-
-		JPanel panel_admin = new JPanel();
-		panel_2.add(panel_admin, BorderLayout.SOUTH);
-		panel_admin.setLayout(new GridLayout(2, 2, 0, 0));
+		JPanel panelAdmin = new JPanel();
+		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
+		panelAdmin.setLayout(new GridLayout(2, 2, 0, 0));
 
 		JLabel lbladmin = new JLabel("administration");
-		panel_admin.add(lbladmin);
+		panelAdmin.add(lbladmin);
 
 		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
-		panel_admin.add(btnCreeTournois);
+		panelAdmin.add(btnCreeTournois);
 
-		JLabel lblNewLabel_2 = new JLabel("Connecte:gestionaire");
-		panel_admin.add(lblNewLabel_2);
+		JLabel lblConnecteEnTantQue = new JLabel("Connecte:gestionaire");
+		panelAdmin.add(lblConnecteEnTantQue);
 
 		BtnStyle btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
 		btnDeconnexion.setText("Se déconnecter");
 		btnDeconnexion.setForeground(Color.WHITE);
-		panel_admin.add(btnDeconnexion);
+		panelAdmin.add(btnDeconnexion);
 
-		JPanel panel_16 = new JPanel();
-		panel_3.add(panel_16, BorderLayout.NORTH);
-		panel_16.setLayout(new GridLayout(0, 2, 20, 20));
+		JPanel panelBtnSelection = new JPanel();
+		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
+		panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
 
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTournois.addActionListener(controleur);
 		btnTournois.setName("Tournois");
-		panel_16.add(btnTournois);
+		panelBtnSelection.add(btnTournois);
 
 		JButton btnMatch = new JButton("Match");
 		btnMatch.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnMatch.addActionListener(controleur);
 		btnMatch.setName("Match");
-		panel_16.add(btnMatch);
+		panelBtnSelection.add(btnMatch);
 
 		JButton btnJeu = new JButton("Jeu");
 		btnJeu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnJeu.addActionListener(controleur);
 		btnJeu.setName("Jeu");
-		panel_16.add(btnJeu);
+		panelBtnSelection.add(btnJeu);
 
 		JButton btnEquipe = new JButton("Equipe");
 		btnEquipe.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEquipe.addActionListener(controleur);
 		btnEquipe.setName("Equipe");
-		panel_16.add(btnEquipe);
+		panelBtnSelection.add(btnEquipe);
 
 		JButton btnEcurie = new JButton("Ecurie");
 		btnEcurie.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnEcurie.addActionListener(controleur);
 		btnEcurie.setName("Ecurie");
-		panel_16.add(btnEcurie);
+		panelBtnSelection.add(btnEcurie);
 
 		JScrollPane scrollPane = new JScrollPane();
 		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
