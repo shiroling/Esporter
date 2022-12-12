@@ -11,7 +11,7 @@ public class CartePoule extends Carte {
 	 * Create the panel.
 	 */
 	public CartePoule(Poule p) {
-		super("Poule",null);
+		super();
 		JLabel lbltournois	 = new JLabel(p.getTournoi().toString());
 		lbltournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lbltournois);
