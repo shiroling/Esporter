@@ -260,6 +260,7 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
+							System.out.println(jl.getName()+"   "+ jl.getText() );
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
@@ -305,6 +306,7 @@ public class AccueilV2 {
 	 */
 	public void viderSide() {
 		panel_side.removeAll();
+		panel_side.updateUI();
 	}
 
 	/**
@@ -386,6 +388,15 @@ public class AccueilV2 {
 
 	public static MouseAdapter getMa() {
 		return ma;
+	}
+	
+	private Component getBtn(String string, ControleurAccueil controleur2) {
+
+		JButton j = new JButton(string);
+		j.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		j.addActionListener(controleur2);
+		j.setName(string);
+		return j;
 	}
 
 }

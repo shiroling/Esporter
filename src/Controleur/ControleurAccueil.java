@@ -65,6 +65,7 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				}
 			case ACCUEIL_AVEC_VOLET:
+				
 				switch (btn.getName()) {
 				case "btnCreerTournoi":
 					procedureCreerTournoi();
@@ -90,6 +91,7 @@ public class ControleurAccueil implements ActionListener  {
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					break;
 				}
+				vue.viderSide();
 				break;
 			}
 
