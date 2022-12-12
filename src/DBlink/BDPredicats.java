@@ -170,11 +170,11 @@ public class BDPredicats {
 		try {
 			Tournoi t = new Tournoi(id);
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom() + "%'");
+	    	ResultSet rs = st.executeQuery("SELECT count(id_tournoi) FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom().split("-")[0] + "%'");
 	    	rs.next();
-	    	boolean check = rs.next();
-	    	st.close();
-	    	return check;
+	    	int res = rs.getInt(1);
+	    	rs.close();
+	    	return res > 1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;

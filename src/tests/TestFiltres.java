@@ -66,15 +66,22 @@ class TestFiltres {
 		tl.add(new Tournoi(2));  // tournoi non multi
 		
 		tl = Filters.filtrer(tl, Filters.estTournoiMulti);
-		
 		assertTrue(tl.size() == 2 && tl.get(0).getId() == 97 && tl.get(1).getId() == 98);
+	}
+	
+	@Test
+	void testEstTournoiSurJeu() {
+		List<Tournoi> tl = new ArrayList<>();
+		tl.add(new Tournoi(1)); // tournoi RL
+		tl.add(new Tournoi(2)); // tournoi OW2
+		
+		tl = Filters.filtrer(tl, Filters.estTournoiSurJeu, 1);
+		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 1);
 	}
 	
 	
 	/*
 	// Tournoi
-	public static Predicate<Integer> sontInscriptionsFinies = id -> BDPredicats.sontInscriptionsFinies(id);
-	public static Predicate<Integer> estTournoiMulti = id -> BDPredicats.estTournoiMulti(id);
 	public static BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
 	public static BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
 	
