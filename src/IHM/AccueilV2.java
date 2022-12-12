@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
@@ -31,7 +32,6 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
-import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
