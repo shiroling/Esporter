@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -265,19 +266,23 @@ public class AccueilV2 {
 						switch (jl.getName()) {
 						case "Joueur":
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
+							procedureCreePopupJoueur(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(jl.getName() + "   " + jl.getText());
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
+							procedureCreePopupEquipe(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
 							System.out.println(Ecurie.getEcurieFromNom(jl.getText()));
+							procedureCreePopupEcurie(Ecurie.getEcurieFromNom(jl.getText()));
 							break;
 						case "Tournoi":
 							System.out.println(Tournoi.getTournoiFromNom(jl.getText()));
+							procedureCreePopupTournoi(Tournoi.getTournoiFromNom(jl.getText()));
 							break;
 						case "Rencontre":
-							System.out.println("lol je sais pas comment faire pour ca");
+							//System.out.println("lol je sais pas comment faire pour ca");
+							//procedureCreePopupRencontre();
 							break;
 						default:
 							break;
@@ -422,5 +427,41 @@ public class AccueilV2 {
 		btnDeconnexion.setVisible(c!=ConnexionState.NON_CONNECTE);
 		ajusterGrille();
 	}
+	
+	private void procedureCreePopupJoueur(Joueur j) {
+		PopupJoueur pop = new PopupJoueur(j);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
+	private void procedureCreePopupJeu(Jeu j) {
+		PopupJeu pop = new PopupJeu(j);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
+	private void procedureCreePopupEcurie(Ecurie e) {
+		PopupEcurie pop = new PopupEcurie(e);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
 
+	private void procedureCreePopupEquipe(Equipe e) {
+		PopupEquipe pop = new PopupEquipe(e);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
+	private void procedureCreePopupTournoi(Tournoi t) {
+		PopupTournoi pop = new PopupTournoi(t);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
+	private void procedureCreePopupRencontre(Rencontre r) {
+		PopupRencontre pop = new PopupRencontre(r);
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
 }
