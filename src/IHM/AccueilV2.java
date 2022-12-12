@@ -32,12 +32,17 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import base.ConnexionState;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panel_side;
 	private JPanel panel_main;
+	private JLabel lblEtatConx;
+	private BtnStyle btnDeconnexion;
 	private ControleurAccueil controleur;
 
 	/**
@@ -76,8 +81,8 @@ public class AccueilV2 {
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		//frame.setBounds(100, 100, 933, 592);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			//Pour l'app directement en full screen décommenter cette ligne
+		// frame.setBounds(100, 100, 933, 592);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -120,19 +125,24 @@ public class AccueilV2 {
 		JLabel lbladmin = new JLabel("administration");
 		panel_admin.add(lbladmin);
 
-		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255),
+				10);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
 		panel_admin.add(btnCreeTournois);
 
-		JLabel lblNewLabel_2 = new JLabel("Connecte:gestionaire");
-		panel_admin.add(lblNewLabel_2);
+		lblEtatConx = new JLabel("Connecte:gestionaire");
+		lblEtatConx.setVisible(false);
+		panel_admin.add(lblEtatConx);
 
-		BtnStyle btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255), 10);
+		btnDeconnexion.addActionListener(controleur);
+		btnDeconnexion.setName("btnDeconnexion");
 		btnDeconnexion.setText("Se déconnecter");
 		btnDeconnexion.setForeground(Color.WHITE);
+		btnDeconnexion.setVisible(false);
 		panel_admin.add(btnDeconnexion);
 
 		JPanel panel_16 = new JPanel();
@@ -263,7 +273,7 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(jl.getName()+"   "+ jl.getText() );
+							System.out.println(jl.getName() + "   " + jl.getText());
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
@@ -391,7 +401,7 @@ public class AccueilV2 {
 	public static MouseAdapter getMa() {
 		return ma;
 	}
-	
+
 	private Component getBtn(String string, ControleurAccueil controleur2) {
 
 		JButton j = new JButton(string);
@@ -399,6 +409,28 @@ public class AccueilV2 {
 		j.addActionListener(controleur2);
 		j.setName(string);
 		return j;
+	}
+
+	public void ChangementConx(ConnexionState c) {
+		switch (c) {
+		case ARBITRE:
+			lblEtatConx.setText("Connecte:Arbitre");
+			break;
+		case MANAGER:
+			lblEtatConx.setText("Connecte:Manager");
+			break;
+		case GESTIONNAIRE:
+			lblEtatConx.setText("Connecte:Gestionaire");
+			break;
+		case NON_CONNECTE:
+			lblEtatConx.setText("");
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + c);
+		}
+		lblEtatConx.setVisible(c!=ConnexionState.NON_CONNECTE);
+		btnDeconnexion.setVisible(c!=ConnexionState.NON_CONNECTE);
+		ajusterGrille();
 	}
 
 }

@@ -41,8 +41,10 @@ public class ControleurAccueil implements ActionListener  {
 			case ACCUEIL_SANS_VOLET:
 				switch (btn.getName()) {
 				case "btnCreerTournoi":
-					System.out.println("coucou1");
 					procedureCreerTournoi();
+					break;
+				case "btnDeconnexion":
+					setConnexionState(connexionState.NON_CONNECTE);
 					break;
 				case "Tournois":
 					vue.viderCartes();
@@ -102,9 +104,6 @@ public class ControleurAccueil implements ActionListener  {
 		
 	}
 
-	public void setConnexionState(ConnexionState c) {
-		this.connexionState = c;
-	}
 	
 	public void setIdLog(int id) {
 		this.idLog = id;
@@ -129,6 +128,14 @@ public class ControleurAccueil implements ActionListener  {
 		this.state = state;
 	}
 	
+	public void setConnexionState(ConnexionState c) {
+		vue.ChangementConx(c);
+		this.connexionState = c;
+	}
+	public ConnexionState getConnexionState() {
+		return this.connexionState;
+	}
+
 	
 
 }
