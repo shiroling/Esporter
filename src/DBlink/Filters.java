@@ -27,8 +27,8 @@ public class Filters {
 	public static BiPredicate<Integer, Integer> estRencontreAvecEquipe = (idMatch, idEquipe)  -> BDPredicats.estMatchAvecEquipe(idMatch, idEquipe);
 	
 	// Equipe
-	public static BiPredicate<Integer, Integer> estEquipeFromEcurie = (idEquipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(idEquipe, idEcurie);
-	public static BiPredicate<Integer, Integer> estEquipeSurJeu = (idEquipe, idJeu) -> BDPredicats.estEquipeSurJeu(idEquipe, idJeu);
+	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(equipe, idEcurie);
+	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> BDPredicats.estEquipeSurJeu(equipe, idJeu);
 
 	
 	/// don't min me np
@@ -57,7 +57,7 @@ public class Filters {
 	
 	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, BiPredicate<T, TypeSecondPart> p, TypeSecondPart secondPart) {
 		List<T> includedList = new ArrayList<>();
-			 lt = Filters.filtrer(lt, p, secondPart);
+			 includedList = Filters.filtrer(lt, p, secondPart);
 		return includedList;
 	}
 }

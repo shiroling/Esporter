@@ -172,6 +172,7 @@ public class BDPredicats {
 		try {
 			Tournoi t = new Tournoi(id);
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			
 	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom() + "%'");
 	    	rs.next();
 	    	boolean check = rs.next();
@@ -236,10 +237,10 @@ public class BDPredicats {
 	}
 
 
-	public static boolean estEquipeFromEcurie(int idEquipe, int idEcurie) {
+	public static boolean estEquipeFromEcurie(Equipe equipe, int idEcurie) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM equipe WHERE id_equipe = " + idEquipe + " AND id_ecurie = " + idEcurie);
+	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM equipe WHERE id_equipe = " + equipe.getId() + " AND id_ecurie = " + idEcurie);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -250,10 +251,10 @@ public class BDPredicats {
 	}
 
 
-	public static boolean estEquipeSurJeu(int idEquipe, int idJeu) {
+	public static boolean estEquipeSurJeu(Equipe equipe, int idJeu) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM equipe WHERE id_equipe = " + idEquipe + " AND id_jeu = " + idJeu);
+	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM equipe WHERE id_equipe = " + equipe.getId() + " AND id_jeu = " + idJeu);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;

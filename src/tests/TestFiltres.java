@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import DBlink.Equipe;
 import DBlink.Filters;
 import DBlink.Tournoi;
 
@@ -89,7 +90,19 @@ class TestFiltres {
 	// Equipe
 	public static BiPredicate<Integer, Integer> estEquipeFromEcurie = (idEquipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(idEquipe, idEcurie);
 	public static BiPredicate<Integer, Integer> estEquipeSurJeu = (idEquipe, idJeu) -> BDPredicats.estEquipeSurJeu(idEquipe, idJeu);
-*/	
+	*/
+	@Test
+	void testEquipefromEcurie() {
+		List<Equipe> tl = new ArrayList<>();
+		tl.add(new Equipe(1)); // pas chez mandatory (4)
+		tl.add(new Equipe(2)); // chez mandatory (4)
+		
+		tl = Filters.filtrer(tl, Filters.estEquipeFromEcurie, 4);
+		
+		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2);
+	}
+	
+
 	
 
 }
