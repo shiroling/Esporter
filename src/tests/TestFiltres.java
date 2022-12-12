@@ -67,6 +67,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2));  // tournoi non multi
 		
 		tl = Filters.filtrer(tl, Filters.estTournoiMulti);
+		System.out.println(tl);
 		assertTrue(tl.size() == 2 && tl.get(0).getId() == 97 && tl.get(1).getId() == 98);
 	}
 	
