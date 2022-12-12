@@ -145,8 +145,8 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 		return BDSelect.getPointsEquipe(this.getId());
 	}
 	
-	public static Joueur getEquipeFromNom(String nom) {
-		return new Joueur(BDSelect.getIdEquipeFromNom(nom));
+	public static Equipe getEquipeFromNom(String nom) {
+		return new Equipe(BDSelect.getIdEquipeFromNom(nom));
 	}
 
 

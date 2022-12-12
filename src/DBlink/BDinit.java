@@ -27,9 +27,9 @@ public class BDinit {
 			ResultSet rs = st
 					.executeQuery("Select nom_Equipe, Id_Jeu, Id_Ecurie from Equipe where Id_Equipe = " + e.getId());
 			rs.next();
-			e.setNom(rs.getString(1));
-			e.setIdJeu(rs.getInt(2));
-			e.setIdEcurie(rs.getInt(3));
+			e.setNom(rs.getString("nom_Equipe"));
+			e.setIdJeu(rs.getInt("Id_Jeu"));
+			e.setIdEcurie(rs.getInt("Id_Ecurie"));
 	
 			st.close();
 		} catch (Exception err) {

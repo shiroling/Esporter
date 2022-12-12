@@ -505,7 +505,6 @@ public class BDSelect {
 
 	public static int getIdEquipeFromNom(String nom) {
 		try {
-			System.out.println(nom);	
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select id_equipe from Equipe where NOM_EQUIPE = ?");
 			st.setString(1, nom);
 			ResultSet rs = st.executeQuery();
