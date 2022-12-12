@@ -29,6 +29,7 @@ public class Tournoi extends BDEntity {
 		BDinit.init(this);
 	}
 	
+	@Override
 	public int getId() {
 		return super.getId();
 	}

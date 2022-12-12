@@ -1,6 +1,5 @@
 package DBlink;
 
-import java.util.List;
 
 public abstract class BDEntity {
 	private final int id;
