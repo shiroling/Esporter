@@ -135,6 +135,7 @@ public class AccueilV2 {
 		btnDeconnexion.setName("btnDeconnexion");
 		btnDeconnexion.setText("Se déconnecter");
 		btnDeconnexion.setForeground(Color.WHITE);
+
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
 
@@ -266,7 +267,7 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(jl.getName()+"   "+ jl.getText() );
+							System.out.println(jl.getName() + "   " + jl.getText());
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
@@ -394,7 +395,10 @@ public class AccueilV2 {
 	public static MouseAdapter getMa() {
 		return ma;
 	}
+
 	
+
+
 
 
 	public void ChangementConx(ConnexionState c) {
