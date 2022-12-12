@@ -56,8 +56,6 @@ public class Filters {
 	
 	
 	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, BiPredicate<T, TypeSecondPart> p, TypeSecondPart secondPart) {
-		List<T> includedList = new ArrayList<>();
-			 includedList = Filters.filtrer(lt, p, secondPart);
-		return includedList;
+		return lt.stream().filter(x -> p.test(x, secondPart)).collect(Collectors.toList());
 	}
 }
