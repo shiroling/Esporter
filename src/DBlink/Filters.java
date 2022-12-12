@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import base.Portee;
 
 public class Filters {
 	// Tournoi
-	public static Predicate<Integer> estTournoiEnCours = id -> BDPredicats.estTournoiEnCours(id);
-	public static Predicate<Integer> estTournoiFini = id -> BDPredicats.estTournoiFini(id);
-	public static Predicate<Integer> estTournoiAVenir = id -> BDPredicats.estTournoiAVenir(id);
-	public static Predicate<Integer> sontInscriptionsFinies = id -> BDPredicats.sontInscriptionsFinies(id);
-	public static Predicate<Integer> estTournoiMulti = id -> BDPredicats.estTournoiMulti(id);
-	public static BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
-	public static BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
+	public static Predicate<Tournoi> estTournoiEnCours = t -> BDPredicats.estTournoiEnCours(t.getId());
+	public static Predicate<Tournoi> estTournoiFini = t -> BDPredicats.estTournoiFini(t.getId());
+	public static Predicate<Tournoi> estTournoiAVenir = t -> BDPredicats.estTournoiAVenir(t.getId());
+	public static Predicate<Tournoi> sontInscriptionsFinies = t -> BDPredicats.sontInscriptionsFinies(t.getId());
+	public static Predicate<Tournoi> estTournoiMulti = t -> BDPredicats.estTournoiMulti(t.getId());
+	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> BDPredicats.estTournoiSurJeu(t.getId(), idJeu);
+	public static BiPredicate<Tournoi, Portee> estTournoiDePortee = (t, p) -> BDPredicats.estTournoiDePortee(t.getId(), p);
 	
 	// Rencontre
 	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);
@@ -33,33 +34,28 @@ public class Filters {
 	/// don't min me np
 	
 	
-	public static <T extends BDEntity> List<BDEntity> filter(List<BDEntity> lt, List<Predicate<Integer>> lp) {
-		for(Predicate<Integer> p : lp) {
-			 lt = Filters.filter(lt, p);
+	public static <T extends BDEntity> List<T> filtrer(List<T> lt, List<Predicate<T>> lp) {
+		for(Predicate<T> p : lp) {
+			 lt = Filters.filtrer(lt, p);
 		}
 		return lt;
+		
+		
 	}
 
-	public static <T extends BDEntity, TypeSecondPart> List<T> filter(List<T> lt, List<BiPredicate<Integer, TypeSecondPart>> lp, TypeSecondPart secondPart) {
-		for(BiPredicate<Integer, TypeSecondPart> p : lp) {
-			 lt = Filters.filter(lt, p, secondPart);
+	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, List<BiPredicate<T, TypeSecondPart>> lp, TypeSecondPart secondPart) {
+		for(BiPredicate<T, TypeSecondPart> p : lp) {
+			 lt = Filters.filtrer(lt, p, secondPart);
 		}
 		return lt;
 	}
 	
 	
-	public static <T extends BDEntity> List<T> filter(List<T> lt, Predicate<Integer> p) {
-		
-		List<T> includedList = new ArrayList<>();
-		for(T t : lt) {
-			if( p.test(t.getId())) {
-				includedList.add(t);
-			}
-		}
-		return includedList;
-	}	
+	public static <T extends BDEntity> List<T> filtrer(List<T> lt, Predicate<T> p) {
+		return lt.stream().filter(p).collect(Collectors.toList());
+	}
 	
-	public static <T extends BDEntity, TypeSecondPart> List<T> filter(List<T> lt, BiPredicate<Integer, TypeSecondPart> p, TypeSecondPart secondPart) {
+	public static <T extends BDEntity, TypeSecondPart> List<T> filtrer(List<T> lt, BiPredicate<T, TypeSecondPart> p, TypeSecondPart secondPart) {
 		List<T> includedList = new ArrayList<>();
 
 		for(T t : lt) {
@@ -68,5 +64,6 @@ public class Filters {
 			}
 		}
 		return includedList;
+		return lt.stream().filter(p).
 	}
 }

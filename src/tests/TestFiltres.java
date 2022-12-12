@@ -37,7 +37,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
 		
-		tl = Filters.filter(tl, Filters.estTournoiAVenir);
+		tl = Filters.filtrer(tl, Filters.estTournoiAVenir);
 		
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556502);
 	}
@@ -49,7 +49,7 @@ class TestFiltres {
 		tl.add(new Tournoi(2556502)); // tournoi TestFuture 
 		tl.add(new Tournoi(2556503)); // Tournoi TestNow
 		
-		tl = Filters.filter(tl, Filters.estTournoiEnCours);
+		tl = Filters.filtrer(tl, Filters.estTournoiEnCours);
 		
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2556503);
 	}
