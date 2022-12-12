@@ -7,9 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import DBlink.BDSelect;
+import DBlink.Joueur;
 import IHM.AccueilV2;
 import IHM.Connexion;
 import IHM.FormCreerTournoi;
+import IHM.PopupJoueur;
 import base.ConnexionState;
 
 public class ControleurAccueil implements ActionListener  {
@@ -119,6 +121,8 @@ public class ControleurAccueil implements ActionListener  {
 			formTournoi.setVisible(true);
 		}
 	}
+	
+
 
 	public Etat getState() {
 		return state;

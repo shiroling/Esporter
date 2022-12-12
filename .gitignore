@@ -77,6 +77,6 @@ src/base/Test.java
 src/DBlink/test.java
 src/IHM/classTest.java
 src/IHM/Test.java
-src/module-info.java
+module-info.java
 codemr/
 src/module-info.java
