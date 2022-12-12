@@ -39,8 +39,6 @@ public class Filters {
 			 lt = Filters.filtrer(lt, p);
 		}
 		return lt;
-		
-		
 	}
 
 	public static <T extends BDEntity, TypeSecondPart> List<T> filtrerBiListe(List<T> lt, List<BiPredicate<T, TypeSecondPart>> lp, TypeSecondPart secondPart) {
@@ -51,7 +49,7 @@ public class Filters {
 	}
 	
 	
-	public static List<BDEntity> filtrer(List<BDEntity> lt, Predicate<BDEntity> p) {
+	public static <T extends BDEntity> List<T> filtrer(List<BDE> lt, Predicate<T> p) {
 		return lt.stream().filter(p).collect(Collectors.toList());
 	}
 	
