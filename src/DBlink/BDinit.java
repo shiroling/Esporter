@@ -6,8 +6,7 @@ import java.sql.Statement;
 import base.Portee;
 
 public class BDinit {
-
-	public static void initEcurie(Ecurie e) {
+	public static void init(Ecurie e) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery("Select Nom_Ecurie, Nom_Manager, mdp_Manager from Ecurie where Id_Ecurie = " + e.getId());
@@ -22,7 +21,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initEquipe(Equipe e) {
+	public static void init(Equipe e) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st
@@ -38,7 +37,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initJoueur(Joueur j) {
+	public static void init(Joueur j) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery(
@@ -57,7 +56,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initJeu(Jeu j) {
+	public static void init(Jeu j) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery("Select nom_jeu from Jeu where Id_Jeu = " + j.getId());
@@ -69,7 +68,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initPoule(Poule p) {
+	public static void init(Poule p) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery("Select finale, id_tournoi from poule where Id_poule = " + p.getId());
@@ -88,7 +87,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initTournoi(Tournoi t) {
+	public static void init(Tournoi t) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			ResultSet rs = st.executeQuery(
@@ -126,7 +125,7 @@ public class BDinit {
 		}
 	}
 
-	public static void initRencontre(Rencontre r) {
+	public static void init(Rencontre r) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
 			
@@ -142,5 +141,6 @@ public class BDinit {
 			err.printStackTrace();
 		}
 	}
+
 
 }

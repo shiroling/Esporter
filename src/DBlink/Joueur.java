@@ -3,26 +3,24 @@ package DBlink;
 import java.util.Date;
 import java.util.List;
 
-public class Joueur {
-    private int idJoueur;
+public class Joueur extends BDEntity {
     private String nom;
     private String prenom;
     private Date naissance;
     private String pseudo;
     private int idEquipe;
     
-    public Joueur(int idJoueur) {
-		super();
-		this.idJoueur = idJoueur;
+    public Joueur(int id) {
+		super(id);
 		this.idEquipe = -1;
 	}
 
-	private void init() {
-		BDinit.initJoueur(this);
+	public void init() {
+		BDinit.init(this);
 	}
 
     public int getId() {
-		return idJoueur;
+		return super.getId();
 	}
   
 	public Date getNaissance() {

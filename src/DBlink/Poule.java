@@ -1,25 +1,23 @@
 package DBlink;
 
-public class Poule {
-    private final int idPoule;
+public class Poule extends BDEntity {
     private Boolean isFinale;
     private int idTournoi;
 
     
 
-    public Poule(int idPoule) {
-		super();
-		this.idPoule = idPoule;
+    public Poule(int id) {
+		super(id);
 		this.isFinale = null;
 		this.idTournoi = -1;
 	}
     
-    private void init() {
-		BDinit.initPoule(this);
+    public void init() {
+		BDinit.init(this);
 	}
 
     public int getId() {
-		return idPoule;
+		return super.getId();
 	}
 	
 	public Boolean isFinale() {
@@ -46,5 +44,11 @@ public class Poule {
 
 	protected void setIdTournoi(int idTournoi) {
 		this.idTournoi = idTournoi;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "le toString() n'est pas implémenté dans la class Poule je vous laisse le faire comme je ne sais pas comment vous voulez qu'il soit";
 	}
 }

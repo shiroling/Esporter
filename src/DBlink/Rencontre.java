@@ -3,8 +3,7 @@ package DBlink;
 import java.sql.Date;
 import java.util.List;
 
-public class Rencontre {
-	private final int id;
+public class Rencontre extends BDEntity {
 	private int idArbitre;
 	private int idPoule;
 	private Date date;
@@ -13,15 +12,14 @@ public class Rencontre {
 	private int idTournoi;
 	
 	public Rencontre(int id) {
-		super();
-		this.id = id;
+		super(id);
 		this.idArbitre = -1;
 		this.idPoule = -1;
 		this.idTournoi = -1;
 	}
 	
-	private void init() {
-		BDinit.initRencontre(this);
+	public void init() {
+		BDinit.init(this);
 	}
 	
 	public Date getDate() {
@@ -36,7 +34,7 @@ public class Rencontre {
 	}
 
 	public int getId() {
-		return id;
+		return super.getId();
 	}
 
 	public int getIdArbitre() {
@@ -76,7 +74,7 @@ public class Rencontre {
 		if(estResultatRenseigne()) {
 			throw new IllegalArgumentException("Le résultat de la rencontre n'as pas été renseigné");
 		}
-		return BDSelect.getPerdantRencontre(id);
+		return BDSelect.getPerdantRencontre(super.getId());
 	}
 	
 	public boolean estResultatRenseigne() {
@@ -104,7 +102,7 @@ public class Rencontre {
 
 	@Override
 	public String toString() {
-		return " [ " + this.getEquipes().get(0) + " / " + this.getEquipes().get(1) + " ] ";
+		return this.getEquipes().get(0) + " vs " + this.getEquipes().get(1);
 	}
 
 	public int getIdTournoi() {

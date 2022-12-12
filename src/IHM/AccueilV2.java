@@ -29,7 +29,6 @@ import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Joueur;
-import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 import java.awt.FlowLayout;
@@ -40,7 +39,6 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
-	private Connexion conx;
 
 	/**
 	 * 
@@ -376,7 +374,6 @@ public class AccueilV2 {
 	public void ajouterCartesEquipe(List<Equipe> equipes) {
 		CarteEquipe ct;
 		for (Equipe equipe : equipes) {
-			Ecurie e = equipe.getEcurie();
 			ct = new CarteEquipe(equipe);
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));

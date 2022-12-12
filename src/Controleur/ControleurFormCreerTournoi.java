@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +63,6 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			PreDate dateDebutTournois = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourDebutTournoi()));
 			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
 			PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
-			PreDate dateTest = new PreDate(2022, 1, 31);
 		
 			if (!(dateDebutTournois.estDateValide()) && !(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
 				this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");

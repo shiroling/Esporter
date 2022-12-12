@@ -2,22 +2,20 @@ package DBlink;
 
 import java.util.List;
 
-public class Ecurie {
-	private final int id;
+public class Ecurie extends BDEntity {
 	private String nom;
 	private String nomManager;
 
 	public Ecurie(int id) {
-		super();
-		this.id = id;
+		super(id);
 	}
 	
-	private void init() {
-		BDinit.initEcurie(this);
+	public void init() {
+		BDinit.init(this);
 	}
 
 	public int getId() {
-		return id;
+		return super.getId();
 	}
 
 	public String getNom() {
@@ -68,4 +66,6 @@ public class Ecurie {
 	public static Joueur getEcurieFromNom(String nomEcurie) {
 		return new Joueur(BDSelect.getIdEcurieFromNom(nomEcurie));
 	}
+
+
 }

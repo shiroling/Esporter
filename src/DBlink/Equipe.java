@@ -6,21 +6,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equipe implements Comparable<Equipe> {
-	private final int id;
+public class Equipe extends BDEntity implements Comparable<Equipe> {
 	private String nom;
 	private int idJeu;
 	private int idEcurie;
 	
 	public Equipe(int id) {
-		super();
-		this.id = id;
+		super(id);
 		this.idJeu = -1;
 		this.idEcurie = -1;
 	}
 
-	private void init() {
-		BDinit.initEquipe(this);
+	public void init() {
+		BDinit.init(this);
 	}
 
 	public void setNom(String nom) {
@@ -39,7 +37,7 @@ public class Equipe implements Comparable<Equipe> {
 
 
 	public int getId() {
-		return id;
+		return super.getId();
 	}
 
 	public String getNom() {
@@ -71,6 +69,10 @@ public class Equipe implements Comparable<Equipe> {
 		return BDSelect.getListeRencontreFromEquipe(getId());
 	}
 
+	public List<Equipe> getAll() {
+		return Equipe.getToutesLesEquipes();
+	}
+	
 	public static List<Equipe> getToutesLesEquipes() {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
@@ -146,4 +148,6 @@ public class Equipe implements Comparable<Equipe> {
 	public static Joueur getEquipeFromNom(String nom) {
 		return new Joueur(BDSelect.getIdEquipeFromNom(nom));
 	}
+
+
 }
