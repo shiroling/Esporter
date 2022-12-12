@@ -32,6 +32,7 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import base.ConnexionState;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -39,6 +40,8 @@ public class AccueilV2 {
 	private JPanel panel_side;
 	private JPanel panel_main;
 	private ControleurAccueil controleur;
+	private JLabel lblEtatConx;
+	private BtnStyle btnDeconnexion;
 
 	/**
 	 * 
@@ -392,13 +395,7 @@ public class AccueilV2 {
 		return ma;
 	}
 	
-	private Component getBtn(String string, ControleurAccueil controleur2) {
 
-		JButton j = new JButton(string);
-		j.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		j.addActionListener(controleur2);
-		j.setName(string);
-	}
 
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
