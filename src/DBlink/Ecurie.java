@@ -63,8 +63,8 @@ public class Ecurie extends BDEntity {
 		return ""+ this.getNom() +" ("+this.getNomManager()+ ")";
 	}
 	
-	public static Joueur getEcurieFromNom(String nomEcurie) {
-		return new Joueur(BDSelect.getIdEcurieFromNom(nomEcurie));
+	public static Ecurie getEcurieFromNom(String nomEcurie) {
+		return new Ecurie(BDSelect.getIdEcurieFromNom(nomEcurie));
 	}
 
 

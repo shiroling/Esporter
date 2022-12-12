@@ -181,7 +181,7 @@ public class Tournoi extends BDEntity {
 		return !BDPredicats.existeNomTournoi(nomTounoi);
 	}
 	
-	public static Joueur getTournoiFromNom(String nom) {
-		return new Joueur(BDSelect.getIdTournoiFromNom(nom));
+	public static Tournoi getTournoiFromNom(String nom) {
+		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
 	}
 }

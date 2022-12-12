@@ -520,7 +520,7 @@ public class BDSelect {
 	
 	public static int getIdGerantFromLogs(String nom, String mdp) {
 	    try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_GERANT FROM Gerant where nom = '?' AND mdp = '?'");
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_GERANT FROM Gerant where nom = ? AND mdp = ?");
 			st.setString(1, nom);
 			st.setString(2, mdp);
 			ResultSet rs = st.executeQuery();
@@ -529,7 +529,7 @@ public class BDSelect {
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return -1;
 	    }
 	}
