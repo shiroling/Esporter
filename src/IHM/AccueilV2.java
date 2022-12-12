@@ -33,17 +33,15 @@ import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.ConnexionState;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panel_side;
 	private JPanel panel_main;
+	private ControleurAccueil controleur;
 	private JLabel lblEtatConx;
 	private BtnStyle btnDeconnexion;
-	private ControleurAccueil controleur;
 
 	/**
 	 * 
@@ -119,30 +117,31 @@ public class AccueilV2 {
 		panelAdmin.setLayout(new GridLayout(2, 2, 0, 0));
 
 		JLabel lbladmin = new JLabel("administration");
-		panel_admin.add(lbladmin);
+		panelAdmin.add(lbladmin);
 
 		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
-		panel_admin.add(btnCreeTournois);
+		panelAdmin.add(btnCreeTournois);
 
 		lblEtatConx = new JLabel("Connecte:gestionaire");
 		lblEtatConx.setVisible(false);
-		panel_admin.add(lblEtatConx);
+		panelAdmin.add(lblEtatConx);
 
 		btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255), 10);
 		btnDeconnexion.addActionListener(controleur);
 		btnDeconnexion.setName("btnDeconnexion");
 		btnDeconnexion.setText("Se déconnecter");
 		btnDeconnexion.setForeground(Color.WHITE);
-		btnDeconnexion.setVisible(false);
-		panel_admin.add(btnDeconnexion);
 
-		JPanel panel_16 = new JPanel();
-		panel_3.add(panel_16, BorderLayout.NORTH);
-		panel_16.setLayout(new GridLayout(0, 2, 20, 20));
+		btnDeconnexion.setVisible(false);
+		panelAdmin.add(btnDeconnexion);
+
+		JPanel panelBtnSelection = new JPanel();
+		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
+		panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
 
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -268,7 +267,7 @@ public class AccueilV2 {
 							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(jl.getName()+"   "+ jl.getText() );
+							System.out.println(jl.getName() + "   " + jl.getText());
 							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
@@ -396,15 +395,11 @@ public class AccueilV2 {
 	public static MouseAdapter getMa() {
 		return ma;
 	}
-	
-	private Component getBtn(String string, ControleurAccueil controleur2) {
 
-		JButton j = new JButton(string);
-		j.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		j.addActionListener(controleur2);
-		j.setName(string);
-		return j;
-	}
+	
+
+
+
 
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
