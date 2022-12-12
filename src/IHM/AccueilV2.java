@@ -74,11 +74,12 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
+		frame.setTitle("ESporter");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		frame.setBounds(100, 100, 933, 592);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			Pour l'app directement en full screen décommenter cette ligne
+		//frame.setBounds(100, 100, 933, 592);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			//Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
