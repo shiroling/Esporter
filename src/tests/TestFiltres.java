@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import DBlink.Equipe;
 import DBlink.Filters;
 import DBlink.Tournoi;
+import base.Portee;
 
 class TestFiltres {
 
@@ -67,7 +68,6 @@ class TestFiltres {
 		tl.add(new Tournoi(2));  // tournoi non multi
 		
 		tl = Filters.filtrer(tl, Filters.estTournoiMulti);
-		System.out.println(tl);
 		assertTrue(tl.size() == 2 && tl.get(0).getId() == 97 && tl.get(1).getId() == 98);
 	}
 	
@@ -81,11 +81,17 @@ class TestFiltres {
 		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 1);
 	}
 	
+	@Test
+	void testEstTournoiDePortee() {
+		List<Tournoi> tl = new ArrayList<>();
+		tl.add(new Tournoi(3)); // tournoi international
+		tl.add(new Tournoi(4)); // tournoi national
+		
+		tl = Filters.filtrer(tl, Filters.estTournoiDePortee, Portee.NATIONAL);
+		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 4);
+	}
 	
 	/*
-	// Tournoi
-	public static BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
-	public static BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
 	
 	// Rencontre
 	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);

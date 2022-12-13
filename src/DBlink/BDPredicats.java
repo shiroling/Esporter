@@ -158,7 +158,7 @@ public class BDPredicats {
 	public static boolean estTournoiDePortee(int id, Portee p) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portee = " + p.toString() + " AND tournoi.id_tournoi = " + id);
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portee = '" + p.getName() + "' AND tournoi.id_tournoi = " + id);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
