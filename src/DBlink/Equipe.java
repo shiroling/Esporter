@@ -13,6 +13,7 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	
 	public Equipe(int id) {
 		super(id);
+		this.nom = null;
 		this.idJeu = -1;
 		this.idEcurie = -1;
 	}
@@ -92,11 +93,11 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	}
 	
 	public Jeu getJeu() {
-		return new Jeu(this.idJeu);
+		return new Jeu(this.getIdJeu());
 	}
 	
 	public Ecurie getEcurie() {
-		return new Ecurie(this.idEcurie);
+		return new Ecurie(this.getIdEcurie());
 	}
 
 	public static String[] getStringEquipes() {
