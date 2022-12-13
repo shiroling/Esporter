@@ -86,7 +86,7 @@ public class Joueur extends BDEntity {
 	}
 	
 	public Equipe getEquipe() {
-		return new Equipe(this.idEquipe);
+		return new Equipe(this.getIdEquipe());
 	}
 
 	public static String[] toStrings(List<Joueur> l) {
