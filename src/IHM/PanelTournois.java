@@ -10,15 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import Controleur.ControleurAccueil;
 import DBlink.Equipe;
 import DBlink.Tournoi;
 
 public class PanelTournois extends JPanel {
-
+	private static Tournoi tournoi;
 	/**
 	 * Create the panel.
 	 */
 	public PanelTournois(Tournoi t) {
+		tournoi = t;
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -36,15 +38,20 @@ public class PanelTournois extends JPanel {
 		lblDates.setName("Date");
 		panel.add(lblDates);
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1, BorderLayout.SOUTH);
+		JPanel panelBtn = new JPanel();
+		add(panelBtn, BorderLayout.SOUTH);
 		
 		JButton btnMatch = new JButton("Voir Les Matchs");
 		btnMatch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel_1.add(btnMatch);
+		panelBtn.add(btnMatch);
+		
+		JButton btnInscription = new JButton("S'inscrire");
+		btnInscription.setName("btnInscription");
+		btnInscription.addActionListener(AccueilV2.getControleur());
+		panelBtn.add(btnInscription);
 		
 		JPanel main = new JPanel();
 		add(main, BorderLayout.CENTER);
@@ -58,5 +65,9 @@ public class PanelTournois extends JPanel {
 		}
 
 	}
+	public static Tournoi getTournoi() {
+		return tournoi;
+	}
+	
 
 }

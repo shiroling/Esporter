@@ -38,9 +38,10 @@ import base.ConnexionState;
 public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
-	private JPanel panel_side;
+	private static JPanel panel_side;
 	private JPanel panel_main;
-	private ControleurAccueil controleur;
+	private static ControleurAccueil controleur;
+
 	private JLabel lblEtatConx;
 	private BtnStyle btnDeconnexion;
 
@@ -80,8 +81,8 @@ public class AccueilV2 {
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
-		//frame.setBounds(100, 100, 933, 592);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);			//Pour l'app directement en full screen décommenter cette ligne
+		// frame.setBounds(100, 100, 933, 592);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panelHeader = new JPanel();
@@ -120,7 +121,8 @@ public class AccueilV2 {
 		JLabel lbladmin = new JLabel("administration");
 		panelAdmin.add(lbladmin);
 
-		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255),new Color(26, 83, 255), 10);
+		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255),
+				10);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
@@ -281,8 +283,8 @@ public class AccueilV2 {
 							procedureCreePopupTournoi(Tournoi.getTournoiFromNom(jl.getText()));
 							break;
 						case "Rencontre":
-							//System.out.println("lol je sais pas comment faire pour ca");
-							//procedureCreePopupRencontre();
+							// System.out.println("lol je sais pas comment faire pour ca");
+							// procedureCreePopupRencontre();
 							break;
 						default:
 							break;
@@ -401,11 +403,6 @@ public class AccueilV2 {
 		return ma;
 	}
 
-	
-
-
-
-
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
 		case ARBITRE:
@@ -423,23 +420,23 @@ public class AccueilV2 {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + c);
 		}
-		lblEtatConx.setVisible(c!=ConnexionState.NON_CONNECTE);
-		btnDeconnexion.setVisible(c!=ConnexionState.NON_CONNECTE);
+		lblEtatConx.setVisible(c != ConnexionState.NON_CONNECTE);
+		btnDeconnexion.setVisible(c != ConnexionState.NON_CONNECTE);
 		ajusterGrille();
 	}
-	
+
 	private void procedureCreePopupJoueur(Joueur j) {
 		PopupJoueur pop = new PopupJoueur(j);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
-	
+
 	private void procedureCreePopupJeu(Jeu j) {
 		PopupJeu pop = new PopupJeu(j);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
-	
+
 	private void procedureCreePopupEcurie(Ecurie e) {
 		PopupEcurie pop = new PopupEcurie(e);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -451,17 +448,29 @@ public class AccueilV2 {
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
-	
+
 	private void procedureCreePopupTournoi(Tournoi t) {
 		PopupTournoi pop = new PopupTournoi(t);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
-	
+
 	private void procedureCreePopupRencontre(Rencontre r) {
 		PopupRencontre pop = new PopupRencontre(r);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
-	
+
+	public static ControleurAccueil getControleur() {
+		return controleur;
+	}
+
+	public static PanelTournois getPanel_sideQuandTournoi() {
+		if (panel_side.getComponent(0) instanceof PanelTournois) {
+			return (PanelTournois) panel_side.getComponent(0);
+		}
+		return null;
+
+	}
+
 }

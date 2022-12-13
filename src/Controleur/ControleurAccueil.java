@@ -7,11 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import DBlink.BDSelect;
-import DBlink.Joueur;
+import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.Connexion;
 import IHM.FormCreerTournoi;
-import IHM.PopupJoueur;
+import IHM.PanelTournois;
 import base.ConnexionState;
 
 public class ControleurAccueil implements ActionListener  {
@@ -20,7 +20,7 @@ public class ControleurAccueil implements ActionListener  {
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
-	private ConnexionState connexionState;
+	private static ConnexionState connexionState;
 	private int idLog;
 
 	public ControleurAccueil(AccueilV2 vue) {
@@ -73,6 +73,10 @@ public class ControleurAccueil implements ActionListener  {
 			case ACCUEIL_AVEC_VOLET:
 				
 				switch (btn.getName()) {
+				case "btnInscription":
+					System.out.println("ntm");
+					procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
+					break;
 				case "btnCreerTournoi":
 					System.out.println("coucou2");
 					procedureCreerTournoi();
@@ -80,25 +84,30 @@ public class ControleurAccueil implements ActionListener  {
 				case "Tournois":
 					vue.viderCartes();
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
+					vue.viderSide();
 					break;
 				case "Match":
 					vue.viderCartes();
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+					vue.viderSide();
 					break;
 				case "Jeu":
 					vue.viderCartes();
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
+					vue.viderSide();
 					break;
 				case"Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+					vue.viderSide();
 					break;
 				case"Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
+					vue.viderSide();
 					break;
 				}
-				vue.viderSide();
+				
 				break;
 			}
 
@@ -122,6 +131,19 @@ public class ControleurAccueil implements ActionListener  {
 		}
 	}
 	
+	public void procedureInscriptionTournoi(Tournoi t) {
+		if (connexionState != ConnexionState.MANAGER) {
+			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
+		}
+		if (connexionState == ConnexionState.MANAGER) {
+			System.out.println(t);
+			//
+			//
+			//
+			//
+		}
+	}
+	
 
 
 	public Etat getState() {
@@ -140,6 +162,7 @@ public class ControleurAccueil implements ActionListener  {
 		return this.connexionState;
 	}
 
+	
 	
 
 }

@@ -41,6 +41,7 @@ public class PopupJeu extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
 	}
 
 }

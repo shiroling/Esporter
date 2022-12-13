@@ -77,13 +77,16 @@ public class Connexion extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						switch (connexionVisee) {
-						case ARBITRE : 
+						case ARBITRE:
 							break;
-						case GESTIONNAIRE :
-							if(ConnexionUtilisateur.isGestionnaire(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword()))) {
+						case GESTIONNAIRE:
+							if (ConnexionUtilisateur.isGestionnaire(textFieldID.getText(),
+									String.valueOf(textFieldMDP.getPassword()))) {
 								controleur.setConnexionState(ConnexionState.GESTIONNAIRE);
-								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
-								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(), String.valueOf(textFieldMDP.getPassword())));
+								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(),
+										String.valueOf(textFieldMDP.getPassword())));
+								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(),
+										String.valueOf(textFieldMDP.getPassword())));
 								Connexion.this.dispose();
 
 							} else {
@@ -91,9 +94,21 @@ public class Connexion extends JDialog {
 								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 							}
 							break;
-						case MANAGER :
+						case MANAGER:
+							if (ConnexionUtilisateur.isManager(textFieldID.getText(),
+									String.valueOf(textFieldMDP.getPassword()))) {
+								controleur.setConnexionState(ConnexionState.MANAGER);
+								System.out.println(BDSelect.getIdGerantFromLogs(textFieldID.getText(),
+										String.valueOf(textFieldMDP.getPassword())));
+								controleur.setIdLog(BDSelect.getIdGerantFromLogs(textFieldID.getText(),
+										String.valueOf(textFieldMDP.getPassword())));
+								Connexion.this.dispose();
+							} else {
+								lblIdentifiantOuMDPIncorrect.setVisible(true);
+								controleur.setConnexionState(ConnexionState.NON_CONNECTE);
+							}
 							break;
-						default :
+						default:
 							controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 						}
 					}
@@ -105,6 +120,7 @@ public class Connexion extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
+
 					public void actionPerformed(ActionEvent e) {
 						controleur.setConnexionState(ConnexionState.NON_CONNECTE);
 						Connexion.this.dispose();
