@@ -7,11 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import DBlink.BDSelect;
-import DBlink.Joueur;
 import IHM.AccueilV2;
 import IHM.Connexion;
 import IHM.FormCreerTournoi;
-import IHM.PopupJoueur;
 import base.ConnexionState;
 
 public class ControleurAccueil implements ActionListener  {
@@ -46,7 +44,7 @@ public class ControleurAccueil implements ActionListener  {
 					procedureCreerTournoi();
 					break;
 				case "btnDeconnexion":
-					setConnexionState(connexionState.NON_CONNECTE);
+					setConnexionState(ConnexionState.NON_CONNECTE);
 					break;
 				case "Tournois":
 					vue.viderCartes();
@@ -113,7 +111,7 @@ public class ControleurAccueil implements ActionListener  {
 
 	private void procedureCreerTournoi() {
 		if (connexionState != ConnexionState.GESTIONNAIRE) {
-			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
+			new Connexion(this, ConnexionState.GESTIONNAIRE);
 		}
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
 			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
