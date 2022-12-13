@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import DBlink.Equipe;
 import DBlink.Filters;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.Portee;
 
@@ -91,6 +92,15 @@ class TestFiltres {
 		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 4);
 	}
 	
+	@Test
+	void testEstRencontreFini() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1));
+		liste.add(new Rencontre(4));
+		
+		liste = Filters.filtrer(liste, Filters.estRencontreFini);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+	}
 	/*
 	
 	// Rencontre
