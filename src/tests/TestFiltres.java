@@ -51,7 +51,7 @@ class TestFiltres {
 	}
 	
 	@Test
-	void testInscriptionFinies() {
+	void testTournoiInscriptionFinies() {
 		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556504)); // tournoi TestPast
 		tl.add(new Tournoi(2556505)); // tournoi TestFuture 
@@ -73,7 +73,7 @@ class TestFiltres {
 	}
 	
 	@Test
-	void testEstTournoiSurJeu() {
+	void testTournoiSurJeu() {
 		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(1)); // tournoi RL
 		tl.add(new Tournoi(2)); // tournoi OW2
@@ -83,7 +83,7 @@ class TestFiltres {
 	}
 	
 	@Test
-	void testEstTournoiDePortee() {
+	void testTournoiDePortee() {
 		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(3)); // tournoi international
 		tl.add(new Tournoi(4)); // tournoi national
@@ -122,7 +122,7 @@ class TestFiltres {
 		tl.add(new Equipe(2)); // chez mandatory (4)
 		
 		tl = Filters.filtrer(tl, Filters.estEquipeFromEcurie, 4);
-		
+		System.out.println(tl);
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2);
 	}
 	

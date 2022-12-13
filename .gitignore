@@ -44,6 +44,8 @@ local.properties
 .classpath
 .settings/
 .loadpath
+
+
 SAE_ESporter_App/*.pydevproject
 SAE_ESporter_App/.project
 SAE_ESporter_App/.metadata/*
