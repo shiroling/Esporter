@@ -98,7 +98,7 @@ class TestFiltres {
 		liste.add(new Rencontre(1));
 		liste.add(new Rencontre(4));
 		
-		liste = Filters.filtrer(liste, Filters.estRencontreFini);
+		//liste = Filters.filtrer(liste, Filters.estRencontreFini);
 		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
 	}
 	/*

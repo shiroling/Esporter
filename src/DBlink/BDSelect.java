@@ -443,13 +443,13 @@ public class BDSelect {
 				if (r.getVainqueur().getId() == idEquipe) {
 					switch (t.getPortee()) {
 					case LOCAL:
-						points += 1;
+						points *= 1;
 						break;
 					case NATIONAL:
-						points += 2;
+						points *= 2;
 						break;
 					case INTERNATIONAL:
-						points += 3;
+						points *= 3;
 						break;
 					}
 				}
@@ -461,12 +461,12 @@ public class BDSelect {
 		}
 	}
 	
-	public static int getAgeMoyenEquipe(int idEquipe) {
+	public static float getAgeMoyenEquipe(int idEquipe) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select round(avg(CURRENT_DATE - DATE_DE_NAISSANCE)/365.25) FROM Joueur WHERE ID_EQUIPE = " + idEquipe);
+			ResultSet rs = st.executeQuery("Select avg(CURRENT_DATE - DATE_DE_NAISSANCE)/365.25 FROM Joueur WHERE ID_EQUIPE = " + idEquipe);
 			st.close();
-			return rs.getInt(1);
+			return rs.getFloat(1);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 			return -1;
