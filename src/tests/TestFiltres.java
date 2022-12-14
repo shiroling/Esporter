@@ -95,26 +95,73 @@ class TestFiltres {
 	@Test
 	void testEstRencontreFini() {
 		List<Rencontre> liste = new ArrayList<>();
-		liste.add(new Rencontre(1));
-		liste.add(new Rencontre(4));
+		liste.add(new Rencontre(1)); // rencontre a venir
+		liste.add(new Rencontre(4)); // rencontre finie
 		
 		//liste = Filters.filtrer(liste, Filters.estRencontreFini);
-		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 4);
 	}
-	/*
 	
-	// Rencontre
-	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);
-	public static Predicate<Integer> estRencontreAVenir = estRencontreFini.negate();
-	public static BiPredicate<Integer, Integer> estRencontreSurJeu = (idMatch, idJeu) -> BDPredicats.estMatchSurJeu(idMatch, idJeu);
-	public static BiPredicate<Integer, Integer> estRencontreDansTournoi = (idMatch, idTournoi) -> BDPredicats.estMatchTournoi(idMatch, idTournoi);
-	public static BiPredicate<Integer, Integer> estRencontreDansPoule = (idMatch, idPoule) -> BDPredicats.estMatchPoule(idMatch, idPoule);
-	public static BiPredicate<Integer, Integer> estRencontreAvecEquipe = (idMatch, idEquipe)  -> BDPredicats.estMatchAvecEquipe(idMatch, idEquipe);
+	@Test
+	void testEstRencontreAVenir() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1)); // rencontre a venir
+		liste.add(new Rencontre(4)); // rencontre finie
+		
+		//liste = Filters.filtrer(liste, Filters.estRencontreFini.negate());
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+	}
 	
-	// Equipe
-	public static BiPredicate<Integer, Integer> estEquipeFromEcurie = (idEquipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(idEquipe, idEcurie);
-	public static BiPredicate<Integer, Integer> estEquipeSurJeu = (idEquipe, idJeu) -> BDPredicats.estEquipeSurJeu(idEquipe, idJeu);
-	*/
+	@Test
+	void testEstRencontreSurJeu() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1)); // sur RL
+		liste.add(new Rencontre(5)); // sur OW2
+		
+		//liste = Filters.filtrer(liste, Filters.estRencontreSurJeu, 2);
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
+	}
+	
+	@Test
+	void testEstRencontreDansTournoi() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1)); // sur tournoi 1
+		liste.add(new Rencontre(5)); // sur tournoi 2
+		
+		//liste = Filters.filtrer(liste, Filters.estRencontreDansTournoi, 1);
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+	}
+	
+	@Test
+	void testEstRencontreDansPoule() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1)); // poule 1
+		liste.add(new Rencontre(5)); // poule 2
+		
+		//liste = Filters.filtrer(liste, Filters.estRencontreDansPoule, 2);
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
+	}
+	
+	@Test
+	void testEstRencontreAvecEquipe() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1)); // avec equipe 2
+		liste.add(new Rencontre(3)); // sans equipe 2
+		
+		//liste = Filters.filtrer(liste, Filters.estRencontreAvecEquipe, 2);
+		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+	}
+	
+	@Test
+	void testEquipeSurJeu() {
+		List<Equipe> tl = new ArrayList<>();
+		tl.add(new Equipe(1)); // pas sur lol (4)
+		tl.add(new Equipe(4)); // sur lol (4)
+		
+		//tl = Filters.filtrer(tl, Filters.estEquipeSurJeu, 4);
+		//assertTrue(tl.size() == 1 && tl.get(0).getId() == 4);
+	}
+	
 	@Test
 	void testEquipefromEcurie() {
 		List<Equipe> tl = new ArrayList<>();
