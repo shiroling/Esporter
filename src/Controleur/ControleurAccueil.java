@@ -79,7 +79,6 @@ public class ControleurAccueil implements ActionListener  {
 				
 				switch (btn.getName()) {
 				case "btnInscription":
-					System.out.println("ntm");
 					//procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
 					break;
 				case "btnCreerTournoi":
