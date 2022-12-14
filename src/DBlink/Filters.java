@@ -26,14 +26,14 @@ public class Filters {
 	public static BiPredicate<Integer, Integer> estRencontreAvecEquipe = (idMatch, idEquipe)  -> BDPredicats.estMatchAvecEquipe(idMatch, idEquipe);
 	
 	// Equipe
-	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(equipe, idEcurie);
-	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> BDPredicats.estEquipeSurJeu(equipe, idJeu);
+	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> equipe.getIdEcurie() == idEcurie;
+	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> equipe.getIdJeu() == idJeu;
 
 	
 	/// don't min me np
 	
 	
-	public static List<BDEntity> filtrer(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
+	public static List<BDEntity> filtrere(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
 		for(Predicate<BDEntity> p : lp) {
 			 lt = Filters.filtrer(lt, p);
 		}
