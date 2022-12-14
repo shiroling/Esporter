@@ -54,9 +54,8 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				case "Match":
 					vue.viderCartes();
-					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					vue.getLblTitreCartes().setText("Matchs");
-
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					break;
 				case "Jeu":
 					vue.viderCartes();
@@ -93,8 +92,8 @@ public class ControleurAccueil implements ActionListener  {
 					break;
 				case "Match":
 					vue.viderCartes();
-					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					vue.getLblTitreCartes().setText("Matchs");
+					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					vue.viderSide();
 					break;
 				case "Jeu":

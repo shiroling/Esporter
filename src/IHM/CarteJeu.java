@@ -2,9 +2,15 @@ package IHM;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,16 +24,42 @@ public class CarteJeu extends Carte {
 	public CarteJeu(Jeu jeu) {
 		super();
 		this.jeu=jeu;
-		
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 55));
 		setBackground(new Color(255,255,255));
+		setLayout(new GridLayout(2, 1, 0, 0));
+		
+		JPanel panelNomJeu = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelNomJeu.getLayout();
+		flowLayout.setVgap(30);
+		add(panelNomJeu);
 		
 		JLabel lblNomJeu = new JLabel(jeu.getNom());
 		lblNomJeu.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
-		add(lblNomJeu);
+		panelNomJeu.add(lblNomJeu);
+		
+		JPanel panelLogoJeu = new JPanel();
+		add(panelLogoJeu);
+		
+		// Récupération de l'image à partir du classpath
+		ClassLoader classLoader = getClass().getClassLoader();
+		InputStream inputStream = classLoader.getResourceAsStream("ressources/over2logo.png");
+
+		// Chargement de l'image en utilisant la classe ImageIO
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Affichage de l'image dans un JLabel
+		JLabel lblLogoJeu = new JLabel(new ImageIcon(image));
+		panelLogoJeu.add(lblLogoJeu);		
 		
 		List<JPanel> listPanelAHover = new ArrayList<>();
-		listPanelAHover.add(this);
+		listPanelAHover.add(panelNomJeu);
+		listPanelAHover.add(panelLogoJeu);
+		
 		super.addHoverPannels(listPanelAHover);
 	}
 
