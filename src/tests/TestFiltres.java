@@ -170,7 +170,6 @@ public class TestFiltres {
 		tl.add(new Equipe(2)); // chez mandatory (4)
 		
 		tl = Filters.filtrer(tl, Filters.estEquipeFromEcurie, 4);
-		System.out.println(tl);
 		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2);
 	}
 
