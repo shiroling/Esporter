@@ -5,8 +5,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+import DBlink.BDEntity;
 import DBlink.Equipe;
 import DBlink.Filters;
 import DBlink.Rencontre;
@@ -99,8 +101,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // rencontre a venir
 		liste.add(new Rencontre(4)); // rencontre finie
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreFini);
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 4);
+		liste = Filters.filtrer(liste, Filters.estRencontreFini);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 4);
 	}
 	
 	@Test
@@ -109,8 +111,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // rencontre a venir
 		liste.add(new Rencontre(4)); // rencontre finie
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreFini.negate());
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+		liste = Filters.filtrer(liste, Filters.estRencontreFini.negate());
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
 	}
 	
 	@Test
@@ -119,8 +121,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // sur RL
 		liste.add(new Rencontre(5)); // sur OW2
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreSurJeu, 2);
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
+		liste = Filters.filtrer(liste, Filters.estRencontreSurJeu, 1);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
 	}
 	
 	@Test
@@ -129,8 +131,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // sur tournoi 1
 		liste.add(new Rencontre(5)); // sur tournoi 2
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreDansTournoi, 1);
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+		liste = Filters.filtrer(liste, Filters.estRencontreDansTournoi, 1);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
 	}
 	
 	@Test
@@ -139,8 +141,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // poule 1
 		liste.add(new Rencontre(5)); // poule 2
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreDansPoule, 2);
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
+		liste = Filters.filtrer(liste, Filters.estRencontreDansPoule, 2);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 5);
 	}
 	
 	@Test
@@ -149,8 +151,8 @@ public class TestFiltres {
 		liste.add(new Rencontre(1)); // avec equipe 2
 		liste.add(new Rencontre(3)); // sans equipe 2
 		
-		//liste = Filters.filtrer(liste, Filters.estRencontreAvecEquipe, 2);
-		//assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+		liste = Filters.filtrer(liste, Filters.estRencontreAvecEquipe, 2);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
 	}
 	
 	@Test

@@ -137,7 +137,6 @@ public class BDinit {
 			r.setIdArbitre(rs.getInt("id_arbitre"));
 			r.setIdPoule(rs.getInt("id_poule"));
 			r.setDate(rs.getDate("date_rencontre"));
-	
 			st.close();
 		} catch (Exception err) {
 			err.printStackTrace();
