@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Jeu extends BDEntity implements Comparable<Jeu> {
 	private String nom;
+	private String pathLogo;
 
 	public Jeu(int id) {
 		super(id);
@@ -24,11 +25,18 @@ public class Jeu extends BDEntity implements Comparable<Jeu> {
 		}
 		return nom;
 	}
+	
+	public String getPathLogo() {
+		return this.pathLogo;
+	}
 
 	protected void setNom(String nom) {
 		this.nom = nom;
 	}
 
+	protected void setPathLogo(String pathLogo) {
+		this.pathLogo = pathLogo;
+	}
 
 	public static String[] toStrings(List<Jeu> jeux) {
 		String[] nomJeux = new String[jeux.size()];

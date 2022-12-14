@@ -60,9 +60,10 @@ public class BDinit {
 	public static void init(Jeu j) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st.executeQuery("Select nom_jeu from Jeu where Id_Jeu = " + j.getId());
+			ResultSet rs = st.executeQuery("Select nom_jeu, path_logo from Jeu where Id_Jeu = " + j.getId());
 			rs.next();
 			j.setNom(rs.getString(1));
+			j.setPathLogo(rs.getString(2));
 			st.close();
 		} catch (Exception err) {
 			err.printStackTrace();
