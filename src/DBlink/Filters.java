@@ -18,12 +18,12 @@ public class Filters {
 	public static BiPredicate<Tournoi, Portee> estTournoiDePortee = (t, p) -> BDPredicats.estTournoiDePortee(t.getId(), p);
 	
 	// Rencontre
-	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);
-	public static Predicate<Integer> estRencontreAVenir = estRencontreFini.negate();
-	public static BiPredicate<Integer, Integer> estRencontreSurJeu = (idMatch, idJeu) -> BDPredicats.estMatchSurJeu(idMatch, idJeu);
-	public static BiPredicate<Integer, Integer> estRencontreDansTournoi = (idMatch, idTournoi) -> BDPredicats.estMatchTournoi(idMatch, idTournoi);
-	public static BiPredicate<Integer, Integer> estRencontreDansPoule = (idMatch, idPoule) -> BDPredicats.estMatchPoule(idMatch, idPoule);
-	public static BiPredicate<Integer, Integer> estRencontreAvecEquipe = (idMatch, idEquipe)  -> BDPredicats.estMatchAvecEquipe(idMatch, idEquipe);
+	public static Predicate<Rencontre> estRencontreFini = r -> BDPredicats.estRencontreFinie(r);
+	public static Predicate<Rencontre> estRencontreAVenir = estRencontreFini.negate();
+	public static BiPredicate<Rencontre, Integer> estRencontreSurJeu = (r, idJeu) -> BDPredicats.estMatchSurJeu(r, idJeu);
+	public static BiPredicate<Rencontre, Integer> estRencontreDansTournoi = (r, idTournoi) -> BDPredicats.estMatchTournoi(r, idTournoi);
+	public static BiPredicate<Rencontre, Integer> estRencontreDansPoule = (r, idPoule) -> BDPredicats.estMatchPoule(r, idPoule);
+	public static BiPredicate<Rencontre, Integer> estRencontreAvecEquipe = (r, idEquipe)  -> BDPredicats.estMatchAvecEquipe(r, idEquipe);
 	
 	// Equipe
 	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> equipe.getIdEcurie() == idEcurie;
@@ -33,7 +33,7 @@ public class Filters {
 	/// don't min me np
 	
 	
-	public static List<BDEntity> filtrere(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
+	public static List<BDEntity> filtrer(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
 		for(Predicate<BDEntity> p : lp) {
 			 lt = Filters.filtrer(lt, p);
 		}
@@ -48,9 +48,8 @@ public class Filters {
 		return lt;
 	}
 	
-	
-	public static <T extends BDEntity> List<T> filtrer(List<T> tl, Predicate<T> estTournoiAVenir2) {
-		return tl.stream().filter(estTournoiAVenir2).collect(Collectors.toList());
+	public static <T extends BDEntity> List<T> filtrer(List<T> tl, Predicate<T> p) {
+		return tl.stream().filter(p).collect(Collectors.toList());
 	}
 	
 	

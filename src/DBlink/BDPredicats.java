@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import base.Portee;
+import oracle.jdbc.proxy.annotation.Pre;
 
 public class BDPredicats {
 
@@ -184,36 +185,45 @@ public class BDPredicats {
 		}
 	}
 
-	public static boolean estMatchSurJeu(int idMatch, int idJeu) {
+	public static boolean estMatchSurJeu(Rencontre r, int idJeu) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT tournoi.id_tournoi FROM tournoi t, poule p, rencontre r WHERE r.id_rencontre = " + idMatch + " AND r.id_poule = p.id_poule AND p.id_tournoi = t.id_tournoi");
-	    	int idTournoi = rs.getInt(1);
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT * FROM tournoi t, poule p WHERE ? = p.id_poule AND p.id_tournoi = t.id_tournoi AND t.id_jeu = ?");
+	    	st.setInt(1, r.getIdPoule());
+	    	st.setInt(2, idJeu);
+	    	
+			ResultSet rs = st.executeQuery();
+	    	
+	    	boolean b = rs.next();
 	    	st.close();
-	    	return estTournoiSurJeu(idTournoi, idJeu);
+	    	return b;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 	        return false;
 		}
 	}
 
-	public static boolean estMatchTournoi(int idMatch, int idTournoi) {
+	public static boolean estMatchTournoi(Rencontre r, int idTournoi) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT tournoi.id_tournoi FROM tournoi t, poule p, rencontre r WHERE r.id_rencontre = " + idMatch + " AND r.id_poule = p.id_poule AND p.id_tournoi = t.id_tournoi AND id_tournoi = " + idTournoi);
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT * FROM tournoi t, poule p WHERE p.id_poule = ? AND p.id_tournoi = ? ");
+	    	st.setInt(1, r.getIdPoule());
+	    	st.setInt(2, idTournoi);
+	    	
+	    	ResultSet rs = st.executeQuery();
+	    	
 	    	boolean check = rs.next();
+	    	
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
 	
-	public static boolean estMatchAvecEquipe(int idMatch, int idEquipe) {
+	public static boolean estMatchAvecEquipe(Rencontre r, int idEquipe) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM jouer WHERE id_equipe = " + idEquipe + " AND id_rencontre = " + idMatch);
+	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM jouer WHERE id_equipe = " + idEquipe + " AND id_rencontre = " + r.getId());
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -223,10 +233,10 @@ public class BDPredicats {
 		}
 	}
 
-	public static boolean estMatchPoule(int idMatch, int idPoule) {
+	public static boolean estMatchPoule(Rencontre r , int idPoule) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_poule FROM rencontre WHERE id_rencontre = " + idMatch + " AND id_poule = " + idPoule);
+	    	ResultSet rs = st.executeQuery("SELECT id_poule FROM rencontre WHERE id_rencontre = " + r.getId() + " AND id_poule = " + idPoule);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -250,6 +260,20 @@ public class BDPredicats {
 			e.printStackTrace();
 			return false;
 
+		}
+	}
+
+	public static boolean estRencontreFinie(Rencontre r) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT * FROM rencontre r WHERE r.DATE_RENCONTRE < CURRENT_DATE AND id_rencontre = ?");
+	    	st.setInt(1, r.getId());
+			ResultSet rs = st.executeQuery();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
 		}
 	}
 
