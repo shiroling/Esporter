@@ -266,10 +266,8 @@ public class AccueilV2 {
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
-						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
 						viderSide();
-						System.out.println("marche");
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
 					} else if (obj instanceof JLabel) {
