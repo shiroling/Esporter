@@ -41,7 +41,7 @@ public class CarteJeu extends Carte {
 		
 		// Récupération de l'image à partir du classpath
 		ClassLoader classLoader = getClass().getClassLoader();
-		InputStream inputStream = classLoader.getResourceAsStream("ressources/over2logo.png");
+		InputStream inputStream = classLoader.getResourceAsStream(jeu.getPathLogo());
 
 		// Chargement de l'image en utilisant la classe ImageIO
 		BufferedImage image = null;
