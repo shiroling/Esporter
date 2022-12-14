@@ -90,7 +90,7 @@ public class AccueilV2 {
 		frame.getContentPane().add(panelHeader, BorderLayout.NORTH);
 		panelHeader.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblNomApp = new JLabel("Nom App");
+		JLabel lblNomApp = new JLabel("ESporter");
 		lblNomApp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelHeader.add(lblNomApp, BorderLayout.CENTER);
 

@@ -41,7 +41,7 @@ public class HoverCarte implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		for(int i = 0 ; i < listPanel.size() ; i++) {
-			this.listPanel.get(i).setBackground(new Color(240,240,240));
+			this.listPanel.get(i).setBackground(new Color(220,220,220));
 		}		
 	}
 
