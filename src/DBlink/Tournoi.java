@@ -160,7 +160,7 @@ public class Tournoi extends BDEntity {
 			throw new IllegalArgumentException("Le gérant"+ idGerant +" n'existe pas");
 		}
 		
-		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinInscription, j.getId(), idGerant);
+		BDInsert.insererTournoi(nomTounoi, porteeTournoi, dateFinInscription, dateDebutTournoi, dateFinTournoi, j.getId(), idGerant);
 	}
 	
 	public static boolean isvalidGerant(int i ) {
