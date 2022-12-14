@@ -236,24 +236,6 @@ public class BDPredicats {
 		}
 	}
 	
-		
-	public static boolean estEquipeFromEcurie(Equipe equipe, Integer idEcurie) {
-		try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT count(*) as count from Equipe Where id_ecurie = ?");
-			st.setInt(1, idEcurie);
-			ResultSet rs = st.executeQuery();
-			
-			rs.next();
-	    	boolean check = rs.getInt("count") > 0;
-			st.close();
-	    	return check;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-
-		}
-	}
-
 	public static boolean estEquipeSurJeu(Equipe equipe, Integer idJeu) {
 		try {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT COUNT(*) as count FROM EQUIPE e WHERE e.ID_JEU = ?");
