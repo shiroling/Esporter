@@ -26,6 +26,7 @@ import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import DBlink.BDSelect;
 import DBlink.ConnexionBase;
 import DBlink.Ecurie;
 import DBlink.Equipe;
@@ -39,9 +40,9 @@ public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private static JPanel panel_side;
-	private JPanel panel_main;
+	private JPanel panelCartes;
 	private static ControleurAccueil controleur;
-
+	private JLabel lblTitreCarte;
 	private JLabel lblEtatConx;
 	private BtnStyle btnDeconnexion;
 
@@ -175,22 +176,30 @@ public class AccueilV2 {
 		btnEcurie.addActionListener(controleur);
 		btnEcurie.setName("Ecurie");
 		panelBtnSelection.add(btnEcurie);
+		
+		JPanel panelMain = new JPanel();
+		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
+		panelMain.setBorder(new LineBorder(Color.BLACK));
+		panelMain.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
-		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		JScrollPane scrollPaneMain = new JScrollPane();
+		panelMain.add(scrollPaneMain);
 
-		panel_main = new JPanel();
-		scrollPane.setViewportView(panel_main);
-		panel_main.setLayout(new GridLayout(12, 3, 10, 10));
+		panelCartes = new JPanel();
+		scrollPaneMain.setViewportView(panelCartes);
+		panelCartes.setLayout(new GridLayout(12, 3, 10, 10));
+		
+		JPanel panelLblTitreCartes = new JPanel();
+		panelMain.add(panelLblTitreCartes, BorderLayout.NORTH);
+		
+		lblTitreCarte = new JLabel();
+		lblTitreCarte.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+		panelLblTitreCartes.add(lblTitreCarte);
 
 		panel_side = new JPanel();
 		frame.getContentPane().add(panel_side, BorderLayout.EAST);
-		/*
 		
-		
-		
-		*/
-		for (Component ie : panel_main.getComponents()) {
+		for (Component ie : panelCartes.getComponents()) {
 			ie.addMouseListener(ma);
 		}
 		frame.addComponentListener(new ComponentAdapter() {
@@ -297,6 +306,9 @@ public class AccueilV2 {
 
 			}
 		};
+		
+		this.ajouterCartesTournois(BDSelect.getListeTournois());
+		this.getLblTitreCartes().setText("Tournois");
 	}
 
 	/**
@@ -304,15 +316,15 @@ public class AccueilV2 {
 	 */
 	public void ajusterGrille() {
 		if (frame.getWidth() < 1200) {
-			panel_main.setLayout(new GridLayout((panel_main.getComponentCount() / 2) + 1, 2, 10, 10));
+			panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 10, 10));
 		} else if (frame.getWidth() >= 1200) {
-			panel_main.setLayout(new GridLayout((panel_main.getComponentCount() / 3) + 1, 3, 10, 10));
+			panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 10, 10));
 			if (frame.getWidth() >= 1900) {
-				panel_main.setLayout(new GridLayout((panel_main.getComponentCount() / 4) + 1, 4, 10, 10));
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 10, 10));
 			}
 		}
 
-		panel_main.updateUI();
+		panelCartes.updateUI();
 	}
 
 	/**
@@ -327,8 +339,8 @@ public class AccueilV2 {
 	 * vide la gille principale
 	 */
 	public void viderCartes() {
-		panel_main.removeAll();
-		panel_main.updateUI();
+		panelCartes.removeAll();
+		panelCartes.updateUI();
 	}
 
 	/**
@@ -342,7 +354,7 @@ public class AccueilV2 {
 			ce.setName("CarteEcurie");
 			ce.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ce.addMouseListener(ma);
-			panel_main.add(ce);
+			panelCartes.add(ce);
 		}
 		ajusterGrille();
 	}
@@ -354,7 +366,7 @@ public class AccueilV2 {
 			ct.setName("CarteTournois");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
-			panel_main.add(ct);
+			panelCartes.add(ct);
 		}
 		ajusterGrille();
 	}
@@ -367,7 +379,7 @@ public class AccueilV2 {
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
-			panel_main.add(ct);
+			panelCartes.add(ct);
 		}
 		ajusterGrille();
 
@@ -381,7 +393,7 @@ public class AccueilV2 {
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
 			;
-			panel_main.add(ct);
+			panelCartes.add(ct);
 		}
 		ajusterGrille();
 
@@ -394,7 +406,7 @@ public class AccueilV2 {
 			ct.setName("CarteJeu");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
-			panel_main.add(ct);
+			panelCartes.add(ct);
 		}
 		ajusterGrille();
 	}
@@ -470,7 +482,10 @@ public class AccueilV2 {
 			return (PanelTournois) panel_side.getComponent(0);
 		}
 		return null;
-
+	}
+	
+	public JLabel getLblTitreCartes() {
+		return this.lblTitreCarte;
 	}
 
 }

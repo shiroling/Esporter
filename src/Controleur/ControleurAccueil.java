@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import DBlink.BDSelect;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.Connexion;
@@ -50,22 +51,28 @@ public class ControleurAccueil implements ActionListener  {
 				case "Tournois":
 					vue.viderCartes();
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
+					vue.getLblTitreCartes().setText("Tournois");
 					break;
 				case "Match":
 					vue.viderCartes();
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+					vue.getLblTitreCartes().setText("Matchs");
+
 					break;
 				case "Jeu":
 					vue.viderCartes();
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
+					vue.getLblTitreCartes().setText("Jeux");
 					break;
 				case"Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+					vue.getLblTitreCartes().setText("Equipes");
 					break;
 				case"Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
+					vue.getLblTitreCartes().setText("Ecuries");
 					break;
 				}
 				break;
@@ -74,7 +81,7 @@ public class ControleurAccueil implements ActionListener  {
 				switch (btn.getName()) {
 				case "btnInscription":
 					System.out.println("ntm");
-					procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
+					//procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
 					break;
 				case "btnCreerTournoi":
 					System.out.println("coucou2");
@@ -83,26 +90,31 @@ public class ControleurAccueil implements ActionListener  {
 				case "Tournois":
 					vue.viderCartes();
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
+					vue.getLblTitreCartes().setText("Tournois");
 					vue.viderSide();
 					break;
 				case "Match":
 					vue.viderCartes();
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+					vue.getLblTitreCartes().setText("Matchs");
 					vue.viderSide();
 					break;
 				case "Jeu":
 					vue.viderCartes();
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
+					vue.getLblTitreCartes().setText("Jeux");
 					vue.viderSide();
 					break;
 				case"Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+					vue.getLblTitreCartes().setText("Equipes");
 					vue.viderSide();
 					break;
 				case"Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
+					vue.getLblTitreCartes().setText("Ecuries");
 					vue.viderSide();
 					break;
 				}
