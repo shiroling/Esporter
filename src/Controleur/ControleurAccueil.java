@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import DBlink.BDSelect;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.Connexion;
 import IHM.FormCreerTournoi;
-import IHM.PanelTournois;
 import base.ConnexionState;
 
 public class ControleurAccueil implements ActionListener  {
