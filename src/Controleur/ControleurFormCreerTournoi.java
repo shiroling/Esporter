@@ -63,7 +63,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			}
 
 			PreDate dateDebutTournois = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourDebutTournoi()));
-			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
+			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
 			PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
 		
 			//Si la date n'est pas valide, alors mettre le libellé en rouge

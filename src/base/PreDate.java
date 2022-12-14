@@ -45,7 +45,7 @@ public class PreDate {
 	
 	@SuppressWarnings("deprecation")
 	public Date toDate() {
-		return new Date(year, month, day);
+		return new Date(year - 1900, month, day);
 	}
 	
 	public static String toStringDateFormatterEuropean(Date date) {
@@ -70,4 +70,11 @@ public class PreDate {
             val /= 10;
         } while (charPos > offset);
     }
+
+	@Override
+	public String toString() {
+		return "PreDate [day=" + day + ", month=" + month + ", year=" + year + "]";
+	}
+	
+	
 }
