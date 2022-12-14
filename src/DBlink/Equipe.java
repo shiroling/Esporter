@@ -125,20 +125,28 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 			return 0;
 		}
 		
-		int diffPoints = this.getPoints() - e.getPoints();
+		float diffPoints = this.getPoints() - e.getPoints();
 		if(diffPoints != 0) {
-			return diffPoints;
+			if (diffPoints < 0) {
+				return -1;
+			} else {
+				return 1;
+			}
 		}
 		
-		int diffAge = this.getAgeMoyen() - e.getAgeMoyen();
+		float diffAge = this.getAgeMoyen() - e.getAgeMoyen();
 		if(diffAge != 0) {
-			return diffAge;
+			if (diffAge < 0) {
+				return -1;
+			} else {
+				return 1;
+			}
 		}
 		
 		return this.getNom().compareTo(e.getNom());
 	}
 
-	private int getAgeMoyen() {
+	private float getAgeMoyen() {
 		return BDSelect.getAgeMoyenEquipe(this.getId());
 	}
 
