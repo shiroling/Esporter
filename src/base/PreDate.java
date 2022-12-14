@@ -47,4 +47,27 @@ public class PreDate {
 	public Date toDate() {
 		return new Date(year, month, day);
 	}
+	
+	public static String toStringDateFormatterEuropean(Date date) {
+		int year = date.getYear() + 1900;
+        int month = date.getMonth() + 1;
+        int day = date.getDate();
+
+        char buf[] = new char[10];
+        formatDecimalInt(day, buf, 0, 2);
+        buf[2] = '/';
+        formatDecimalInt(month, buf, 3, 2);
+        buf[5] = '/';
+        formatDecimalInt(year, buf, 6, 4);
+
+        return new String(buf);
+	}
+	
+	private static void formatDecimalInt(int val, char[] buf, int offset, int len) {
+        int charPos = offset + len;
+        do {
+            buf[--charPos] = (char)('0' + (val % 10));
+            val /= 10;
+        } while (charPos > offset);
+    }
 }
