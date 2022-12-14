@@ -31,8 +31,6 @@ public class CarteRencontre extends Carte {
 		add(panelNomRencontre);
 		
 		JLabel lblNomEquipe1 = new JLabel(rencontre.getEquipes().get(0).toString());
-		System.out.println("DO?KDOD?JOD?JO : " + rencontre.getEquipes().get(0).toString());
-		System.out.println("DO?KDOD?JOD?JO : " + rencontre.getEquipes().get(1).toString());
 		lblNomEquipe1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelNomRencontre.add(lblNomEquipe1);
 		
