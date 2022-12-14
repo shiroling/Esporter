@@ -1,5 +1,6 @@
 package DBlink;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -23,11 +24,11 @@ public class BDinit {
 
 	public static void init(Equipe e) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-			ResultSet rs = st
-					.executeQuery("Select nom_Equipe, Id_Jeu, Id_Ecurie from Equipe where Id_Equipe = " + e.getId());
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select nom_Equipe as eee, Id_Jeu, Id_Ecurie from Equipe where Id_Equipe = ?");
+			st.setInt(1, e.getId());
+			ResultSet rs = st.executeQuery();
 			rs.next();
-			e.setNom(rs.getString("nom_Equipe"));
+			e.setNom(rs.getString("eee"));
 			e.setIdJeu(rs.getInt("Id_Jeu"));
 			e.setIdEcurie(rs.getInt("Id_Ecurie"));
 	

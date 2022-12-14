@@ -44,6 +44,8 @@ local.properties
 .classpath
 .settings/
 .loadpath
+
+
 SAE_ESporter_App/*.pydevproject
 SAE_ESporter_App/.project
 SAE_ESporter_App/.metadata/*
@@ -79,4 +81,5 @@ src/IHM/classTest.java
 src/IHM/Test.java
 module-info.java
 codemr/
+src/module-info.java
 src/module-info.java

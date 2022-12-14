@@ -158,27 +158,28 @@ public class BDPredicats {
 	public static boolean estTournoiDePortee(int id, Portee p) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portee = " + p.toString() + " AND tournoi.id_tournoi = " + id);
+	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.portee = '" + p.getName() + "' AND tournoi.id_tournoi = " + id);
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
 
-	public static boolean estTournoiMulti(int id) {
+	public static boolean estTournoiMulti(Tournoi t) {
 		try {
-			Tournoi t = new Tournoi(id);
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_tournoi FROM tournoi WHERE tournoi.nom LIKE '" + t.getNom() + "%'");
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT count(*) as count FROM tournoi t WHERE t.ID_TOURNOI = ? AND t.nom LIKE ? ");
+	    	st.setInt(1, t.getId());
+	    	st.setString(2, t.getNom().split("-")[0]+"%-%");
+			ResultSet rs = st.executeQuery();
 	    	rs.next();
-	    	boolean check = rs.next();
+	    	boolean check = rs.getInt("count") > 0;
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -234,32 +235,39 @@ public class BDPredicats {
 	        return false;
 		}
 	}
-
-
-	public static boolean estEquipeFromEcurie(int idEquipe, int idEcurie) {
+	
+		
+	public static boolean estEquipeFromEcurie(Equipe equipe, Integer idEcurie) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM equipe WHERE id_equipe = " + idEquipe + " AND id_ecurie = " + idEcurie);
-	    	boolean check = rs.next();
-	    	st.close();
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT count(*) as count from Equipe Where id_ecurie = ?");
+			st.setInt(1, idEcurie);
+			ResultSet rs = st.executeQuery();
+			
+			rs.next();
+	    	boolean check = rs.getInt("count") > 0;
+			st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-	        return false;
+			e.printStackTrace();
+			return false;
+
 		}
 	}
 
-
-	public static boolean estEquipeSurJeu(int idEquipe, int idJeu) {
+	public static boolean estEquipeSurJeu(Equipe equipe, Integer idJeu) {
 		try {
-			Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_equipe FROM equipe WHERE id_equipe = " + idEquipe + " AND id_jeu = " + idJeu);
-	    	boolean check = rs.next();
-	    	st.close();
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT COUNT(*) as count FROM EQUIPE e WHERE e.ID_JEU = ?");
+			st.setInt(1, idJeu);
+			ResultSet rs = st.executeQuery();
+			
+			rs.next();
+	    	boolean check = rs.getInt("count") > 0;
+			st.close();
 	    	return check;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-	        return false;
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return false;
+
 		}
 	}
 

@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import DBlink.Equipe;
 import DBlink.Filters;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
+import base.Portee;
 
 class TestFiltres {
 
@@ -48,7 +51,7 @@ class TestFiltres {
 	}
 	
 	@Test
-	void testInscriptionFinies() {
+	void testTournoiInscriptionFinies() {
 		List<Tournoi> tl = new ArrayList<>();
 		tl.add(new Tournoi(2556504)); // tournoi TestPast
 		tl.add(new Tournoi(2556505)); // tournoi TestFuture 
@@ -66,17 +69,39 @@ class TestFiltres {
 		tl.add(new Tournoi(2));  // tournoi non multi
 		
 		tl = Filters.filtrer(tl, Filters.estTournoiMulti);
-		
 		assertTrue(tl.size() == 2 && tl.get(0).getId() == 97 && tl.get(1).getId() == 98);
 	}
 	
+	@Test
+	void testTournoiSurJeu() {
+		List<Tournoi> tl = new ArrayList<>();
+		tl.add(new Tournoi(1)); // tournoi RL
+		tl.add(new Tournoi(2)); // tournoi OW2
+		
+		tl = Filters.filtrer(tl, Filters.estTournoiSurJeu, 1);
+		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 1);
+	}
 	
+	@Test
+	void testTournoiDePortee() {
+		List<Tournoi> tl = new ArrayList<>();
+		tl.add(new Tournoi(3)); // tournoi international
+		tl.add(new Tournoi(4)); // tournoi national
+		
+		tl = Filters.filtrer(tl, Filters.estTournoiDePortee, Portee.NATIONAL);
+		assertTrue(tl.size() == 1 && tl.get(0).getIdJeu() == 4);
+	}
+	
+	@Test
+	void testEstRencontreFini() {
+		List<Rencontre> liste = new ArrayList<>();
+		liste.add(new Rencontre(1));
+		liste.add(new Rencontre(4));
+		
+		liste = Filters.filtrer(liste, Filters.estRencontreFini);
+		assertTrue(liste.size() == 1 && liste.get(0).getId() == 1);
+	}
 	/*
-	// Tournoi
-	public static Predicate<Integer> sontInscriptionsFinies = id -> BDPredicats.sontInscriptionsFinies(id);
-	public static Predicate<Integer> estTournoiMulti = id -> BDPredicats.estTournoiMulti(id);
-	public static BiPredicate<Integer, Integer> estTournoiSurJeu = (idTournoi, idJeu)  -> BDPredicats.estTournoiSurJeu(idTournoi, idJeu);
-	public static BiPredicate<Integer, Portee> estTournoiDePortee = (id, p) -> BDPredicats.estTournoiDePortee(id, p);
 	
 	// Rencontre
 	public static Predicate<Integer> estRencontreFini = id -> BDPredicats.estTournoiFini(id);
@@ -89,7 +114,19 @@ class TestFiltres {
 	// Equipe
 	public static BiPredicate<Integer, Integer> estEquipeFromEcurie = (idEquipe, idEcurie) -> BDPredicats.estEquipeFromEcurie(idEquipe, idEcurie);
 	public static BiPredicate<Integer, Integer> estEquipeSurJeu = (idEquipe, idJeu) -> BDPredicats.estEquipeSurJeu(idEquipe, idJeu);
-*/	
+	*/
+	@Test
+	void testEquipefromEcurie() {
+		List<Equipe> tl = new ArrayList<>();
+		tl.add(new Equipe(1)); // pas chez mandatory (4)
+		tl.add(new Equipe(2)); // chez mandatory (4)
+		
+		tl = Filters.filtrer(tl, Filters.estEquipeFromEcurie, 4);
+		System.out.println(tl);
+		assertTrue(tl.size() == 1 && tl.get(0).getId() == 2);
+	}
+	
+
 	
 
 }

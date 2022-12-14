@@ -13,13 +13,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class PanelRencontre extends JPanel {
+	private int idRencontre; 
 
 	/**
 	 * Create the panel.
 	 */
 	public PanelRencontre(Rencontre r) {
+		
+		idRencontre = r.getId();
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panelRencontre = new JPanel();
@@ -43,6 +47,7 @@ public class PanelRencontre extends JPanel {
 		Equipe tempE = r.getEquipes().get(0);
 		JLabel lbljoueur;
 		for (Joueur j : tempE.getListJoueur()) {
+			System.out.println("1");
 			lbljoueur = new JLabel(j.getPseudo());
 			lbljoueur.setName("Joueur");
 			lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
@@ -63,8 +68,8 @@ public class PanelRencontre extends JPanel {
 		scrollE2.setViewportView(panelJoueurE2);
 		panelJoueurE2.setLayout(new GridLayout(0, 1, 0, 0));
 
-		tempE = r.getEquipes().get(1);
-		for (Joueur j : tempE.getListJoueur()) {
+		Equipe temp  = r.getEquipes().get(1);
+		for (Joueur j : temp.getListJoueur()) {
 			lbljoueur = new JLabel(j.getPseudo());
 			lbljoueur.setName("Joueur");
 			lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
@@ -72,6 +77,8 @@ public class PanelRencontre extends JPanel {
 			lbljoueur.addMouseListener(AccueilV2.getMa());
 			panelJoueurE2.add(lbljoueur);
 		}
+		
+		
 		
 		
 	}
