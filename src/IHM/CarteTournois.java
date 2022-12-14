@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import DBlink.Tournoi;
+import base.PreDate;
 
 public class CarteTournois extends Carte {
 	
@@ -39,7 +40,7 @@ public class CarteTournois extends Carte {
 		add(panelDate);
 		panelDate.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 		
-		JLabel lblDateDebutFinTournoi = new JLabel(tournoi.getDateDebut().getDay() + "/" + tournoi.getDateDebut().getMonth() + "/" + tournoi.getDateDebut().getYear() + " -- " + tournoi.getDateFin().getDay() + "/" + tournoi.getDateFin().getMonth() + "/" + tournoi.getDateFin().getYear());
+		JLabel lblDateDebutFinTournoi = new JLabel(PreDate.toStringDateFormatterEuropean(tournoi.getDateDebut()) + " -- " + PreDate.toStringDateFormatterEuropean(tournoi.getDateFin()));
 		lblDateDebutFinTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelDate.add(lblDateDebutFinTournoi);
 		
