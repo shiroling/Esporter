@@ -61,6 +61,7 @@ public class PanelTournois extends JPanel {
 			lblequipe.setName("Equipe");
 			lblequipe.setHorizontalAlignment(SwingConstants.CENTER);
 			lblequipe.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblequipe.addMouseListener(AccueilV2.getMa());
 			main.add(lblequipe);
 		}
 

@@ -34,6 +34,14 @@ public class PanelEquipe extends JPanel {
 		lblmanager.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblmanager.setName("lblmanager");
 		panel_main.add(lblmanager);
+		
+		JLabel lblEcurie = new JLabel(eq.getEcurie().getNom());
+		lblEcurie.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEcurie.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEcurie.setName("Ecurie");
+		lblEcurie.addMouseListener(AccueilV2.getMa());
+		panel_main.add(lblEcurie);
+		
 		JLabel lbljoueur;
 		
 		JScrollPane scroll = new JScrollPane();

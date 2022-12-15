@@ -29,7 +29,12 @@ public class PanelRencontre extends JPanel {
 		JPanel panelRencontre = new JPanel();
 		add(panelRencontre);
 		
-		JLabel lblNomRencontre = new JLabel("Rencontre du tournoi : "+r.getTournoi().getNom());
+		JLabel lbllblNomRencontre = new JLabel("Rencontre du tournoi  : ");
+		panelRencontre.add(lbllblNomRencontre);
+		
+		JLabel lblNomRencontre = new JLabel(r.getTournoi().toString());
+		lblNomRencontre.setName("Tournoi");
+		lblNomRencontre.addMouseListener(AccueilV2.getMa());
 		panelRencontre.add(lblNomRencontre);
 		
 		
