@@ -108,7 +108,7 @@ public class FormCreerTournoi extends JDialog {
 		return this.comboAnneeFinInscription.getSelectedItem().toString();
 	}
 
-	public String getSelectedValueComboFinTournoi() {
+	public String getSelectedValueComboAnneeFinTournoi() {
 		return this.comboAnneeFinTournoi.getSelectedItem().toString();
 	}
 	

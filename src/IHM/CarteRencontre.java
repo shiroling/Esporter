@@ -23,6 +23,7 @@ public class CarteRencontre extends Carte {
 		GridLayout gridLayout = (GridLayout) getLayout();
 		gridLayout.setRows(2);
 		this.rencontre = rencontre;
+		setBackground(new Color(255,255,255));
 		
 		JPanel panelNomRencontre = new JPanel();
 		panelNomRencontre.setBackground(new Color(255,255,255));
