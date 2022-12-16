@@ -33,7 +33,7 @@ public class PanelTournois extends JPanel {
 		lblNom.setName("Tournoi");
 		panel.add(lblNom);
 		
-		JLabel lblDates = new JLabel(t.getDateDebut()+" - "+t.getDateFin());
+		JLabel lblDates = new JLabel(t.getDateDebut().toString()+" - "+t.getDateFin().toString());
 		lblDates.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDates.setName("Date");
 		panel.add(lblDates);
@@ -41,9 +41,10 @@ public class PanelTournois extends JPanel {
 		JPanel panelBtn = new JPanel();
 		add(panelBtn, BorderLayout.SOUTH);
 		
-		JButton btnMatch = new JButton("Voir Les Matchs");
+		JButton btnMatch = new JButton("Voir les details");
 		btnMatch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AccueilV2.procedureCreePopupTournoi(t);
 			}
 		});
 		panelBtn.add(btnMatch);
