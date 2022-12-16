@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -45,13 +44,11 @@ public class ConnexionV2 extends JDialog {
 		FlowLayout fl_contentPanel = new FlowLayout();
 		fl_contentPanel.setVgap(30);
 		contentPanel.setLayout(fl_contentPanel);
+		contentPanel.setBackground(new Color(170,170,170));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JPanel panelContenantTitreChampsBtn = new JPanel();
-			Border blueBorder = BorderFactory.createLineBorder(new Color(0, 153, 255), 3);
-			panelContenantTitreChampsBtn.setBorder(blueBorder);
-			panelContenantTitreChampsBtn.setBackground(Color.WHITE);
+			PanelArrondi panelContenantTitreChampsBtn = new PanelArrondi(30,30,30,30);
 			contentPanel.add(panelContenantTitreChampsBtn);
 			panelContenantTitreChampsBtn.setLayout(new GridLayout(4, 1, 0, 0));
 			{
@@ -102,8 +99,9 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelBtnConnexion);
 				{
-					JButton btnNewButton = new JButton("New button");
-					panelBtnConnexion.add(btnNewButton);
+					BtnStyle btnSeConnecter = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255), 30);
+					btnSeConnecter.setText("Se Connecter");
+					panelBtnConnexion.add(btnSeConnecter);
 				}
 			}
 		}

@@ -4,15 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import IHM.BtnStyle;
+import IHM.BtnStyleV2;
 
 
 public class HoverButton implements MouseListener {
 	
 	private BtnStyle btn; 
-	
-	public HoverButton(BtnStyle btn) {
+
+	public HoverButton(BtnStyle btnStyle) {
 		super();
-		this.btn = btn;
+		this.btn = btnStyle;
 	}
 
 	@Override
