@@ -1,16 +1,18 @@
 package IHM;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import DBlink.Equipe;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
-import javax.swing.JLabel;
-import java.awt.GridLayout;
 
 public class PopupTournoi extends JDialog {
 
@@ -61,7 +63,30 @@ public class PopupTournoi extends JDialog {
 		
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
+		panelCorp.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		
+		JScrollPane scrollPaneEquipe = new JScrollPane();
+		panelCorp.add(scrollPaneEquipe);
+		
+		JPanel panelEquipes = new JPanel();
+		scrollPaneEquipe.setViewportView(panelEquipes);
+		panelEquipes.setLayout(new GridLayout(t.getListEquipesParticipantes().size()+1, 1, 0, 0));
+		
+		JPanel panellblEquipe = new JPanel();
+		panelEquipes.add(panellblEquipe);
+		
+		JLabel lbllblEquipe = new JLabel("Equipes:");
+		panellblEquipe.add(lbllblEquipe);
+		
+		for (Equipe e : t.getListEquipesParticipantes()) {
+			JPanel panelEquipe = new JPanel();
+			panelEquipes.add(panelEquipe);
+			JLabel equipe = new JLabel(e.getNom());
+			equipe.setName("Equipe");
+			equipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(equipe);
+		}
 		
 	}
 

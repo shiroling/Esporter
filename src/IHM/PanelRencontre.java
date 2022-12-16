@@ -52,7 +52,6 @@ public class PanelRencontre extends JPanel {
 		Equipe tempE = r.getEquipes().get(0);
 		JLabel lbljoueur;
 		for (Joueur j : tempE.getListJoueur()) {
-			System.out.println("1");
 			lbljoueur = new JLabel(j.getPseudo());
 			lbljoueur.setName("Joueur");
 			lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);

@@ -215,7 +215,6 @@ public class AccueilV2 {
 				Object obj = e.getSource();
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET:
-					System.out.println("bouboule");
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
@@ -236,7 +235,6 @@ public class AccueilV2 {
 						panel_side.updateUI();
 
 					} else if (obj instanceof CarteRencontre) {
-						System.out.println("ca");
 						CarteRencontre cr = (CarteRencontre) obj;
 						panel_side.add(new PanelRencontre(cr.getRencontre()));
 						panel_side.updateUI();
@@ -274,19 +272,15 @@ public class AccueilV2 {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							System.out.println(Joueur.getJoueurFromPseudo(jl.getText()));
 							procedureCreePopupJoueur(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							System.out.println(Equipe.getEquipeFromNom(jl.getText()));
 							procedureCreePopupEquipe(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
-							System.out.println(Ecurie.getEcurieFromNom(jl.getText()));
 							procedureCreePopupEcurie(Ecurie.getEcurieFromNom(jl.getText()));
 							break;
 						case "Tournoi":
-							System.out.println(Tournoi.getTournoiFromNom(jl.getText()));
 							procedureCreePopupTournoi(Tournoi.getTournoiFromNom(jl.getText()));
 							break;
 						case "Rencontre":
@@ -459,7 +453,7 @@ public class AccueilV2 {
 		pop.setVisible(true);
 	}
 
-	private void procedureCreePopupTournoi(Tournoi t) {
+	public static void procedureCreePopupTournoi(Tournoi t) {
 		PopupTournoi pop = new PopupTournoi(t);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
