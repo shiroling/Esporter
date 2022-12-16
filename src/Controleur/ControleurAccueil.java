@@ -41,6 +41,9 @@ public class ControleurAccueil implements ActionListener  {
 			switch (this.state) {
 			case ACCUEIL_SANS_VOLET:
 				switch (btn.getName()) {
+				case "btnInscription":
+					//procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
+					break;
 				case "btnCreerTournoi":
 					procedureCreerTournoi();
 					break;

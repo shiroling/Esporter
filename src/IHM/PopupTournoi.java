@@ -11,19 +11,19 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import DBlink.Equipe;
-import DBlink.Rencontre;
 import DBlink.Tournoi;
 
 public class PopupTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
+	private Tournoi tournoi;
 
 
 	/**
 	 * Create the dialog.
 	 */
 	public PopupTournoi(Tournoi t) {
+		tournoi =t;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
