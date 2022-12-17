@@ -20,7 +20,7 @@ public class ControleurAccueil implements ActionListener  {
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
-	private ConnexionState connexionState;
+	private static ConnexionState connexionState;
 	private int idLog;
 
 	public ControleurAccueil(AccueilV2 vue) {

@@ -72,15 +72,19 @@ public class ConnexionV2 extends JDialog {
 		setBounds(100, 100, 325, 296);
 		setTitle("Connexion");
 		getContentPane().setLayout(new BorderLayout());
-		FlowLayout fl_contentPanel = new FlowLayout();
-		fl_contentPanel.setVgap(30);
-		contentPanel.setLayout(fl_contentPanel);
 		contentPanel.setBackground(new Color(170,170,170));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
+			
+			PanelDegrade panelBackGround = new PanelDegrade();
+			FlowLayout flowLayout_1 = (FlowLayout) panelBackGround.getLayout();
+			flowLayout_1.setVgap(30);
+			contentPanel.add(panelBackGround);
+			
 			PanelArrondi panelContenantTitreChampsBtn = new PanelArrondi(30,30,30,30);
-			contentPanel.add(panelContenantTitreChampsBtn);
+			panelBackGround.add(panelContenantTitreChampsBtn);
 			panelContenantTitreChampsBtn.setLayout(new GridLayout(4, 1, 0, 0));
 			{
 				JPanel panelLblTitre = new JPanel();
