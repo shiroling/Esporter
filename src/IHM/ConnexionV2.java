@@ -24,6 +24,8 @@ public class ConnexionV2 extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldUsername;
 	private JPasswordField textFieldPassword;
+	private JTextField textFieldFocus2;
+	private JTextField textFieldFocus1;
 
 	/**
 	 * Launch the application.
@@ -86,9 +88,23 @@ public class ConnexionV2 extends JDialog {
 				panelLblTitre.setBackground(new Color(0,0,0,0));
 				panelContenantTitreChampsBtn.add(panelLblTitre);
 				{
+					textFieldFocus1 = new JTextField();
+					textFieldFocus1.setEnabled(false);
+					textFieldFocus1.setEditable(false);
+					textFieldFocus1.setBackground(new Color(0,0,0,0));
+					textFieldFocus1.setBorder(new EmptyBorder(0,0,0,0));
+					panelLblTitre.add(textFieldFocus1);
+				}
+				{
 					JLabel lblTitreLogin = new JLabel("LOGIN");
 					lblTitreLogin.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 23));
 					panelLblTitre.add(lblTitreLogin);
+				}
+				{
+					textFieldFocus2 = new JTextField();
+					textFieldFocus2.setBackground(new Color(0,0,0,0));
+					textFieldFocus2.setBorder(new EmptyBorder(0,0,0,0));
+					panelLblTitre.add(textFieldFocus2);
 				}
 			}
 			{
