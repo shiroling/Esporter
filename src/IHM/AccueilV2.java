@@ -44,7 +44,7 @@ public class AccueilV2 {
 	private static ControleurAccueil controleur;
 	private JLabel lblTitreCarte;
 	private JLabel lblEtatConx;
-	private BtnStyle btnDeconnexion;
+	private BtnStyleV2 btnDeconnexion;
 
 	/**
 	 * 
@@ -122,8 +122,7 @@ public class AccueilV2 {
 		JLabel lbladmin = new JLabel("administration");
 		panelAdmin.add(lbladmin);
 
-		BtnStyle btnCreeTournois = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255),
-				10);
+		BtnStyleV2 btnCreeTournois = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
@@ -134,7 +133,7 @@ public class AccueilV2 {
 		lblEtatConx.setVisible(false);
 		panelAdmin.add(lblEtatConx);
 
-		btnDeconnexion = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255), 10);
+		btnDeconnexion = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
 		btnDeconnexion.addActionListener(controleur);
 		btnDeconnexion.setName("btnDeconnexion");
 		btnDeconnexion.setText("Se déconnecter");

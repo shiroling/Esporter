@@ -1,6 +1,7 @@
 package IHM;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -12,6 +13,7 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JButton;
 
 import Controleur.HoverButton;
+import Controleur.HoverButtonV2;
 
 public class BtnStyleV2 extends JButton {
 	
@@ -20,6 +22,11 @@ public class BtnStyleV2 extends JButton {
 	private Color couleurClick;
 	private int radius;
 	
+	public static final Color COLOR_BASE_BLEU = new Color(0, 153, 255);
+	
+	public static final Color COLOR_OVER_BLEU = new Color(51, 102, 255);
+	
+	public static final Color COLOR_CLIC_BLEU = new Color(26, 83, 255);
 
 	public BtnStyleV2(Color couleurDeBase, Color couleurOver, Color couleurClick, int radius) {
 		super();
@@ -32,8 +39,8 @@ public class BtnStyleV2 extends JButton {
 		setBackground(couleurDeBase);
 		setBorderPainted(false);
 		setFocusable(false);
-		//HoverButton hover = new HoverButton(this);
-		//addMouseListener(hover);
+		HoverButtonV2 hover = new HoverButtonV2(this);
+		addMouseListener(hover);
 	}
 
 	public Color getCouleurDeBase() {
@@ -79,6 +86,25 @@ public class BtnStyleV2 extends JButton {
 		area.intersect(new Area(createRoundBasGauche()));
 		area.intersect(new Area(createRoundBasDroit()));
 		g2.fill(area);
+		
+		g2.setFont(getFont());
+	    g2.setColor(getForeground());
+		setText(getText());
+		
+		
+		int stringWidth = g2.getFontMetrics().stringWidth(getText());
+		int componentWidth = getWidth();
+
+		// Calculez l'abscisse du texte en fonction de la largeur du bouton et de la largeur du texte
+		int x = (componentWidth - stringWidth) / 2;
+
+		// Déterminez l'ordonnée du texte en fonction de la hauteur de la police et de la hauteur du bouton
+		int fontAscent = g2.getFontMetrics().getAscent();
+		int componentHeight = getHeight();
+		int y = (componentHeight - fontAscent) / 2 + fontAscent;
+
+		// Dessinez le texte
+		g2.drawString(getText(), x, y);
 		g2.dispose();
 		super.paintComponent(g);
 	}

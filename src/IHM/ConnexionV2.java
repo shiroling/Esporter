@@ -6,20 +6,19 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import Controleur.FocusListenerTextField;
 
 public class ConnexionV2 extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldUsername;
+	private JTextField textFieldPassword;
 
 	/**
 	 * Launch the application.
@@ -71,10 +70,14 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelTxtFeildUsername);
 				{
-					textField = new JTextField();
-					textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					panelTxtFeildUsername.add(textField);
-					textField.setColumns(15);
+					textFieldUsername = new JTextField();
+					textFieldUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					textFieldUsername.setText("USERNAME");
+					textFieldUsername.setForeground(Color.GRAY);
+					FocusListenerTextField focusListenerUsername = new FocusListenerTextField(textFieldUsername, textFieldUsername.getText());
+					textFieldUsername.addFocusListener(focusListenerUsername);
+					panelTxtFeildUsername.add(textFieldUsername);
+					textFieldUsername.setColumns(15);
 				}
 			}
 			{
@@ -85,10 +88,14 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelTxtFeildPassword);
 				{
-					textField_1 = new JTextField();
-					textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					panelTxtFeildPassword.add(textField_1);
-					textField_1.setColumns(15);
+					textFieldPassword = new JTextField();
+					textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					textFieldPassword.setText("PASSWORD");
+					textFieldPassword.setForeground(Color.GRAY);
+					FocusListenerTextField focusListenerPassword = new FocusListenerTextField(textFieldPassword, textFieldPassword.getText());
+					textFieldPassword.addFocusListener(focusListenerPassword);
+					panelTxtFeildPassword.add(textFieldPassword);
+					textFieldPassword.setColumns(15);
 				}
 			}
 			{
@@ -99,8 +106,11 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelBtnConnexion);
 				{
-					BtnStyle btnSeConnecter = new BtnStyle(new Color(0, 153, 255), new Color(51, 102, 255), new Color(26, 83, 255), 30);
-					btnSeConnecter.setText("Se Connecter");
+					BtnStyleV2 btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+					btnSeConnecter.setText("Se connecter");
+					btnSeConnecter.setForeground(Color.WHITE);
+					btnSeConnecter.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+					btnSeConnecter.updateUI();
 					panelBtnConnexion.add(btnSeConnecter);
 				}
 			}
