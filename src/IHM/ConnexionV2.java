@@ -9,21 +9,26 @@ import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
+import Controleur.ControleurAccueil;
+import Controleur.ControleurConnexion;
 import Controleur.FocusListenerTextField;
+import base.ConnexionState;
 
 public class ConnexionV2 extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldUsername;
-	private JTextField textFieldPassword;
+	private JPasswordField textFieldPassword;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			ConnexionV2 dialog = new ConnexionV2();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -31,12 +36,37 @@ public class ConnexionV2 extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}*/
+	
+	
+	public JTextField getTextFieldUsername() {
+		return textFieldUsername;
 	}
+
+
+	public JPasswordField getTextFieldPassword() {
+		return textFieldPassword;
+	}
+
+
+	public void setTextFieldUsername(JTextField textFieldUsername) {
+		this.textFieldUsername = textFieldUsername;
+	}
+
+
+	public void setTextFieldPassword(JPasswordField textFieldPassword) {
+		this.textFieldPassword = textFieldPassword;
+	}
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public ConnexionV2() {
+	public ConnexionV2(ControleurAccueil controleurAccueil, ConnexionState connexionVisee) {
+		ControleurConnexion controleurConnexion = new ControleurConnexion(connexionVisee, this, controleurAccueil);
+		setType(Type.POPUP);
+		setResizable(false);
+		setModal(true);
 		setBounds(100, 100, 325, 296);
 		setTitle("Connexion");
 		getContentPane().setLayout(new BorderLayout());
@@ -88,7 +118,7 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelTxtFeildPassword);
 				{
-					textFieldPassword = new JTextField();
+					textFieldPassword = new JPasswordField();
 					textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
 					textFieldPassword.setText("PASSWORD");
 					textFieldPassword.setForeground(Color.GRAY);
@@ -111,10 +141,15 @@ public class ConnexionV2 extends JDialog {
 					btnSeConnecter.setForeground(Color.WHITE);
 					btnSeConnecter.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 					btnSeConnecter.updateUI();
+					btnSeConnecter.addActionListener(controleurConnexion);
 					panelBtnConnexion.add(btnSeConnecter);
+					
+					getRootPane().setDefaultButton(btnSeConnecter);
 				}
 			}
 		}
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }

@@ -10,6 +10,7 @@ import DBlink.BDSelect;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.Connexion;
+import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
 
@@ -19,7 +20,7 @@ public class ControleurAccueil implements ActionListener  {
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
-	private static ConnexionState connexionState;
+	private ConnexionState connexionState;
 	private int idLog;
 
 	public ControleurAccueil(AccueilV2 vue) {
@@ -133,9 +134,11 @@ public class ControleurAccueil implements ActionListener  {
 
 	private void procedureCreerTournoi() {
 		if (connexionState != ConnexionState.GESTIONNAIRE) {
-			new Connexion(this, ConnexionState.GESTIONNAIRE);
+			new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
 		}
+		System.out.println("procedure creerTournoi :" + connexionState);
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
+			System.out.println("procedure CreerTournoi Dans le if");
 			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
 			formTournoi.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			formTournoi.setVisible(true);
@@ -166,6 +169,7 @@ public class ControleurAccueil implements ActionListener  {
 	}
 	
 	public void setConnexionState(ConnexionState c) {
+		System.out.println("setConnexion");
 		vue.ChangementConx(c);
 		this.connexionState = c;
 	}
