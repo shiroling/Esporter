@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import DBlink.Tournoi;
 import base.PreDate;
@@ -26,7 +27,7 @@ public class CarteTournois extends Carte {
 		gridLayout.setRows(2);
 		
 		panelNom = new JPanel();
-		panelNom.setBackground(new Color(255,255,255));
+		panelNom.setBackground(new Color(0,0,0,0));
 		add(panelNom);
 		panelNom.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 30));
 		
@@ -36,7 +37,7 @@ public class CarteTournois extends Carte {
 		panelNom.add(lblNomTournoi);
 		
 		panelDate = new JPanel();
-		panelDate.setBackground(new Color(255,255,255));
+		panelDate.setBackground(new Color(0,0,0,0));
 		add(panelDate);
 		panelDate.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 		

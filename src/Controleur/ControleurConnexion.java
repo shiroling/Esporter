@@ -35,7 +35,6 @@ public class ControleurConnexion implements ActionListener{
 		case GESTIONNAIRE:
 			if (BDPredicats.isGestionnaire(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
 				controleurAccueil.setConnexionState(ConnexionState.GESTIONNAIRE);
-				System.out.println("ControlerConnexion :" + this.controleurAccueil.getConnexionState());
 				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 

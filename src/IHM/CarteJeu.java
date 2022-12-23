@@ -28,7 +28,7 @@ public class CarteJeu extends Carte {
 		
 		JPanel panelNomJeu = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panelNomJeu.getLayout();
-		panelNomJeu.setBackground(new Color(255,255,255));
+		panelNomJeu.setBackground(new Color(0,0,0,0));
 		flowLayout.setVgap(30);
 		add(panelNomJeu);
 		
@@ -37,7 +37,7 @@ public class CarteJeu extends Carte {
 		panelNomJeu.add(lblNomJeu);
 		
 		JPanel panelLogoJeu = new JPanel();
-		panelLogoJeu.setBackground(new Color(255,255,255));
+		panelLogoJeu.setBackground(new Color(0,0,0,0));
 		add(panelLogoJeu);
 		
 		// Récupération de l'image à partir du classpath

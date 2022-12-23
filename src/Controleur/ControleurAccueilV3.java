@@ -9,21 +9,22 @@ import javax.swing.JDialog;
 import DBlink.BDSelect;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
+import IHM.AccueilV3;
 import IHM.Connexion;
 import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
 
-public class ControleurAccueil implements ActionListener  {
+public class ControleurAccueilV3 implements ActionListener  {
 
 	private Etat state;
-	private AccueilV2 vue;
+	private AccueilV3 vue;
 	private Object obj;
 	private JButton btn;
 	private static ConnexionState connexionState;
 	private int idLog;
 
-	public ControleurAccueil(AccueilV2 vue) {
+	public ControleurAccueilV3(AccueilV3 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
 		this.vue = vue;
 		this.idLog = -1;
@@ -134,7 +135,7 @@ public class ControleurAccueil implements ActionListener  {
 
 	private void procedureCreerTournoi() {
 		if (connexionState != ConnexionState.GESTIONNAIRE) {
-			new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
+			//new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
 		}
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
 			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
@@ -145,10 +146,9 @@ public class ControleurAccueil implements ActionListener  {
 	
 	public void procedureInscriptionTournoi(Tournoi t) {
 		if (connexionState != ConnexionState.MANAGER) {
-			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
+		//	Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
 		}
 		if (connexionState == ConnexionState.MANAGER) {
-			System.out.println(t);
 			//
 			//
 			//

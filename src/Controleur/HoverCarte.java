@@ -40,16 +40,12 @@ public class HoverCarte implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		for(int i = 0 ; i < listPanel.size() ; i++) {
-			this.listPanel.get(i).setBackground(new Color(220,220,220));
-		}		
+		this.vue.setBackground(new Color(220,220,220));
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		for(int i = 0 ; i < listPanel.size() ; i++) {
-			this.listPanel.get(i).setBackground(new Color(255,255,255));
-		}		
+		this.vue.setBackground(Color.WHITE);
 	}
 
 }
