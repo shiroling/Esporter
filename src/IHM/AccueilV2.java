@@ -179,7 +179,7 @@ public class AccueilV2 {
 		
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
-		panelMain.setBorder(new LineBorder(Color.BLACK));
+		panelMain.setBorder(new EmptyBorder(0,0,0,0));
 		panelMain.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPaneMain = new JScrollPane();
