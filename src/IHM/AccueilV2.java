@@ -22,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
@@ -179,12 +178,11 @@ public class AccueilV2 {
 		
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
-		panelMain.setBorder(new EmptyBorder(0,0,0,0));
+		panelMain.setBorder(new LineBorder(Color.BLACK));
 		panelMain.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPaneMain = new JScrollPane();
 		panelMain.add(scrollPaneMain);
-		scrollPaneMain.setBorder(new EmptyBorder(0,0,0,0));
 
 		panelCartes = new JPanel();
 		scrollPaneMain.setViewportView(panelCartes);
