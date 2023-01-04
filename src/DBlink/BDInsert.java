@@ -55,7 +55,7 @@ public class BDInsert {
 			for(int i = 0; i<6; i++) {
 				PreparedStatement stRencontre = connex.prepareStatement("Insert into Rencontre values (Seq_Rencontre.nextVal, ?, seq_poule.currval, ?)");
 				stRencontre.setInt(1, BDSelect.getRandomArbitre());
-				stRencontre.setDate(2, Poule.fixerDateRencontre(idTournoi));
+				stRencontre.setDate(2, Poule.fixerDateRencontre(true, idTournoi));
 				stRencontre.executeUpdate();
 			}
 		} catch (Exception e) {
