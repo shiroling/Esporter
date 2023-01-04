@@ -208,7 +208,7 @@ public class Tournoi extends BDEntity {
 			for (int j = 0; j < 4; j++) {
 				li.add(l.get(i*4+j));
 			}
-			BDInsert.insererPoule(0, this.getId(), li);
+			BDInsert.insererPoule(this.getId(), li);
 			li.clear();
 		}
 		
@@ -216,6 +216,15 @@ public class Tournoi extends BDEntity {
 		for (Poule poule : lp) {
 			poule.genererRencontres();
 		}
+	}
+	
+	public void setFinalist(int inEquipe) {
+		Poule p = this.getPouleFinale();
+	}
+
+	private Poule getPouleFinale() {
+		
+		return null;
 	}
 
 	private boolean isPoulable() {
