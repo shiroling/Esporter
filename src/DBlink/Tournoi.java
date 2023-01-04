@@ -218,12 +218,15 @@ public class Tournoi extends BDEntity {
 		}
 	}
 	
-	public void setFinalist(int inEquipe) {
+	public void setFinalist(int idEquipe) throws Exception {
 		Poule p = this.getPouleFinale();
+		Rencontre r = p.getRencontreVide();
+		p.setFinalist(idEquipe);
+		r.setFinalist(idEquipe);
 	}
 
 	private Poule getPouleFinale() {
-		
+		BDSelect.getFinaleFromTournoi(this.getId());
 		return null;
 	}
 

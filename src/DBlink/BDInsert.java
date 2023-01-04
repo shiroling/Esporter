@@ -97,11 +97,11 @@ public class BDInsert {
 		}
 	}
 	
-	protected static void insererJouer(Equipe e, int idRencontre) {
+	protected static void insererJouer(int idEquipe, int idRencontre) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, ?, null)");
-			st.setInt(1, e.getId());
+			st.setInt(1, idEquipe);
 			st.setInt(2, idRencontre);
 			st.executeUpdate();
 		} catch (Exception ee) {
