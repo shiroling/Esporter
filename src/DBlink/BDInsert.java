@@ -109,4 +109,16 @@ public class BDInsert {
 		}
 	}
 	
+	protected static void updateGagnantRencontre(int idRencontre, int idEquipe) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("UPDATE jouer SET a_gagne = 1 WHERE id_equipe = ? AND id_rencontre = ?");
+			st.setInt(1, idEquipe);
+			st.setInt(2, idRencontre);
+			st.executeUpdate();
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
+		}
+	}
+	
 }
