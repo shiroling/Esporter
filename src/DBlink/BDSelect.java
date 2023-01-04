@@ -595,6 +595,18 @@ public class BDSelect {
 	    }
 	}
 
-	
+	public static int getRandomArbitre() {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT id_arbitre FROM (SELECT id_arbitre FROM arbitre ORDER BY dbms_random.value) WHERE rownum = 1");
+			ResultSet rs = st.executeQuery();
+	        rs.next();
+	        int var = rs.getInt("Id_Arbitre");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return -1;
+	    }
+	}
 	
 }
