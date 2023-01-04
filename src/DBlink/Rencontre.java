@@ -123,10 +123,9 @@ public class Rencontre extends BDEntity {
 	public Tournoi getTournoi() {
 		return new Tournoi(this.getIdTournoi());
 	}
-
+	
 	public void setFinalist(int idEquipe) {
 		BDInsert.insererJouer(idEquipe, this.getId());
-	
 	}
 	
 }

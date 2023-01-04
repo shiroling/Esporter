@@ -1,7 +1,6 @@
 package DBlink;
 
 import java.sql.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class Poule extends BDEntity {
@@ -114,7 +113,6 @@ public class Poule extends BDEntity {
 
 
 	public void setFinalist(int idEquipe) {
-		// TODO Auto-generated method stub
-		
+		BDInsert.insererComposer(idEquipe, this.getId());
 	}
 }

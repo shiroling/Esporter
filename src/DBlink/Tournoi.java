@@ -1,7 +1,6 @@
 package DBlink;
 
 import java.sql.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import base.Portee;
@@ -196,7 +195,7 @@ public class Tournoi extends BDEntity {
 	
 	@SuppressWarnings("null")
 	public void genererPoules() throws Exception {
-		if( !this.isPoulable() ) {
+		if( !this.isTournoiPlein() ) {
 			throw new Exception("Les poules ne peuvent pas étre généré.");
 		}
 		
@@ -218,19 +217,17 @@ public class Tournoi extends BDEntity {
 		}
 	}
 	
-	public void setFinalist(int idEquipe) throws Exception {
-		Poule p = this.getPouleFinale();
+	public static void setFinalist(int idEquipe, int idRencontre) throws Exception {
+		Rencontre rencontreGagne = new Rencontre(idRencontre);
+		Poule p = rencontreGagne.getPoule();
 		Rencontre r = p.getRencontreVide();
+		BDInsert.updateGagnantRencontre(idRencontre, idEquipe);
 		p.setFinalist(idEquipe);
 		r.setFinalist(idEquipe);
 	}
 
 	private Poule getPouleFinale() {
-		BDSelect.getFinaleFromTournoi(this.getId());
-		return null;
+		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 
-	private boolean isPoulable() {
-		return isTournoiPlein();
-	}
 }
