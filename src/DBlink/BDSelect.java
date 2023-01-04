@@ -600,7 +600,7 @@ public class BDSelect {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT id_arbitre FROM (SELECT id_arbitre FROM arbitre ORDER BY dbms_random.value) WHERE rownum = 1");
 			ResultSet rs = st.executeQuery();
 	        rs.next();
-	        int var = rs.getInt("Id_Arbitre");
+	        int var = rs.getInt("Id_arbitre");
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
