@@ -22,7 +22,12 @@ public class ControleurPopupSelectionerVainqueur implements ActionListener {
 		
 		switch (btn.getName())	{
 		case "btnConfirmer" :
-			Tournoi.setFinalist(this.vue.getVainqueur().getId(), this.vue.getRencontre().getId());
+			try {
+				this.vue.getRencontre().getTournoi().setFinalist(this.vue.getVainqueur().getId(), this.vue.getRencontre().getId());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			this.vue.dispose();
 			break;
 		case "btnAnnuler" :
