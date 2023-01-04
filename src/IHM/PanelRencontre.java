@@ -71,6 +71,12 @@ public class PanelRencontre extends JPanel {
 		JPanel panelJoueurE2 = new JPanel();
 		scrollE2.setViewportView(panelJoueurE2);
 		panelJoueurE2.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panelBoutons = new JPanel();
+		add(panelBoutons);
+		
+		JButton btnIndiquerGagnant = new JButton("Indiquer gagnant");
+		panelBoutons.add(btnIndiquerGagnant);
 
 		Equipe temp  = r.getEquipes().get(1);
 		for (Joueur j : temp.getListJoueur()) {
