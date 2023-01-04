@@ -395,6 +395,7 @@ public class AccueilV2 {
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for (Rencontre rencontre : rencontres) {
+			System.out.println(rencontre);
 			ct = new CarteRencontre(rencontre);
 
 			ct.setName("CarteRencontre");
@@ -464,19 +465,19 @@ public class AccueilV2 {
 		pop.setVisible(true);
 	}
 
-	private void procedureCreePopupJeu(Jeu j) {
+	public static void procedureCreePopupJeu(Jeu j) {
 		PopupJeu pop = new PopupJeu(j);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
 
-	private void procedureCreePopupEcurie(Ecurie e) {
+	public static void procedureCreePopupEcurie(Ecurie e) {
 		PopupEcurie pop = new PopupEcurie(e);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
 	}
 
-	private void procedureCreePopupEquipe(Equipe e) {
+	public static void procedureCreePopupEquipe(Equipe e) {
 		PopupEquipe pop = new PopupEquipe(e);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
@@ -488,7 +489,7 @@ public class AccueilV2 {
 		pop.setVisible(true);
 	}
 
-	private void procedureCreePopupRencontre(Rencontre r) {
+	public static void procedureCreePopupRencontre(Rencontre r) {
 		PopupRencontre pop = new PopupRencontre(r);
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pop.setVisible(true);
