@@ -62,6 +62,10 @@ public class Rencontre extends BDEntity {
 	public List<Equipe> getEquipes() {
 		return BDSelect.getEquipesFromRencontre(this.getId());
 	}
+	
+	public boolean isFull() {
+		return this.getEquipes().size() > 1; 
+	}
 
 	public Equipe getVainqueur() throws NullPointerException {
 		if(!estResultatRenseigne()) {
@@ -118,6 +122,11 @@ public class Rencontre extends BDEntity {
 	
 	public Tournoi getTournoi() {
 		return new Tournoi(this.getIdTournoi());
+	}
+
+	public void setFinalist(int idEquipe) {
+		BDInsert.insererJouer(idEquipe, this.getId());
+	
 	}
 	
 }

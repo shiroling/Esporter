@@ -1,4 +1,4 @@
-package DBlink;
+	package DBlink;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -378,7 +378,22 @@ public class BDSelect {
 			return 0;
 		}
 	}
-
+	
+	public static List<Poule> getPoulesTournoi(int idTournoi) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("SELECT id_poule FROM poule where id_tournoi = " + idTournoi);
+			List<Poule> poules = new ArrayList<>();
+			while (rs.next()) {
+				poules.add(new Poule(rs.getInt("id_poule")));
+			}
+			st.close();
+			return poules;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
   
 	// Acquisitions données toutes seules
 	public String getNomArbitre(int idArbitre) {
@@ -406,6 +421,22 @@ public class BDSelect {
 			rs.close();
 			st.close();
 			return new Equipe(var);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public static Poule getFinaleFromTournoi(int idTournoi) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery(
+					"SELECT id_poule FROM poule WHERE id_tournoi = " + idTournoi + "  AND finale = 1");
+			rs.next();
+			int var = rs.getInt(1);
+			rs.close();
+			st.close();
+			return new Poule(var);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
@@ -580,6 +611,18 @@ public class BDSelect {
 	    }
 	}
 
-	
+	public static int getRandomArbitre() {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT id_arbitre FROM (SELECT id_arbitre FROM arbitre ORDER BY dbms_random.value) WHERE rownum = 1");
+			ResultSet rs = st.executeQuery();
+	        rs.next();
+	        int var = rs.getInt("Id_arbitre");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return -1;
+	    }
+	}
 	
 }
