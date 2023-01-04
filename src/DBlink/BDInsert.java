@@ -80,13 +80,7 @@ public class BDInsert {
 			System.out.println(e.getMessage());
 		}
 		for(Equipe e : listeEquipes) {
-			try {
-				PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, Seq_Poule.currval, null)");
-				st.setInt(1, e.getId());
-				st.executeUpdate();
-			} catch (Exception ee) {
-				System.out.println(ee.getMessage());
-			}
+			insererJouer(e);
 		}
 	}
 	
