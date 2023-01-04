@@ -35,6 +35,7 @@ public class ControleurConnexion implements ActionListener{
 		case GESTIONNAIRE:
 			if (BDPredicats.isGestionnaire(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
 				controleurAccueil.setConnexionState(ConnexionState.GESTIONNAIRE);
+				controleurAccueil.cacherBtnConnexion();
 				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 
@@ -43,11 +44,13 @@ public class ControleurConnexion implements ActionListener{
 				this.connexionVue.getTextFieldUsername().setBorder(border);
 				this.connexionVue.getTextFieldPassword().setBorder(border);
 				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
+				controleurAccueil.afficherBtnConnexion();
 			}
 			break;
 		case MANAGER:
 			if (BDPredicats.isManager(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
 				controleurAccueil.setConnexionState(ConnexionState.MANAGER);
+				controleurAccueil.cacherBtnConnexion();
 				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 			} else {
@@ -55,10 +58,33 @@ public class ControleurConnexion implements ActionListener{
 				this.connexionVue.getTextFieldUsername().setBorder(border);
 				this.connexionVue.getTextFieldPassword().setBorder(border);
 				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
+				controleurAccueil.afficherBtnConnexion();
+			}
+			break;
+		case NON_CONNU:
+			if (BDPredicats.isManager(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
+				controleurAccueil.setConnexionState(ConnexionState.MANAGER);
+				controleurAccueil.cacherBtnConnexion();
+				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
+				this.connexionVue.dispose();
+			}
+			else if ((BDPredicats.isGestionnaire(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) ) {
+				controleurAccueil.setConnexionState(ConnexionState.GESTIONNAIRE);
+				controleurAccueil.cacherBtnConnexion();
+				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
+				this.connexionVue.dispose();
+			}
+			else {
+				LineBorder border = new LineBorder(Color.RED);
+				this.connexionVue.getTextFieldUsername().setBorder(border);
+				this.connexionVue.getTextFieldPassword().setBorder(border);
+				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
+				controleurAccueil.afficherBtnConnexion();
 			}
 			break;
 		default:
 			controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
+			controleurAccueil.afficherBtnConnexion();
 		}
 	}
 }
