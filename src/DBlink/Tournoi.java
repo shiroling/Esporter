@@ -217,17 +217,17 @@ public class Tournoi extends BDEntity {
 		}
 	}
 	
-	public static void setFinalist(int idEquipe, int idRencontre) throws Exception {
-		Rencontre rencontreGagne = new Rencontre(idRencontre);
-		Poule p = rencontreGagne.getPoule();
-		Rencontre r = p.getRencontreVide();
-		BDInsert.updateGagnantRencontre(idRencontre, idEquipe);
-		p.setFinalist(idEquipe);
+	public void setFinalist(int idEquipe, int idRencontreGagne) throws Exception {
+		Poule pFinale = this.getPouleFinale();
+		Rencontre r = pFinale.getRencontreVide();
+		BDInsert.updateGagnantRencontre(idRencontreGagne, idEquipe);
+		pFinale.setFinalist(idEquipe);
 		r.setFinalist(idEquipe);
 	}
 
 	private Poule getPouleFinale() {
-		return BDSelect.getFinaleFromTournoi(this.getId());
+		BDSelect.getFinaleFromTournoi(this.getId());
+		return null;
 	}
 
 }
