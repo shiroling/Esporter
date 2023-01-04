@@ -55,7 +55,7 @@ public class FormCreerTournoi extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int getIdGerant() {
 		return this.idGerant;
 	}
