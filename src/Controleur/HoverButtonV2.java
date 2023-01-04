@@ -7,11 +7,11 @@ import IHM.BtnStyle;
 import IHM.BtnStyleV2;
 
 
-public class HoverButton implements MouseListener {
+public class HoverButtonV2 implements MouseListener {
 	
-	private BtnStyle btn; 
+	private BtnStyleV2 btn; 
 
-	public HoverButton(BtnStyle btnStyle) {
+	public HoverButtonV2(BtnStyleV2 btnStyle) {
 		super();
 		this.btn = btnStyle;
 	}

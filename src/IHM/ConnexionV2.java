@@ -5,27 +5,32 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import Controleur.ControleurAccueil;
+import Controleur.ControleurConnexion;
+import Controleur.FocusListenerTextField;
+import base.ConnexionState;
 
 public class ConnexionV2 extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldUsername;
+	private JPasswordField textFieldPassword;
+	private JTextField textFieldFocus2;
+	private JTextField textFieldFocus1;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			ConnexionV2 dialog = new ConnexionV2();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -33,26 +38,53 @@ public class ConnexionV2 extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}*/
+	
+	
+	public JTextField getTextFieldUsername() {
+		return textFieldUsername;
 	}
+
+
+	public JPasswordField getTextFieldPassword() {
+		return textFieldPassword;
+	}
+
+
+	public void setTextFieldUsername(JTextField textFieldUsername) {
+		this.textFieldUsername = textFieldUsername;
+	}
+
+
+	public void setTextFieldPassword(JPasswordField textFieldPassword) {
+		this.textFieldPassword = textFieldPassword;
+	}
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public ConnexionV2() {
+	public ConnexionV2(ControleurAccueil controleurAccueil, ConnexionState connexionVisee) {
+		ControleurConnexion controleurConnexion = new ControleurConnexion(connexionVisee, this, controleurAccueil);
+		setType(Type.POPUP);
+		setResizable(false);
+		setModal(true);
 		setBounds(100, 100, 325, 296);
 		setTitle("Connexion");
 		getContentPane().setLayout(new BorderLayout());
-		FlowLayout fl_contentPanel = new FlowLayout();
-		fl_contentPanel.setVgap(30);
-		contentPanel.setLayout(fl_contentPanel);
+		contentPanel.setBackground(new Color(170,170,170));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
-			JPanel panelContenantTitreChampsBtn = new JPanel();
-			Border blueBorder = BorderFactory.createLineBorder(new Color(0, 153, 255), 3);
-			panelContenantTitreChampsBtn.setBorder(blueBorder);
-			panelContenantTitreChampsBtn.setBackground(Color.WHITE);
-			contentPanel.add(panelContenantTitreChampsBtn);
+			
+			PanelDegrade panelBackGround = new PanelDegrade();
+			FlowLayout flowLayout_1 = (FlowLayout) panelBackGround.getLayout();
+			flowLayout_1.setVgap(30);
+			contentPanel.add(panelBackGround);
+			
+			PanelArrondi panelContenantTitreChampsBtn = new PanelArrondi(30,30,30,30);
+			panelBackGround.add(panelContenantTitreChampsBtn);
 			panelContenantTitreChampsBtn.setLayout(new GridLayout(4, 1, 0, 0));
 			{
 				JPanel panelLblTitre = new JPanel();
@@ -60,9 +92,23 @@ public class ConnexionV2 extends JDialog {
 				panelLblTitre.setBackground(new Color(0,0,0,0));
 				panelContenantTitreChampsBtn.add(panelLblTitre);
 				{
+					textFieldFocus1 = new JTextField();
+					textFieldFocus1.setEnabled(false);
+					textFieldFocus1.setEditable(false);
+					textFieldFocus1.setBackground(new Color(0,0,0,0));
+					textFieldFocus1.setBorder(new EmptyBorder(0,0,0,0));
+					panelLblTitre.add(textFieldFocus1);
+				}
+				{
 					JLabel lblTitreLogin = new JLabel("LOGIN");
 					lblTitreLogin.setFont(new Font("Microsoft Sans Serif", Font.PLAIN, 23));
 					panelLblTitre.add(lblTitreLogin);
+				}
+				{
+					textFieldFocus2 = new JTextField();
+					textFieldFocus2.setBackground(new Color(0,0,0,0));
+					textFieldFocus2.setBorder(new EmptyBorder(0,0,0,0));
+					panelLblTitre.add(textFieldFocus2);
 				}
 			}
 			{
@@ -74,10 +120,14 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelTxtFeildUsername);
 				{
-					textField = new JTextField();
-					textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					panelTxtFeildUsername.add(textField);
-					textField.setColumns(15);
+					textFieldUsername = new JTextField();
+					textFieldUsername.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					textFieldUsername.setText("USERNAME");
+					textFieldUsername.setForeground(Color.GRAY);
+					FocusListenerTextField focusListenerUsername = new FocusListenerTextField(textFieldUsername, textFieldUsername.getText());
+					textFieldUsername.addFocusListener(focusListenerUsername);
+					panelTxtFeildUsername.add(textFieldUsername);
+					textFieldUsername.setColumns(15);
 				}
 			}
 			{
@@ -88,10 +138,14 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelTxtFeildPassword);
 				{
-					textField_1 = new JTextField();
-					textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-					panelTxtFeildPassword.add(textField_1);
-					textField_1.setColumns(15);
+					textFieldPassword = new JPasswordField();
+					textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
+					textFieldPassword.setText("PASSWORD");
+					textFieldPassword.setForeground(Color.GRAY);
+					FocusListenerTextField focusListenerPassword = new FocusListenerTextField(textFieldPassword, textFieldPassword.getText());
+					textFieldPassword.addFocusListener(focusListenerPassword);
+					panelTxtFeildPassword.add(textFieldPassword);
+					textFieldPassword.setColumns(15);
 				}
 			}
 			{
@@ -102,11 +156,20 @@ public class ConnexionV2 extends JDialog {
 				flowLayout.setVgap(10);
 				panelContenantTitreChampsBtn.add(panelBtnConnexion);
 				{
-					JButton btnNewButton = new JButton("New button");
-					panelBtnConnexion.add(btnNewButton);
+					BtnStyleV2 btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+					btnSeConnecter.setText("Se connecter");
+					btnSeConnecter.setForeground(Color.WHITE);
+					btnSeConnecter.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+					btnSeConnecter.updateUI();
+					btnSeConnecter.addActionListener(controleurConnexion);
+					panelBtnConnexion.add(btnSeConnecter);
+					
+					getRootPane().setDefaultButton(btnSeConnecter);
 				}
 			}
 		}
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }

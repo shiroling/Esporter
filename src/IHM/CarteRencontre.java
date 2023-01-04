@@ -26,7 +26,7 @@ public class CarteRencontre extends Carte {
 		setBackground(new Color(255,255,255));
 		
 		JPanel panelNomRencontre = new JPanel();
-		panelNomRencontre.setBackground(new Color(255,255,255));
+		panelNomRencontre.setBackground(new Color(0,0,0,0));
 		FlowLayout flowLayout = (FlowLayout) panelNomRencontre.getLayout();
 		flowLayout.setVgap(30);
 		add(panelNomRencontre);
@@ -46,7 +46,7 @@ public class CarteRencontre extends Carte {
 		panelNomRencontre.add(lblNomEquipe2);
 		
 		JPanel panelDateRencontre = new JPanel();
-		panelDateRencontre.setBackground(new Color(255,255,255));
+		panelDateRencontre.setBackground(new Color(0,0,0,0));
 		FlowLayout flowLayout_1 = (FlowLayout) panelDateRencontre.getLayout();
 		flowLayout_1.setVgap(20);
 		add(panelDateRencontre);

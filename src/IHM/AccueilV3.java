@@ -22,11 +22,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import Controleur.ControleurAccueilV3;
 import DBlink.BDSelect;
 import DBlink.ConnexionBase;
 import DBlink.Ecurie;
@@ -37,12 +37,12 @@ import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.ConnexionState;
 
-public class AccueilV2 {
+public class AccueilV3{
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private static JPanel panel_side;
 	private JPanel panelCartes;
-	private static ControleurAccueil controleur;
+	private static ControleurAccueilV3 controleur;
 	private JLabel lblTitreCarte;
 	private JLabel lblEtatConx;
 	private BtnStyleV2 btnDeconnexion;
@@ -55,7 +55,7 @@ public class AccueilV2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AccueilV2 window = new AccueilV2();
+					AccueilV3 window = new AccueilV3();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +67,7 @@ public class AccueilV2 {
 	/**
 	 * Create the application.
 	 */
-	public AccueilV2() {
+	public AccueilV3() {
 		initialize();
 
 	}
@@ -77,7 +77,7 @@ public class AccueilV2 {
 	 */
 	private void initialize() {
 		ConnexionBase.getConnectionBase();
-		controleur = new ControleurAccueil(this);
+		controleur = new ControleurAccueilV3(this);
 		frame = new JFrame();
 		frame.setTitle("ESporter");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
@@ -179,12 +179,11 @@ public class AccueilV2 {
 		
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
-		panelMain.setBorder(new EmptyBorder(0,0,0,0));
+		panelMain.setBorder(new LineBorder(Color.BLACK));
 		panelMain.setLayout(new BorderLayout(0, 0));
 
 		JScrollPane scrollPaneMain = new JScrollPane();
 		panelMain.add(scrollPaneMain);
-		scrollPaneMain.setBorder(new EmptyBorder(0,0,0,0));
 
 		panelCartes = new JPanel();
 		scrollPaneMain.setViewportView(panelCartes);
@@ -216,7 +215,7 @@ public class AccueilV2 {
 				Object obj = e.getSource();
 				switch (controleur.getState()) {
 				case ACCUEIL_SANS_VOLET:
-					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
+					controleur.setState(ControleurAccueilV3.Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
 						panel_side.add(new PanelEcurie(ce.getEcurie()));
@@ -466,7 +465,7 @@ public class AccueilV2 {
 		pop.setVisible(true);
 	}
 
-	public static ControleurAccueil getControleur() {
+	public static ControleurAccueilV3 getControleur() {
 		return controleur;
 	}
 
