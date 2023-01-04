@@ -210,11 +210,12 @@ public class Tournoi extends BDEntity {
 			}
 			BDInsert.insererPoule(0, this.getId(), li);
 			li.clear();
-
 		}
-
-
 		
+		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
+		for (Poule poule : lp) {
+			poule.genererRencontres();
+		}
 	}
 
 	private boolean isPoulable() {
