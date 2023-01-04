@@ -59,8 +59,8 @@ public class Poule extends BDEntity {
 		return "le toString() n'est pas implémenté dans la class Poule je vous laisse le faire comme je ne sais pas comment vous voulez qu'il soit";
 	}
 	
-	public Date fixerDateRencontre(boolean isFinale) {
-		Tournoi t = new Tournoi(this.getIdTournoi());
+	public static Date fixerDateRencontre(boolean isFinale, int idTournoi) {
+		Tournoi t = new Tournoi(idTournoi);
 		Date debut = t.getDateDebut();
 		Date fin = t.getDateFin();
 		
@@ -86,7 +86,7 @@ public class Poule extends BDEntity {
 				le.add(l.get(i*4+j));
 			}
 			
-			BDInsert.insererRencontre(BDSelect.getRandomArbitre() , this.getId(), fixerDateRencontre(this.isFinale()), le);
+			BDInsert.insererRencontre(this.getId(), fixerDateRencontre(this.isFinale(), this.getId()), le);
 			le.clear();
 		}
 		
