@@ -36,6 +36,8 @@ import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.ConnexionState;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -46,6 +48,7 @@ public class AccueilV2 {
 	private JLabel lblTitreCarte;
 	private JLabel lblEtatConx;
 	private BtnStyleV2 btnDeconnexion;
+	private JButton btnSeConnecter;
 
 	/**
 	 * 
@@ -98,6 +101,14 @@ public class AccueilV2 {
 		JPanel panelEspace = new JPanel();
 		FlowLayout fl_panelEspace = (FlowLayout) panelEspace.getLayout();
 		panelHeader.add(panelEspace, BorderLayout.WEST);
+		
+		JPanel panelConnexion = new JPanel();
+		panelHeader.add(panelConnexion, BorderLayout.EAST);
+		
+		btnSeConnecter = new JButton("Se connecter");
+		btnSeConnecter.addActionListener(getControleur());
+		btnSeConnecter.setName("seConnecter");
+		panelConnexion.add(btnSeConnecter);
 
 		JPanel panelFonctionalites = new JPanel();
 		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
@@ -188,7 +199,7 @@ public class AccueilV2 {
 
 		panelCartes = new JPanel();
 		scrollPaneMain.setViewportView(panelCartes);
-		panelCartes.setLayout(new GridLayout(12, 3, 10, 10));
+		panelCartes.setLayout(new GridLayout(12, 3, 40, 10));
 		
 		JPanel panelLblTitreCartes = new JPanel();
 		panelMain.add(panelLblTitreCartes, BorderLayout.NORTH);
@@ -305,15 +316,32 @@ public class AccueilV2 {
 	}
 
 	/**
+	 * @author benli
 	 * ajuste la taille de la grille en fonction de la taille de la fenetre
 	 */
 	public void ajusterGrille() {
-		if (frame.getWidth() < 1200) {
-			panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 10, 10));
-		} else if (frame.getWidth() >= 1200) {
-			panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 10, 10));
-			if (frame.getWidth() >= 1900) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 10, 10));
+		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
+		if (panelCartes.getComponent(0).getWidth()>300) {
+			if (frame.getWidth() < 1200) {
+				// on set la taille de la grille pour eviter d'avoir trop de colones
+				// le +1 est pour de la securité au niveau de l'interface
+				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 2, 20, 20));
+			} else if (frame.getWidth() >= 1200) {
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 3, 20, 20));
+				if (frame.getWidth() >= 1900) {
+					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 4, 20, 20));
+				}
+			}
+		}
+		// si les cartes ont une largeure inferieur a 300 pixel
+		else {
+			if (frame.getWidth() < 1200) {
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
+			} else if (frame.getWidth() >= 1200) {
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
+				if (frame.getWidth() >= 1900) {
+					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
+				}
 			}
 		}
 
@@ -479,6 +507,14 @@ public class AccueilV2 {
 	
 	public JLabel getLblTitreCartes() {
 		return this.lblTitreCarte;
+	}
+	
+	public void afficherBtnSeConnecter(){
+		btnSeConnecter.setVisible(true);
+	}
+	
+	public void cacherBtnSeConnecter(){
+		btnSeConnecter.setVisible(false);
 	}
 
 }

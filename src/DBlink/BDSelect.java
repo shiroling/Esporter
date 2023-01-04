@@ -362,7 +362,38 @@ public class BDSelect {
 			return null;
 		}
 	}
-
+	
+	public static int getNombreInscritTournois(int idTournoi) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			Statement st = connex.createStatement();
+			ResultSet rs = st.executeQuery("SELECT count(id_equipe) FROM inscrit WHERE id_tournoi = " + idTournoi);
+			rs.next();
+			int nbInscrits = rs.getInt(1);
+			rs.close();
+			st.close();
+			return nbInscrits;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
+	
+	public static List<Poule> getPoulesTournoi(int idTournoi) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("SELECT id_poule FROM poule where id_tournoi = " + idTournoi);
+			List<Poule> poules = new ArrayList<>();
+			while (rs.next()) {
+				poules.add(new Poule(rs.getInt("id_poule")));
+			}
+			st.close();
+			return poules;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
   
 	// Acquisitions données toutes seules
 	public String getNomArbitre(int idArbitre) {

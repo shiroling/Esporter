@@ -14,7 +14,7 @@ import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
 
-public class ControleurAccueil implements ActionListener  {
+public class ControleurAccueil implements ActionListener {
 
 	private Etat state;
 	private AccueilV2 vue;
@@ -36,20 +36,24 @@ public class ControleurAccueil implements ActionListener  {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		obj =  e.getSource();
+		obj = e.getSource();
 		if (obj instanceof JButton) {
 			btn = (JButton) obj;
 			switch (this.state) {
 			case ACCUEIL_SANS_VOLET:
 				switch (btn.getName()) {
+				case "seConnecter":
+					new ConnexionV2(this, ConnexionState.NON_CONNU);
+					break;
 				case "btnInscription":
-					//procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
+					// procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
 					break;
 				case "btnCreerTournoi":
 					procedureCreerTournoi();
 					break;
 				case "btnDeconnexion":
 					setConnexionState(ConnexionState.NON_CONNECTE);
+					afficherBtnConnexion();
 					break;
 				case "Tournois":
 					vue.viderCartes();
@@ -66,12 +70,12 @@ public class ControleurAccueil implements ActionListener  {
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					vue.getLblTitreCartes().setText("Jeux");
 					break;
-				case"Equipe":
+				case "Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					vue.getLblTitreCartes().setText("Equipes");
 					break;
-				case"Ecurie":
+				case "Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					vue.getLblTitreCartes().setText("Ecuries");
@@ -79,13 +83,15 @@ public class ControleurAccueil implements ActionListener  {
 				}
 				break;
 			case ACCUEIL_AVEC_VOLET:
-				
+
 				switch (btn.getName()) {
+				case "seConnecter":
+
+					break;
 				case "btnInscription":
-					//procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
+					// procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
 					break;
 				case "btnCreerTournoi":
-					System.out.println("coucou2");
 					procedureCreerTournoi();
 					break;
 				case "Tournois":
@@ -106,28 +112,31 @@ public class ControleurAccueil implements ActionListener  {
 					vue.getLblTitreCartes().setText("Jeux");
 					vue.viderSide();
 					break;
-				case"Equipe":
+				case "Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					vue.getLblTitreCartes().setText("Equipes");
 					vue.viderSide();
 					break;
-				case"Ecurie":
+				case "Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					vue.getLblTitreCartes().setText("Ecuries");
 					vue.viderSide();
 					break;
+				case "btnDeconnexion":
+					setConnexionState(ConnexionState.NON_CONNECTE);
+					afficherBtnConnexion();
+					break;
 				}
-				
+
 				break;
 			}
 
 		}
-		
+
 	}
 
-	
 	public void setIdLog(int id) {
 		this.idLog = id;
 	}
@@ -142,7 +151,7 @@ public class ControleurAccueil implements ActionListener  {
 			formTournoi.setVisible(true);
 		}
 	}
-	
+
 	public void procedureInscriptionTournoi(Tournoi t) {
 		if (connexionState != ConnexionState.MANAGER) {
 			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
@@ -155,8 +164,6 @@ public class ControleurAccueil implements ActionListener  {
 			//
 		}
 	}
-	
-
 
 	public Etat getState() {
 		return state;
@@ -165,16 +172,22 @@ public class ControleurAccueil implements ActionListener  {
 	public void setState(Etat state) {
 		this.state = state;
 	}
-	
+
 	public void setConnexionState(ConnexionState c) {
 		vue.ChangementConx(c);
 		this.connexionState = c;
 	}
+
 	public ConnexionState getConnexionState() {
 		return this.connexionState;
 	}
 
-	
-	
+	public void afficherBtnConnexion() {
+		vue.afficherBtnSeConnecter();
+	}
+
+	public void cacherBtnConnexion() {
+		vue.cacherBtnSeConnecter();
+	}
 
 }
