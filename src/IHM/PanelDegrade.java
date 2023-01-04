@@ -9,9 +9,12 @@ import java.awt.Paint;
 import javax.swing.JPanel;
 
 public class PanelDegrade extends JPanel {
+	
+	private Color[] couleurs;
 
-	public PanelDegrade() {
+	public PanelDegrade(Color[] couleurs) {
 		super();
+		this.couleurs = couleurs;
 	}
 	
 	@Override
@@ -21,7 +24,7 @@ public class PanelDegrade extends JPanel {
 
 	    // Création d'un dégradé de couleur rouge à bleu
 	    Paint paint = new LinearGradientPaint(0, 0, getWidth(), getHeight(),
-	      new float[] {0, 1}, new Color[] {new Color(163, 218, 255), BtnStyleV2.COLOR_BASE_BLEU});
+	      new float[] {0, 1}, this.couleurs);
 
 	    // Appliquer le dégradé en arrière-plan du JPanel
 	    g2d.setPaint(paint);
