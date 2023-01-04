@@ -1,6 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import base.Portee;
@@ -76,7 +77,6 @@ public class Tournoi extends BDEntity {
 		return idJeu;
 	}
 
-
 	public int getIdGerant() {
 		if(this.idGerant == -1) {
 			this.init();
@@ -111,6 +111,15 @@ public class Tournoi extends BDEntity {
 	protected void setIdGerant(int idGerant) {
 		this.idGerant = idGerant;
 	}
+	
+	public int getNombreInscrits() {
+		return BDSelect.getNombreInscritTournois(this.getId());
+	}
+	
+	public boolean isTournoiPlein() {
+		return BDSelect.getNombreInscritTournois(this.getId()) > 16;
+	}
+	
 
 	public List<Equipe> getListEquipesParticipantes() {
 		return BDSelect.getListeEquipesFromTournoi(this.getId());
@@ -183,5 +192,45 @@ public class Tournoi extends BDEntity {
 	
 	public static Tournoi getTournoiFromNom(String nom) {
 		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
+	}
+	
+	@SuppressWarnings("null")
+	public void genererPoules() throws Exception {
+		if( !this.isPoulable() ) {
+			throw new Exception("Les poules ne peuvent pas étre généré.");
+		}
+		
+		this.init(); //just in case it isn't ;)
+		
+		List<Equipe> l = this.getListEquipesParticipantes();
+		List<Equipe> li = null;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				li.add(l.get(i*4+j));
+			}
+			BDInsert.insererPoule(this.getId(), li);
+			li.clear();
+		}
+		
+		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
+		for (Poule poule : lp) {
+			poule.genererRencontres();
+		}
+	}
+	
+	public void setFinalist(int idEquipe) throws Exception {
+		Poule p = this.getPouleFinale();
+		Rencontre r = p.getRencontreVide();
+		p.setFinalist(idEquipe);
+		r.setFinalist(idEquipe);
+	}
+
+	private Poule getPouleFinale() {
+		BDSelect.getFinaleFromTournoi(this.getId());
+		return null;
+	}
+
+	private boolean isPoulable() {
+		return isTournoiPlein();
 	}
 }

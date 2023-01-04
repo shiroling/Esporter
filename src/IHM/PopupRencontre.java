@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DBlink.Equipe;
 import DBlink.Rencontre;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -18,13 +19,15 @@ import javax.swing.JScrollPane;
 public class PopupRencontre extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-
-
+	private Equipe equipe1;
+	private Equipe equipe2;
 
 	/**
 	 * Create the dialog.
 	 */
 	public PopupRencontre(Rencontre r) {
+		equipe1 = r.getEquipes().get(0);
+		equipe2 = r.getEquipes().get(1);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,23 +100,20 @@ public class PopupRencontre extends JDialog {
 		scrollPaneEq1.setViewportView(panelEq1);
 		panelEq1.setLayout(new GridLayout(6, 1, 0, 0));
 		
-		JPanel panelNomEq1 = new JPanel();
+		JLabel panelNomEq1 = new JLabel(equipe1.getNom()+" : ");
 		panelEq1.add(panelNomEq1);
 		
-		JPanel panelEQ1J1 = new JPanel();
+		JLabel panelEQ1J1 = new JLabel(equipe1.getListJoueur().get(0).getPseudo());
 		panelEq1.add(panelEQ1J1);
 		
-		JPanel panelEQ1J2 = new JPanel();
+		JLabel panelEQ1J2 = new JLabel(equipe1.getListJoueur().get(1).getPseudo());
 		panelEq1.add(panelEQ1J2);
 		
-		JPanel panelEQ1J3 = new JPanel();
+		JLabel panelEQ1J3 = new JLabel(equipe1.getListJoueur().get(2).getPseudo());
 		panelEq1.add(panelEQ1J3);
 		
-		JPanel panelEQ1J4 = new JPanel();
+		JLabel panelEQ1J4 = new JLabel(equipe1.getListJoueur().get(3).getPseudo());
 		panelEq1.add(panelEQ1J4);
-		
-		JPanel panelEQ1J5 = new JPanel();
-		panelEq1.add(panelEQ1J5);
 		
 		JScrollPane scrollPaneEq2 = new JScrollPane();
 		panelCorp.add(scrollPaneEq2);
@@ -122,23 +122,20 @@ public class PopupRencontre extends JDialog {
 		scrollPaneEq2.setViewportView(panelEq2);
 		panelEq2.setLayout(new GridLayout(6, 1, 0, 0));
 		
-		JPanel panelNomEq2 = new JPanel();
+		JLabel panelNomEq2 = new JLabel(equipe2.getNom()+" : ");
 		panelEq2.add(panelNomEq2);
 		
-		JPanel panelEQ2J1 = new JPanel();
+		JLabel panelEQ2J1 = new JLabel(equipe2.getListJoueur().get(0).getPseudo());
 		panelEq2.add(panelEQ2J1);
 		
-		JPanel panelEQ2J2 = new JPanel();
+		JLabel panelEQ2J2 = new JLabel(equipe2.getListJoueur().get(1).getPseudo());
 		panelEq2.add(panelEQ2J2);
 		
-		JPanel panelEQ2J3 = new JPanel();
+		JLabel panelEQ2J3 = new JLabel(equipe2.getListJoueur().get(2).getPseudo());
 		panelEq2.add(panelEQ2J3);
 		
-		JPanel panelEQ2J4 = new JPanel();
+		JLabel panelEQ2J4 = new JLabel(equipe2.getListJoueur().get(3).getPseudo());
 		panelEq2.add(panelEQ2J4);
-		
-		JPanel panelEQ2J5 = new JPanel();
-		panelEq2.add(panelEQ2J5);
 		
 	}
 

@@ -2,6 +2,7 @@ package IHM;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import DBlink.Equipe;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
 
 public class PopupTournoi extends JDialog {
@@ -79,7 +81,16 @@ public class PopupTournoi extends JDialog {
 		JLabel lbllblEquipe = new JLabel("Equipes:");
 		panellblEquipe.add(lbllblEquipe);
 		
-		for (Equipe e : t.getListEquipesParticipantes()) {
+		JScrollPane scrollPaneRencontres = new JScrollPane();
+		panelCorp.add(scrollPaneRencontres);
+		
+		JPanel panelRencontres = new JPanel();
+		scrollPaneRencontres.setViewportView(panelRencontres);
+		panelRencontres.setLayout(new GridLayout(t.getListEquipesParticipantes().size()+1, 1, 0, 0));
+		
+		
+		
+		for (Equipe e : tournoi.getListEquipesParticipantes()) {
 			JPanel panelEquipe = new JPanel();
 			panelEquipes.add(panelEquipe);
 			JLabel equipe = new JLabel(e.getNom());
