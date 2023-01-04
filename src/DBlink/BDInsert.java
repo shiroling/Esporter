@@ -46,22 +46,28 @@ public class BDInsert {
 		}
 	}
 	
-	protected static void insererPouleFinale(int idTournoi) {
+	protected static void insererPouleRencontresFinale(int idTournoi) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 1, ?)");
-			st.setInt(1, idTournoi);
-			st.executeUpdate();
+			PreparedStatement stPoule = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 1, ?)");
+			stPoule.setInt(1, idTournoi);
+			stPoule.executeUpdate();
+			for(int i = 0; i<6; i++) {
+				PreparedStatement stRencontre = connex.prepareStatement("Insert into Rencontre values (Seq_Rencontre.nextVal, ?, seq_poule.currval, ?)");
+				stRencontre.setInt(1, BDSelect.getRandomArbitre());
+				stRencontre.setDate(2, Poule.fixerDateRencontre(idTournoi));
+				stRencontre.executeUpdate();
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 	
-	protected static void insererRencontre(int idArbitre, int idPoule, Date dateRencontre, List<Equipe> listeEquipes) {
+	protected static void insererRencontre(int idPoule, Date dateRencontre, List<Equipe> listeEquipes) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Rencontre values (Seq_Rencontre.nextVal, ?, ?, ?)");
-			st.setInt(1, idArbitre);
+			st.setInt(1, BDSelect.getRandomArbitre());
 			st.setInt(2, idPoule);
 			st.setDate(3, dateRencontre);
 			st.executeUpdate();
