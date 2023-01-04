@@ -26,12 +26,11 @@ public class BDInsert {
 		}
 	}
 	
-	protected static void insererPoule(int finale, int idTournoi, List<Equipe> listeEquipes) {
+	protected static void insererPoule(int idTournoi, List<Equipe> listeEquipes) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, ?, ?)");
-			st.setInt(1, finale);
-			st.setInt(2, idTournoi);
+			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 0, ?)");
+			st.setInt(1, idTournoi);
 			st.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -44,6 +43,17 @@ public class BDInsert {
 			} catch (Exception ee) {
 				System.out.println(ee.getMessage());
 			}
+		}
+	}
+	
+	protected static void insererPouleFinale(int idTournoi) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 1, ?)");
+			st.setInt(1, idTournoi);
+			st.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
