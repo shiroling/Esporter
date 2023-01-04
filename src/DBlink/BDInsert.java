@@ -36,13 +36,18 @@ public class BDInsert {
 			System.out.println(e.getMessage());
 		}
 		for(Equipe e : listeEquipes) {
-			try {
-				PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
-				st.setInt(1, e.getId());
-				st.executeUpdate();
-			} catch (Exception ee) {
-				System.out.println(ee.getMessage());
-			}
+			insererComposer(e);
+		}
+	}
+	
+	protected static void insererComposer(Equipe e) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
+			st.setInt(1, e.getId());
+			st.executeUpdate();
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 		}
 	}
 	
@@ -82,6 +87,17 @@ public class BDInsert {
 			} catch (Exception ee) {
 				System.out.println(ee.getMessage());
 			}
+		}
+	}
+	
+	protected static void insererJouer(Equipe e) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
+			st.setInt(1, e.getId());
+			st.executeUpdate();
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 		}
 	}
 	

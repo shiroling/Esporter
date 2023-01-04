@@ -426,6 +426,22 @@ public class BDSelect {
 			return null;
 		}
 	}
+	
+	public static Poule getFinaleFromTournoi(int idTournoi) {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery(
+					"SELECT id_poule FROM poule WHERE id_tournoi = " + idTournoi + "  AND finale = 1");
+			rs.next();
+			int var = rs.getInt(1);
+			rs.close();
+			st.close();
+			return new Poule(var);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
 
 	public static Equipe getPerdantRencontre(int idRencontre) {
 		try {
