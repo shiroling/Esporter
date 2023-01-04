@@ -146,6 +146,14 @@ public class PopupIndiquerVainqueur extends JDialog {
 		this.equipeVainqueur = equipeVainqueur;
 	}
 	
+	public Equipe getVainqueur() {
+		return equipeVainqueur;
+	}
+	
+	public Rencontre getRencontre() {
+		return rencontre;
+	}
+	
 	public JPanel getPanelEquipe1() {
 		return panelEquipe1;
 	}
