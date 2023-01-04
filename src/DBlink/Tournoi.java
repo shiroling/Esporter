@@ -76,7 +76,6 @@ public class Tournoi extends BDEntity {
 		return idJeu;
 	}
 
-
 	public int getIdGerant() {
 		if(this.idGerant == -1) {
 			this.init();
@@ -111,6 +110,15 @@ public class Tournoi extends BDEntity {
 	protected void setIdGerant(int idGerant) {
 		this.idGerant = idGerant;
 	}
+	
+	public int getNombreInscrits() {
+		return BDSelect.getNombreInscritTournois(this.getId());
+	}
+	
+	public boolean isTournoiPlein() {
+		return BDSelect.getNombreInscritTournois(this.getId()) > 16;
+	}
+	
 
 	public List<Equipe> getListEquipesParticipantes() {
 		return BDSelect.getListeEquipesFromTournoi(this.getId());
@@ -183,5 +191,20 @@ public class Tournoi extends BDEntity {
 	
 	public static Tournoi getTournoiFromNom(String nom) {
 		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
+	}
+	
+	public void genererPoules() throws Exception {
+		if( !this.isPoulable() ) {
+			throw new Exception("Les poules ne peuvent pas étre généré.");
+		}
+		
+		this.init(); //just in case it isn't ;)
+		
+		BDInsert.insererPoule(int finale, int idTournoi, List<Equipe> listeEquipes);
+		
+	}
+
+	private boolean isPoulable() {
+		return isTournoiPlein();
 	}
 }
