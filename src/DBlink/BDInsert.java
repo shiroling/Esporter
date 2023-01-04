@@ -93,7 +93,7 @@ public class BDInsert {
 	protected static void insererJouer(Equipe e) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
+			PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, Seq_Poule.currval, null)");
 			st.setInt(1, e.getId());
 			st.executeUpdate();
 		} catch (Exception ee) {
