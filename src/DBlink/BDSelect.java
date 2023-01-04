@@ -362,6 +362,22 @@ public class BDSelect {
 			return null;
 		}
 	}
+	
+	public static int getNombreInscritTournois(int idTournoi) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			Statement st = connex.createStatement();
+			ResultSet rs = st.executeQuery("SELECT count(id_equipe) FROM inscrit WHERE id_tournoi = " + idTournoi);
+			rs.next();
+			int nbInscrits = rs.getInt(1);
+			rs.close();
+			st.close();
+			return nbInscrits;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return 0;
+		}
+	}
 
   
 	// Acquisitions données toutes seules
