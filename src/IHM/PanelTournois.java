@@ -41,13 +41,13 @@ public class PanelTournois extends JPanel {
 		JPanel panelBtn = new JPanel();
 		add(panelBtn, BorderLayout.SOUTH);
 		
-		JButton btnMatch = new JButton("Voir les details");
-		btnMatch.addActionListener(new ActionListener() {
+		JButton btnDetails = new JButton("Voir les details");
+		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AccueilV2.procedureCreePopupTournoi(t);
 			}
 		});
-		panelBtn.add(btnMatch);
+		panelBtn.add(btnDetails);
 		
 		JButton btnInscription = new JButton("S'inscrire");
 		btnInscription.setName("btnInscription");

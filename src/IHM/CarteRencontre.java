@@ -20,10 +20,9 @@ public class CarteRencontre extends Carte {
 	 */
 	public CarteRencontre(Rencontre rencontre) {
 		super();
-		GridLayout gridLayout = (GridLayout) getLayout();
-		gridLayout.setRows(2);
 		this.rencontre = rencontre;
 		setBackground(new Color(255,255,255));
+		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panelNomRencontre = new JPanel();
 		panelNomRencontre.setBackground(new Color(0,0,0,0));
@@ -68,6 +67,14 @@ public class CarteRencontre extends Carte {
 		List<JPanel> listPanelAHover = new ArrayList<>();
 		listPanelAHover.add(panelNomRencontre);
 		listPanelAHover.add(panelDateRencontre);
+		
+		JPanel panelNomTournoi = new JPanel();
+		panelNomTournoi.setBackground(new Color(0, 0, 0, 0));
+		add(panelNomTournoi);
+		
+		JLabel lblNomTournoi = new JLabel(rencontre.getTournoi().getNom());
+		lblNomTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+		panelNomTournoi.add(lblNomTournoi);
 		super.addHoverPannels(listPanelAHover);
 	}
 	public Rencontre getRencontre() {

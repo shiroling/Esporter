@@ -11,6 +11,9 @@ import DBlink.Tournoi;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -77,6 +80,14 @@ public class PanelRencontre extends JPanel {
 		
 		JButton btnIndiquerGagnant = new JButton("Indiquer gagnant");
 		panelBoutons.add(btnIndiquerGagnant);
+		
+		JButton btnDetails = new JButton("Voir les details");
+		btnDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccueilV2.procedureCreePopupRencontre(r);;
+			}
+		});
+		panelBoutons.add(btnDetails);
 
 		Equipe temp  = r.getEquipes().get(1);
 		for (Joueur j : temp.getListJoueur()) {

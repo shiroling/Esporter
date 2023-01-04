@@ -7,10 +7,12 @@ import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import DBlink.Ecurie;
 import DBlink.Equipe;
+import DBlink.Joueur;
 
 public class PopupEcurie extends JDialog {
 
@@ -43,8 +45,21 @@ public class PopupEcurie extends JDialog {
 		
 		JPanel panelListeEquipe = new JPanel();
 		for (Equipe eq : e.getListeEquipe()) {
+			JPanel panelEquipe = new JPanel();
 			JLabel lblEquipe = new JLabel(eq.getNom());
-			panelListeEquipe.add(lblEquipe);
+			lblEquipe.setName("Equipe");
+			lblEquipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(lblEquipe);
+			panelEquipe.add(new JLabel("Joueurs :"));
+			for (Joueur joueur : eq.getListJoueur()) {
+				JLabel lbljoueur = new JLabel(joueur.getPseudo());
+				lbljoueur.setName("Joueur");
+				lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
+				lbljoueur.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				lbljoueur.addMouseListener(AccueilV2.getMa());
+				panelEquipe.add(lbljoueur);
+			}
+			panelListeEquipe.add(panelEquipe);
 		}
 		panelCorp.add(panelListeEquipe);
 		panelListeEquipe.setLayout(new GridLayout(0, 1, 0, 0));
