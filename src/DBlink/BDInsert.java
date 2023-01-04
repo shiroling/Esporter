@@ -36,15 +36,22 @@ public class BDInsert {
 			System.out.println(e.getMessage());
 		}
 		for(Equipe e : listeEquipes) {
-			insererComposer(e);
+			try {
+				PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
+				st.setInt(1, e.getId());
+				st.executeUpdate();
+			} catch (Exception ee) {
+				System.out.println(ee.getMessage());
+			}
 		}
 	}
 	
-	protected static void insererComposer(Equipe e) {
+	protected static void insererComposer(Equipe e, int idPoule) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
+			PreparedStatement st = connex.prepareStatement("Insert into Composer values (?, ?)");
 			st.setInt(1, e.getId());
+			st.setInt(2, idPoule);
 			st.executeUpdate();
 		} catch (Exception ee) {
 			System.out.println(ee.getMessage());
@@ -80,15 +87,22 @@ public class BDInsert {
 			System.out.println(e.getMessage());
 		}
 		for(Equipe e : listeEquipes) {
-			insererJouer(e);
+			try {
+				PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, Seq_rencontre.currval, null)");
+				st.setInt(1, e.getId());
+				st.executeUpdate();
+			} catch (Exception ee) {
+				System.out.println(ee.getMessage());
+			}
 		}
 	}
 	
-	protected static void insererJouer(Equipe e) {
+	protected static void insererJouer(Equipe e, int idRencontre) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, Seq_Poule.currval, null)");
+			PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, ?, null)");
 			st.setInt(1, e.getId());
+			st.setInt(2, idRencontre);
 			st.executeUpdate();
 		} catch (Exception ee) {
 			System.out.println(ee.getMessage());
