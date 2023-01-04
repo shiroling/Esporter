@@ -66,7 +66,7 @@ public class Jeu extends BDEntity implements Comparable<Jeu> {
 
 	@Override
 	public int compareTo(Jeu o) {
-		if (this.getNom().compareTo("Valorant") == 0) {
+		if (this.getNom().compareTo("Overwatch 2") == 0) {
 			return 1;
 		}
 		return 0;
