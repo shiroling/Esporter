@@ -226,8 +226,7 @@ public class Tournoi extends BDEntity {
 	}
 
 	private Poule getPouleFinale() {
-		BDSelect.getFinaleFromTournoi(this.getId());
-		return null;
+		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 
 }
