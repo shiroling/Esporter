@@ -1,6 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import base.Portee;
@@ -116,7 +117,7 @@ public class Tournoi extends BDEntity {
 	}
 	
 	public boolean isTournoiPlein() {
-		return BDSelect.getNombreInscritTournois(this.getId()) > 16;
+		return BDSelect.getNombreInscritTournois(this.getId()) >= 16;
 	}
 	
 
@@ -193,7 +194,6 @@ public class Tournoi extends BDEntity {
 		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
 	}
 	
-	@SuppressWarnings("null")
 	public void genererPoules() throws Exception {
 		if( !this.isTournoiPlein() ) {
 			throw new Exception("Les poules ne peuvent pas étre généré.");
@@ -202,14 +202,17 @@ public class Tournoi extends BDEntity {
 		this.init(); //just in case it isn't ;)
 		
 		List<Equipe> l = this.getListEquipesParticipantes();
-		List<Equipe> li = null;
+		List<Equipe> li = new LinkedList<>();
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				li.add(l.get(i*4+j));
 			}
 			BDInsert.insererPoule(this.getId(), li);
+			System.out.println("La poule a été générée : " + li);
+
 			li.clear();
 		}
+		System.out.println("Les poules ont été générées !");
 		
 		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
 		for (Poule poule : lp) {
