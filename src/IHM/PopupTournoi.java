@@ -61,8 +61,8 @@ public class PopupTournoi extends JDialog {
 		JLabel lblInscription = new JLabel("Date limite d'inscription : "+t.getDateFinInscriptions().toString());
 		panelInscription.add(lblInscription);
 		
-		JButton btnNewButton = new JButton("S'inscrire");
-		panelInscription.add(btnNewButton);
+		JButton btnInscription = new JButton("Inscrire une équipe");
+		panelInscription.add(btnInscription);
 		
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
