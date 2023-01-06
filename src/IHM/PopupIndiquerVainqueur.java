@@ -17,6 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import Controleur.ControleurPopupSelectionerVainqueur;
 import Controleur.HoverRondEquipe;
 import DBlink.Equipe;
 import DBlink.Rencontre;
@@ -56,6 +57,7 @@ public class PopupIndiquerVainqueur extends JDialog {
 		this.equipe2 = rencontre.getEquipes().get(1);
 		
 		HoverRondEquipe hover = new HoverRondEquipe(this);
+		ControleurPopupSelectionerVainqueur controleur = new ControleurPopupSelectionerVainqueur(this);
 		
 		setBounds(100, 100, 450, 300);
 		setTitle("Sélectioner Vainqueur");
@@ -120,6 +122,7 @@ public class PopupIndiquerVainqueur extends JDialog {
 				okButton.setText("Confirmer");
 				okButton.setForeground(Color.WHITE);
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(controleur);
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
@@ -127,6 +130,7 @@ public class PopupIndiquerVainqueur extends JDialog {
 				BtnStyleV2 cancelButton = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
 				cancelButton.setName("btnAnnuler");
 				cancelButton.setText("Annuler");
+				cancelButton.addActionListener(controleur);
 				cancelButton.setForeground(Color.WHITE);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
