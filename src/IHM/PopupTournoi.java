@@ -62,6 +62,7 @@ public class PopupTournoi extends JDialog {
 		panelInscription.add(lblInscription);
 		
 		JButton btnInscription = new JButton("Inscrire une équipe");
+		btnInscription.setName("inscription");
 		panelInscription.add(btnInscription);
 		
 		JPanel panelCorp = new JPanel();
@@ -86,6 +87,7 @@ public class PopupTournoi extends JDialog {
 		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
 		
 		JButton btnVoirLesRencontres = new JButton("Voir les rencontres");
+		btnVoirLesRencontres.setName("voirRencontres");
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 		
 		
