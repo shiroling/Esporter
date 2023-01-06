@@ -1,6 +1,7 @@
 package IHM;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -119,6 +120,12 @@ public class PopupRencontre extends JDialog {
 		
 		JScrollPane scrollPaneEq2 = new JScrollPane();
 		panelCorp.add(scrollPaneEq2);
+		
+		for (Component c : panelEq1.getComponents()) {
+			JLabel panel = (JLabel)c;
+			panel.setName("Joueur");
+			panel.addMouseListener(AccueilV2.getMa());
+		}
 		
 		JPanel panelEq2 = new JPanel();
 		scrollPaneEq2.setViewportView(panelEq2);
