@@ -1,7 +1,6 @@
 package DBlink;
 
 import java.sql.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class Poule extends BDEntity {
@@ -108,13 +107,11 @@ public class Poule extends BDEntity {
 				return rencontre;
 			}
 		}
-		
-		throw new Exception("Can't insert finalist, no remaining free Rencontre");
+		throw new Exception("Impossible d'insérer le finaliste, il n'y à pas de rencontres libres");
 	}
 
 
 	public void setFinalist(int idEquipe) {
-		// TODO Auto-generated method stub
-		
+		BDInsert.insererComposer(idEquipe, this.getId());
 	}
 }

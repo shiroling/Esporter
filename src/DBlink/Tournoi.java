@@ -1,7 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import base.Portee;
@@ -117,7 +117,7 @@ public class Tournoi extends BDEntity {
 	}
 	
 	public boolean isTournoiPlein() {
-		return BDSelect.getNombreInscritTournois(this.getId()) > 16;
+		return BDSelect.getNombreInscritTournois(this.getId()) >= 16;
 	}
 	
 
@@ -194,23 +194,25 @@ public class Tournoi extends BDEntity {
 		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
 	}
 	
-	@SuppressWarnings("null")
 	public void genererPoules() throws Exception {
-		if( !this.isPoulable() ) {
+		if( !this.isTournoiPlein() ) {
 			throw new Exception("Les poules ne peuvent pas étre généré.");
 		}
 		
 		this.init(); //just in case it isn't ;)
 		
 		List<Equipe> l = this.getListEquipesParticipantes();
-		List<Equipe> li = null;
+		List<Equipe> li = new LinkedList<>();
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				li.add(l.get(i*4+j));
 			}
 			BDInsert.insererPoule(this.getId(), li);
+			System.out.println("La poule a été générée : " + li);
+
 			li.clear();
 		}
+		System.out.println("Les poules ont été générées !");
 		
 		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
 		for (Poule poule : lp) {
@@ -218,19 +220,16 @@ public class Tournoi extends BDEntity {
 		}
 	}
 	
-	public void setFinalist(int idEquipe) throws Exception {
-		Poule p = this.getPouleFinale();
-		Rencontre r = p.getRencontreVide();
-		p.setFinalist(idEquipe);
+	public void setFinalist(int idEquipe, int idRencontreGagne) throws Exception {
+		Poule pFinale = this.getPouleFinale();
+		Rencontre r = pFinale.getRencontreVide();
+		BDInsert.updateGagnantRencontre(idRencontreGagne, idEquipe);
+		pFinale.setFinalist(idEquipe);
 		r.setFinalist(idEquipe);
 	}
 
 	private Poule getPouleFinale() {
-		BDSelect.getFinaleFromTournoi(this.getId());
-		return null;
+		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 
-	private boolean isPoulable() {
-		return isTournoiPlein();
-	}
 }

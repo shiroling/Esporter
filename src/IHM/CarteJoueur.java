@@ -19,5 +19,5 @@ public class CarteJoueur extends Carte {
 		lblecurie.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		add(lblecurie);
 	}
-
+	
 }

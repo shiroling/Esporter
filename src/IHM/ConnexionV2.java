@@ -77,8 +77,8 @@ public class ConnexionV2 extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
-			
-			PanelDegrade panelBackGround = new PanelDegrade();
+			Color[] couleursDuDegrade = {new Color(163, 218, 255), BtnStyleV2.COLOR_BASE_BLEU};
+			PanelDegrade panelBackGround = new PanelDegrade(couleursDuDegrade);
 			FlowLayout flowLayout_1 = (FlowLayout) panelBackGround.getLayout();
 			flowLayout_1.setVgap(30);
 			contentPanel.add(panelBackGround);

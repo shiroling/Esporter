@@ -46,11 +46,11 @@ public class BDInsert {
 		}
 	}
 	
-	protected static void insererComposer(Equipe e, int idPoule) {
+	protected static void insererComposer(int idEquipe, int idPoule) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Composer values (?, ?)");
-			st.setInt(1, e.getId());
+			st.setInt(1, idEquipe);
 			st.setInt(2, idPoule);
 			st.executeUpdate();
 		} catch (Exception ee) {
