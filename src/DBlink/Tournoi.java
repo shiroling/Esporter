@@ -231,5 +231,9 @@ public class Tournoi extends BDEntity {
 	private Poule getPouleFinale() {
 		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
+	
+	public List<Poule> getListePoules(){
+		return BDSelect.getPoulesTournoi(getId());
+	}
 
 }

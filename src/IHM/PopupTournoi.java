@@ -90,6 +90,7 @@ public class PopupTournoi extends JDialog {
 		
 		
 		
+		
 		for (Equipe e : tournoi.getListEquipesParticipantes()) {
 			JPanel panelEquipe = new JPanel();
 			panelEquipes.add(panelEquipe);
@@ -98,6 +99,7 @@ public class PopupTournoi extends JDialog {
 			equipe.addMouseListener(AccueilV2.getMa());
 			panelEquipe.add(equipe);
 		}
+		
 		
 	}
 
