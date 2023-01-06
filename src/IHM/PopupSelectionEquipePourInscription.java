@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.HoverPanelEquipePourInscription;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 
@@ -20,13 +21,13 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Ecurie ecurie;
-
+	private JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(1));
+			PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(2));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -55,13 +56,17 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 			}
 		}
 		{
-			JScrollPane scrollPane = new JScrollPane();
+			scrollPane = new JScrollPane();
 			contentPanel.add(scrollPane, BorderLayout.CENTER);
 		}
 		{
 			JPanel panelListEquipes = new JPanel();
-			contentPanel.add(panelListEquipes, BorderLayout.CENTER);
-			panelListEquipes.setLayout(new GridLayout(equipes.size(), 1, 0, 0));
+			scrollPane.setViewportView(panelListEquipes);
+			panelListEquipes.setLayout(new GridLayout(equipes.size(), 1, 5, 5));
+			System.out.println(equipes.size());
+			for(Equipe e : equipes) {
+				panelListEquipes.add(new PanelEquipePourInscriptionTournoi(e));
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
