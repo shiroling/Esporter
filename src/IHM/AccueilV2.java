@@ -248,8 +248,7 @@ public class AccueilV2 {
 
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
-						panel_side.updateUI();
+						procedureCreePopupRencontre(cr.getRencontre());
 					}
 					break;
 				case ACCUEIL_AVEC_VOLET:
@@ -278,8 +277,7 @@ public class AccueilV2 {
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						viderSide();
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
-						panel_side.updateUI();
+						procedureCreePopupRencontre(cr.getRencontre());
 					} else if (obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
@@ -395,9 +393,7 @@ public class AccueilV2 {
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for (Rencontre rencontre : rencontres) {
-			System.out.println(rencontre);
 			ct = new CarteRencontre(rencontre);
-
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);

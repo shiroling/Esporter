@@ -73,11 +73,11 @@ public class PopupRencontre extends JDialog {
 		panelHead.add(panelVainqueur);
 		
 		if (r.estResultatRenseigne()) {
-			JLabel lblNewLabel = new JLabel("Vainqueur : ");
-			panelVainqueur.add(lblNewLabel);
+			JLabel lblResultat = new JLabel("Vainqueur : ");
+			panelVainqueur.add(lblResultat);
 			
-			JLabel lblNewLabel_1 = new JLabel(r.getVainqueur().getNom());
-			panelVainqueur.add(lblNewLabel_1);
+			JLabel lblResultatNom = new JLabel(r.getVainqueur().getNom());
+			panelVainqueur.add(lblResultatNom);
 		}
 		else {
 			JButton btnNewButton = new JButton("Renseigner Vainqueur");
@@ -105,8 +105,6 @@ public class PopupRencontre extends JDialog {
 		panelEq1.add(panelNomEq1);
 		
 		JLabel panelEQ1J1 = new JLabel(equipe1.getListJoueur().get(0).getPseudo());
-		panelEQ1J1.setName("Joueur");
-		panelEQ1J1.addMouseListener(AccueilV2.getMa());
 		panelEq1.add(panelEQ1J1);
 		
 		JLabel panelEQ1J2 = new JLabel(equipe1.getListJoueur().get(1).getPseudo());
@@ -146,6 +144,11 @@ public class PopupRencontre extends JDialog {
 		JLabel panelEQ2J4 = new JLabel(equipe2.getListJoueur().get(3).getPseudo());
 		panelEq2.add(panelEQ2J4);
 		
+		for (Component c : panelEq2.getComponents()) {
+			JLabel panel = (JLabel)c;
+			panel.setName("Joueur");
+			panel.addMouseListener(AccueilV2.getMa());
+		}
 	}
 
 }

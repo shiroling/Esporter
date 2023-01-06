@@ -59,26 +59,31 @@ public class ControleurAccueil implements ActionListener {
 					vue.viderCartes();
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
+					vue.ajusterGrille();
 					break;
 				case "Match":
 					vue.viderCartes();
 					vue.getLblTitreCartes().setText("Matchs");
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+					vue.ajusterGrille();
 					break;
 				case "Jeu":
 					vue.viderCartes();
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					vue.getLblTitreCartes().setText("Jeux");
+					vue.ajusterGrille();
 					break;
 				case "Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					vue.getLblTitreCartes().setText("Equipes");
+					vue.ajusterGrille();
 					break;
 				case "Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					vue.getLblTitreCartes().setText("Ecuries");
+					vue.ajusterGrille();
 					break;
 				}
 				break;
@@ -99,30 +104,35 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
 					vue.viderSide();
+					vue.ajusterGrille();
 					break;
 				case "Match":
 					vue.viderCartes();
 					vue.getLblTitreCartes().setText("Matchs");
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					vue.viderSide();
+					vue.ajusterGrille();
 					break;
 				case "Jeu":
 					vue.viderCartes();
 					vue.ajouterCartesJeu(BDSelect.getListeJeux());
 					vue.getLblTitreCartes().setText("Jeux");
 					vue.viderSide();
+					vue.ajusterGrille();
 					break;
 				case "Equipe":
 					vue.viderCartes();
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					vue.getLblTitreCartes().setText("Equipes");
 					vue.viderSide();
+					vue.ajusterGrille();
 					break;
 				case "Ecurie":
 					vue.viderCartes();
 					vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
 					vue.getLblTitreCartes().setText("Ecuries");
 					vue.viderSide();
+					vue.ajusterGrille();
 					break;
 				case "btnDeconnexion":
 					setConnexionState(ConnexionState.NON_CONNECTE);
