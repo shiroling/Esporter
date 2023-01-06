@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControlerPopupTournoi;
+import Controleur.ControleurAccueil;
 import DBlink.Equipe;
 import DBlink.Poule;
 import DBlink.Rencontre;
@@ -26,6 +28,8 @@ public class PopupTournoi extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupTournoi(Tournoi t) {
+		ControlerPopupTournoi controleur = new ControlerPopupTournoi(this);
+		
 		tournoi =t;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -62,6 +66,7 @@ public class PopupTournoi extends JDialog {
 		panelInscription.add(lblInscription);
 		
 		JButton btnInscription = new JButton("Inscrire une équipe");
+		btnInscription.addActionListener(controleur);
 		btnInscription.setName("inscription");
 		panelInscription.add(btnInscription);
 		
@@ -87,6 +92,7 @@ public class PopupTournoi extends JDialog {
 		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
 		
 		JButton btnVoirLesRencontres = new JButton("Voir les rencontres");
+		btnVoirLesRencontres.addActionListener(controleur);
 		btnVoirLesRencontres.setName("voirRencontres");
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 		

@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import IHM.AccueilV2;
 import IHM.Connexion;
+import IHM.ConnexionV2;
 import IHM.PopupTournoi;
 import base.ConnexionState;
 
@@ -14,10 +16,9 @@ public class ControlerPopupTournoi implements ActionListener {
 	private PopupTournoi vue;
 	private ControleurAccueil controleurAccueil;
 	
-	public ControlerPopupTournoi(PopupTournoi vue, ControleurAccueil controleurAccueil) {
+	public ControlerPopupTournoi(PopupTournoi vue) {
 		super();
 		this.vue = vue;
-		this.controleurAccueil = controleurAccueil;
 	}
 
 	@Override
@@ -26,11 +27,11 @@ public class ControlerPopupTournoi implements ActionListener {
 		
 		switch (btn.getName()) {
 		case "inscription":
-			if (controleurAccueil.getConnexionState() != ConnexionState.MANAGER) {
-				Connexion fenetreConnnexion = new Connexion(controleurAccueil, ConnexionState.MANAGER);
+			if (ControleurAccueil.getConnexionState() != ConnexionState.MANAGER) {
+				ConnexionV2 fenetreConnnexion = new ConnexionV2(AccueilV2.getControleur(), ConnexionState.MANAGER);
 			}
-			if (controleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
-				System.out.println("yeeeeeee");
+			if (ControleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
+				System.out.println("BANGERANG");
 				//Popup liste des équipe de l'equrie
 				//Inscrire l'équipe sélctionner
 			}

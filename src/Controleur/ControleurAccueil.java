@@ -188,8 +188,8 @@ public class ControleurAccueil implements ActionListener {
 		this.connexionState = c;
 	}
 
-	public ConnexionState getConnexionState() {
-		return this.connexionState;
+	public static ConnexionState getConnexionState() {
+		return connexionState;
 	}
 
 	public void afficherBtnConnexion() {
