@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import DBlink.Equipe;
+import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 
@@ -81,12 +82,11 @@ public class PopupTournoi extends JDialog {
 		JLabel lbllblEquipe = new JLabel("Equipes:");
 		panellblEquipe.add(lbllblEquipe);
 		
-		JScrollPane scrollPaneRencontres = new JScrollPane();
-		panelCorp.add(scrollPaneRencontres);
+		JPanel panelBtnVoirLesRencontres = new JPanel();
+		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
 		
-		JPanel panelRencontres = new JPanel();
-		scrollPaneRencontres.setViewportView(panelRencontres);
-		panelRencontres.setLayout(new GridLayout(t.getListEquipesParticipantes().size()+1, 1, 0, 0));
+		JButton btnVoirLesRencontres = new JButton("Voir les rencontres");
+		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 		
 		
 		
@@ -100,7 +100,10 @@ public class PopupTournoi extends JDialog {
 			panelEquipe.add(equipe);
 		}
 		
-		
+		for (Poule p : tournoi.getListePoules()) {
+			JPanel panelPoule = new JPanel();
+			
+		}
 	}
 
 }

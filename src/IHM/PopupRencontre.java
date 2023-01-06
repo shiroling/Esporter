@@ -104,6 +104,8 @@ public class PopupRencontre extends JDialog {
 		panelEq1.add(panelNomEq1);
 		
 		JLabel panelEQ1J1 = new JLabel(equipe1.getListJoueur().get(0).getPseudo());
+		panelEQ1J1.setName("Joueur");
+		panelEQ1J1.addMouseListener(AccueilV2.getMa());
 		panelEq1.add(panelEQ1J1);
 		
 		JLabel panelEQ1J2 = new JLabel(equipe1.getListJoueur().get(1).getPseudo());
