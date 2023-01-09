@@ -49,6 +49,7 @@ public class AccueilV2 {
 	private JLabel lblEtatConx;
 	private BtnStyleV2 btnDeconnexion;
 	private BtnStyleV2 btnSeConnecter;
+	private JPanel panelFiltre;
 
 	/**
 	 * 
@@ -120,21 +121,18 @@ public class AccueilV2 {
 		panelFiltrePlusAdmin.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelFonctionalites.add(panelFiltrePlusAdmin);
 		panelFiltrePlusAdmin.setLayout(new BorderLayout(0, 15));
-
-		JComboBox comboFiltre = new JComboBox();
-		comboFiltre.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		comboFiltre.setModel(new DefaultComboBoxModel(new String[] { "tri", "tri2", "tri 3" }));
-		panelFiltrePlusAdmin.add(comboFiltre, BorderLayout.NORTH);
-
-		JPanel panelFiltre = new JPanel();
+		
+		panelFiltre = new JPanel();
 		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
 		panelFiltre.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JPanel panelValiderFiltres = new JPanel();
-		panelFiltre.add(panelValiderFiltres);
+
+		JPanel panelBtnValiderFiltres = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelBtnValiderFiltres.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		panelFiltre.add(panelBtnValiderFiltres);
 		
 		JButton btnValiderFiltres = new JButton("Valider filtres");
-		panelValiderFiltres.add(btnValiderFiltres);
+		panelBtnValiderFiltres.add(btnValiderFiltres);
 		
 
 		JPanel panelAdmin = new JPanel();
@@ -508,6 +506,10 @@ public class AccueilV2 {
 	
 	public void cacherBtnSeConnecter(){
 		btnSeConnecter.setVisible(false);
+	}
+	
+	public JPanel getPanelFiltre() {
+		return this.panelFiltre;
 	}
 
 }
