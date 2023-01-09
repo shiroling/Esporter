@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Tournoi;
+import javax.swing.SwingConstants;
 
 public class PopupSelectionEquipePourInscription extends JDialog {
 
@@ -27,6 +28,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	private Equipe equipeSelectionnee;
 	private Tournoi tournoi;
 	private JPanel panelListEquipes;
+	private JLabel lblAucuneEquipeSelectionnee;
 	/**
 	 * Launch the application.
 	 */
@@ -78,20 +80,40 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			buttonPane.setLayout(new GridLayout(1, 2, 0, 0));
+			
+			JPanel panelLblAucuneEquipeSelectionee = new JPanel();
+			FlowLayout flowLayout_1 = (FlowLayout) panelLblAucuneEquipeSelectionee.getLayout();
+			flowLayout_1.setVgap(10);
+			flowLayout_1.setAlignment(FlowLayout.LEFT);
+			buttonPane.add(panelLblAucuneEquipeSelectionee);
+			{
+				lblAucuneEquipeSelectionnee = new JLabel("* Aucune équipe selelectionée");
+				lblAucuneEquipeSelectionnee.setForeground(Color.RED);
+				lblAucuneEquipeSelectionnee.setVisible(false);
+				panelLblAucuneEquipeSelectionee.add(lblAucuneEquipeSelectionnee);
+			}
+			
+			
+			JPanel panelBtn = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelBtn.getLayout();
+			flowLayout.setAlignment(FlowLayout.RIGHT);
+			buttonPane.add(panelBtn);
+			
 			{
 				JButton okButton = new JButton("Inscrire");
 				okButton.setActionCommand("OK");
 				okButton.setName("Inscrire");
-				buttonPane.add(okButton);
+				panelBtn.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Annuler");
 				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				panelBtn.add(cancelButton);
 			}
+			
 		}
 	}
 	
@@ -103,14 +125,11 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		for(Component p : panelListEquipes.getComponents()) {
 			PanelEquipePourInscriptionTournoi panel = (PanelEquipePourInscriptionTournoi) p;
 			if(panel.getEquipe().equals(equipeSelectionnee)) {
-				System.out.println("Ya des truc bleu");
 				panel.setBorder(new EmptyBorder(0,0,0,0));
 			}
 			if(panel.getEquipe().equals(equipe)) {
-				System.out.println("BLEU");
 				panel.setBorderBleu();
 			}
-			System.out.println("ok");
 		}
 		this.equipeSelectionnee = equipe;
 	}
@@ -121,5 +140,9 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	
 	public Tournoi getTournoi() {
 		return this.tournoi;
+	}
+	
+	public JLabel getLblAucuneEquipeSelectionee() {
+		return this.lblAucuneEquipeSelectionnee;
 	}
 }

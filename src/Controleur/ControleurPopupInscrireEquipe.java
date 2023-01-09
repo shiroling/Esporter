@@ -22,7 +22,11 @@ public class ControleurPopupInscrireEquipe implements ActionListener{
 		
 		switch (btn.getName()) {
 		case "Inscrire":
-			
+			if(this.vue.getEquipeSelectionee() != null) {
+				this.vue.getTournoi().inscrireEquipe(this.vue.getEquipeSelectionee());
+			} else {
+				this.vue.getLblAucuneEquipeSelectionee().setVisible(true);
+			}
 			break;
 		case "Annuler" :
 			this.vue.dispose();
