@@ -1,6 +1,5 @@
 package Controleur;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,7 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -72,6 +71,7 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
 					this.setPanelFiltresTournois();
+					System.out.println("------------------");
 					vue.ajusterGrille();
 					break;
 				case "Match":
@@ -117,6 +117,7 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
 					vue.viderSide();
+					System.out.println("------------------");
 					vue.ajusterGrille();
 					break;
 				case "Match":
@@ -157,7 +158,7 @@ public class ControleurAccueil implements ActionListener {
 			}
 
 		}
-
+		vue.ajusterGrille();
 	}
 
 	public void setIdLog(int id) {
