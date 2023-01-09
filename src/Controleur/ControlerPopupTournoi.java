@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 import DBlink.Ecurie;
 import IHM.AccueilV2;
@@ -20,6 +21,7 @@ public class ControlerPopupTournoi implements ActionListener {
 	public ControlerPopupTournoi(PopupTournoi vue) {
 		super();
 		this.vue = vue;
+		this.controleurAccueil = AccueilV2.getControleur();
 	}
 
 	@Override
@@ -32,8 +34,9 @@ public class ControlerPopupTournoi implements ActionListener {
 				ConnexionV2 fenetreConnnexion = new ConnexionV2(AccueilV2.getControleur(), ConnexionState.MANAGER);
 			}
 			if (ControleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
-				System.out.println("BANGERANG");
-				PopupSelectionEquipePourInscription popupInscrireEquipe = new PopupSelectionEquipePourInscription(new Ecurie(this.controleurAccueil.getIdLog()), this.vue.getTournoi());
+				PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(this.controleurAccueil.getIdLog()), this.vue.getTournoi());
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
 			}
 			break;
 		case "voirRencontres" :
