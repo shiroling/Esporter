@@ -71,7 +71,6 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
 					this.setPanelFiltresTournois();
-					System.out.println("------------------");
 					vue.ajusterGrille();
 					break;
 				case "Match":
@@ -117,7 +116,6 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesTournois(BDSelect.getListeTournois());
 					vue.getLblTitreCartes().setText("Tournois");
 					vue.viderSide();
-					System.out.println("------------------");
 					vue.ajusterGrille();
 					break;
 				case "Match":
