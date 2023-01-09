@@ -240,23 +240,16 @@ public class AccueilV2 {
 					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
-						panel_side.add(new PanelEcurie(ce.getEcurie()));
-						panel_side.updateUI();
+						procedureCreePopupEcurie(ce.getEcurie());
 					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
-						panel_side.add(new PanelTournois(ct.getTournoi()));
-						panel_side.updateUI();
 						procedureCreePopupTournoi(ct.getTournoi());
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
-						panel_side.add(new PanelEquipe(ce.getEquipe()));
-						panel_side.updateUI();
-
+						procedureCreePopupEquipe(ce.getEquipe());
 					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
-						panel_side.add(new PanelJeu(ce.getJeu()));
-						panel_side.updateUI();
-
+						procedureCreePopupJeu(ce.getJeu());
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						procedureCreePopupRencontre(cr.getRencontre());
@@ -265,30 +258,18 @@ public class AccueilV2 {
 				case ACCUEIL_AVEC_VOLET:
 					if (obj instanceof CarteEcurie) {
 						CarteEcurie ce = (CarteEcurie) obj;
-						viderSide();
-						panel_side.add(new PanelEcurie(ce.getEcurie()));
-						panel_side.updateUI();
+						procedureCreePopupEcurie(ce.getEcurie());
 					} else if (obj instanceof CarteTournois) {
 						CarteTournois ct = (CarteTournois) obj;
-						viderSide();
-						panel_side.add(new PanelTournois(ct.getTournoi()));
-						panel_side.updateUI();
 						procedureCreePopupTournoi(ct.getTournoi());
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
-						viderSide();
-						panel_side.add(new PanelEquipe(ce.getEquipe()));
-						panel_side.updateUI();
-
+						procedureCreePopupEquipe(ce.getEquipe());
 					} else if (obj instanceof CarteJeu) {
 						CarteJeu ce = (CarteJeu) obj;
-						viderSide();
-						panel_side.add(new PanelJeu(ce.getJeu()));
-						panel_side.updateUI();
-
+						procedureCreePopupJeu(ce.getJeu());
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
-						viderSide();
 						procedureCreePopupRencontre(cr.getRencontre());
 					} else if (obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
@@ -331,15 +312,18 @@ public class AccueilV2 {
 	 */
 	public void ajusterGrille() {
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
-		if (panelCartes.getComponent(0).getWidth()>300) {
+		System.out.println("taille carte: "+panelCartes.getComponent(0).getWidth());
+		System.out.println("taille frame: "+frame.getWidth());
+		System.out.println();
+		if (panelCartes.getComponent(0).getWidth()>550) {
 			if (frame.getWidth() < 1200) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
-				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 2, 20, 20));
+				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
 			} else if (frame.getWidth() >= 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 3, 20, 20));
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
 				if (frame.getWidth() >= 1900) {
-					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 4, 20, 20));
+					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
 				}
 			}
 		}
