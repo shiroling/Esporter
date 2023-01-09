@@ -48,7 +48,7 @@ public class AccueilV2 {
 	private JLabel lblTitreCarte;
 	private JLabel lblEtatConx;
 	private BtnStyleV2 btnDeconnexion;
-	private JButton btnSeConnecter;
+	private BtnStyleV2 btnSeConnecter;
 
 	/**
 	 * 
@@ -105,7 +105,9 @@ public class AccueilV2 {
 		JPanel panelConnexion = new JPanel();
 		panelHeader.add(panelConnexion, BorderLayout.EAST);
 		
-		btnSeConnecter = new JButton("Se connecter");
+		btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		btnSeConnecter.setText("Se connecter");
+		btnSeConnecter.setForeground(Color.WHITE);
 		btnSeConnecter.addActionListener(getControleur());
 		btnSeConnecter.setName("seConnecter");
 		panelConnexion.add(btnSeConnecter);
@@ -236,6 +238,7 @@ public class AccueilV2 {
 						CarteTournois ct = (CarteTournois) obj;
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
+						procedureCreePopupTournoi(ct.getTournoi());
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						panel_side.add(new PanelEquipe(ce.getEquipe()));
@@ -248,8 +251,7 @@ public class AccueilV2 {
 
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
-						panel_side.updateUI();
+						procedureCreePopupRencontre(cr.getRencontre());
 					}
 					break;
 				case ACCUEIL_AVEC_VOLET:
@@ -263,6 +265,7 @@ public class AccueilV2 {
 						viderSide();
 						panel_side.add(new PanelTournois(ct.getTournoi()));
 						panel_side.updateUI();
+						procedureCreePopupTournoi(ct.getTournoi());
 					} else if (obj instanceof CarteEquipe) {
 						CarteEquipe ce = (CarteEquipe) obj;
 						viderSide();
@@ -278,8 +281,7 @@ public class AccueilV2 {
 					} else if (obj instanceof CarteRencontre) {
 						CarteRencontre cr = (CarteRencontre) obj;
 						viderSide();
-						panel_side.add(new PanelRencontre(cr.getRencontre()));
-						panel_side.updateUI();
+						procedureCreePopupRencontre(cr.getRencontre());
 					} else if (obj instanceof JLabel) {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
@@ -395,9 +397,7 @@ public class AccueilV2 {
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for (Rencontre rencontre : rencontres) {
-			System.out.println(rencontre);
 			ct = new CarteRencontre(rencontre);
-
 			ct.setName("CarteRencontre");
 			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);

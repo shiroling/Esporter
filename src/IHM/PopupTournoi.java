@@ -11,7 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControlerPopupTournoi;
+import Controleur.ControleurAccueil;
 import DBlink.Equipe;
+import DBlink.Poule;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 
@@ -25,6 +28,8 @@ public class PopupTournoi extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupTournoi(Tournoi t) {
+		ControlerPopupTournoi controleur = new ControlerPopupTournoi(this);
+		
 		tournoi =t;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -60,8 +65,10 @@ public class PopupTournoi extends JDialog {
 		JLabel lblInscription = new JLabel("Date limite d'inscription : "+t.getDateFinInscriptions().toString());
 		panelInscription.add(lblInscription);
 		
-		JButton btnNewButton = new JButton("S'inscrire");
-		panelInscription.add(btnNewButton);
+		JButton btnInscription = new JButton("Inscrire une équipe");
+		btnInscription.addActionListener(controleur);
+		btnInscription.setName("inscription");
+		panelInscription.add(btnInscription);
 		
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
@@ -81,12 +88,14 @@ public class PopupTournoi extends JDialog {
 		JLabel lbllblEquipe = new JLabel("Equipes:");
 		panellblEquipe.add(lbllblEquipe);
 		
-		JScrollPane scrollPaneRencontres = new JScrollPane();
-		panelCorp.add(scrollPaneRencontres);
+		JPanel panelBtnVoirLesRencontres = new JPanel();
+		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
 		
-		JPanel panelRencontres = new JPanel();
-		scrollPaneRencontres.setViewportView(panelRencontres);
-		panelRencontres.setLayout(new GridLayout(t.getListEquipesParticipantes().size()+1, 1, 0, 0));
+		JButton btnVoirLesRencontres = new JButton("Voir les rencontres");
+		btnVoirLesRencontres.addActionListener(controleur);
+		btnVoirLesRencontres.setName("voirRencontres");
+		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
+		
 		
 		
 		
@@ -98,7 +107,6 @@ public class PopupTournoi extends JDialog {
 			equipe.addMouseListener(AccueilV2.getMa());
 			panelEquipe.add(equipe);
 		}
-		
 	}
 
 }

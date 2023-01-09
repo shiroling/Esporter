@@ -109,7 +109,7 @@ public class Poule extends BDEntity {
 				return rencontre;
 			}
 		}
-		throw new Exception("Impossible d'insérer le finaliste, il n'y à pas de rencontres libres");
+		throw new Exception("Impossible d'insérer le finaliste, il n'y a pas de rencontres libres");
 	}
 
 

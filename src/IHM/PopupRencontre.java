@@ -1,6 +1,7 @@
 package IHM;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -72,11 +73,11 @@ public class PopupRencontre extends JDialog {
 		panelHead.add(panelVainqueur);
 		
 		if (r.estResultatRenseigne()) {
-			JLabel lblNewLabel = new JLabel("Vainqueur : ");
-			panelVainqueur.add(lblNewLabel);
+			JLabel lblResultat = new JLabel("Vainqueur : ");
+			panelVainqueur.add(lblResultat);
 			
-			JLabel lblNewLabel_1 = new JLabel(r.getVainqueur().getNom());
-			panelVainqueur.add(lblNewLabel_1);
+			JLabel lblResultatNom = new JLabel(r.getVainqueur().getNom());
+			panelVainqueur.add(lblResultatNom);
 		}
 		else {
 			JButton btnNewButton = new JButton("Renseigner Vainqueur");
@@ -118,6 +119,12 @@ public class PopupRencontre extends JDialog {
 		JScrollPane scrollPaneEq2 = new JScrollPane();
 		panelCorp.add(scrollPaneEq2);
 		
+		for (Component c : panelEq1.getComponents()) {
+			JLabel panel = (JLabel)c;
+			panel.setName("Joueur");
+			panel.addMouseListener(AccueilV2.getMa());
+		}
+		
 		JPanel panelEq2 = new JPanel();
 		scrollPaneEq2.setViewportView(panelEq2);
 		panelEq2.setLayout(new GridLayout(6, 1, 0, 0));
@@ -137,6 +144,11 @@ public class PopupRencontre extends JDialog {
 		JLabel panelEQ2J4 = new JLabel(equipe2.getListJoueur().get(3).getPseudo());
 		panelEq2.add(panelEQ2J4);
 		
+		for (Component c : panelEq2.getComponents()) {
+			JLabel panel = (JLabel)c;
+			panel.setName("Joueur");
+			panel.addMouseListener(AccueilV2.getMa());
+		}
 	}
 
 }
