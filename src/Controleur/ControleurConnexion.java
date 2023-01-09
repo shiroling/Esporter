@@ -8,7 +8,6 @@ import javax.swing.border.LineBorder;
 
 import DBlink.BDPredicats;
 import DBlink.BDSelect;
-import IHM.Connexion;
 import IHM.ConnexionV2;
 import base.ConnexionState;
 

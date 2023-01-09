@@ -9,7 +9,6 @@ import javax.swing.JDialog;
 import DBlink.BDSelect;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
-import IHM.Connexion;
 import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import base.ConnexionState;
@@ -164,7 +163,7 @@ public class ControleurAccueil implements ActionListener {
 
 	public void procedureInscriptionTournoi(Tournoi t) {
 		if (connexionState != ConnexionState.MANAGER) {
-			Connexion fenetreConnnexion = new Connexion(this, ConnexionState.GESTIONNAIRE);
+			ConnexionV2 fenetreConnnexion = new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
 		}
 		if (connexionState == ConnexionState.MANAGER) {
 			System.out.println(t);

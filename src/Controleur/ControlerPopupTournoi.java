@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import IHM.AccueilV2;
-import IHM.Connexion;
 import IHM.ConnexionV2;
 import IHM.PopupTournoi;
 import base.ConnexionState;
