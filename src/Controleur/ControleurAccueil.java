@@ -91,7 +91,7 @@ public class ControleurAccueil implements ActionListener {
 
 				switch (btn.getName()) {
 				case "seConnecter":
-
+					new ConnexionV2(this, ConnexionState.NON_CONNU);
 					break;
 				case "btnInscription":
 					// procedureInscriptionTournoi(AccueilV2.getPanel_sideQuandTournoi().getTournoi());
