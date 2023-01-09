@@ -14,9 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,8 +34,6 @@ import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.ConnexionState;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -309,34 +305,33 @@ public class AccueilV2 {
 	 * ajuste la taille de la grille en fonction de la taille de la fenetre
 	 */
 	public void ajusterGrille() {
+		//corriger problem d'actualisation 
+		frame.setVisible(true);
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
-		System.out.println("taille carte: "+panelCartes.getComponent(0).getWidth());
-		System.out.println("taille frame: "+frame.getWidth());
-		System.out.println();
-		if (panelCartes.getComponent(0).getWidth()>550) {
-			if (frame.getWidth() < 1200) {
+		if (panelCartes.getComponent(0).getWidth()>300) {
+			if (panelCartes.getWidth() < 1200) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
 				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
-			} else if (frame.getWidth() >= 1200) {
+			} else if (panelCartes.getWidth() >= 1200) {
 				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-				if (frame.getWidth() >= 1900) {
+				if (panelCartes.getWidth() >= 1900) {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
 				}
 			}
 		}
 		// si les cartes ont une largeure inferieur a 300 pixel
 		else {
-			if (frame.getWidth() < 1200) {
+			if (panelCartes.getWidth() < 1200) {
 				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-			} else if (frame.getWidth() >= 1200) {
+			} else if (panelCartes.getWidth() >= 1200) {
 				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
-				if (frame.getWidth() >= 1900) {
+				if (panelCartes.getWidth() >= 1900) {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
 				}
 			}
 		}
-
+		
 		panelCartes.updateUI();
 	}
 
