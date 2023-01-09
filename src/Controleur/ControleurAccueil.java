@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import DBlink.BDSelect;
+import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Tournoi;
 import IHM.AccueilV2;
@@ -37,6 +38,10 @@ public class ControleurAccueil implements ActionListener {
 	private JComboBox comboFiltreMultiTournoi;
 	private JComboBox comboFiltreJeuTournoi;
 	private JComboBox comboFiltrePorteeTournoi;
+	private JComboBox comboFiltreAvencementRencontre;
+	private JComboBox comboFiltreEquipeRencontre;
+	private JComboBox comboFiltreTournoiRencontre;
+	private JComboBox comboFiltreJeuRencontre;
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
@@ -82,6 +87,7 @@ public class ControleurAccueil implements ActionListener {
 					vue.getLblTitreCartes().setText("Matchs");
 					vue.ajouterCartesMatch(BDSelect.getListeRencontre());
 					vue.ajusterGrille();
+					this.setPanelFiltresRencontres();
 					break;
 				case "Jeu":
 					vue.viderCartes();
@@ -389,5 +395,148 @@ public class ControleurAccueil implements ActionListener {
 	public JComboBox getComboFiltrePorteeTournoi() {
 		return comboFiltrePorteeTournoi;
 	}
+	
+	public void setPanelFiltresRencontres() {
+		this.vue.getPanelFiltre().removeAll();
+		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
+		
+		ItemListnerComboFiltre itemListner = new ItemListnerComboFiltre(this, ItemListnerComboFiltre.Etat.RENCONTRE);		
+		{
+			JPanel panelComboAvancement = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboAvancement);
+			panelComboAvancement.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboAvencement = new JLabel("Avancement");
+			lblComboAvencement.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboAvancement.add(panelComboLbl);
+			panelComboLbl.add(lblComboAvencement);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboAvancement.add(panelCombo);
+			
+			comboFiltreAvencementRencontre = new JComboBox();
+			comboFiltreAvencementRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreAvencementRencontre.setPreferredSize(new Dimension(140, 30));
+			comboFiltreAvencementRencontre.setModel(new DefaultComboBoxModel(new String[] { "Tous", "A Venir", "Finis" }));
+			comboFiltreAvencementRencontre.addItemListener(itemListner);
+			panelCombo.add(comboFiltreAvencementRencontre);
+		}
+		{
+			JPanel panelComboJeu = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboJeu);
+			panelComboJeu.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboJeu = new JLabel("Jeu");
+			lblComboJeu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboJeu.add(panelComboLbl);
+			panelComboLbl.add(lblComboJeu);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboJeu.add(panelCombo);
+			
+			comboFiltreJeuRencontre = new JComboBox();
+			comboFiltreJeuRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreJeuRencontre.setPreferredSize(new Dimension(140, 30));
+			List<Jeu> jeux = BDSelect.getListeJeux();
+			String[] nomJeux = new String[jeux.size() + 1];
+			nomJeux[0] = "Tous";
+			for(int i = 0; i < jeux.size() ; i++) {
+				nomJeux[i + 1] = jeux.get(i).getNom();
+			}
+			comboFiltreJeuRencontre.setModel(new DefaultComboBoxModel(nomJeux));
+			comboFiltreJeuRencontre.addItemListener(itemListner);
+			panelCombo.add(comboFiltreJeuRencontre);
+		}
+		{
+			JPanel panelComboTournoi = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboTournoi);
+			panelComboTournoi.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboTournoi = new JLabel("Tournoi");
+			lblComboTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboTournoi.add(panelComboLbl);
+			panelComboLbl.add(lblComboTournoi);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboTournoi.add(panelCombo);
+			
+			comboFiltreTournoiRencontre = new JComboBox();
+			comboFiltreTournoiRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreTournoiRencontre.setPreferredSize(new Dimension(140, 30));
+			List<Tournoi> tournois = BDSelect.getListeTournois();
+			String[] nomTournois = new String[tournois.size() + 1];
+			nomTournois[0] = "Tous";
+			for(int i = 0; i < tournois.size() ; i++) {
+				nomTournois[i + 1] = tournois.get(i).getNom();
+			}
+			comboFiltreTournoiRencontre.setModel(new DefaultComboBoxModel(nomTournois));
+			comboFiltreTournoiRencontre.addItemListener(itemListner);
+			panelCombo.add(comboFiltreTournoiRencontre);
+		}
+		{
+			JPanel panelComboEquipe = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboEquipe);
+			panelComboEquipe.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboEquipe = new JLabel("Equipe");
+			lblComboEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboEquipe.add(panelComboLbl);
+			panelComboLbl.add(lblComboEquipe);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboEquipe.add(panelCombo);
+			
+			comboFiltreEquipeRencontre = new JComboBox();
+			comboFiltreEquipeRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreEquipeRencontre.setPreferredSize(new Dimension(140, 30));
+			List<Equipe> equipes = BDSelect.getListeEquipes();
+			String[] nomEquipes = new String[equipes.size() + 1];
+			nomEquipes[0] = "Tous";
+			for(int i = 0; i < equipes.size() ; i++) {
+				nomEquipes[i + 1] = equipes.get(i).getNom();
+			}
+			comboFiltreEquipeRencontre.setModel(new DefaultComboBoxModel(nomEquipes));
+			comboFiltreEquipeRencontre.addItemListener(itemListner);
+			panelCombo.add(comboFiltreEquipeRencontre);
+		}
+		this.vue.getPanelFiltre().updateUI();
+	}
+
+	public JComboBox getComboFiltreAvencementRencontre() {
+		return comboFiltreAvencementRencontre;
+	}
+
+	public JComboBox getComboFiltreEquipeRencontre() {
+		return comboFiltreEquipeRencontre;
+	}
+
+	public JComboBox getComboFiltreTournoiRencontre() {
+		return comboFiltreTournoiRencontre;
+	}
+
+	public JComboBox getComboFiltreJeuRencontre() {
+		return comboFiltreJeuRencontre;
+	}
+	
 	
 }

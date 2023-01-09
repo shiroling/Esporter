@@ -5,8 +5,10 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 import DBlink.BDSelect;
+import DBlink.Equipe;
 import DBlink.Filters;
 import DBlink.Jeu;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
 import base.Portee;
 
@@ -73,6 +75,30 @@ public class ItemListnerComboFiltre implements ItemListener {
 			this.setCartesTournoiDansAccueil(tournois);
 			break;
 		case RENCONTRE:
+			List<Rencontre> rencontres = BDSelect.getListeRencontre();
+			
+			switch(controleurAccueil.getComboFiltreAvencementRencontre().getSelectedItem().toString()) {
+			case "A Venir":
+				rencontres = Filters.filtrer(rencontres, Filters.estRencontreAVenir);
+				break;
+			case "Finis" :
+				rencontres = Filters.filtrer(rencontres, Filters.estRencontreFini);
+				break;
+			}
+			
+			if(!(controleurAccueil.getComboFiltreJeuRencontre().getSelectedItem().toString().equals("Tous"))) {
+				rencontres = Filters.filtrer(rencontres, Filters.estRencontreSurJeu, Jeu.getJeuFromName(controleurAccueil.getComboFiltreJeuRencontre().getSelectedItem().toString()).getId());
+			}
+			
+			if(!(controleurAccueil.getComboFiltreTournoiRencontre().getSelectedItem().toString().equals("Tous"))) {
+				rencontres = Filters.filtrer(rencontres, Filters.estRencontreDansTournoi, Tournoi.getTournoiFromNom(controleurAccueil.getComboFiltreTournoiRencontre().getSelectedItem().toString()).getId());
+			}
+			
+			if(!(controleurAccueil.getComboFiltreEquipeRencontre().getSelectedItem().toString().equals("Tous"))) {
+				rencontres = Filters.filtrer(rencontres, Filters.estRencontreAvecEquipe, Equipe.getEquipeFromNom(controleurAccueil.getComboFiltreEquipeRencontre().getSelectedItem().toString()).getId());
+			}
+			
+			this.setCartesRencontreDansAccueil(rencontres);
 			break;
 		case EQUIPE:
 			break;
@@ -82,6 +108,13 @@ public class ItemListnerComboFiltre implements ItemListener {
 	private void setCartesTournoiDansAccueil(List<Tournoi> tournois) {
 		controleurAccueil.getVueAccueil().viderCartes();
 		controleurAccueil.getVueAccueil().ajouterCartesTournois(tournois);
+		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
+		controleurAccueil.getVueAccueil().ajusterGrille();
+	}
+	
+	private void setCartesRencontreDansAccueil(List<Rencontre> rencontres) {
+		controleurAccueil.getVueAccueil().viderCartes();
+		controleurAccueil.getVueAccueil().ajouterCartesMatch(rencontres);
 		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
 		controleurAccueil.getVueAccueil().ajusterGrille();
 	}
