@@ -49,7 +49,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		this.ecurie = ecurie;
 		this.tournoi = tournoi;
 		
-		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).toList();
+		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrit(e) == false).toList();
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscrire Equipe");
 		getContentPane().setLayout(new BorderLayout());

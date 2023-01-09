@@ -108,5 +108,9 @@ public class PopupTournoi extends JDialog {
 			panelEquipe.add(equipe);
 		}
 	}
+	
+	public Tournoi getTournoi() {
+		return this.tournoi;
+	}
 
 }
