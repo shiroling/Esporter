@@ -308,7 +308,7 @@ public class AccueilV2 {
 		//corriger problem d'actualisation 
 		frame.setVisible(true);
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
-		if (panelCartes.getComponent(0).getWidth()>300) {
+		if (panelCartes.getComponent(0).getWidth()>550) {
 			if (panelCartes.getWidth() < 1200) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
