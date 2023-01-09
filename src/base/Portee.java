@@ -15,7 +15,9 @@ public enum Portee {
 	}
 	
 	public static String[] toStrings() {
-		return Stream.of(Portee.values()).toArray(String[]::new) ;
+		System.out.println(LOCAL.getName());
+		String[] portees = {LOCAL.getName(), NATIONAL.getName(), INTERNATIONAL.getName()};
+		return portees;
 	}
 	
 	public static Portee stringToPortee(String str) {
