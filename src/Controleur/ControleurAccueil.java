@@ -20,7 +20,7 @@ public class ControleurAccueil implements ActionListener {
 	private Object obj;
 	private JButton btn;
 	private static ConnexionState connexionState;
-	private int idLog;
+	private int idLog;	//Pour Manager => id de l'ecurie
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
@@ -197,6 +197,10 @@ public class ControleurAccueil implements ActionListener {
 
 	public void cacherBtnConnexion() {
 		vue.cacherBtnSeConnecter();
+	}
+	
+	public int getIdLog() {
+		return this.idLog;
 	}
 
 }
