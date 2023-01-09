@@ -9,23 +9,44 @@ import base.Portee;
 
 public class Filters {
 	// Tournoi
+	// Avancement
 	public static Predicate<Tournoi> estTournoiEnCours = t -> BDPredicats.estTournoiEnCours(t.getId());
 	public static Predicate<Tournoi> estTournoiFini = t -> BDPredicats.estTournoiFini(t.getId());
 	public static Predicate<Tournoi> estTournoiAVenir = t -> BDPredicats.estTournoiAVenir(t.getId());
+	
+	// Inscriptions
 	public static Predicate<Tournoi> sontInscriptionsFinies = t -> BDPredicats.sontInscriptionsFinies(t.getId());
+	
+	// Multijoueurs
 	public static Predicate<Tournoi> estTournoiMulti = t -> BDPredicats.estTournoiMulti(t);
+	
+	// Jeu
 	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> BDPredicats.estTournoiSurJeu(t.getId(), idJeu);
+	
+	// Portée
 	public static BiPredicate<Tournoi, Portee> estTournoiDePortee = (t, p) -> BDPredicats.estTournoiDePortee(t.getId(), p);
 	
+	
 	// Rencontre
+	// Avancement
 	public static Predicate<Rencontre> estRencontreFini = r -> BDPredicats.estRencontreFinie(r);
 	public static Predicate<Rencontre> estRencontreAVenir = estRencontreFini.negate();
+	
+	// Jeu / Jouée sur
 	public static BiPredicate<Rencontre, Integer> estRencontreSurJeu = (r, idJeu) -> BDPredicats.estMatchSurJeu(r, idJeu);
+	
+	// Tournoi
 	public static BiPredicate<Rencontre, Integer> estRencontreDansTournoi = (r, idTournoi) -> BDPredicats.estMatchTournoi(r, idTournoi);
-	public static BiPredicate<Rencontre, Integer> estRencontreDansPoule = (r, idPoule) -> BDPredicats.estMatchPoule(r, idPoule);
+	
+	// Jouées par
 	public static BiPredicate<Rencontre, Integer> estRencontreAvecEquipe = (r, idEquipe)  -> BDPredicats.estMatchAvecEquipe(r, idEquipe);
+
+	// ne pas mettre dans l'IHM
+	public static BiPredicate<Rencontre, Integer> estRencontreDansPoule = (r, idPoule) -> BDPredicats.estMatchPoule(r, idPoule);
+	
 	
 	// Equipe
+	// Ecurie
 	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> equipe.getIdEcurie() == idEcurie;
 	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> equipe.getIdJeu() == idJeu;
 
