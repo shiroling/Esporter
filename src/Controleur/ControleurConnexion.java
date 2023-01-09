@@ -8,7 +8,6 @@ import javax.swing.border.LineBorder;
 
 import DBlink.BDPredicats;
 import DBlink.BDSelect;
-import IHM.Connexion;
 import IHM.ConnexionV2;
 import base.ConnexionState;
 
@@ -51,7 +50,7 @@ public class ControleurConnexion implements ActionListener{
 			if (BDPredicats.isManager(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
 				controleurAccueil.setConnexionState(ConnexionState.MANAGER);
 				controleurAccueil.cacherBtnConnexion();
-				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
+				controleurAccueil.setIdLog(BDSelect.getIdManagerFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 			} else {
 				LineBorder border = new LineBorder(Color.RED);

@@ -77,8 +77,10 @@ public class BDPredicats {
 
 	public static boolean isManager(String nom, String mdp) {
 	    try {
-	    	Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM Ecurie where nom_manager = '"+ nom +"' AND mdp_manager = '" + mdp + "'");
+	    	PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT id_ecurie FROM Ecurie where nom_manager = ? AND mdp_manager = ?");
+	        st.setString(1, nom);
+	        st.setString(2, mdp);
+	    	ResultSet rs = st.executeQuery();
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -87,7 +89,7 @@ public class BDPredicats {
 	        return false;
 	    }
 	}
-	
+
 	public static boolean estTournoiEnCours(int id) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
@@ -267,6 +269,21 @@ public class BDPredicats {
 		try {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT * FROM rencontre r WHERE r.DATE_RENCONTRE < CURRENT_DATE AND id_rencontre = ?");
 	    	st.setInt(1, r.getId());
+			ResultSet rs = st.executeQuery();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
+	}
+
+	public static boolean isIscriteTournoi(Equipe equipe, Tournoi tournoi) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT i.id_equipe FROM Inscrit i WHERE i.id_equipe = ? and i.id_tournoi = ?");
+	    	st.setInt(1, equipe.getId());
+	    	st.setInt(2, tournoi.getId());
 			ResultSet rs = st.executeQuery();
 	    	boolean check = rs.next();
 	    	st.close();

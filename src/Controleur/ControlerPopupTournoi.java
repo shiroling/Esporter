@@ -5,9 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import DBlink.Ecurie;
 import IHM.AccueilV2;
-import IHM.Connexion;
 import IHM.ConnexionV2;
+import IHM.PopupSelectionEquipePourInscription;
 import IHM.PopupTournoi;
 import base.ConnexionState;
 
@@ -32,8 +33,7 @@ public class ControlerPopupTournoi implements ActionListener {
 			}
 			if (ControleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
 				System.out.println("BANGERANG");
-				//Popup liste des équipe de l'equrie
-				//Inscrire l'équipe sélctionner
+				PopupSelectionEquipePourInscription popupInscrireEquipe = new PopupSelectionEquipePourInscription(new Ecurie(this.controleurAccueil.getIdLog()), this.vue.getTournoi());
 			}
 			break;
 		case "voirRencontres" :

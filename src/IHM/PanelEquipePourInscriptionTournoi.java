@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controleur.HoverPanelEquipePourInscription;
@@ -18,13 +19,14 @@ public class PanelEquipePourInscriptionTournoi extends JPanel {
 	
 private Equipe equipe;
 	
-	public PanelEquipePourInscriptionTournoi(Equipe equipe) {
+	public PanelEquipePourInscriptionTournoi(Equipe equipe, PopupSelectionEquipePourInscription vue) {
 		this.equipe=equipe;
 		
-		HoverPanelEquipePourInscription hover = new HoverPanelEquipePourInscription(this);
+		HoverPanelEquipePourInscription hover = new HoverPanelEquipePourInscription(this, vue);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 8));
 		setBackground(Color.WHITE);
+		setBorder(new EmptyBorder(0,0,0,0));
 		setPreferredSize(new Dimension(0, 40));
 		addMouseListener(hover);
 		
@@ -35,5 +37,13 @@ private Equipe equipe;
 	
 	public Equipe getEquipe() {
 		return equipe;
+	}
+	
+	public void enleverContour() {
+		setBorder(new EmptyBorder(0,0,0,0));
+	}
+	
+	public void setBorderBleu() {
+		setBorder(new LineBorder(Color.BLUE));
 	}
 }
