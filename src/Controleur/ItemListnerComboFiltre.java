@@ -5,6 +5,7 @@ import java.awt.event.ItemListener;
 import java.util.List;
 
 import DBlink.BDSelect;
+import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Filters;
 import DBlink.Jeu;
@@ -101,6 +102,16 @@ public class ItemListnerComboFiltre implements ItemListener {
 			this.setCartesRencontreDansAccueil(rencontres);
 			break;
 		case EQUIPE:
+			List<Equipe> equipes = BDSelect.getListeEquipes();
+			
+			if(!(controleurAccueil.getComboFiltreEcuriesEquipe().getSelectedItem().toString().equals("Tous"))) {
+				equipes = Filters.filtrer(equipes, Filters.estEquipeFromEcurie, Ecurie.getEcurieFromNom(controleurAccueil.getComboFiltreEcuriesEquipe().getSelectedItem().toString()).getId());
+			}
+			
+			if(!(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString().equals("Tous"))) {
+				equipes = Filters.filtrer(equipes, Filters.estEquipeFromEcurie, Jeu.getJeuFromName(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString()).getId());
+			}
+			this.setCartesEquipeDansAccueil(equipes);
 			break;
 		}
 	}
@@ -115,7 +126,14 @@ public class ItemListnerComboFiltre implements ItemListener {
 	private void setCartesRencontreDansAccueil(List<Rencontre> rencontres) {
 		controleurAccueil.getVueAccueil().viderCartes();
 		controleurAccueil.getVueAccueil().ajouterCartesMatch(rencontres);
-		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
+		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Matchs");
+		controleurAccueil.getVueAccueil().ajusterGrille();
+	}
+	
+	private void setCartesEquipeDansAccueil(List<Equipe> equipes) {
+		controleurAccueil.getVueAccueil().viderCartes();
+		controleurAccueil.getVueAccueil().ajouterCartesEquipe(equipes);
+		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Equipes");
 		controleurAccueil.getVueAccueil().ajusterGrille();
 	}
 

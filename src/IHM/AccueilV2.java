@@ -121,15 +121,8 @@ public class AccueilV2 {
 		panelFiltre = new JPanel();
 		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
 		panelFiltre.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JPanel panelBtnValiderFiltres = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panelBtnValiderFiltres.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
-		panelFiltre.add(panelBtnValiderFiltres);
 		
-		JButton btnValiderFiltres = new JButton("Valider filtres");
-		panelBtnValiderFiltres.add(btnValiderFiltres);
-		
+		controleur.setPanelFiltresTournois();
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);

@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import DBlink.BDSelect;
+import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Tournoi;
@@ -42,6 +43,8 @@ public class ControleurAccueil implements ActionListener {
 	private JComboBox comboFiltreEquipeRencontre;
 	private JComboBox comboFiltreTournoiRencontre;
 	private JComboBox comboFiltreJeuRencontre;
+	private JComboBox comboFiltreEcuriesEquipe;
+	private JComboBox comboFiltreJeuEquipe;
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
@@ -100,6 +103,7 @@ public class ControleurAccueil implements ActionListener {
 					vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
 					vue.getLblTitreCartes().setText("Equipes");
 					vue.ajusterGrille();
+					this.setPanelFiltresEquipes();
 					break;
 				case "Ecurie":
 					vue.viderCartes();
@@ -538,5 +542,82 @@ public class ControleurAccueil implements ActionListener {
 		return comboFiltreJeuRencontre;
 	}
 	
+	
+	public void setPanelFiltresEquipes() {
+		this.vue.getPanelFiltre().removeAll();
+		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
+		
+		ItemListnerComboFiltre itemListner = new ItemListnerComboFiltre(this, ItemListnerComboFiltre.Etat.EQUIPE);		
+		{
+			JPanel panelComboEcuries = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboEcuries);
+			panelComboEcuries.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboEcuries = new JLabel("Ecuries");
+			lblComboEcuries.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboEcuries.add(panelComboLbl);
+			panelComboLbl.add(lblComboEcuries);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboEcuries.add(panelCombo);
+			
+			comboFiltreEcuriesEquipe = new JComboBox();
+			comboFiltreEcuriesEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreEcuriesEquipe.setPreferredSize(new Dimension(140, 30));
+			List<Ecurie> ecuries = BDSelect.getListeEcurie();
+			String[] nomEcuries = new String[ecuries.size() + 1];
+			nomEcuries[0] = "Tous";
+			for(int i = 0; i < ecuries.size() ; i++) {
+				nomEcuries[i + 1] = ecuries.get(i).getNom();
+			}
+			comboFiltreEcuriesEquipe.setModel(new DefaultComboBoxModel(nomEcuries));
+			comboFiltreEcuriesEquipe.addItemListener(itemListner);
+			panelCombo.add(comboFiltreEcuriesEquipe);
+		}
+		{
+			JPanel panelComboJeu = new JPanel();
+			this.vue.getPanelFiltre().add(panelComboJeu);
+			panelComboJeu.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblComboJeu = new JLabel("Jeu");
+			lblComboJeu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			JPanel panelComboLbl = new JPanel();
+			FlowLayout flowLayout2 = (FlowLayout) panelComboLbl.getLayout();
+			flowLayout2.setAlignment(FlowLayout.LEFT);
+			panelComboJeu.add(panelComboLbl);
+			panelComboLbl.add(lblComboJeu);
+			
+			JPanel panelCombo = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panelCombo.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
+			panelComboJeu.add(panelCombo);
+			
+			comboFiltreJeuEquipe = new JComboBox();
+			comboFiltreJeuEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			comboFiltreJeuEquipe.setPreferredSize(new Dimension(140, 30));
+			List<Jeu> jeux = BDSelect.getListeJeux();
+			String[] nomJeux = new String[jeux.size() + 1];
+			nomJeux[0] = "Tous";
+			for(int i = 0; i < jeux.size() ; i++) {
+				nomJeux[i + 1] = jeux.get(i).getNom();
+			}
+			comboFiltreJeuEquipe.setModel(new DefaultComboBoxModel(nomJeux));
+			comboFiltreJeuEquipe.addItemListener(itemListner);
+			panelCombo.add(comboFiltreJeuEquipe);
+		}
+	}
+
+	public JComboBox getComboFiltreEcuriesEquipe() {
+		return comboFiltreEcuriesEquipe;
+	}
+
+	public JComboBox getComboFiltreJeuEquipe() {
+		return comboFiltreJeuEquipe;
+	}
 	
 }
