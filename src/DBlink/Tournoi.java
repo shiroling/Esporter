@@ -239,4 +239,8 @@ public class Tournoi extends BDEntity {
 	public void inscrireEquipe(Equipe e) {
 		BDInsert.insererInscrit(e, this);
 	}
+	
+	public boolean isInscrite(Equipe e) {
+		return BDPredicats.isIscriteTournoi(e, this);
+	}
 }

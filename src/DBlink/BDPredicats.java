@@ -279,5 +279,20 @@ public class BDPredicats {
 		}
 	}
 
+	public static boolean isIscriteTournoi(Equipe equipe, Tournoi tournoi) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT i.id_equipe FROM Inscrit i WHERE i.id_equipe = ? and i.id_tournoi = ?");
+	    	st.setInt(1, equipe.getId());
+	    	st.setInt(2, tournoi.getId());
+			ResultSet rs = st.executeQuery();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+	        return false;
+		}
+	}
+
 	
 }
