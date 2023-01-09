@@ -5,19 +5,22 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import IHM.PanelEquipePourInscriptionTournoi;
+import IHM.PopupSelectionEquipePourInscription;
 
 public class HoverPanelEquipePourInscription implements MouseListener {
 	
 	private PanelEquipePourInscriptionTournoi vue;
+	private PopupSelectionEquipePourInscription popupContenant;
 
-	public HoverPanelEquipePourInscription(PanelEquipePourInscriptionTournoi vue) {
+	public HoverPanelEquipePourInscription(PanelEquipePourInscriptionTournoi vue, PopupSelectionEquipePourInscription popupContenant) {
 		super();
 		this.vue = vue;
+		this.popupContenant = popupContenant;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		popupContenant.setEquipeSelectionee(this.vue.getEquipe());
 	}
 
 	@Override
