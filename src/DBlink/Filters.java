@@ -20,6 +20,7 @@ public class Filters {
 	
 	// Multijoueurs
 	public static Predicate<Tournoi> estTournoiMulti = t -> BDPredicats.estTournoiMulti(t);
+	public static Predicate<Tournoi> estTournoiJeuUnique = estTournoiMulti.negate();
 	
 	// Jeu
 	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> BDPredicats.estTournoiSurJeu(t.getId(), idJeu);
