@@ -232,4 +232,7 @@ public class Tournoi extends BDEntity {
 		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 
+	public void inscrireEquipe(Equipe e) {
+		BDInsert.insererInscrit(e, this);
+	}
 }

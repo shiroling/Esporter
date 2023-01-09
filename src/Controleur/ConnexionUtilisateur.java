@@ -6,7 +6,26 @@ import java.sql.ResultSet;
 import DBlink.ConnexionBase;
 
 public class ConnexionUtilisateur {
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * BONSOIR c'est quentin du 90/01/23 à 12.18 am
+	 * ça as rien à foutre là
+	 * 
+	 * donc j'ai commenté 
+	 * 
+	 * inchallah ça casse rien
+	 * 
+	 * PS : utilisez plustot
+	 * 
+	 * 	public static boolean isManager(String nom, String mdp)
+	 * 	public static boolean isGestionnaire(String nom, String mdp)
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	public static boolean isGestionnaire(String id, String mdp) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
@@ -38,5 +57,5 @@ public class ConnexionUtilisateur {
 			return false;
 		}
 	}
-
+*/
 }

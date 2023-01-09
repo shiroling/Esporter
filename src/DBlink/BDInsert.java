@@ -32,8 +32,8 @@ public class BDInsert {
 			PreparedStatement st = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 0, ?)");
 			st.setInt(1, idTournoi);
 			st.executeUpdate();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 		}
 		for(Equipe e : listeEquipes) {
 			try {
@@ -64,6 +64,7 @@ public class BDInsert {
 			PreparedStatement stPoule = connex.prepareStatement("Insert into Poule values (Seq_Poule.nextVal, 1, ?)");
 			stPoule.setInt(1, idTournoi);
 			stPoule.executeUpdate();
+
 			for(int i = 0; i<6; i++) {
 				PreparedStatement stRencontre = connex.prepareStatement("Insert into Rencontre values (Seq_Rencontre.nextVal, ?, seq_poule.currval, ?)");
 				stRencontre.setInt(1, BDSelect.getRandomArbitre());
@@ -83,6 +84,7 @@ public class BDInsert {
 			st.setInt(2, idPoule);
 			st.setDate(3, dateRencontre);
 			st.executeUpdate();
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -91,9 +93,22 @@ public class BDInsert {
 				PreparedStatement st = connex.prepareStatement("Insert into Jouer values (?, Seq_rencontre.currval, null)");
 				st.setInt(1, e.getId());
 				st.executeUpdate();
+
 			} catch (Exception ee) {
 				System.out.println(ee.getMessage());
 			}
+		}
+	}
+	
+	public static void insererInscrit(Equipe e, Tournoi t) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("INSERT into inscrit VALUES(?, ?, CURRENT_DATE)");
+			st.setInt(1, e.getId());
+			st.setInt(2, t.getId());
+			st.executeUpdate();
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 		}
 	}
 	
@@ -116,10 +131,13 @@ public class BDInsert {
 			stGagnant.setInt(1, idEquipe);
 			stGagnant.setInt(2, idRencontre);
 			stGagnant.executeUpdate();
+
+			
 			PreparedStatement stPerdant = connex.prepareStatement("UPDATE jouer SET a_gagne = 0 WHERE id_equipe <> ? AND id_rencontre = ?");
 			stPerdant.setInt(1, idEquipe);
 			stPerdant.setInt(2, idRencontre);
 			stPerdant.executeUpdate();
+
 		} catch (Exception ee) {
 			System.out.println(ee.getMessage());
 		}
