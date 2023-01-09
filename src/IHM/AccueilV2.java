@@ -119,7 +119,7 @@ public class AccueilV2 {
 		JPanel panelFiltrePlusAdmin = new JPanel();
 		panelFiltrePlusAdmin.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelFonctionalites.add(panelFiltrePlusAdmin);
-		panelFiltrePlusAdmin.setLayout(new BorderLayout(0, 0));
+		panelFiltrePlusAdmin.setLayout(new BorderLayout(0, 15));
 
 		JComboBox comboFiltre = new JComboBox();
 		comboFiltre.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -128,6 +128,14 @@ public class AccueilV2 {
 
 		JPanel panelFiltre = new JPanel();
 		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
+		panelFiltre.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panelValiderFiltres = new JPanel();
+		panelFiltre.add(panelValiderFiltres);
+		
+		JButton btnValiderFiltres = new JButton("Valider filtres");
+		panelValiderFiltres.add(btnValiderFiltres);
+		
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
