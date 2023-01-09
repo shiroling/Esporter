@@ -16,9 +16,11 @@ public class Filters {
 	
 	// Inscriptions
 	public static Predicate<Tournoi> sontInscriptionsFinies = t -> BDPredicats.sontInscriptionsFinies(t.getId());
+	public static Predicate<Tournoi> sontInscriptionsEnCours = Filters.sontInscriptionsFinies.negate();
 	
 	// Multijoueurs
 	public static Predicate<Tournoi> estTournoiMulti = t -> BDPredicats.estTournoiMulti(t);
+	public static Predicate<Tournoi> estTournoiJeuUnique = estTournoiMulti.negate();
 	
 	// Jeu
 	public static BiPredicate<Tournoi, Integer> estTournoiSurJeu = (t, idJeu)  -> BDPredicats.estTournoiSurJeu(t.getId(), idJeu);
@@ -48,6 +50,7 @@ public class Filters {
 	// Equipe
 	// Ecurie
 	public static BiPredicate<Equipe, Integer> estEquipeFromEcurie = (equipe, idEcurie) -> equipe.getIdEcurie() == idEcurie;
+	// Jeu
 	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> equipe.getIdJeu() == idJeu;
 
 	
