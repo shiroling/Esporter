@@ -15,10 +15,12 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import Controleur.ControleurPopupInscrireEquipe;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Tournoi;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class PopupSelectionEquipePourInscription extends JDialog {
 
@@ -49,7 +51,9 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		this.ecurie = ecurie;
 		this.tournoi = tournoi;
 		
-		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrit(e) == false).toList();
+		ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
+		
+		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).toList();
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscrire Equipe");
 		getContentPane().setLayout(new BorderLayout());
@@ -72,7 +76,12 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 			panelListEquipes = new JPanel();
 			scrollPane.setViewportView(panelListEquipes);
 			panelListEquipes.setLayout(new GridLayout(equipes.size(), 1, 5, 5));
-			System.out.println(equipes.size());
+		
+			if(equipes.size() == 0) {
+				JLabel lblAucuneEquipeAInscrire = new JLabel("-- Aucune equipe à inscrire --");
+				lblAucuneEquipeAInscrire.setFont(new Font("Tahoma", Font.ITALIC, 11));
+				panelListEquipes.add(lblAucuneEquipeAInscrire);
+			}
 			for(Equipe e : equipes) {
 				PanelEquipePourInscriptionTournoi panelEquipe = new PanelEquipePourInscriptionTournoi(e, this);
 				panelListEquipes.add(panelEquipe);
@@ -104,6 +113,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 			{
 				JButton okButton = new JButton("Inscrire");
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(controleur);
 				okButton.setName("Inscrire");
 				panelBtn.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -111,6 +121,8 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 			{
 				JButton cancelButton = new JButton("Annuler");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.setName("Annuler");
+				cancelButton.addActionListener(controleur);
 				panelBtn.add(cancelButton);
 			}
 			
