@@ -30,9 +30,6 @@ public class Filters {
 	public static BiPredicate<Equipe, Integer> estEquipeSurJeu = (equipe, idJeu) -> equipe.getIdJeu() == idJeu;
 
 	
-	/// don't min me np
-	
-	
 	public static List<BDEntity> filtrer(List<BDEntity> lt, List<Predicate<BDEntity>> lp) {
 		for(Predicate<BDEntity> p : lp) {
 			 lt = Filters.filtrer(lt, p);

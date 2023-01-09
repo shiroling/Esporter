@@ -236,4 +236,7 @@ public class Tournoi extends BDEntity {
 		return BDSelect.getPoulesTournoi(getId());
 	}
 
+	public void inscrireEquipe(Equipe e) {
+		BDInsert.insererInscrit(e, this);
+	}
 }

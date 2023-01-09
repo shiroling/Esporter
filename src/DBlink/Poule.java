@@ -1,6 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Poule extends BDEntity {
@@ -75,14 +76,15 @@ public class Poule extends BDEntity {
 		return debut;
 		}
 
-	@SuppressWarnings("null")
 	public void genererRencontres() {		
 		this.init(); //just in case it isn't ;)
-		
+		System.out.println("Generating ");
 		List<Equipe> l = this.getEquipes();
-		List<Equipe> le = null;
+		List<Equipe> le = new ArrayList<>();
+		System.out.println(l.size());
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 2; j++) {
+				System.out.println("trying get on the "+ i*4+j);
 				le.add(l.get(i*4+j));
 			}
 			

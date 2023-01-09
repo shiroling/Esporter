@@ -77,8 +77,10 @@ public class BDPredicats {
 
 	public static boolean isManager(String nom, String mdp) {
 	    try {
-	    	Statement st = ConnexionBase.getConnectionBase().createStatement();
-	    	ResultSet rs = st.executeQuery("SELECT id_ecurie FROM Ecurie where nom_manager = '"+ nom +"' AND mdp_manager = '" + mdp + "'");
+	    	PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT id_ecurie FROM Ecurie where nom_manager = ? AND mdp_manager = ?");
+	        st.setString(1, nom);
+	        st.setString(2, mdp);
+	    	ResultSet rs = st.executeQuery();
 	    	boolean check = rs.next();
 	    	st.close();
 	    	return check;
@@ -87,7 +89,7 @@ public class BDPredicats {
 	        return false;
 	    }
 	}
-	
+
 	public static boolean estTournoiEnCours(int id) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
