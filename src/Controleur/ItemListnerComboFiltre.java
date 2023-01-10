@@ -4,6 +4,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
 
+import javax.swing.JLabel;
+
+import DBlink.BDEntity;
 import DBlink.BDSelect;
 import DBlink.Ecurie;
 import DBlink.Equipe;
@@ -73,7 +76,8 @@ public class ItemListnerComboFiltre implements ItemListener {
 			if(!(controleurAccueil.getComboFiltrePorteeTournoi().getSelectedItem().toString().equals("Tous"))) {
 				tournois = Filters.filtrer(tournois, Filters.estTournoiDePortee, Portee.stringToPortee(controleurAccueil.getComboFiltrePorteeTournoi().getSelectedItem().toString()));
 			}
-			this.setCartesTournoiDansAccueil(tournois);
+			
+			
 			break;
 		case RENCONTRE:
 			List<Rencontre> rencontres = BDSelect.getListeRencontre();
@@ -136,5 +140,24 @@ public class ItemListnerComboFiltre implements ItemListener {
 		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Equipes");
 		controleurAccueil.getVueAccueil().ajusterGrille();
 	}
-
+	
+	
+	public void procedureAjouterCatrePanelCartes(Etat state, List<BDEntity> list) {
+		switch(state) {
+		case TOURNOI:
+			List<Tournoi> = (List<BDEntity>) list;
+			if(list.size() == 0 ) {
+				JLabel lblAucunTournoi = new JLabel("-- Aucun Tournoi --");
+				
+				controleurAccueil.getVueAccueil().getPanelCartes();
+			} else {
+				this.setCartesTournoiDansAccueil(list);
+			}
+			break;
+		case RENCONTRE:
+			break;
+		case EQUIPE:
+			break;
+		}
+	}
 }

@@ -499,5 +499,9 @@ public class AccueilV2 {
 	public JPanel getPanelFiltre() {
 		return this.panelFiltre;
 	}
+	
+	public JPanel getPanelCartes() {
+		return this.panelCartes;
+	}
 
 }
