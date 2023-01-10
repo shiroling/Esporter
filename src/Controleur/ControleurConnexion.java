@@ -23,6 +23,14 @@ public class ControleurConnexion implements ActionListener{
 		this.connexionVue = connexionVue;
 		this.controleurAccueil = controleurAccueil;
 	}
+	
+	protected void procedureConnexionEchouee() {
+		LineBorder border = new LineBorder(Color.RED);
+		this.connexionVue.getTextFieldUsername().setBorder(border);
+		this.connexionVue.getTextFieldPassword().setBorder(border);
+		controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
+		controleurAccueil.afficherBtnConnexion();
+	}
 
 
 
@@ -37,13 +45,8 @@ public class ControleurConnexion implements ActionListener{
 				controleurAccueil.cacherBtnConnexion();
 				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
-
 			} else {
-				LineBorder border = new LineBorder(Color.RED);
-				this.connexionVue.getTextFieldUsername().setBorder(border);
-				this.connexionVue.getTextFieldPassword().setBorder(border);
-				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
-				controleurAccueil.afficherBtnConnexion();
+				procedureConnexionEchouee();
 			}
 			break;
 		case MANAGER:
@@ -53,11 +56,7 @@ public class ControleurConnexion implements ActionListener{
 				controleurAccueil.setIdLog(BDSelect.getIdManagerFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 			} else {
-				LineBorder border = new LineBorder(Color.RED);
-				this.connexionVue.getTextFieldUsername().setBorder(border);
-				this.connexionVue.getTextFieldPassword().setBorder(border);
-				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
-				controleurAccueil.afficherBtnConnexion();
+				procedureConnexionEchouee();
 			}
 			break;
 		case NON_CONNU:
@@ -74,11 +73,7 @@ public class ControleurConnexion implements ActionListener{
 				this.connexionVue.dispose();
 			}
 			else {
-				LineBorder border = new LineBorder(Color.RED);
-				this.connexionVue.getTextFieldUsername().setBorder(border);
-				this.connexionVue.getTextFieldPassword().setBorder(border);
-				controleurAccueil.setConnexionState(ConnexionState.NON_CONNECTE);
-				controleurAccueil.afficherBtnConnexion();
+				procedureConnexionEchouee();
 			}
 			break;
 		default:
