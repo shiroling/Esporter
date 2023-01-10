@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -76,6 +77,9 @@ public class CarteRencontre extends Carte {
 		lblNomTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelNomTournoi.add(lblNomTournoi);
 		super.addHoverPannels(listPanelAHover);
+
+		this.setName("CarteRencontre");
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 	}
 	public Rencontre getRencontre() {
 		return rencontre;

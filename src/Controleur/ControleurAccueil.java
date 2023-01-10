@@ -32,19 +32,19 @@ public class ControleurAccueil implements ActionListener {
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
-	private static ConnexionState connexionState;
+	private ConnexionState connexionState;
 	private int idLog; // Pour Manager => id de l'ecurie
-	private JComboBox comboFiltreAvencementTournoi;
-	private JComboBox comboFiltreInscriptionTournoi;
-	private JComboBox comboFiltreMultiTournoi;
-	private JComboBox comboFiltreJeuTournoi;
-	private JComboBox comboFiltrePorteeTournoi;
-	private JComboBox comboFiltreAvencementRencontre;
-	private JComboBox comboFiltreEquipeRencontre;
-	private JComboBox comboFiltreTournoiRencontre;
-	private JComboBox comboFiltreJeuRencontre;
-	private JComboBox comboFiltreEcuriesEquipe;
-	private JComboBox comboFiltreJeuEquipe;
+	private JComboBox<String> comboFiltreAvencementTournoi;
+	private JComboBox<String> comboFiltreInscriptionTournoi;
+	private JComboBox<String> comboFiltreMultiTournoi;
+	private JComboBox<String> comboFiltreJeuTournoi;
+	private JComboBox<String> comboFiltrePorteeTournoi;
+	private JComboBox<String> comboFiltreAvencementRencontre;
+	private JComboBox<String> comboFiltreEquipeRencontre;
+	private JComboBox<String> comboFiltreTournoiRencontre;
+	private JComboBox<String> comboFiltreJeuRencontre;
+	private JComboBox<String> comboFiltreEcuriesEquipe;
+	private JComboBox<String> comboFiltreJeuEquipe;
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
@@ -57,6 +57,7 @@ public class ControleurAccueil implements ActionListener {
 		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		obj = e.getSource();
@@ -163,8 +164,8 @@ public class ControleurAccueil implements ActionListener {
 		this.connexionState = c;
 	}
 
-	public static ConnexionState getConnexionState() {
-		return connexionState;
+	public ConnexionState getConnexionState() {
+		return this.connexionState;
 	}
 
 	public void afficherBtnConnexion() {
@@ -206,11 +207,11 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboAvancement.add(panelCombo);
 
-			comboFiltreAvencementTournoi = new JComboBox();
+			comboFiltreAvencementTournoi = new JComboBox<String>();
 			comboFiltreAvencementTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreAvencementTournoi.setPreferredSize(new Dimension(140, 30));
 			comboFiltreAvencementTournoi
-					.setModel(new DefaultComboBoxModel(new String[] { "Tous", "En Cours", "A Venir", "Finis" }));
+					.setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "En Cours", "A Venir", "Finis" }));
 			comboFiltreAvencementTournoi.addItemListener(itemListner);
 			panelCombo.add(comboFiltreAvencementTournoi);
 		}
@@ -232,11 +233,11 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboInscription.add(panelCombo);
 
-			comboFiltreInscriptionTournoi = new JComboBox();
+			comboFiltreInscriptionTournoi = new JComboBox<String>();
 			comboFiltreInscriptionTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreInscriptionTournoi.setPreferredSize(new Dimension(140, 30));
 			comboFiltreInscriptionTournoi
-					.setModel(new DefaultComboBoxModel(new String[] { "Tous", "En Cours", "Finis" }));
+					.setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "En Cours", "Finis" }));
 			comboFiltreInscriptionTournoi.addItemListener(itemListner);
 			panelCombo.add(comboFiltreInscriptionTournoi);
 		}
@@ -258,11 +259,11 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboMulti.add(panelCombo);
 
-			comboFiltreMultiTournoi = new JComboBox();
+			comboFiltreMultiTournoi = new JComboBox<String>();
 			comboFiltreMultiTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreMultiTournoi.setPreferredSize(new Dimension(140, 30));
 			comboFiltreMultiTournoi
-					.setModel(new DefaultComboBoxModel(new String[] { "Tous", "Multigaming", "Jeu unique" }));
+					.setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "Multigaming", "Jeu unique" }));
 			comboFiltreMultiTournoi.addItemListener(itemListner);
 			panelCombo.add(comboFiltreMultiTournoi);
 		}
@@ -284,7 +285,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboJeu.add(panelCombo);
 
-			comboFiltreJeuTournoi = new JComboBox();
+			comboFiltreJeuTournoi = new JComboBox<String>();
 			comboFiltreJeuTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreJeuTournoi.setPreferredSize(new Dimension(140, 30));
 			List<Jeu> jeux = BDSelect.getListeJeux();
@@ -293,7 +294,7 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < jeux.size(); i++) {
 				nomJeux[i + 1] = jeux.get(i).getNom();
 			}
-			comboFiltreJeuTournoi.setModel(new DefaultComboBoxModel(nomJeux));
+			comboFiltreJeuTournoi.setModel(new DefaultComboBoxModel<String>(nomJeux));
 			comboFiltreJeuTournoi.addItemListener(itemListner);
 			panelCombo.add(comboFiltreJeuTournoi);
 		}
@@ -315,7 +316,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboPortee.add(panelCombo);
 
-			comboFiltrePorteeTournoi = new JComboBox();
+			comboFiltrePorteeTournoi = new JComboBox<String>();
 			comboFiltrePorteeTournoi.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltrePorteeTournoi.setPreferredSize(new Dimension(140, 30));
 
@@ -325,30 +326,30 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < portees.length; i++) {
 				porteesTous[i + 1] = portees[i];
 			}
-			comboFiltrePorteeTournoi.setModel(new DefaultComboBoxModel(porteesTous));
+			comboFiltrePorteeTournoi.setModel(new DefaultComboBoxModel<String>(porteesTous));
 			comboFiltrePorteeTournoi.addItemListener(itemListner);
 			panelCombo.add(comboFiltrePorteeTournoi);
 		}
 		this.vue.getPanelFiltre().updateUI();
 	}
 
-	public JComboBox getComboFiltreAvencementTournoi() {
+	public JComboBox<String> getComboFiltreAvencementTournoi() {
 		return comboFiltreAvencementTournoi;
 	}
 
-	public JComboBox getComboFiltreInscriptionTournoi() {
+	public JComboBox<String> getComboFiltreInscriptionTournoi() {
 		return comboFiltreInscriptionTournoi;
 	}
 
-	public JComboBox getComboFiltreMultiTournoi() {
+	public JComboBox<String> getComboFiltreMultiTournoi() {
 		return comboFiltreMultiTournoi;
 	}
 
-	public JComboBox getComboFiltreJeuTournoi() {
+	public JComboBox<String> getComboFiltreJeuTournoi() {
 		return comboFiltreJeuTournoi;
 	}
 
-	public JComboBox getComboFiltrePorteeTournoi() {
+	public JComboBox<String> getComboFiltrePorteeTournoi() {
 		return comboFiltrePorteeTournoi;
 	}
 
@@ -375,11 +376,11 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboAvancement.add(panelCombo);
 
-			comboFiltreAvencementRencontre = new JComboBox();
+			comboFiltreAvencementRencontre = new JComboBox<String>();
 			comboFiltreAvencementRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreAvencementRencontre.setPreferredSize(new Dimension(140, 30));
 			comboFiltreAvencementRencontre
-					.setModel(new DefaultComboBoxModel(new String[] { "Tous", "A Venir", "Finis" }));
+					.setModel(new DefaultComboBoxModel<String>(new String[] { "Tous", "A Venir", "Finis" }));
 			comboFiltreAvencementRencontre.addItemListener(itemListner);
 			panelCombo.add(comboFiltreAvencementRencontre);
 		}
@@ -401,7 +402,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboJeu.add(panelCombo);
 
-			comboFiltreJeuRencontre = new JComboBox();
+			comboFiltreJeuRencontre = new JComboBox<String>();
 			comboFiltreJeuRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreJeuRencontre.setPreferredSize(new Dimension(140, 30));
 			List<Jeu> jeux = BDSelect.getListeJeux();
@@ -410,7 +411,7 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < jeux.size(); i++) {
 				nomJeux[i + 1] = jeux.get(i).getNom();
 			}
-			comboFiltreJeuRencontre.setModel(new DefaultComboBoxModel(nomJeux));
+			comboFiltreJeuRencontre.setModel(new DefaultComboBoxModel<String>(nomJeux));
 			comboFiltreJeuRencontre.addItemListener(itemListner);
 			panelCombo.add(comboFiltreJeuRencontre);
 		}
@@ -432,7 +433,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboTournoi.add(panelCombo);
 
-			comboFiltreTournoiRencontre = new JComboBox();
+			comboFiltreTournoiRencontre = new JComboBox<String>();
 			comboFiltreTournoiRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreTournoiRencontre.setPreferredSize(new Dimension(140, 30));
 			List<Tournoi> tournois = BDSelect.getListeTournois();
@@ -441,7 +442,7 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < tournois.size(); i++) {
 				nomTournois[i + 1] = tournois.get(i).getNom();
 			}
-			comboFiltreTournoiRencontre.setModel(new DefaultComboBoxModel(nomTournois));
+			comboFiltreTournoiRencontre.setModel(new DefaultComboBoxModel<String>(nomTournois));
 			comboFiltreTournoiRencontre.addItemListener(itemListner);
 			panelCombo.add(comboFiltreTournoiRencontre);
 		}
@@ -463,7 +464,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboEquipe.add(panelCombo);
 
-			comboFiltreEquipeRencontre = new JComboBox();
+			comboFiltreEquipeRencontre = new JComboBox<String>();
 			comboFiltreEquipeRencontre.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreEquipeRencontre.setPreferredSize(new Dimension(140, 30));
 			List<Equipe> equipes = BDSelect.getListeEquipes();
@@ -472,26 +473,26 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < equipes.size(); i++) {
 				nomEquipes[i + 1] = equipes.get(i).getNom();
 			}
-			comboFiltreEquipeRencontre.setModel(new DefaultComboBoxModel(nomEquipes));
+			comboFiltreEquipeRencontre.setModel(new DefaultComboBoxModel<String>(nomEquipes));
 			comboFiltreEquipeRencontre.addItemListener(itemListner);
 			panelCombo.add(comboFiltreEquipeRencontre);
 		}
 		this.vue.getPanelFiltre().updateUI();
 	}
 
-	public JComboBox getComboFiltreAvencementRencontre() {
+	public JComboBox<String> getComboFiltreAvencementRencontre() {
 		return comboFiltreAvencementRencontre;
 	}
 
-	public JComboBox getComboFiltreEquipeRencontre() {
+	public JComboBox<String> getComboFiltreEquipeRencontre() {
 		return comboFiltreEquipeRencontre;
 	}
 
-	public JComboBox getComboFiltreTournoiRencontre() {
+	public JComboBox<String> getComboFiltreTournoiRencontre() {
 		return comboFiltreTournoiRencontre;
 	}
 
-	public JComboBox getComboFiltreJeuRencontre() {
+	public JComboBox<String> getComboFiltreJeuRencontre() {
 		return comboFiltreJeuRencontre;
 	}
 
@@ -518,7 +519,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboEcuries.add(panelCombo);
 
-			comboFiltreEcuriesEquipe = new JComboBox();
+			comboFiltreEcuriesEquipe = new JComboBox<String>();
 			comboFiltreEcuriesEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreEcuriesEquipe.setPreferredSize(new Dimension(140, 30));
 			List<Ecurie> ecuries = BDSelect.getListeEcurie();
@@ -527,7 +528,7 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < ecuries.size(); i++) {
 				nomEcuries[i + 1] = ecuries.get(i).getNom();
 			}
-			comboFiltreEcuriesEquipe.setModel(new DefaultComboBoxModel(nomEcuries));
+			comboFiltreEcuriesEquipe.setModel(new DefaultComboBoxModel<String>(nomEcuries));
 			comboFiltreEcuriesEquipe.addItemListener(itemListner);
 			panelCombo.add(comboFiltreEcuriesEquipe);
 		}
@@ -549,7 +550,7 @@ public class ControleurAccueil implements ActionListener {
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelComboJeu.add(panelCombo);
 
-			comboFiltreJeuEquipe = new JComboBox();
+			comboFiltreJeuEquipe = new JComboBox<String>();
 			comboFiltreJeuEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			comboFiltreJeuEquipe.setPreferredSize(new Dimension(140, 30));
 			List<Jeu> jeux = BDSelect.getListeJeux();
@@ -558,18 +559,18 @@ public class ControleurAccueil implements ActionListener {
 			for (int i = 0; i < jeux.size(); i++) {
 				nomJeux[i + 1] = jeux.get(i).getNom();
 			}
-			comboFiltreJeuEquipe.setModel(new DefaultComboBoxModel(nomJeux));
+			comboFiltreJeuEquipe.setModel(new DefaultComboBoxModel<String>(nomJeux));
 			comboFiltreJeuEquipe.addItemListener(itemListner);
 			panelCombo.add(comboFiltreJeuEquipe);
 		}
 		this.vue.getPanelFiltre().updateUI();
 	}
 
-	public JComboBox getComboFiltreEcuriesEquipe() {
+	public JComboBox<String> getComboFiltreEcuriesEquipe() {
 		return comboFiltreEcuriesEquipe;
 	}
 
-	public JComboBox getComboFiltreJeuEquipe() {
+	public JComboBox<String> getComboFiltreJeuEquipe() {
 		return comboFiltreJeuEquipe;
 	}
 

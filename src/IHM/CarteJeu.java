@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import DBlink.Jeu;
 
@@ -62,6 +63,9 @@ public class CarteJeu extends Carte {
 		listPanelAHover.add(panelLogoJeu);
 		
 		super.addHoverPannels(listPanelAHover);
+
+		this.setName("CarteJeu");
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 	}
 
 	public Jeu getJeu() {

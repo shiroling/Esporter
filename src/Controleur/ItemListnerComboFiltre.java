@@ -120,13 +120,14 @@ public class ItemListnerComboFiltre implements ItemListener {
 		}
 	}
 	
-	private void setCartesTournoiDansAccueil(List<Tournoi> tournois) {
+	private void setCartesDansAccueil(List<BDEntity> l) {
 		controleurAccueil.getVueAccueil().viderCartes();
-		controleurAccueil.getVueAccueil().ajouterCartesTournois(tournois);
+		controleurAccueil.getVueAccueil().ajouterCartes(l);
 		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
 		controleurAccueil.getVueAccueil().ajusterGrille();
 	}
 	
+	@Deprecated
 	private void setCartesRencontreDansAccueil(List<Rencontre> rencontres) {
 		controleurAccueil.getVueAccueil().viderCartes();
 		controleurAccueil.getVueAccueil().ajouterCartesMatch(rencontres);
@@ -134,6 +135,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 		controleurAccueil.getVueAccueil().ajusterGrille();
 	}
 	
+	@Deprecated
 	private void setCartesEquipeDansAccueil(List<Equipe> equipes) {
 		controleurAccueil.getVueAccueil().viderCartes();
 		controleurAccueil.getVueAccueil().ajouterCartesEquipe(equipes);
@@ -145,13 +147,12 @@ public class ItemListnerComboFiltre implements ItemListener {
 	public void procedureAjouterCatrePanelCartes(Etat state, List<BDEntity> list) {
 		switch(state) {
 		case TOURNOI:
-			List<Tournoi> = (List<BDEntity>) list;
 			if(list.size() == 0 ) {
 				JLabel lblAucunTournoi = new JLabel("-- Aucun Tournoi --");
 				
 				controleurAccueil.getVueAccueil().getPanelCartes();
 			} else {
-				this.setCartesTournoiDansAccueil(list);
+				this.setCartesDansAccueil(list);
 			}
 			break;
 		case RENCONTRE:

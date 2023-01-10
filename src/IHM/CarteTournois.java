@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import DBlink.Tournoi;
 import base.PreDate;
@@ -49,6 +50,9 @@ public class CarteTournois extends Carte {
 		listPanelAHover.add(panelDate);
 		listPanelAHover.add(panelNom);
 		super.addHoverPannels(listPanelAHover);
+
+		this.setName("CarteTournois");
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 	}
 	
 	public Tournoi getTournoi() {
