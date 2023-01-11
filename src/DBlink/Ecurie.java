@@ -67,5 +67,4 @@ public class Ecurie extends BDEntity {
 		return new Ecurie(BDSelect.getIdEcurieFromNom(nomEcurie));
 	}
 
-
 }

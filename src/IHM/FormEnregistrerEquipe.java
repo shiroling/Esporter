@@ -2,28 +2,35 @@ package IHM;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 import java.awt.GridLayout;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import DBlink.Ecurie;
+import DBlink.Jeu;
 
 public class FormEnregistrerEquipe extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private Ecurie ecurie;
 	private JTextField textFieldNomEquipe;
-	private JTextField textFieldNomJeu;
-	private JTextField textFieldNomEcurie;
+	private JComboBox comboJeux;
+	private JLabel lblNomEquipe;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			FormEnregistrerEquipe dialog = new FormEnregistrerEquipe();
+			FormEnregistrerEquipe dialog = new FormEnregistrerEquipe(new Ecurie(1));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -34,9 +41,11 @@ public class FormEnregistrerEquipe extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FormEnregistrerEquipe() {
+	public FormEnregistrerEquipe(Ecurie ecurie) {
+		this.ecurie = ecurie;
+		
 		setTitle("Nouvelle equipe");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 333, 289);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -47,26 +56,24 @@ public class FormEnregistrerEquipe extends JDialog {
 			panelLbl.setLayout(new GridLayout(0, 1, 0, 0));
 			{
 				JPanel panelLblNomEquipe = new JPanel();
+				FlowLayout flowLayout = (FlowLayout) panelLblNomEquipe.getLayout();
+				flowLayout.setVgap(25);
+				flowLayout.setAlignment(FlowLayout.LEFT);
 				panelLbl.add(panelLblNomEquipe);
 				{
-					JLabel lblNomEquipe = new JLabel("Nom de l'equipe");
+					lblNomEquipe = new JLabel("Nom");
 					panelLblNomEquipe.add(lblNomEquipe);
 				}
 			}
 			{
 				JPanel panelLblNomJeu = new JPanel();
+				FlowLayout flowLayout = (FlowLayout) panelLblNomJeu.getLayout();
+				flowLayout.setVgap(18);
+				flowLayout.setAlignment(FlowLayout.LEFT);
 				panelLbl.add(panelLblNomJeu);
 				{
-					JLabel lblNomJeu = new JLabel("Nom du jeu de l'equipe");
+					JLabel lblNomJeu = new JLabel("Jeu de l'equipe");
 					panelLblNomJeu.add(lblNomJeu);
-				}
-			}
-			{
-				JPanel panelLblNomEcurie = new JPanel();
-				panelLbl.add(panelLblNomEcurie);
-				{
-					JLabel lblNomEcurie = new JLabel("Nom de l'equipe");
-					panelLblNomEcurie.add(lblNomEcurie);
 				}
 			}
 		}
@@ -77,32 +84,31 @@ public class FormEnregistrerEquipe extends JDialog {
 			{
 				JPanel panelTextFieldNomEquipe = new JPanel();
 				panelChampsSaisie.add(panelTextFieldNomEquipe);
-				panelTextFieldNomEquipe.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
+				panelTextFieldNomEquipe.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 25));
 				{
 					textFieldNomEquipe = new JTextField();
 					panelTextFieldNomEquipe.add(textFieldNomEquipe);
-					textFieldNomEquipe.setColumns(10);
+					textFieldNomEquipe.setColumns(15);
 				}
 			}
 			{
-				JPanel panelTextFieldNomJeu = new JPanel();
-				panelChampsSaisie.add(panelTextFieldNomJeu);
-				panelTextFieldNomJeu.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
+				JPanel panelComboJeu = new JPanel();
+				panelChampsSaisie.add(panelComboJeu);
+				panelComboJeu.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 15));
 				{
-					textFieldNomJeu = new JTextField();
-					textFieldNomJeu.setColumns(10);
-					panelTextFieldNomJeu.add(textFieldNomJeu);
+					comboJeux = new JComboBox();
+					comboJeux.setModel(new DefaultComboBoxModel(Jeu.toStrings()));
+					panelComboJeu.add(comboJeux);
 				}
 			}
+		}
+		{
+			JPanel panelTitre = new JPanel();
+			contentPanel.add(panelTitre, BorderLayout.NORTH);
 			{
-				JPanel panelTextFieldNomEcurie = new JPanel();
-				panelChampsSaisie.add(panelTextFieldNomEcurie);
-				panelTextFieldNomEcurie.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
-				{
-					textFieldNomEcurie = new JTextField();
-					textFieldNomEcurie.setColumns(10);
-					panelTextFieldNomEcurie.add(textFieldNomEcurie);
-				}
+				JLabel lblTitre = new JLabel("Nouvelle équipe '"+ this.ecurie.getNom() + "'");
+				lblTitre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+				panelTitre.add(lblTitre);
 			}
 		}
 		{
@@ -110,17 +116,35 @@ public class FormEnregistrerEquipe extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Créer");
+				setName("CreerEquipe");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Annuler");
+				setName("Annuler");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	public Ecurie getEcurie() {
+		return ecurie;
+	}
+
+	public JTextField getTextFieldNomEquipe() {
+		return textFieldNomEquipe;
+	}
+
+	public JComboBox getComboJeux() {
+		return comboJeux;
+	}
+	
+	public JLabel getLblnomEquipe() {
+		return lblNomEquipe;
 	}
 
 }

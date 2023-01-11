@@ -162,5 +162,4 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 		BDInsert.insererEquipe(nom, idJeu, idEcurie);
 	}
 
-
 }
