@@ -33,7 +33,9 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import IHM.PanelSelection.Selection;
 import base.ConnexionState;
+import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -46,7 +48,8 @@ public class AccueilV2 {
 	private BtnStyleV2 btnSeConnecter;
 	private JPanel panelFiltre;
 	private int tailleCarte;
-	private JScrollPane scrollPaneMain;
+	private JPanel panelLblTitreCartes;
+
 	/**
 	 * 
 	 * Launch the application.
@@ -150,11 +153,38 @@ public class AccueilV2 {
 
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
+		
+		JPanel panelTitreFiltre = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelTitreFiltre.getLayout();
+		flowLayout.setVgap(20);
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
+		
+		JLabel lblTitreFiltre = new JLabel("Filtres");
+		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		panelTitreFiltre.add(lblTitreFiltre);
 
 		JPanel panelBtnSelection = new JPanel();
 		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
-		panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
-
+		panelBtnSelection.setLayout(new GridLayout(0, 1, 0, 0));
+		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
+		
+		JPanel panelEspaceFoctionalite = new JPanel();
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 40));
+		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
+		
+		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
+		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
+		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
+		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
+		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
+		
+		panelBtnSelection.add(selectTournoi);
+		panelBtnSelection.add(selectRencontre);
+		panelBtnSelection.add(selectJeu);
+		panelBtnSelection.add(selectEquipe);
+		panelBtnSelection.add(selectEcurie);
+		/*
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTournois.addActionListener(controleur);
@@ -184,7 +214,7 @@ public class AccueilV2 {
 		btnEcurie.addActionListener(controleur);
 		btnEcurie.setName("Ecurie");
 		panelBtnSelection.add(btnEcurie);
-		
+		*/
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
@@ -198,7 +228,7 @@ public class AccueilV2 {
 		scrollPaneMain.setViewportView(panelCartes);
 		panelCartes.setLayout(new GridLayout(12, 3, 40, 10));
 		
-		JPanel panelLblTitreCartes = new JPanel();
+		panelLblTitreCartes = new JPanel();
 		panelMain.add(panelLblTitreCartes, BorderLayout.NORTH);
 		
 		lblTitreCarte = new JLabel();
