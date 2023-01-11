@@ -77,25 +77,7 @@ public class Poule extends BDEntity {
 		}
 
 	public void genererRencontres() {		
-		this.init(); //just in case it isn't ;)
-		System.out.println("Generating ");
-		List<Equipe> l = this.getEquipes();
-		List<Equipe> le = new ArrayList<>();
-		System.out.println(l.size());
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 2; j++) {
-				System.out.println("trying get on the "+ i*4+j);
-				le.add(l.get(i*4+j));
-			}
-			
-			BDInsert.insererRencontre(this.getId(), fixerDateRencontre(this.isFinale(), this.getId()), le);
-			le.clear();
-		}
-		
-		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
-		for (Poule poule : lp) {
-			poule.genererRencontres();
-		}
+		BDInsert.genererRencontre(this.getId());
 	}
 	
 	public List<Rencontre> getRencontres() {
@@ -112,8 +94,13 @@ public class Poule extends BDEntity {
 		throw new Exception("Impossible d'insérer le finaliste, il n'y a pas de rencontres libres");
 	}
 
-
 	public void setFinalist(int idEquipe) {
+		// TODO faut utiliser la procedure PLSQL
 		BDInsert.insererComposer(idEquipe, this.getId());
+		
+		// TODO vérifier si c'est le dernier matche joué de la poule
+		// si c'est le cas, il faut inscrire le premier de la poule GET_PREMIER_POULE(idPoule)
+		// et l'inscrire à la poule finale du tournoi p.getTournoi.getPouleFinale()
+		// BREF
 	}
 }

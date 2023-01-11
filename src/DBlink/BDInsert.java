@@ -1,8 +1,11 @@
 package DBlink;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 import base.Portee;
@@ -153,6 +156,30 @@ public class BDInsert {
 			st.executeUpdate();
 		} catch (Exception ee) {
 			System.out.println(ee.getMessage());
+		}
+	}
+
+	public static void genererRencontre(int idPoule) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call GEN_RENCONTRE_4_POULE(?) }");
+			stmt.setInt(1, idPoule); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void genererPoules(int idTournoi) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call GEN_POULES_4_TOURNOI(?) }");
+			stmt.setInt(1, idTournoi); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
