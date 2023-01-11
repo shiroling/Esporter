@@ -641,4 +641,20 @@ public class BDSelect {
 	    }
 	}
 	
+	public static boolean equipeDejaPresente(String nom) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("select id_equipe from equipe where equipe.nom_equipe = ?");
+			st.setString(1, nom);
+			ResultSet rs = st.executeQuery();
+	        boolean var = rs.next();
+			st.close();
+			rs.close();
+			return var;	        
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        return false;
+	        //dfsbcgvkhyukhj,szmfebyghkjezshjdhusykjr,s;qkfdgbvk shngcyiruh
+	    }
+	}
+	
 }
