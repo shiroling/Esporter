@@ -31,6 +31,7 @@ public class CarteRencontre extends Carte {
 		flowLayout.setVgap(30);
 		add(panelNomRencontre);
 		
+		System.out.println(rencontre.getId());
 		JLabel lblNomEquipe1 = new JLabel(rencontre.getEquipes().get(0).toString());
 		lblNomEquipe1.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelNomRencontre.add(lblNomEquipe1);
