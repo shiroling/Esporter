@@ -220,7 +220,7 @@ public class AccueilV2 {
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
 		panelMain.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPaneMain = new JScrollPane();
+		scrollPaneMain = new JScrollPane();
 		panelMain.add(scrollPaneMain);
 		scrollPaneMain.setBorder(new EmptyBorder(0,0,0,0));
 
@@ -327,7 +327,7 @@ public class AccueilV2 {
 	 */
 	public void ajusterGrille() {
 		frame.setVisible(true);
-		int temp =frame.getWidth()-panelFiltre.getWidth();
+		int temp =frame.getWidth()-panelFiltre.getWidth()-scrollPaneMain.getVerticalScrollBar().getWidth()-20-10;
 		System.out.println("temp : "+ temp);
 		System.out.println("taille pan carte:"+panelCartes.getWidth());
 		System.out.println("taille des carte:"+panelCartes.getComponent(0).getWidth());
@@ -335,12 +335,12 @@ public class AccueilV2 {
 		System.out.println();
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
 		
-			if (frame.getWidth()-panelFiltre.getWidth() < tailleCarte*2) {
+			if (temp < tailleCarte*2) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
 				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
-			} else if (frame.getWidth()-panelFiltre.getWidth() >= tailleCarte*2) {
-				if (frame.getWidth()-panelFiltre.getWidth() >= tailleCarte*3) {
+			} else if (temp >= tailleCarte*2) {
+				if (temp >= tailleCarte*3) {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
 				}else {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));

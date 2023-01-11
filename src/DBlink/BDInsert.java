@@ -142,5 +142,18 @@ public class BDInsert {
 			System.out.println(ee.getMessage());
 		}
 	}
+
+	public static void insererEquipe(String nom, int idJeu, int idEcurie) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("Insert into Equipe values (seq_equipe.nextval, ?, ?, ?)");
+			st.setString(1, nom);
+			st.setInt(2, idJeu);
+			st.setInt(3, idEcurie);
+			st.executeUpdate();
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
+		}
+	}
 	
 }
