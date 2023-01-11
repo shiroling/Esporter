@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import DBlink.Equipe;
+import DBlink.Jeu;
 import IHM.FormEnregistrerEquipe;
 
 public class ControleurFormEnrengistrerEquipe implements ActionListener{
@@ -22,7 +24,13 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 			if(nomEquipe.equals("")) {
 				this.vue.getLblnomEquipe().setText("Nom (vide)");
 				this.vue.getLblnomEquipe().setForeground(Color.RED);
+			} else if(BDSelect.equipeDejaPresente(nomEquipe)){
+				this.vue.getLblnomEquipe().setText("Nom (déjà pris)");
+				this.vue.getLblnomEquipe().setForeground(Color.RED);
+			} else {
+				Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
 			}
+			this.vue.dispose();
 			break;
 		case "Annuler":
 			this.vue.dispose();
