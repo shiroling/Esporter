@@ -533,13 +533,6 @@ public class AccueilV2 {
 	public static ControleurAccueil getControleur() {
 		return controleur;
 	}
-
-	public static PanelTournois getPanel_sideQuandTournoi() {
-		if (panel_side.getComponent(0) instanceof PanelTournois) {
-			return (PanelTournois) panel_side.getComponent(0);
-		}
-		return null;
-	}
 	
 	public JLabel getLblTitreCartes() {
 		return this.lblTitreCarte;
