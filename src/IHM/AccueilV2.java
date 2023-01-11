@@ -35,6 +35,7 @@ import DBlink.Rencontre;
 import DBlink.Tournoi;
 import IHM.PanelSelection.Selection;
 import base.ConnexionState;
+import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -47,6 +48,7 @@ public class AccueilV2 {
 	private BtnStyleV2 btnSeConnecter;
 	private JPanel panelFiltre;
 	private int tailleCarte;
+	private JPanel panelLblTitreCartes;
 
 	/**
 	 * 
@@ -151,6 +153,16 @@ public class AccueilV2 {
 
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
+		
+		JPanel panelTitreFiltre = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelTitreFiltre.getLayout();
+		flowLayout.setVgap(20);
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
+		
+		JLabel lblTitreFiltre = new JLabel("Filtres");
+		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		panelTitreFiltre.add(lblTitreFiltre);
 
 		JPanel panelBtnSelection = new JPanel();
 		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
@@ -158,7 +170,7 @@ public class AccueilV2 {
 		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
 		
 		JPanel panelEspaceFoctionalite = new JPanel();
-		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, pane));
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 40));
 		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
 		
 		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
@@ -216,7 +228,7 @@ public class AccueilV2 {
 		scrollPaneMain.setViewportView(panelCartes);
 		panelCartes.setLayout(new GridLayout(12, 3, 40, 10));
 		
-		JPanel panelLblTitreCartes = new JPanel();
+		panelLblTitreCartes = new JPanel();
 		panelMain.add(panelLblTitreCartes, BorderLayout.NORTH);
 		
 		lblTitreCarte = new JLabel();
