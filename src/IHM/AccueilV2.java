@@ -49,6 +49,7 @@ public class AccueilV2 {
 	private JPanel panelFiltre;
 	private int tailleCarte;
 	private JPanel panelLblTitreCartes;
+	private JScrollPane scrollPaneMain;
 
 	/**
 	 * 
