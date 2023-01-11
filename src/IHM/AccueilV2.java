@@ -38,7 +38,6 @@ import base.ConnexionState;
 public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
-	private static JPanel panel_side;
 	private JPanel panelCartes;
 	private static ControleurAccueil controleur;
 	private JLabel lblTitreCarte;
@@ -46,6 +45,7 @@ public class AccueilV2 {
 	private BtnStyleV2 btnDeconnexion;
 	private BtnStyleV2 btnSeConnecter;
 	private JPanel panelFiltre;
+	private int tailleCarte;
 
 	/**
 	 * 
@@ -76,6 +76,7 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		tailleCarte=0;
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
@@ -203,15 +204,13 @@ public class AccueilV2 {
 		lblTitreCarte = new JLabel();
 		lblTitreCarte.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelLblTitreCartes.add(lblTitreCarte);
-
-		panel_side = new JPanel();
-		frame.getContentPane().add(panel_side, BorderLayout.EAST);
 		
 		for (Component ie : panelCartes.getComponents()) {
 			ie.addMouseListener(ma);
 		}
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
+				System.out.println("retaillage");
 				ajusterGrille();
 			}
 		});
@@ -297,56 +296,53 @@ public class AccueilV2 {
 	 * ajuste la taille de la grille en fonction de la taille de la fenetre
 	 */
 	public void ajusterGrille() {
-
+		frame.setVisible(true);
+		int temp =frame.getWidth()-panelFiltre.getWidth();
+		System.out.println("temp : "+ temp);
+		System.out.println("taille pan carte:"+panelCartes.getWidth());
+		System.out.println("taille des carte:"+panelCartes.getComponent(0).getWidth());
+		System.out.println("var taille carte:"+tailleCarte);
+		System.out.println();
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
-		if (panelCartes.getComponent(0).getWidth()>550) {
-			if (panelCartes.getWidth() < 1200) {
+		
+			if (frame.getWidth()-panelFiltre.getWidth() < tailleCarte*2) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
 				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
-			} else if (panelCartes.getWidth() >= 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-				if (panelCartes.getWidth() >= 1900) {
+			} else if (frame.getWidth()-panelFiltre.getWidth() >= tailleCarte*2) {
+				if (frame.getWidth()-panelFiltre.getWidth() >= tailleCarte*3) {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
+				}else {
+					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
 				}
 			}
-		}
-		// si les cartes ont une largeure inferieur a 300 pixel
-		else {
-			if (panelCartes.getWidth() < 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-			} else if (panelCartes.getWidth() >= 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
-				if (panelCartes.getWidth() >= 1900) {
-					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
-				}
-			}
-		}
+		
 		
 		//corriger problemes d'actualisation 
-		frame.setVisible(true);
+		
 		panelCartes.updateUI();
 	}
-
-	/**
-	 * vide le volet
-	 */
-	public void viderSide() {
-		panel_side.removeAll();
-		panel_side.updateUI();
+	
+	private void ajusterGrilleQuandAjout() {
+		panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
+		frame.setVisible(true);
+		tailleCarte=panelCartes.getComponent(0).getWidth();
+		ajusterGrille();
 	}
+
 
 	/**
 	 * vide la gille principale
 	 */
 	public void viderCartes() {
+		tailleCarte=0;
 		panelCartes.removeAll();
 		panelCartes.updateUI();
 	}
 
 	public void ajouterCartes(List<BDEntity> l) {
 		if (l.size() == 0) {
-			ajusterGrille();
+			ajusterGrilleQuandAjout();
 			return;
 		}
 		if (l.get(0) instanceof Ecurie)	{
@@ -389,7 +385,7 @@ public class AccueilV2 {
 				panelCartes.add(ce);
 			}
 		}
-		ajusterGrille();
+		ajusterGrilleQuandAjout();
 	}
 
 	@Deprecated
@@ -400,7 +396,8 @@ public class AccueilV2 {
 			ce.addMouseListener(ma);
 			panelCartes.add(ce);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 	}
 
 	@Deprecated
@@ -411,7 +408,9 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
+		
 	}
 
 	@Deprecated
@@ -422,7 +421,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 
 	}
 
@@ -434,7 +434,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 
 	}
 
@@ -446,7 +447,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 	}
 
 	public static MouseAdapter getMa() {
