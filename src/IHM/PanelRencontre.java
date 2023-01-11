@@ -84,7 +84,7 @@ public class PanelRencontre extends JPanel {
 		JButton btnDetails = new JButton("Voir les details");
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AccueilV2.procedureCreePopupRencontre(r);;
+				AccueilV2.procedureCreerPopup(r);;
 			}
 		});
 		panelBoutons.add(btnDetails);

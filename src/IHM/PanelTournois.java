@@ -44,7 +44,7 @@ public class PanelTournois extends JPanel {
 		JButton btnDetails = new JButton("Voir les details");
 		btnDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AccueilV2.procedureCreePopupTournoi(t);
+				AccueilV2.procedureCreerPopup(tournoi);
 			}
 		});
 		panelBtn.add(btnDetails);

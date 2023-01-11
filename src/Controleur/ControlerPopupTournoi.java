@@ -30,10 +30,10 @@ public class ControlerPopupTournoi implements ActionListener {
 		
 		switch (btn.getName()) {
 		case "inscription":
-			if (ControleurAccueil.getConnexionState() != ConnexionState.MANAGER) {
+			if (controleurAccueil.getConnexionState() != ConnexionState.MANAGER) {
 				ConnexionV2 fenetreConnnexion = new ConnexionV2(AccueilV2.getControleur(), ConnexionState.MANAGER);
 			}
-			if (ControleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
+			if (controleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
 				PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(this.controleurAccueil.getIdLog()), this.vue.getTournoi());
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);

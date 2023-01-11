@@ -475,7 +475,7 @@ public class AccueilV2 {
 		ajusterGrille();
 	}
 	
-	private void procedureCreerPopup(BDEntity e) {
+	public static void procedureCreerPopup(BDEntity e) {
 		JDialog pop = null;
 		if (e instanceof Ecurie)	{
 			pop = new PopupEcurie((Ecurie) e);
