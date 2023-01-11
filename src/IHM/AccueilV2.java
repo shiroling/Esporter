@@ -241,7 +241,6 @@ public class AccueilV2 {
 		}
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
-				System.out.println("retaillage");
 				ajusterGrille();
 			}
 		});
@@ -329,11 +328,6 @@ public class AccueilV2 {
 	public void ajusterGrille() {
 		frame.setVisible(true);
 		int temp =frame.getWidth()-panelFiltre.getWidth()-scrollPaneMain.getVerticalScrollBar().getWidth()-20-10;
-		System.out.println("temp : "+ temp);
-		System.out.println("taille pan carte:"+panelCartes.getWidth());
-		System.out.println("taille des carte:"+panelCartes.getComponent(0).getWidth());
-		System.out.println("var taille carte:"+tailleCarte);
-		System.out.println();
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
 		
 			if (temp < tailleCarte*2) {
