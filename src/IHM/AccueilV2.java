@@ -33,6 +33,7 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import IHM.PanelSelection.Selection;
 import base.ConnexionState;
 
 public class AccueilV2 {
@@ -152,8 +153,25 @@ public class AccueilV2 {
 
 		JPanel panelBtnSelection = new JPanel();
 		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
-		panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
-
+		panelBtnSelection.setLayout(new GridLayout(0, 1, 0, 0));
+		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
+		
+		JPanel panelEspaceFoctionalite = new JPanel();
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, pane));
+		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
+		
+		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
+		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
+		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
+		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
+		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
+		
+		panelBtnSelection.add(selectTournoi);
+		panelBtnSelection.add(selectRencontre);
+		panelBtnSelection.add(selectJeu);
+		panelBtnSelection.add(selectEquipe);
+		panelBtnSelection.add(selectEcurie);
+		/*
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTournois.addActionListener(controleur);
@@ -183,7 +201,7 @@ public class AccueilV2 {
 		btnEcurie.addActionListener(controleur);
 		btnEcurie.setName("Ecurie");
 		panelBtnSelection.add(btnEcurie);
-		
+		*/
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
