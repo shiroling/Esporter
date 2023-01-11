@@ -76,8 +76,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 			if(!(controleurAccueil.getComboFiltrePorteeTournoi().getSelectedItem().toString().equals("Tous"))) {
 				tournois = Filters.filtrer(tournois, Filters.estTournoiDePortee, Portee.stringToPortee(controleurAccueil.getComboFiltrePorteeTournoi().getSelectedItem().toString()));
 			}
-			
-			
+			this.setCartesTournoiDansAccueil(tournois);
 			break;
 		case RENCONTRE:
 			List<Rencontre> rencontres = BDSelect.getListeRencontre();
@@ -115,50 +114,73 @@ public class ItemListnerComboFiltre implements ItemListener {
 			if(!(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString().equals("Tous"))) {
 				equipes = Filters.filtrer(equipes, Filters.estEquipeFromEcurie, Jeu.getJeuFromName(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString()).getId());
 			}
-			this.setCartesEquipeDansAccueil(equipes);
+			
+			this.setCartesEquipeDansAccueil(equipes);;
 			break;
 		}
 	}
 	
-	private void setCartesDansAccueil(List<BDEntity> l) {
-		controleurAccueil.getVueAccueil().viderCartes();
-		controleurAccueil.getVueAccueil().ajouterCartes(l);
-		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
-		controleurAccueil.getVueAccueil().ajusterGrille();
+	private void setCartesTournoiDansAccueil(List<Tournoi> tournois) {
+		if(tournois.size() == 0 ) {
+			JLabel lblAucunEntite = new JLabel("-- Aucun Tournoi --");
+			controleurAccueil.getVueAccueil().getPanelCartes().removeAll();
+			controleurAccueil.getVueAccueil().getPanelCartes().add(lblAucunEntite);
+			controleurAccueil.getVueAccueil().getPanelCartes().updateUI();
+		} else {
+			controleurAccueil.getVueAccueil().viderCartes();
+			controleurAccueil.getVueAccueil().ajouterCartesTournois(tournois);
+			controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Tournois");
+			controleurAccueil.getVueAccueil().ajusterGrille();
+		}
 	}
 	
-	@Deprecated
 	private void setCartesRencontreDansAccueil(List<Rencontre> rencontres) {
-		controleurAccueil.getVueAccueil().viderCartes();
-		controleurAccueil.getVueAccueil().ajouterCartesMatch(rencontres);
-		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Matchs");
-		controleurAccueil.getVueAccueil().ajusterGrille();
+		if(rencontres.size() == 0 ) {
+			JLabel lblAucunEntite = new JLabel("-- Aucun Match --");
+			controleurAccueil.getVueAccueil().getPanelCartes().removeAll();
+			controleurAccueil.getVueAccueil().getPanelCartes().add(lblAucunEntite);
+			controleurAccueil.getVueAccueil().getPanelCartes().updateUI();
+		} else {
+			controleurAccueil.getVueAccueil().viderCartes();
+			controleurAccueil.getVueAccueil().ajouterCartesMatch(rencontres);
+			controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Matchs");
+			controleurAccueil.getVueAccueil().ajusterGrille();
+		}
 	}
 	
-	@Deprecated
 	private void setCartesEquipeDansAccueil(List<Equipe> equipes) {
-		controleurAccueil.getVueAccueil().viderCartes();
-		controleurAccueil.getVueAccueil().ajouterCartesEquipe(equipes);
-		controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Equipes");
-		controleurAccueil.getVueAccueil().ajusterGrille();
+		if(equipes.size() == 0 ) {
+			JLabel lblAucunEntite = new JLabel("-- Aucune Equipe --");
+			controleurAccueil.getVueAccueil().getPanelCartes().removeAll();
+			controleurAccueil.getVueAccueil().getPanelCartes().add(lblAucunEntite);
+			controleurAccueil.getVueAccueil().getPanelCartes().updateUI();
+			System.out.println("ferjibnfernjuifkijnifanujcfi");
+		} else {
+			controleurAccueil.getVueAccueil().viderCartes();
+			controleurAccueil.getVueAccueil().ajouterCartesEquipe(equipes);
+			controleurAccueil.getVueAccueil().getLblTitreCartes().setText("Equipes");
+			controleurAccueil.getVueAccueil().ajusterGrille();
+		}
 	}
 	
 	
 	public void procedureAjouterCatrePanelCartes(Etat state, List<BDEntity> list) {
-		switch(state) {
-		case TOURNOI:
-			if(list.size() == 0 ) {
-				JLabel lblAucunTournoi = new JLabel("-- Aucun Tournoi --");
-				
-				controleurAccueil.getVueAccueil().getPanelCartes();
-			} else {
-				this.setCartesDansAccueil(list);
+		JLabel lblAucunEntité = new JLabel();
+		if(list.size() == 0 ) {
+			switch(state) {
+			case TOURNOI:
+				lblAucunEntité.setText("-- Aucun Tournoi --");
+				break;
+			case RENCONTRE:
+				lblAucunEntité.setText("-- Aucun Match --");
+				break;
+			case EQUIPE:
+				lblAucunEntité.setText("-- Aucune Equipe --");
+				break;
 			}
-			break;
-		case RENCONTRE:
-			break;
-		case EQUIPE:
-			break;
+			controleurAccueil.getVueAccueil().getPanelCartes().add(lblAucunEntité);
+		} else {
+			//this.setCartesDansAccueil(list);
 		}
 	}
 }
