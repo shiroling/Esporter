@@ -20,8 +20,7 @@ public class CarteEcurie extends Carte {
 		super();
 		this.ecurie=ecurie;
 		
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 55));
-		setBackground(new Color(255,255,255));
+		
 		
 		JLabel lblNomEcurie = new JLabel(ecurie.getNom());
 		lblNomEcurie.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
