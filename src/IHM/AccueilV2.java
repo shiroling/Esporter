@@ -33,12 +33,13 @@ import DBlink.Jeu;
 import DBlink.Joueur;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
+import IHM.PanelSelection.Selection;
 import base.ConnexionState;
+import java.awt.FlowLayout;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
 	private JFrame frame;
-	private static JPanel panel_side;
 	private JPanel panelCartes;
 	private static ControleurAccueil controleur;
 	private JLabel lblTitreCarte;
@@ -46,6 +47,8 @@ public class AccueilV2 {
 	private BtnStyleV2 btnDeconnexion;
 	private BtnStyleV2 btnSeConnecter;
 	private JPanel panelFiltre;
+	private int tailleCarte;
+	private JPanel panelLblTitreCartes;
 
 	/**
 	 * 
@@ -76,6 +79,7 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		tailleCarte=0;
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
@@ -149,11 +153,38 @@ public class AccueilV2 {
 
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
+		
+		JPanel panelTitreFiltre = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panelTitreFiltre.getLayout();
+		flowLayout.setVgap(20);
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
+		
+		JLabel lblTitreFiltre = new JLabel("Filtres");
+		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		panelTitreFiltre.add(lblTitreFiltre);
 
 		JPanel panelBtnSelection = new JPanel();
 		panelFonctionalites.add(panelBtnSelection, BorderLayout.NORTH);
-		panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
-
+		panelBtnSelection.setLayout(new GridLayout(0, 1, 0, 0));
+		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
+		
+		JPanel panelEspaceFoctionalite = new JPanel();
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 40));
+		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
+		
+		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
+		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
+		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
+		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
+		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
+		
+		panelBtnSelection.add(selectTournoi);
+		panelBtnSelection.add(selectRencontre);
+		panelBtnSelection.add(selectJeu);
+		panelBtnSelection.add(selectEquipe);
+		panelBtnSelection.add(selectEcurie);
+		/*
 		JButton btnTournois = new JButton("Tournois");
 		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTournois.addActionListener(controleur);
@@ -183,13 +214,13 @@ public class AccueilV2 {
 		btnEcurie.addActionListener(controleur);
 		btnEcurie.setName("Ecurie");
 		panelBtnSelection.add(btnEcurie);
-		
+		*/
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
 		panelMain.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPaneMain = new JScrollPane();
+		scrollPaneMain = new JScrollPane();
 		panelMain.add(scrollPaneMain);
 		scrollPaneMain.setBorder(new EmptyBorder(0,0,0,0));
 
@@ -197,21 +228,19 @@ public class AccueilV2 {
 		scrollPaneMain.setViewportView(panelCartes);
 		panelCartes.setLayout(new GridLayout(12, 3, 40, 10));
 		
-		JPanel panelLblTitreCartes = new JPanel();
+		panelLblTitreCartes = new JPanel();
 		panelMain.add(panelLblTitreCartes, BorderLayout.NORTH);
 		
 		lblTitreCarte = new JLabel();
 		lblTitreCarte.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelLblTitreCartes.add(lblTitreCarte);
-
-		panel_side = new JPanel();
-		frame.getContentPane().add(panel_side, BorderLayout.EAST);
 		
 		for (Component ie : panelCartes.getComponents()) {
 			ie.addMouseListener(ma);
 		}
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
+				System.out.println("retaillage");
 				ajusterGrille();
 			}
 		});
@@ -297,56 +326,53 @@ public class AccueilV2 {
 	 * ajuste la taille de la grille en fonction de la taille de la fenetre
 	 */
 	public void ajusterGrille() {
-
+		frame.setVisible(true);
+		int temp =frame.getWidth()-panelFiltre.getWidth()-scrollPaneMain.getVerticalScrollBar().getWidth()-20-10;
+		System.out.println("temp : "+ temp);
+		System.out.println("taille pan carte:"+panelCartes.getWidth());
+		System.out.println("taille des carte:"+panelCartes.getComponent(0).getWidth());
+		System.out.println("var taille carte:"+tailleCarte);
+		System.out.println();
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
-		if (panelCartes.getComponent(0).getWidth()>550) {
-			if (panelCartes.getWidth() < 1200) {
+		
+			if (temp < tailleCarte*2) {
 				// on set la taille de la grille pour eviter d'avoir trop de colones
 				// le +1 est pour de la securité au niveau de l'interface
 				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
-			} else if (panelCartes.getWidth() >= 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-				if (panelCartes.getWidth() >= 1900) {
+			} else if (temp >= tailleCarte*2) {
+				if (temp >= tailleCarte*3) {
 					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
+				}else {
+					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
 				}
 			}
-		}
-		// si les cartes ont une largeure inferieur a 300 pixel
-		else {
-			if (panelCartes.getWidth() < 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-			} else if (panelCartes.getWidth() >= 1200) {
-				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
-				if (panelCartes.getWidth() >= 1900) {
-					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
-				}
-			}
-		}
+		
 		
 		//corriger problemes d'actualisation 
-		frame.setVisible(true);
+		
 		panelCartes.updateUI();
 	}
-
-	/**
-	 * vide le volet
-	 */
-	public void viderSide() {
-		panel_side.removeAll();
-		panel_side.updateUI();
+	
+	private void ajusterGrilleQuandAjout() {
+		panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
+		frame.setVisible(true);
+		tailleCarte=panelCartes.getComponent(0).getWidth();
+		ajusterGrille();
 	}
+
 
 	/**
 	 * vide la gille principale
 	 */
 	public void viderCartes() {
+		tailleCarte=0;
 		panelCartes.removeAll();
 		panelCartes.updateUI();
 	}
 
 	public void ajouterCartes(List<BDEntity> l) {
 		if (l.size() == 0) {
-			ajusterGrille();
+			ajusterGrilleQuandAjout();
 			return;
 		}
 		if (l.get(0) instanceof Ecurie)	{
@@ -389,7 +415,7 @@ public class AccueilV2 {
 				panelCartes.add(ce);
 			}
 		}
-		ajusterGrille();
+		ajusterGrilleQuandAjout();
 	}
 
 	@Deprecated
@@ -400,7 +426,8 @@ public class AccueilV2 {
 			ce.addMouseListener(ma);
 			panelCartes.add(ce);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 	}
 
 	@Deprecated
@@ -411,7 +438,9 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
+		
 	}
 
 	@Deprecated
@@ -422,7 +451,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 
 	}
 
@@ -434,7 +464,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 
 	}
 
@@ -446,7 +477,8 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		ajusterGrille();
+		System.out.println("---");
+		ajusterGrilleQuandAjout();
 	}
 
 	public static MouseAdapter getMa() {

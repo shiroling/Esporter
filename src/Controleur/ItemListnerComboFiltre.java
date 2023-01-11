@@ -154,7 +154,6 @@ public class ItemListnerComboFiltre implements ItemListener {
 			controleurAccueil.getVueAccueil().getPanelCartes().removeAll();
 			controleurAccueil.getVueAccueil().getPanelCartes().add(lblAucunEntite);
 			controleurAccueil.getVueAccueil().getPanelCartes().updateUI();
-			System.out.println("ferjibnfernjuifkijnifanujcfi");
 		} else {
 			controleurAccueil.getVueAccueil().viderCartes();
 			controleurAccueil.getVueAccueil().ajouterCartesEquipe(equipes);

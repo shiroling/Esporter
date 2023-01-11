@@ -24,8 +24,7 @@ public class CarteTournois extends Carte {
 	public CarteTournois(Tournoi tournoi) {
 		super();
 		this.tournoi = tournoi;
-		GridLayout gridLayout = (GridLayout) getLayout();
-		gridLayout.setRows(2);
+		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		panelNom = new JPanel();
 		panelNom.setBackground(new Color(0,0,0,0));
