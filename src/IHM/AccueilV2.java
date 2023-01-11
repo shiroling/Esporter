@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ComponentAdapter;
@@ -25,6 +24,7 @@ import javax.swing.border.LineBorder;
 
 import Controleur.ControleurAccueil;
 import Controleur.ControleurAccueil.Etat;
+import DBlink.BDEntity;
 import DBlink.BDSelect;
 import DBlink.ConnexionBase;
 import DBlink.Ecurie;
@@ -96,7 +96,6 @@ public class AccueilV2 {
 		panelHeader.add(lblNomApp, BorderLayout.CENTER);
 
 		JPanel panelEspace = new JPanel();
-		FlowLayout fl_panelEspace = (FlowLayout) panelEspace.getLayout();
 		panelHeader.add(panelEspace, BorderLayout.WEST);
 		
 		JPanel panelConnexion = new JPanel();
@@ -121,15 +120,8 @@ public class AccueilV2 {
 		panelFiltre = new JPanel();
 		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
 		panelFiltre.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JPanel panelBtnValiderFiltres = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panelBtnValiderFiltres.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
-		panelFiltre.add(panelBtnValiderFiltres);
 		
-		JButton btnValiderFiltres = new JButton("Valider filtres");
-		panelBtnValiderFiltres.add(btnValiderFiltres);
-		
+		controleur.setPanelFiltresTournois();
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
@@ -269,16 +261,16 @@ public class AccueilV2 {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							procedureCreePopupJoueur(Joueur.getJoueurFromPseudo(jl.getText()));
+							procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()));
 							break;
 						case "Equipe":
-							procedureCreePopupEquipe(Equipe.getEquipeFromNom(jl.getText()));
+							procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()));
 							break;
 						case "Ecurie":
-							procedureCreePopupEcurie(Ecurie.getEcurieFromNom(jl.getText()));
+							procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()));
 							break;
 						case "Tournoi":
-							procedureCreePopupTournoi(Tournoi.getTournoiFromNom(jl.getText()));
+							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()));
 							break;
 						case "Rencontre":
 							// System.out.println("lol je sais pas comment faire pour ca");
@@ -305,8 +297,7 @@ public class AccueilV2 {
 	 * ajuste la taille de la grille en fonction de la taille de la fenetre
 	 */
 	public void ajusterGrille() {
-		//corriger problem d'actualisation 
-		frame.setVisible(true);
+
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
 		if (panelCartes.getComponent(0).getWidth()>550) {
 			if (panelCartes.getWidth() < 1200) {
@@ -332,6 +323,8 @@ public class AccueilV2 {
 			}
 		}
 		
+		//corriger problemes d'actualisation 
+		frame.setVisible(true);
 		panelCartes.updateUI();
 	}
 
@@ -351,40 +344,81 @@ public class AccueilV2 {
 		panelCartes.updateUI();
 	}
 
-	/**
-	 * 
-	 * @param ecuries
-	 */
+	public void ajouterCartes(List<BDEntity> l) {
+		if (l.size() == 0) {
+			ajusterGrille();
+			return;
+		}
+		if (l.get(0) instanceof Ecurie)	{
+			CarteEcurie ce;
+			for (BDEntity bdEntity : l) {
+				ce = new CarteEcurie((Ecurie) bdEntity);
+				ce.addMouseListener(ma);
+				panelCartes.add(ce);
+			}
+		}
+		if (l.get(0) instanceof Tournoi)	{
+			CarteTournois ce;
+			for (BDEntity bdEntity : l) {
+				ce = new CarteTournois((Tournoi) bdEntity);
+				ce.addMouseListener(ma);
+				panelCartes.add(ce);
+			}
+		}
+		if (l.get(0) instanceof Rencontre)	{
+			CarteRencontre ct;
+			for (BDEntity bdEntity : l) {
+				ct = new CarteRencontre((Rencontre) bdEntity);
+				ct.addMouseListener(ma);
+				panelCartes.add(ct);
+			}
+		}
+		if (l.get(0) instanceof Jeu)	{
+			CarteJeu ce;
+			for (BDEntity bdEntity : l) {
+				ce = new CarteJeu((Jeu) bdEntity);
+				ce.addMouseListener(ma);
+				panelCartes.add(ce);
+			}
+		}
+		if (l.get(0) instanceof Jeu)	{
+			CarteJeu ce;
+			for (BDEntity bdEntity : l) {
+				ce = new CarteJeu((Jeu) bdEntity);
+				ce.addMouseListener(ma);
+				panelCartes.add(ce);
+			}
+		}
+		ajusterGrille();
+	}
+
+	@Deprecated
 	public void ajouterCartesEcurie(List<Ecurie> ecuries) {
 		CarteEcurie ce;
 		for (Ecurie ecurie : ecuries) {
 			ce = new CarteEcurie(ecurie);
-			ce.setName("CarteEcurie");
-			ce.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ce.addMouseListener(ma);
 			panelCartes.add(ce);
 		}
 		ajusterGrille();
 	}
 
+	@Deprecated
 	public void ajouterCartesTournois(List<Tournoi> tournois) {
 		CarteTournois ct;
 		for (Tournoi tournoi : tournois) {
 			ct = new CarteTournois(tournoi);
-			ct.setName("CarteTournois");
-			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
 		ajusterGrille();
 	}
 
+	@Deprecated
 	public void ajouterCartesMatch(List<Rencontre> rencontres) {
 		CarteRencontre ct;
 		for (Rencontre rencontre : rencontres) {
 			ct = new CarteRencontre(rencontre);
-			ct.setName("CarteRencontre");
-			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
@@ -392,26 +426,23 @@ public class AccueilV2 {
 
 	}
 
+	@Deprecated
 	public void ajouterCartesJeu(List<Jeu> jeux) {
 		CarteJeu ct;
 		for (Jeu jeu : jeux) {
 			ct = new CarteJeu(jeu);
-			ct.setName("CarteJeu");
-			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
-			;
 			panelCartes.add(ct);
 		}
 		ajusterGrille();
 
 	}
 
+	@Deprecated
 	public void ajouterCartesEquipe(List<Equipe> equipes) {
 		CarteEquipe ct;
 		for (Equipe equipe : equipes) {
 			ct = new CarteEquipe(equipe);
-			ct.setName("CarteJeu");
-			ct.setBorder(new LineBorder(new Color(0, 0, 0)));
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
@@ -443,41 +474,60 @@ public class AccueilV2 {
 		btnDeconnexion.setVisible(c != ConnexionState.NON_CONNECTE);
 		ajusterGrille();
 	}
-
+	
+	private void procedureCreerPopup(BDEntity e) {
+		JDialog pop = null;
+		if (e instanceof Ecurie)	{
+			pop = new PopupEcurie((Ecurie) e);
+		}
+		if (e instanceof Joueur)	{
+			pop = new PopupJoueur((Joueur) e);
+		}
+		if (e instanceof Jeu)	{
+			pop = new PopupJeu((Jeu) e);
+		}
+		if (e instanceof Equipe)	{
+			pop = new PopupEquipe((Equipe) e);
+		}
+		if (e instanceof Tournoi)	{
+			pop = new PopupTournoi((Tournoi) e);
+		}
+		if (e instanceof Rencontre)	{
+			pop = new PopupRencontre((Rencontre) e);
+		}
+		
+		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		pop.setVisible(true);
+	}
+	
+	@Deprecated
 	private void procedureCreePopupJoueur(Joueur j) {
-		PopupJoueur pop = new PopupJoueur(j);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
+		procedureCreerPopup(j);
+	}
+	
+	@Deprecated
+	public void procedureCreePopupJeu(Jeu j) {
+		procedureCreerPopup(j);
+	}
+	
+	@Deprecated
+	public void procedureCreePopupEcurie(Ecurie e) {
+		procedureCreerPopup(e);
 	}
 
-	public static void procedureCreePopupJeu(Jeu j) {
-		PopupJeu pop = new PopupJeu(j);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
+	@Deprecated
+	public void procedureCreePopupEquipe(Equipe e) {
+		procedureCreerPopup(e);
 	}
 
-	public static void procedureCreePopupEcurie(Ecurie e) {
-		PopupEcurie pop = new PopupEcurie(e);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
+	@Deprecated
+	public void procedureCreePopupTournoi(Tournoi t) {
+		procedureCreerPopup(t);
 	}
 
-	public static void procedureCreePopupEquipe(Equipe e) {
-		PopupEquipe pop = new PopupEquipe(e);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
-	}
-
-	public static void procedureCreePopupTournoi(Tournoi t) {
-		PopupTournoi pop = new PopupTournoi(t);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
-	}
-
-	public static void procedureCreePopupRencontre(Rencontre r) {
-		PopupRencontre pop = new PopupRencontre(r);
-		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		pop.setVisible(true);
+	@Deprecated
+	public void procedureCreePopupRencontre(Rencontre r) {
+		procedureCreerPopup(r);
 	}
 
 	public static ControleurAccueil getControleur() {
@@ -505,6 +555,10 @@ public class AccueilV2 {
 	
 	public JPanel getPanelFiltre() {
 		return this.panelFiltre;
+	}
+	
+	public JPanel getPanelCartes() {
+		return this.panelCartes;
 	}
 
 }

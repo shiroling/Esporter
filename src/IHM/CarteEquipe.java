@@ -29,6 +29,9 @@ public class CarteEquipe extends Carte {
 		List<JPanel> listPanelAHover = new ArrayList<>();
 		listPanelAHover.add(this);
 		super.addHoverPannels(listPanelAHover);
+
+		this.setName("CarteJeu");
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 	}
 	
 	public Equipe getEquipe() {

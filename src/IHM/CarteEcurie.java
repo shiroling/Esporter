@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import DBlink.Ecurie;
 
@@ -29,6 +30,9 @@ public class CarteEcurie extends Carte {
 		List<JPanel> listPanelAHover = new ArrayList<>();
 		listPanelAHover.add(this);
 		super.addHoverPannels(listPanelAHover);
+		this.setName("CarteEcurie");
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+
 	}
 	
 	public Ecurie getEcurie() {
