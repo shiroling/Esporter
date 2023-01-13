@@ -33,7 +33,7 @@ public class ControleurAccueil implements ActionListener {
 	private Object obj;
 	private JButton btn;
 	private ConnexionState connexionState;
-	private int idLog; // Pour Manager => id de l'ecurie
+	private int idLog; // Pour Manager => id de l'ecurie 
 	private JComboBox<String> comboFiltreAvencementTournoi;
 	private JComboBox<String> comboFiltreInscriptionTournoi;
 	private JComboBox<String> comboFiltreMultiTournoi;

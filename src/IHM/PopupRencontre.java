@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControleurPopupRencontre;
 import DBlink.Equipe;
 import DBlink.Rencontre;
 import java.awt.GridLayout;
@@ -29,6 +30,10 @@ public class PopupRencontre extends JDialog {
 	public PopupRencontre(Rencontre r) {
 		equipe1 = r.getEquipes().get(0);
 		equipe2 = r.getEquipes().get(1);
+		
+		ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
+		
+		setTitle("Match : " + equipe1.getNom() + " - " + equipe2.getNom());
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,11 +86,8 @@ public class PopupRencontre extends JDialog {
 		}
 		else {
 			JButton btnNewButton = new JButton("Renseigner Vainqueur");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.out.println("connexction puis verifi si est bien un arbitre puis arbitre de la rencontre");
-				}
-			});
+			btnNewButton.setName("btnRenseignerVainqueur");
+			btnNewButton.addActionListener(controleur);
 			panelVainqueur.add(btnNewButton);
 		}
 		
