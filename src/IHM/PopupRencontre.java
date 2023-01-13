@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControleurAccueil;
 import Controleur.ControleurPopupRencontre;
 import DBlink.Equipe;
 import DBlink.Rencontre;
@@ -21,17 +22,19 @@ import javax.swing.JScrollPane;
 public class PopupRencontre extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private Equipe equipe1;
-	private Equipe equipe2;
-
+	private Rencontre rencontre;
+	private ControleurAccueil controleurAccueil;
+	
 	/**
 	 * Create the dialog.
 	 */
-	public PopupRencontre(Rencontre r) {
-		equipe1 = r.getEquipes().get(0);
-		equipe2 = r.getEquipes().get(1);
+	public PopupRencontre(Rencontre r, ControleurAccueil controleurAccueil) {
+		this.rencontre = r;
+		this.controleurAccueil = controleurAccueil;
+		Equipe equipe1 = r.getEquipes().get(0);
+		Equipe equipe2 = r.getEquipes().get(1);
 		
-		ControleurPopupRencontre controleur = new ControleurPopupRencontre(this);
+		ControleurPopupRencontre controleur = new ControleurPopupRencontre(this, controleurAccueil);
 		
 		setTitle("Match : " + equipe1.getNom() + " - " + equipe2.getNom());
 		setBounds(100, 100, 450, 300);
@@ -151,6 +154,10 @@ public class PopupRencontre extends JDialog {
 			panel.setName("Joueur");
 			panel.addMouseListener(AccueilV2.getMa());
 		}
+	}
+	
+	public Rencontre getRencontre() {
+		return this.rencontre;
 	}
 
 }
