@@ -161,7 +161,7 @@ public class AccueilV2 {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
 		
-		JLabel lblTitreFiltre = new JLabel("Filtres");
+		JLabel lblTitreFiltre = new JLabel("Filtrer les résultats");
 		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelTitreFiltre.add(lblTitreFiltre);
 

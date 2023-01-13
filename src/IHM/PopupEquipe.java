@@ -51,7 +51,7 @@ public class PopupEquipe extends JDialog {
 		panelJoueurs.setLayout(new GridLayout(5, 0, 0, 0));
 		
 		for (Joueur j : e.getListJoueur()) {	
-			JLabel lblJoueur = new JLabel(j.getNom());
+			JLabel lblJoueur = new JLabel(j.getPseudo());
 			panelJoueurs.add(lblJoueur);
 		}
 	}

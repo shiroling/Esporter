@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import DBlink.BDSelect;
 import DBlink.Equipe;
 import DBlink.Jeu;
 import IHM.FormEnregistrerEquipe;
@@ -28,7 +29,7 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 				this.vue.getLblnomEquipe().setText("Nom (déjà pris)");
 				this.vue.getLblnomEquipe().setForeground(Color.RED);
 			} else {
-				Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
+				//Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
 			}
 			this.vue.dispose();
 			break;
