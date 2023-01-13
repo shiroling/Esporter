@@ -57,7 +57,7 @@ public class Poule extends BDEntity {
 	@Override
 	public String toString() {
 		// TODO non Auto-generated method stub
-		return "le toString() n'est pas implémenté dans la class Poule je vous laisse le faire comme je ne sais pas comment vous voulez qu'il soit";
+		return this.getId() + "";
 	}
 	
 	public static Date fixerDateRencontre(boolean isFinale, int idTournoi) {
@@ -84,23 +84,20 @@ public class Poule extends BDEntity {
 		return BDSelect.getListeRencontreFromPoule(this.getId());
 	}
 
-	public Rencontre getRencontreVide() throws Exception {
-		List<Rencontre> lr = this.getRencontres();
-		for (Rencontre rencontre : lr) {
-			if(!rencontre.isFull()) {
-				return rencontre;
-			}
-		}
-		throw new Exception("Impossible d'insérer le finaliste, il n'y a pas de rencontres libres");
+	public boolean estFinie() {
+		return BDPredicats.estPouleFinie(this.getId());
 	}
 
-	public void setFinalist(int idEquipe) {
-		// TODO faut utiliser la procedure PLSQL
-		BDInsert.insererComposer(idEquipe, this.getId());
+	public void populateRencontres() {
+		BDInsert.populateRencontres(this.getId());
 		
-		// TODO vérifier si c'est le dernier matche joué de la poule
-		// si c'est le cas, il faut inscrire le premier de la poule GET_PREMIER_POULE(idPoule)
-		// et l'inscrire à la poule finale du tournoi p.getTournoi.getPouleFinale()
-		// BREF
+	}
+
+	public Equipe getPremier() {
+		return BDSelect.getPremierPoule(this.getId());
+	}
+
+	public boolean isPleine() {
+		return this.getEquipes().size() > 3;
 	}
 }

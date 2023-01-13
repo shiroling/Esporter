@@ -1,6 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -197,31 +198,52 @@ public class Tournoi extends BDEntity {
 	public void genererPoules() {
 		BDInsert.genererPoules(this.getId());
 	}
-	
-	public void setFinalist(int idEquipe, int idRencontreGagne) throws Exception {
-		Poule pFinale = this.getPouleFinale();
-		Rencontre r = pFinale.getRencontreVide();
-		BDInsert.updateGagnantRencontre(idRencontreGagne, idEquipe);
-		pFinale.setFinalist(idEquipe);
-		r.setFinalist(idEquipe);
-	}
 
-	private Poule getPouleFinale() {
+	public Poule getPouleFinale() {
 		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 	
 	public List<Poule> getListePoules(){
 		return BDSelect.getPoulesTournoi(getId());
 	}
+	
+	public List<Poule> getListePoulesSimples(){
+		List<Poule> l = BDSelect.getPoulesTournoi(getId());
+		Poule pf = null;
+		for (Poule poule : l) {
+			if(poule.isFinale()) {
+				pf = poule;
+			}
+		}
+		l.remove(pf);
+		return l;
+	}
 
+	public void procedureTournoiPlein() {
+		this.genererPoules();
+		this.peuplerPoules();
+		
+		List<Poule> l = this.getListePoulesSimples();
+		
+		for (Poule poule : l) {
+			poule.genererRencontres();
+			poule.populateRencontres();
+		}
+		
+	}
+	
 	public void inscrireEquipe(Equipe e) {
 		BDInsert.insererInscrit(e, this);
 		
 		if(this.isTournoiPlein()) {
-			this.genererPoules();
+			procedureTournoiPlein();
 		}
 	}
 	
+	private void peuplerPoules() {
+		BDInsert.peuplerPoules(this.getId());
+		}
+
 	public boolean isInscrite(Equipe e) {
 		return BDPredicats.isIscriteTournoi(e, this);
 	}
