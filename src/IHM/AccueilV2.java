@@ -422,7 +422,6 @@ public class AccueilV2 {
 			ce.addMouseListener(ma);
 			panelCartes.add(ce);
 		}
-		System.out.println("---");
 		ajusterGrilleQuandAjout();
 	}
 
@@ -434,7 +433,6 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		System.out.println("---");
 		ajusterGrilleQuandAjout();
 		
 	}
@@ -447,7 +445,6 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		System.out.println("---");
 		ajusterGrilleQuandAjout();
 
 	}
@@ -460,7 +457,6 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		System.out.println("---");
 		ajusterGrilleQuandAjout();
 
 	}
@@ -473,7 +469,6 @@ public class AccueilV2 {
 			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
-		System.out.println("---");
 		ajusterGrilleQuandAjout();
 	}
 

@@ -30,8 +30,8 @@ public class PopupIndiquerVainqueur extends JDialog {
 	private Equipe equipe2;
 	private Rencontre rencontre;
 	private Equipe equipeVainqueur;
-	private PanelArrondi panelEquipe1;
-	private PanelArrondi panelEquipe2;
+	private JPanel panelEquipe1;
+	private JPanel panelEquipe2;
 
 	private final PanelDegrade contentPanel = new PanelDegrade(new Color[] {new Color(163, 218, 255), BtnStyleV2.COLOR_BASE_BLEU});
 
@@ -72,7 +72,7 @@ public class PopupIndiquerVainqueur extends JDialog {
 			flowLayout.setVgap(30);
 			contentPanel.add(panelFlowGauche);
 			{
-				panelEquipe1 = new PanelArrondi(400, 400, 400, 400);
+				panelEquipe1 = new JPanel();
 				panelEquipe1.setName("panelEquipe1");
 				//panelEquipe1.setBorder(new LineBorder(Color.DARK_GRAY));
 				panelEquipe1.addMouseListener(hover);
@@ -94,7 +94,7 @@ public class PopupIndiquerVainqueur extends JDialog {
 			flowLayout.setVgap(30);
 			contentPanel.add(panelFlowDroit);
 			{
-				panelEquipe2 = new PanelArrondi(400, 400, 400, 400);
+				panelEquipe2 = new JPanel();
 				panelEquipe2.setName("panelEquipe2");
 				//panelEquipe2.setBorder(new LineBorder(Color.DARK_GRAY));
 				panelEquipe2.addMouseListener(hover);
