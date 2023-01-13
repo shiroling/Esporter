@@ -677,5 +677,10 @@ public class BDSelect {
 		}
 		return null;
 	}
+
+	public static List<Poule> getClassementTournoi(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

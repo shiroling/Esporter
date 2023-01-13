@@ -250,7 +250,7 @@ public class Tournoi extends BDEntity {
 		return BDPredicats.estTournoiFini(this.getId());
 	}
 	
-	public List<Equipe> getClassement() {
-		return BDSelect.getPoulesTournoi(this.getId());
+	public List<Poule> getClassement() {
+		return BDSelect.getClassementTournoi(this.getId());
 	}
 }
