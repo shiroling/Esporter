@@ -1,8 +1,11 @@
 	package DBlink;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -27,7 +30,7 @@ public class BDSelect {
 			st.close();
 			return l;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -44,7 +47,7 @@ public class BDSelect {
 			st.close();
 			return joueurs;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -61,7 +64,7 @@ public class BDSelect {
 			st.close();
 			return equipes;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -77,7 +80,7 @@ public class BDSelect {
 			st.close();
 			return jeux;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -94,7 +97,7 @@ public class BDSelect {
 			st.close();
 			return t;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -111,7 +114,7 @@ public class BDSelect {
 			st.close();
 			return t;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -128,7 +131,7 @@ public class BDSelect {
 			st.close();
 			return t;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -147,7 +150,7 @@ public class BDSelect {
 			st.close();
 			return t;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -164,7 +167,7 @@ public class BDSelect {
 			st.close();
 			return t;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -182,7 +185,7 @@ public class BDSelect {
 			st.close();
 			return rencontres;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -200,7 +203,7 @@ public class BDSelect {
 			st.close();
 			return rencontres;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -217,7 +220,7 @@ public class BDSelect {
 			st.close();
 			return joueurs;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -234,7 +237,7 @@ public class BDSelect {
 			st.close();
 			return equipes;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -250,7 +253,7 @@ public class BDSelect {
 			st.close();
 			return equipes;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -267,7 +270,7 @@ public class BDSelect {
 			st.close();
 			return equipes;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -286,7 +289,7 @@ public class BDSelect {
 			st.close();
 			return equipes;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -304,7 +307,7 @@ public class BDSelect {
 			st.close();
 			return tournois;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -322,7 +325,7 @@ public class BDSelect {
 			st.close();
 			return tournois;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -340,7 +343,7 @@ public class BDSelect {
 			st.close();
 			return tournois;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -358,7 +361,7 @@ public class BDSelect {
 			st.close();
 			return tournois;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -374,7 +377,7 @@ public class BDSelect {
 			st.close();
 			return nbInscrits;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -390,7 +393,7 @@ public class BDSelect {
 			st.close();
 			return poules;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -406,7 +409,7 @@ public class BDSelect {
 			st.close();
 			return var;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
     }    
@@ -422,7 +425,7 @@ public class BDSelect {
 			st.close();
 			return new Equipe(var);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -438,7 +441,7 @@ public class BDSelect {
 			st.close();
 			return new Poule(var);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -454,7 +457,7 @@ public class BDSelect {
 			st.close();
 			return new Equipe(var);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -471,7 +474,7 @@ public class BDSelect {
 			st.close();
 			return result;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -503,7 +506,7 @@ public class BDSelect {
 			}
 			return points;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -515,7 +518,7 @@ public class BDSelect {
 			st.close();
 			return rs.getFloat(1);
 		} catch(Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -530,7 +533,7 @@ public class BDSelect {
 			st.close();
 			return var;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -545,7 +548,7 @@ public class BDSelect {
 			st.close();
 			return var;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -560,7 +563,7 @@ public class BDSelect {
 			st.close();
 			return var;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return -1;
 		}
 	}
@@ -607,7 +610,7 @@ public class BDSelect {
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return -1;
 	    }
 	}
@@ -622,7 +625,7 @@ public class BDSelect {
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return -1;
 	    }
 	}
@@ -636,7 +639,7 @@ public class BDSelect {
 			st.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return -1;
 	    }
 	}
@@ -651,10 +654,28 @@ public class BDSelect {
 			rs.close();
 			return var;	        
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return false;
-	        //dfsbcgvkhyukhj,szmfebyghkjezshjdhusykjr,s;qkfdgbvk shngcyiruh
 	    }
+	}
+
+	public static Equipe getPremierPoule(int idPoule) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{? =  call GET_PREMIER_POULE(?) }");
+			stmt.registerOutParameter(1, Types.INTEGER); // enregistrement du paramètre de sortie
+			stmt.setInt(2, idPoule); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la fonction
+
+			int result = stmt.getInt(1); // récupération du résultat	
+			stmt.close();
+			
+			return new Equipe(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

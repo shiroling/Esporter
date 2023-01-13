@@ -86,7 +86,7 @@ public class Rencontre extends BDEntity {
 	}
 	
 	public Poule getPoule() {
-		return new Poule(this.idPoule);
+		return new Poule(this.getIdPoule());
 	}
 	
 	public boolean isArbitreRencontre(int idArbitre) {
@@ -123,9 +123,13 @@ public class Rencontre extends BDEntity {
 	public Tournoi getTournoi() {
 		return new Tournoi(this.getIdTournoi());
 	}
-	
-	public void setFinalist(int idEquipe) {
-		BDInsert.insererJouer(idEquipe, this.getId());
+
+	public void designerVainceur(int idEquipeVaincueur) {
+		BDInsert.designerVainceurRencontre(this.getId(), idEquipeVaincueur);
+		if(this.getPoule().estFinie()) {
+			Equipe e = this.getPoule().getPremier();			
+			BDInsert.insererComposer(e.getId(), this.getTournoi().getPouleFinale().getId());
+		}
 	}
-	
+
 }

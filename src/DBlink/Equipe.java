@@ -157,9 +157,8 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	public static Equipe getEquipeFromNom(String nom) {
 		return new Equipe(BDSelect.getIdEquipeFromNom(nom));
 	}
-	
+
 	public static void inserer(String nom, int idJeu, int idEcurie) {
 		BDInsert.insererEquipe(nom, idJeu, idEcurie);
 	}
-
 }

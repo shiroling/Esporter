@@ -1,8 +1,10 @@
 package DBlink;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import base.Portee;
@@ -22,7 +24,7 @@ public class BDInsert {
 			st.setInt(7, idGerant);
 			st.executeUpdate();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
@@ -33,28 +35,34 @@ public class BDInsert {
 			st.setInt(1, idTournoi);
 			st.executeUpdate();
 		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
+			ee.printStackTrace();
 		}
 		for(Equipe e : listeEquipes) {
 			try {
 				PreparedStatement st = connex.prepareStatement("Insert into Composer values (Seq_Poule.currval, ?)");
 				st.setInt(1, e.getId());
 				st.executeUpdate();
-			} catch (Exception ee) {
-				System.out.println(ee.getMessage());
+			} catch (Exception eee) {
+				eee.printStackTrace();
 			}
 		}
 	}
 	
-	protected static void insererComposer(int idEquipe, int idPoule) {
+	public static void insererComposer(int idEquipe, int idPoule) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
 			PreparedStatement st = connex.prepareStatement("Insert into Composer values (?, ?)");
 			st.setInt(1, idEquipe);
 			st.setInt(2, idPoule);
 			st.executeUpdate();
+			
+			Poule p = new Poule(idPoule);
+			if (p.isPleine()) {
+				p.genererRencontres();
+				p.populateRencontres();
+			}
 		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
+			ee.printStackTrace();
 		}
 	}
 	
@@ -72,7 +80,7 @@ public class BDInsert {
 				stRencontre.executeUpdate();
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
@@ -86,7 +94,7 @@ public class BDInsert {
 			st.executeUpdate();
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		for(Equipe e : listeEquipes) {
 			try {
@@ -95,7 +103,7 @@ public class BDInsert {
 				st.executeUpdate();
 
 			} catch (Exception ee) {
-				System.out.println(ee.getMessage());
+				ee.printStackTrace();
 			}
 		}
 	}
@@ -108,7 +116,7 @@ public class BDInsert {
 			st.setInt(2, t.getId());
 			st.executeUpdate();
 		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
+			ee.printStackTrace();
 		}
 	}
 	
@@ -120,26 +128,7 @@ public class BDInsert {
 			st.setInt(2, idRencontre);
 			st.executeUpdate();
 		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
-		}
-	}
-	
-	protected static void updateGagnantRencontre(int idRencontre, int idEquipe) {
-		Connection connex = ConnexionBase.getConnectionBase();
-		try {
-			PreparedStatement stGagnant = connex.prepareStatement("UPDATE jouer SET a_gagne = 1 WHERE id_equipe = ? AND id_rencontre = ?");
-			stGagnant.setInt(1, idEquipe);
-			stGagnant.setInt(2, idRencontre);
-			stGagnant.executeUpdate();
-
-			
-			PreparedStatement stPerdant = connex.prepareStatement("UPDATE jouer SET a_gagne = 0 WHERE id_equipe <> ? AND id_rencontre = ?");
-			stPerdant.setInt(1, idEquipe);
-			stPerdant.setInt(2, idRencontre);
-			stPerdant.executeUpdate();
-
-		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
+			ee.printStackTrace();
 		}
 	}
 
@@ -151,9 +140,92 @@ public class BDInsert {
 			st.setInt(2, idJeu);
 			st.setInt(3, idEcurie);
 			st.executeUpdate();
+			st.close();
+
 		} catch (Exception ee) {
-			System.out.println(ee.getMessage());
+			ee.printStackTrace();
 		}
 	}
+
+	public static void genererRencontre(int idPoule) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call GEN_RENCONTRE_4_POULE(?) }");
+			stmt.setInt(1, idPoule); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void genererPoules(int idTournoi) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call GEN_POULES_4_TOURNOI(?) }");
+			stmt.setInt(1, idTournoi); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void designerVainceurRencontre(int idRencontre, int idEquipeVaincueur) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call SELECT_VAINCEUR_RENCONTRE(?, ?) }");
+			stmt.setInt(1, idEquipeVaincueur); 
+			stmt.setInt(2, idRencontre); 
+
+			stmt.execute(); // appel de la procédure	
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void peuplerPoules(int idTournoi) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call POPULATE_POULE_4_TOURNOI(?) }");
+			stmt.setInt(1, idTournoi); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure
+			stmt.close();
+
+		} catch (SQLException e) {
+			if(!e.getMessage().contains("CTQ4266A.SYS_C001313482")) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+
+	public static void populateRencontres(int idPoule) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{ call POPULATE_RENCONTRE_4_POULE(?) }");
+			stmt.setInt(1, idPoule); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la procédure
+			stmt.close();
+
+		} catch (SQLException e) {
+			if(!e.getMessage().contains("CTQ4266A.SYS_C001313482")) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	
+	
+	
 	
 }

@@ -4,7 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 
 import base.Portee;
 import oracle.jdbc.proxy.annotation.Pre;
@@ -23,7 +25,7 @@ public class BDPredicats {
 				return false;
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -38,7 +40,7 @@ public class BDPredicats {
 			st.close();
 			return b;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -54,7 +56,7 @@ public class BDPredicats {
 			st.close();
 			return b;
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return false;
 	    }
 	}
@@ -67,7 +69,6 @@ public class BDPredicats {
 	        st.setString(2, id);
 	        st.setString(3, mdp);
 	        st.execute();
-	        System.out.println(st.getInt(1));
 	        return (st.getInt(1) == 1);
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -85,7 +86,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 	    } catch (Exception e) {
-	        System.out.println(e.getMessage());
+	        e.printStackTrace();
 	        return false;
 	    }
 	}
@@ -98,7 +99,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -111,7 +112,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -124,7 +125,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -139,7 +140,7 @@ public class BDPredicats {
 			st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -153,7 +154,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -199,7 +200,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return b;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -230,7 +231,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -243,7 +244,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -274,7 +275,7 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
 		}
 	}
@@ -289,8 +290,29 @@ public class BDPredicats {
 	    	st.close();
 	    	return check;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 	        return false;
+		}
+	}
+	
+	public static boolean estPouleFinie(int idPoule) {
+		CallableStatement stmt;
+		try {
+			stmt = ConnexionBase.getConnectionBase().prepareCall("{? =  call EST_POULE_FINIE(?) }");
+			stmt.registerOutParameter(1, Types.INTEGER); // enregistrement du paramètre de sortie
+			stmt.setInt(2, idPoule); // enregistrement du premier paramètre d'entrée
+
+			stmt.execute(); // appel de la fonction
+
+			int result = stmt.getInt(1); // récupération du résultat	
+			stmt.close();
+			if(result == 0) {
+				return false;
+			}
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 
