@@ -352,6 +352,7 @@ public class AccueilV2 {
 		panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
 		frame.setVisible(true);
 		tailleCarte=panelCartes.getComponent(0).getWidth();
+		scrollPaneMain.getVerticalScrollBar().setUnitIncrement(tailleCarte);
 		ajusterGrille();
 	}
 
