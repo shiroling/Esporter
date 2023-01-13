@@ -89,7 +89,7 @@ public class Rencontre extends BDEntity {
 		return new Poule(this.getIdPoule());
 	}
 	
-	public boolean isArbitreRencontre(int idArbitre) {
+	public boolean isArbitre(int idArbitre) {
 		return idArbitre == this.idArbitre;
 	}
 
