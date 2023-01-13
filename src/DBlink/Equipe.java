@@ -157,7 +157,7 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	public static Equipe getEquipeFromNom(String nom) {
 		return new Equipe(BDSelect.getIdEquipeFromNom(nom));
 	}
-	
+/*	
 <<<<<<< Updated upstream
 	public static void inserer(String nom, int idJeu, int idEcurie) {
 		BDInsert.insererEquipe(nom, idJeu, idEcurie);
@@ -165,5 +165,5 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 
 
 =======
->>>>>>> Stashed changes
+>>>>>>> Stashed changes*/
 }

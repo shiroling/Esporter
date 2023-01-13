@@ -36,6 +36,10 @@ public class HoverRondEquipe implements MouseListener{
 			this.vue.getPanelEquipe2().setBackground(HoverRondEquipe.COULEUR_PERDANT);
 			this.vue.getPanelEquipe1().updateUI();
 			this.vue.getPanelEquipe2().updateUI();
+			this.vue.getPanelEquipe1().revalidate();
+			this.vue.getPanelEquipe1().repaint();
+			this.vue.getPanelEquipe2().revalidate();
+			this.vue.getPanelEquipe2().repaint();
 			break;
 		case "panelEquipe2" : 
 			this.vue.setVainqueur(this.vue.getEquipe2());
@@ -43,6 +47,10 @@ public class HoverRondEquipe implements MouseListener{
 			this.vue.getPanelEquipe1().setBackground(HoverRondEquipe.COULEUR_PERDANT);
 			this.vue.getPanelEquipe1().updateUI();
 			this.vue.getPanelEquipe2().updateUI();
+			this.vue.getPanelEquipe1().revalidate();
+			this.vue.getPanelEquipe1().repaint();
+			this.vue.getPanelEquipe2().revalidate();
+			this.vue.getPanelEquipe2().repaint();
 			break;
 		}
 	}
@@ -69,6 +77,10 @@ public class HoverRondEquipe implements MouseListener{
 		} else if(panel.getBackground().equals(COULEUR_PERDANT)) {
 			panel.setBackground(COULEUR_PERDANT_HOVER);;
 		}
+		this.vue.getPanelEquipe1().revalidate();
+		this.vue.getPanelEquipe1().repaint();
+		this.vue.getPanelEquipe2().revalidate();
+		this.vue.getPanelEquipe2().repaint();
 	}
 
 	@Override
@@ -81,6 +93,10 @@ public class HoverRondEquipe implements MouseListener{
 		} else if(panel.getBackground().equals(COULEUR_PERDANT_HOVER)) {
 			panel.setBackground(COULEUR_PERDANT);;
 		}
+		this.vue.getPanelEquipe1().revalidate();
+		this.vue.getPanelEquipe1().repaint();
+		this.vue.getPanelEquipe2().revalidate();
+		this.vue.getPanelEquipe2().repaint();
 	}
 
 }
