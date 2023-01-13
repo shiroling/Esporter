@@ -1,6 +1,7 @@
 package DBlink;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -194,52 +195,55 @@ public class Tournoi extends BDEntity {
 		return new Tournoi(BDSelect.getIdTournoiFromNom(nom));
 	}
 	
-	public void genererPoules() throws Exception {
-		if( !this.isTournoiPlein() ) {
-			throw new Exception("Les poules ne peuvent pas étre généré.");
-		}
-		
-		this.init(); //just in case it isn't ;)
-		
-		List<Equipe> l = this.getListEquipesParticipantes();
-		List<Equipe> li = new LinkedList<>();
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				li.add(l.get(i*4+j));
-			}
-			BDInsert.insererPoule(this.getId(), li);
-			System.out.println("La poule a été générée : " + li);
-
-			li.clear();
-		}
-		System.out.println("Les poules ont été générées !");
-		
-		List<Poule> lp = BDSelect.getPoulesTournoi(this.getId());
-		for (Poule poule : lp) {
-			poule.genererRencontres();
-		}
-	}
-	
-	public void setFinalist(int idEquipe, int idRencontreGagne) throws Exception {
-		Poule pFinale = this.getPouleFinale();
-		Rencontre r = pFinale.getRencontreVide();
-		BDInsert.updateGagnantRencontre(idRencontreGagne, idEquipe);
-		pFinale.setFinalist(idEquipe);
-		r.setFinalist(idEquipe);
+	public void genererPoules() {
+		BDInsert.genererPoules(this.getId());
 	}
 
-	private Poule getPouleFinale() {
+	public Poule getPouleFinale() {
 		return BDSelect.getFinaleFromTournoi(this.getId());
 	}
 	
 	public List<Poule> getListePoules(){
 		return BDSelect.getPoulesTournoi(getId());
 	}
+	
+	public List<Poule> getListePoulesSimples(){
+		List<Poule> l = BDSelect.getPoulesTournoi(getId());
+		Poule pf = null;
+		for (Poule poule : l) {
+			if(poule.isFinale()) {
+				pf = poule;
+			}
+		}
+		l.remove(pf);
+		return l;
+	}
 
-	public void inscrireEquipe(Equipe e) {
-		BDInsert.insererInscrit(e, this);
+	public void procedureTournoiPlein() {
+		this.genererPoules();
+		this.peuplerPoules();
+		
+		List<Poule> l = this.getListePoulesSimples();
+		
+		for (Poule poule : l) {
+			poule.genererRencontres();
+			poule.populateRencontres();
+		}
+		
 	}
 	
+	public void inscrireEquipe(Equipe e) {
+		BDInsert.insererInscrit(e, this);
+		
+		if(this.isTournoiPlein()) {
+			procedureTournoiPlein();
+		}
+	}
+	
+	private void peuplerPoules() {
+		BDInsert.peuplerPoules(this.getId());
+		}
+
 	public boolean isInscrite(Equipe e) {
 		return BDPredicats.isIscriteTournoi(e, this);
 	}
