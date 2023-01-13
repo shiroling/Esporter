@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controleur.ControlerPopupTournoi;
 import Controleur.ControleurAccueil;
+import DBlink.BDSelect;
 import DBlink.Equipe;
 import DBlink.Poule;
 import DBlink.Rencontre;
@@ -100,13 +101,30 @@ public class PopupTournoi extends JDialog {
 		btnVoirLesRencontres.setName("voirRencontres");
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 
-		for (Equipe e : tournoi.getListEquipesParticipantes()) {
-			JPanel panelEquipe = new JPanel();
-			panelEquipes.add(panelEquipe);
-			JLabel equipe = new JLabel(e.getNom());
-			equipe.setName("Equipe");
-			equipe.addMouseListener(AccueilV2.getMa());
-			panelEquipe.add(equipe);
+		if (tournoi.isFini()) {
+			for (Equipe e :tournoi.getClassement()) {
+				JPanel panelEquipe = new JPanel();
+				panelEquipes.add(panelEquipe);
+				if (e==tournoi.getClassement().get(0)) {
+					JLabel equipe = new JLabel(e.getNom()+"-- Vainqueur");
+				}
+				else {
+					JLabel equipe = new JLabel(e.getNom());
+				}
+				JLabel equipe = new JLabel(e.getNom());
+				equipe.setName("Equipe");
+				equipe.addMouseListener(AccueilV2.getMa());
+				panelEquipe.add(equipe);
+			}
+		}else {	
+			for (Equipe e : tournoi.getListEquipesParticipantes()) {
+				JPanel panelEquipe = new JPanel();
+				panelEquipes.add(panelEquipe);
+				JLabel equipe = new JLabel(e.getNom());
+				equipe.setName("Equipe");
+				equipe.addMouseListener(AccueilV2.getMa());
+				panelEquipe.add(equipe);
+		}
 		}
 	}
 

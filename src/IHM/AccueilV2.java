@@ -161,7 +161,7 @@ public class AccueilV2 {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
 		
-		JLabel lblTitreFiltre = new JLabel("Filtres");
+		JLabel lblTitreFiltre = new JLabel("Filtrer les résultats");
 		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelTitreFiltre.add(lblTitreFiltre);
 
@@ -352,6 +352,7 @@ public class AccueilV2 {
 		panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 4) + 1, 4, 20, 20));
 		frame.setVisible(true);
 		tailleCarte=panelCartes.getComponent(0).getWidth();
+		scrollPaneMain.getVerticalScrollBar().setUnitIncrement(20);
 		ajusterGrille();
 	}
 

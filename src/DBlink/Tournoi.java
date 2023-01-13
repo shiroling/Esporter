@@ -229,12 +229,10 @@ public class Tournoi extends BDEntity {
 			poule.genererRencontres();
 			poule.populateRencontres();
 		}
-		
 	}
 	
 	public void inscrireEquipe(Equipe e) {
 		BDInsert.insererInscrit(e, this);
-		
 		if(this.isTournoiPlein()) {
 			procedureTournoiPlein();
 		}
@@ -246,5 +244,13 @@ public class Tournoi extends BDEntity {
 
 	public boolean isInscrite(Equipe e) {
 		return BDPredicats.isIscriteTournoi(e, this);
+	}
+	
+	public boolean isFini() {
+		return BDPredicats.estTournoiFini(this.getId());
+	}
+	
+	public List<Equipe> getClassement() {
+		return BDSelect.getClassementTournoi(this.getId());
 	}
 }
