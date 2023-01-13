@@ -678,8 +678,28 @@ public class BDSelect {
 		return null;
 	}
 
-	public static List<Poule> getClassementTournoi(int id) {
-		// TODO Auto-generated method stub
+	public static List<Equipe> getClassementTournoi(int idTournoi) {
+		try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement(
+					"select j.id_equipe AS id, (sum(j.a_gagne)+0) nbWin"
+					+ "	from jouer j, rencontre r, poule p, TOURNOI t, EQUIPE e"
+					+ "	where j.id_rencontre = r.id_rencontre and r.id_poule = p.id_poule AND p.ID_TOURNOI = t.ID_TOURNOI AND j.ID_EQUIPE = e.ID_EQUIPE "
+					+ "	and t.ID_TOURNOI = ?"
+					+ "	group by j.id_equipe"
+					+ "	ORDER BY nbWin DESC, GET_MOY_AGE(e.ID_EQUIPE);");
+			st.setInt(1, idTournoi); // enregistrement du premier paramètre d'entrée
+
+			ResultSet rs = st.executeQuery();
+
+			List<Equipe> l = new ArrayList<>();
+			while (rs.next()) {
+				l.add(new Equipe(rs.getInt("id")));	
+			}
+			st.close();
+			return l;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
