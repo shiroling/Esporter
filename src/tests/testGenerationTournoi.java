@@ -1,17 +1,36 @@
 package tests;
 
+import java.util.List;
+
+import DBlink.BDInsert;
 import DBlink.BDSelect;
+import DBlink.Equipe;
+import DBlink.Poule;
+import DBlink.Rencontre;
 import DBlink.Tournoi;
 
 public class testGenerationTournoi {
 	public static void main(String[] args) throws Exception {
-		Tournoi t = new Tournoi(178);
 		
-		System.out.println("nb inscrits : "+t.getNombreInscrits());
-		System.out.println(BDSelect.getNombreInscritTournois(178));
+		/*
+		Poule p = new Poule(675);
+		System.out.println(p.estFinie());
 		
-		System.out.println(t.isTournoiPlein());
-		t.genererPoules();
+		List<Rencontre> lr = p.getRencontres();
+		for (Rencontre r : lr) {
+			r.designerVainceur(r.getEquipes().get(0).getId());
+		}
 		
+		System.out.println(p.estFinie());
+		
+		*/
+		Tournoi t = new Tournoi(260);
+		List<Poule> lp = t.getListePoulesSimples();		
+		for (Poule poule : lp) {
+			System.out.println(poule.getPremier().getId());
+			BDInsert.insererComposer(poule.getPremier().getId(), poule.getTournoi().getPouleFinale().getId());
+
+		}
+
 	}
 }
