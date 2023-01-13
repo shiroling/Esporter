@@ -102,7 +102,7 @@ public class PopupTournoi extends JDialog {
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 
 		if (tournoi.isFini()) {
-			for () {
+			for (Equipe e :tournoi.getClassemment()) {
 				
 			}
 		}else {	
