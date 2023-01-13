@@ -102,8 +102,19 @@ public class PopupTournoi extends JDialog {
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 
 		if (tournoi.isFini()) {
-			for (Equipe e :tournoi.getClassemment()) {
-				
+			for (Equipe e :tournoi.getClassement()) {
+				JPanel panelEquipe = new JPanel();
+				panelEquipes.add(panelEquipe);
+				if (e==tournoi.getClassement().get(0)) {
+					JLabel equipe = new JLabel(e.getNom()+"-- Vainqueur");
+				}
+				else {
+					JLabel equipe = new JLabel(e.getNom());
+				}
+				JLabel equipe = new JLabel(e.getNom());
+				equipe.setName("Equipe");
+				equipe.addMouseListener(AccueilV2.getMa());
+				panelEquipe.add(equipe);
 			}
 		}else {	
 			for (Equipe e : tournoi.getListEquipesParticipantes()) {
