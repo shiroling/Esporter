@@ -1,6 +1,7 @@
 package IHM;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -24,6 +25,7 @@ public class PopupEcurie extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupEcurie(Ecurie e) {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,25 +46,36 @@ public class PopupEcurie extends JDialog {
 		contentPanel.add(panelCorp);
 		
 		JPanel panelListeEquipe = new JPanel();
+		JLabel lblEquipe=new JLabel();
+		JPanel panelEquipe = new JPanel();
 		for (Equipe eq : e.getListeEquipe()) {
-			JPanel panelEquipe = new JPanel();
-			JLabel lblEquipe = new JLabel(eq.getNom());
+			panelEquipe = new JPanel();
+			JPanel panelNomEquipe = new JPanel();
+			lblEquipe = new JLabel(eq.getNom());
 			lblEquipe.setName("Equipe");
 			lblEquipe.addMouseListener(AccueilV2.getMa());
-			panelEquipe.add(lblEquipe);
-			panelEquipe.add(new JLabel("Joueurs :"));
+			lblEquipe.setFont(new Font("Tahoma", Font.BOLD, 20));
+			panelNomEquipe.add(lblEquipe);
+			panelNomEquipe.add(new JLabel(":"));
+			panelEquipe.add(panelNomEquipe);
+			JPanel panelJoueurs = new JPanel();
+			
 			for (Joueur joueur : eq.getListJoueur()) {
 				JLabel lbljoueur = new JLabel(joueur.getPseudo());
 				lbljoueur.setName("Joueur");
 				lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
 				lbljoueur.setFont(new Font("Tahoma", Font.PLAIN, 16));
 				lbljoueur.addMouseListener(AccueilV2.getMa());
-				panelEquipe.add(lbljoueur);
+				panelJoueurs.add(lbljoueur);
 			}
+			panelEquipe.add(panelJoueurs);
+			panelEquipe.setLayout(new GridLayout(0, 1, 0, 0));
 			panelListeEquipe.add(panelEquipe);
 		}
 		panelCorp.add(panelListeEquipe);
 		panelListeEquipe.setLayout(new GridLayout(0, 1, 0, 0));
+		setVisible(true);
+		this.setMinimumSize(new Dimension(contentPanel.getWidth()*2,(e.getListeEquipe().size()+1)*panelEquipe.getHeight()+panelEnTete.getHeight()));		
 	}
 
 }
