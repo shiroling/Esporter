@@ -311,7 +311,7 @@ public class AccueilV2 {
 					}
 					break;
 				default:
-					throw new IllegalArgumentException("Unexpected value: " + controleur.getState());
+					throw new IllegalArgumentException("Unexpected value: ");
 				}
 
 			}

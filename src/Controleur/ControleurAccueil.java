@@ -29,6 +29,7 @@ import base.Portee;
 public class ControleurAccueil implements ActionListener {
 
 	private Etat state;
+	private EtatPanel etatPanelMain;
 	private AccueilV2 vue;
 	private Object obj;
 	private JButton btn;
@@ -48,13 +49,18 @@ public class ControleurAccueil implements ActionListener {
 
 	public ControleurAccueil(AccueilV2 vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
+		this.etatPanelMain = EtatPanel.TOURNOI;
 		this.vue = vue;
 		this.idLog = -1;
 		connexionState = ConnexionState.NON_CONNECTE;
 	}
-
+	
 	public enum Etat {
-		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET
+		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET;
+	}
+	
+	public enum EtatPanel {
+		TOURNOI, RENCONTRE, JEU, EQUIPE, ECURIE;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -79,38 +85,63 @@ public class ControleurAccueil implements ActionListener {
 				afficherBtnConnexion();
 				break;
 			case "Tournois":
-				vue.viderCartes();
-				vue.ajouterCartesTournois(BDSelect.getListeTournois());
-				vue.getLblTitreCartes().setText("Tournois");
-				this.setPanelFiltresTournois();
+				this.etatPanelMain = EtatPanel.TOURNOI;
+				setVueTournoi();
 				break;
 			case "Match":
-				vue.viderCartes();
-				vue.getLblTitreCartes().setText("Matchs");
-				vue.ajouterCartesMatch(BDSelect.getListeRencontre());
-				this.setPanelFiltresRencontres();
+				this.etatPanelMain = EtatPanel.RENCONTRE;
+				setVueRencontre();
 				break;
 			case "Jeu":
-				vue.viderCartes();
-				vue.ajouterCartesJeu(BDSelect.getListeJeux());
-				vue.getLblTitreCartes().setText("Jeux");
-				this.setPanelVide();
+				this.etatPanelMain = EtatPanel.JEU;
+				setVueJeu();
 				break;
 			case "Equipe":
-				vue.viderCartes();
-				vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
-				vue.getLblTitreCartes().setText("Equipes");
-				this.setPanelFiltresEquipes();
+				this.etatPanelMain = EtatPanel.EQUIPE;
+				setVueEquipe();
 				break;
 			case "Ecurie":
-				vue.viderCartes();
-				vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
-				vue.getLblTitreCartes().setText("Ecuries");
-				this.setPanelVide();
+				this.etatPanelMain = EtatPanel.ECURIE;
+				setVueEcurie();
 				break;
 			}
 
 		}
+	}
+
+	private void setVueEcurie() {
+		vue.viderCartes();
+		vue.ajouterCartesEcurie(BDSelect.getListeEcurie());
+		vue.getLblTitreCartes().setText("Ecuries");
+		this.setPanelVide();
+	}
+
+	private void setVueEquipe() {
+		vue.viderCartes();
+		vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+		vue.getLblTitreCartes().setText("Equipes");
+		this.setPanelFiltresEquipes();
+	}
+
+	private void setVueJeu() {
+		vue.viderCartes();
+		vue.ajouterCartesJeu(BDSelect.getListeJeux());
+		vue.getLblTitreCartes().setText("Jeux");
+		this.setPanelVide();
+	}
+
+	private void setVueRencontre() {
+		vue.viderCartes();
+		vue.getLblTitreCartes().setText("Matchs");
+		vue.ajouterCartesMatch(BDSelect.getListeRencontre());
+		this.setPanelFiltresRencontres();
+	}
+
+	private void setVueTournoi() {
+		vue.viderCartes();
+		vue.ajouterCartesTournois(BDSelect.getListeTournois());
+		vue.getLblTitreCartes().setText("Tournois");
+		this.setPanelFiltresTournois();
 	}
 
 	public AccueilV2 getVueAccueil() {
@@ -126,7 +157,7 @@ public class ControleurAccueil implements ActionListener {
 			new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
 		}
 		if (connexionState == ConnexionState.GESTIONNAIRE) {
-			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog);
+			FormCreerTournoi formTournoi = new FormCreerTournoi(this.idLog, this.vue);
 			formTournoi.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			formTournoi.setVisible(true);
 		}
@@ -144,11 +175,11 @@ public class ControleurAccueil implements ActionListener {
 			//
 		}
 	}
-
+	
 	public Etat getState() {
-		return state;
+		return this.state;
 	}
-
+	
 	public void setState(Etat state) {
 		this.state = state;
 	}
@@ -566,6 +597,27 @@ public class ControleurAccueil implements ActionListener {
 
 	public JComboBox<String> getComboFiltreJeuEquipe() {
 		return comboFiltreJeuEquipe;
+	}
+	
+	public void actualiserPanelMain() {
+		switch(this.etatPanelMain) {
+		case TOURNOI:
+			setVueTournoi();
+			break;
+		case RENCONTRE:
+			setVueRencontre();
+			break;
+		case JEU:
+			setVueJeu();
+			break;
+		case EQUIPE:
+			setVueEquipe();
+			break;
+		case ECURIE:
+			setVueEcurie();
+			break;
+		}
+		this.vue.getPanelCartes().updateUI();
 	}
 
 }

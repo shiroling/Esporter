@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import DBlink.Jeu;
 import DBlink.Tournoi;
+import IHM.FenMessage;
 import IHM.FormCreerTournoi;
 import base.Mois;
 import base.Portee;
@@ -121,6 +122,8 @@ public class ControleurFormCreerTournoi implements ActionListener {
 				} else {
 					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux, this.vue.getIdGerant());
 				}
+				FenMessage dialog = new FenMessage("Le tournoi '" + this.vue.getTextFieldNom().getText() + "' à bien été créé");
+				dialog.setVisible(true);
 				this.vue.dispose();
 			}
 			break;

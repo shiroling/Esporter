@@ -22,6 +22,7 @@ import java.awt.Color;
 public class FormCreerTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private AccueilV2 vueAccueil;
 	private JTextField textFieldNom;
 	private JLabel lblNom;
 	private JPanel panelJeuxAjoutes;
@@ -46,7 +47,7 @@ public class FormCreerTournoi extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			FormCreerTournoi dialog = new FormCreerTournoi(2);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -54,10 +55,14 @@ public class FormCreerTournoi extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public int getIdGerant() {
 		return this.idGerant;
+	}
+	
+	public AccueilV2 getVueAccueil() {
+		return this.vueAccueil;
 	}
 	
 	public JTextField getTextFieldNom() {
@@ -139,8 +144,9 @@ public class FormCreerTournoi extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FormCreerTournoi(int idGerant) {
+	public FormCreerTournoi(int idGerant, AccueilV2 vueAccueil) {
 		this.idGerant = idGerant;
+		this.vueAccueil = vueAccueil;
 		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this);
 		setTitle("Nouveau tournoi");
 		setBounds(100, 100, 379, 438);
