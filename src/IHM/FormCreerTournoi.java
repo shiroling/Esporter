@@ -147,7 +147,7 @@ public class FormCreerTournoi extends JDialog {
 	public FormCreerTournoi(int idGerant, AccueilV2 vueAccueil) {
 		this.idGerant = idGerant;
 		this.vueAccueil = vueAccueil;
-		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this);
+		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this, vueAccueil.getControleur());
 		setTitle("Nouveau tournoi");
 		setBounds(100, 100, 379, 438);
 		getContentPane().setLayout(new BorderLayout());

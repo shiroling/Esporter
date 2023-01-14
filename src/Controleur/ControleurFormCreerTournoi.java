@@ -20,11 +20,13 @@ import base.PreDate;
 public class ControleurFormCreerTournoi implements ActionListener {
 
 	private FormCreerTournoi vue;
+	private ControleurAccueil controleurAccueil;
 	private JButton btn;
 	private List<Jeu> jeux;
 
-	public ControleurFormCreerTournoi(FormCreerTournoi vue) {
+	public ControleurFormCreerTournoi(FormCreerTournoi vue, ControleurAccueil controleurAccueil) {
 		this.vue = vue;
+		this.controleurAccueil = controleurAccueil;
 		this.jeux = new ArrayList<>();
 	}
 
@@ -122,6 +124,7 @@ public class ControleurFormCreerTournoi implements ActionListener {
 				} else {
 					Tournoi.insererTournoisMultigaming(this.vue.getTextFieldNom().getText(), Portee.stringToPortee(this.vue.getComboPortee().getSelectedItem().toString()), dateFinInscription.toDate(), dateDebutTournois.toDate(), dateFinTournois.toDate(), this.jeux, this.vue.getIdGerant());
 				}
+				this.controleurAccueil.actualiserPanelMain();
 				FenMessage dialog = new FenMessage("Le tournoi '" + this.vue.getTextFieldNom().getText() + "' à bien été créé");
 				dialog.setVisible(true);
 				this.vue.dispose();
