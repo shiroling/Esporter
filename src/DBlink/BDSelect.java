@@ -680,23 +680,17 @@ public class BDSelect {
 
 	public static List<Equipe> getClassementTournoi(int idTournoi) {
 		try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement(
-					"select j.id_equipe AS id, (sum(j.a_gagne)+0) nbWin"
-					+ "	from jouer j, rencontre r, poule p, TOURNOI t, EQUIPE e"
-					+ "	where j.id_rencontre = r.id_rencontre and r.id_poule = p.id_poule AND p.ID_TOURNOI = t.ID_TOURNOI AND j.ID_EQUIPE = e.ID_EQUIPE "
-					+ "	and t.ID_TOURNOI = ?"
-					+ "	group by j.id_equipe"
-					+ "	ORDER BY nbWin DESC, GET_MOY_AGE(e.ID_EQUIPE);");
-			st.setInt(1, idTournoi); // enregistrement du premier paramètre d'entrée
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("select j.id_equipe id, sum(j.a_gagne) nbWin from jouer j, rencontre r, poule p, TOURNOI t, EQUIPE e	where j.id_rencontre = r.id_rencontre and r.id_poule = p.id_poule AND p.ID_TOURNOI = t.ID_TOURNOI AND j.ID_EQUIPE = e.ID_EQUIPE	and t.ID_TOURNOI = ? group by j.id_equipe ORDER BY nbWin DESC, GET_MOY_AGE(e.ID_EQUIPE)");
+			st.setInt(1, idTournoi);
 
 			ResultSet rs = st.executeQuery();
 
-			List<Equipe> l = new ArrayList<>();
+			List<Equipe> lc = new ArrayList<>();
 			while (rs.next()) {
-				l.add(new Equipe(rs.getInt("id")));	
+				lc.add(new Equipe(rs.getInt(1)));	
 			}
 			st.close();
-			return l;
+			return lc;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
