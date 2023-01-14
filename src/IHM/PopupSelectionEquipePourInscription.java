@@ -6,22 +6,21 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
-
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import Controleur.ControleurPopupInscrireEquipe;
+
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Tournoi;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class PopupSelectionEquipePourInscription extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
