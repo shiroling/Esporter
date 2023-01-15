@@ -23,6 +23,8 @@ public class PopupTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Tournoi tournoi;
+	private JPanel panellblEquipe;
+	private JPanel panelEquipes;
 
 	/**
 	 * Create the dialog.
@@ -83,14 +85,14 @@ public class PopupTournoi extends JDialog {
 		JScrollPane scrollPaneEquipe = new JScrollPane();
 		panelCorp.add(scrollPaneEquipe);
 
-		JPanel panelEquipes = new JPanel();
+		panelEquipes = new JPanel();
 		scrollPaneEquipe.setViewportView(panelEquipes);
 		panelEquipes.setLayout(new GridLayout(t.getListEquipesParticipantes().size() + 1, 1, 0, 0));
 
-		JPanel panellblEquipe = new JPanel();
+		panellblEquipe = new JPanel();
 		panelEquipes.add(panellblEquipe);
 
-		JLabel lbllblEquipe = new JLabel("Equipes:");
+		JLabel lbllblEquipe = new JLabel("Equipes inscrites:");
 		panellblEquipe.add(lbllblEquipe);
 
 		JPanel panelBtnVoirLesRencontres = new JPanel();
@@ -124,12 +126,25 @@ public class PopupTournoi extends JDialog {
 				equipe.setName("Equipe");
 				equipe.addMouseListener(AccueilV2.getMa());
 				panelEquipe.add(equipe);
-		}
+			}
 		}
 	}
 
 	public Tournoi getTournoi() {
 		return this.tournoi;
+	}
+	
+	public void actualiserPopupTournoi() {
+		panelEquipes.removeAll();
+		for (Equipe e : tournoi.getListEquipesParticipantes()) {
+			JPanel panelEquipe = new JPanel();
+			panelEquipes.add(panelEquipe);
+			JLabel equipe = new JLabel(e.getNom());
+			equipe.setName("Equipe");
+			equipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(equipe);
+		}
+		panelEquipes.updateUI();
 	}
 
 }

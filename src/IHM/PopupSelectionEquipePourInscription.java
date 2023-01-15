@@ -25,6 +25,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Ecurie ecurie;
+	private PopupTournoi popupTournoi;
 	private JScrollPane scrollPane;
 	private Equipe equipeSelectionnee;
 	private Tournoi tournoi;
@@ -33,7 +34,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(2), new Tournoi(172));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -41,14 +42,15 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public PopupSelectionEquipePourInscription(Ecurie ecurie, Tournoi tournoi) {
+	public PopupSelectionEquipePourInscription(Ecurie ecurie, PopupTournoi popupTournoi) {
 		this.ecurie = ecurie;
-		this.tournoi = tournoi;
+		this.tournoi = popupTournoi.getTournoi();
+		this.popupTournoi = popupTournoi;
 		
 		ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
 		
@@ -155,5 +157,9 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	
 	public JLabel getLblAucuneEquipeSelectionee() {
 		return this.lblAucuneEquipeSelectionnee;
+	}
+	
+	public PopupTournoi getPopupTournoi() {
+		return this.popupTournoi;
 	}
 }
