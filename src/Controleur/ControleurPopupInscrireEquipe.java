@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import IHM.FenMessage;
 import IHM.PopupSelectionEquipePourInscription;
 
 public class ControleurPopupInscrireEquipe implements ActionListener{
@@ -24,6 +25,8 @@ public class ControleurPopupInscrireEquipe implements ActionListener{
 		case "Inscrire":
 			if(this.vue.getEquipeSelectionee() != null) {
 				this.vue.getTournoi().inscrireEquipe(this.vue.getEquipeSelectionee());
+				FenMessage dialog = new FenMessage("L'equipe '" + this.vue.getEquipeSelectionee().getNom() + "' à été inscrite au tournoi '" + this.vue.getTournoi().getNom() + "'.");
+				dialog.setVisible(true);
 				this.vue.getPopupTournoi().actualiserPopupTournoi();
 				this.vue.dispose();
 			} else {
