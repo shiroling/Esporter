@@ -90,8 +90,13 @@ public class PopupTournoi extends JDialog {
 		JPanel panellblEquipe = new JPanel();
 		panelEquipes.add(panellblEquipe);
 
-		JLabel lbllblEquipe = new JLabel("Equipes:");
-		panellblEquipe.add(lbllblEquipe);
+		if (t.isFini()) {
+			JLabel lbllblEquipe = new JLabel("Classement des equipes:");
+			panellblEquipe.add(lbllblEquipe);
+		} else {
+			JLabel lbllblEquipe = new JLabel("Classement temporaire des equipes:");
+			panellblEquipe.add(lbllblEquipe);
+		}
 
 		JPanel panelBtnVoirLesRencontres = new JPanel();
 		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
@@ -101,30 +106,19 @@ public class PopupTournoi extends JDialog {
 		btnVoirLesRencontres.setName("voirRencontres");
 		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
 
-		if (tournoi.isFini()) {
-			for (Equipe e :tournoi.getClassement()) {
-				JPanel panelEquipe = new JPanel();
-				panelEquipes.add(panelEquipe);
-				if (e==tournoi.getClassement().get(0)) {
-					JLabel equipe = new JLabel(e.getNom()+"-- Vainqueur");
-				}
-				else {
-					JLabel equipe = new JLabel(e.getNom());
-				}
+		for (Equipe e : tournoi.getClassement()) {
+			JPanel panelEquipe = new JPanel();
+			panelEquipes.add(panelEquipe);
+			if (e == tournoi.getClassement().get(0)) {
+				JLabel equipe = new JLabel(e.getNom() + "-- Vainqueur");
+			} else {
 				JLabel equipe = new JLabel(e.getNom());
-				equipe.setName("Equipe");
-				equipe.addMouseListener(AccueilV2.getMa());
-				panelEquipe.add(equipe);
 			}
-		}else {	
-			for (Equipe e : tournoi.getListEquipesParticipantes()) {
-				JPanel panelEquipe = new JPanel();
-				panelEquipes.add(panelEquipe);
-				JLabel equipe = new JLabel(e.getNom());
-				equipe.setName("Equipe");
-				equipe.addMouseListener(AccueilV2.getMa());
-				panelEquipe.add(equipe);
-		}
+			JLabel equipe = new JLabel(e.getNom());
+			equipe.setName("Equipe");
+			equipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(equipe);
+
 		}
 	}
 

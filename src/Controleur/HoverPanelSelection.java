@@ -36,6 +36,7 @@ public class HoverPanelSelection implements MouseListener{
 			this.vueAccueil.getControleur().setPanelFiltresRencontres();
 			vueAccueil.viderCartes();
 			vueAccueil.getLblTitreCartes().setText("Matchs");
+			System.out.println("debut reuqette");
 			vueAccueil.ajouterCartesMatch(BDSelect.getListeRencontre());
 			vueAccueil.ajusterGrille();
 			break;
