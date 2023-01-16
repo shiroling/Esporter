@@ -33,7 +33,7 @@ public class BDPredicats {
 	public static boolean existeNomTournoi(String nomTournoi) {
 		try {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select Count(id_tournoi)as count from Tournoi where nom LIKE '%?%';");
-			st.setString(0, nomTournoi);
+			st.setString(1, nomTournoi);
 			ResultSet rs = st.executeQuery();
 			rs.next();
 			boolean b  = rs.getInt("count") > 0;
@@ -251,8 +251,9 @@ public class BDPredicats {
 	
 	public static boolean estEquipeSurJeu(Equipe equipe, Integer idJeu) {
 		try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT COUNT(*) as count FROM EQUIPE e WHERE e.ID_JEU = ?");
-			st.setInt(1, idJeu);
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT COUNT(*) as count FROM EQUIPE e WHERE e.ID_EQUIPE = ? AND e.ID_JEU = ?");
+			st.setInt(1, equipe.getId());
+			st.setInt(2, idJeu);
 			ResultSet rs = st.executeQuery();
 			
 			rs.next();
