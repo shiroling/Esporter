@@ -36,7 +36,6 @@ public class HoverPanelSelection implements MouseListener{
 			this.vueAccueil.getControleur().setPanelFiltresRencontres();
 			vueAccueil.viderCartes();
 			vueAccueil.getLblTitreCartes().setText("Matchs");
-			System.out.println("debut reuqette");
 			vueAccueil.ajouterCartesMatch(BDSelect.getListeRencontre());
 			vueAccueil.ajusterGrille();
 			break;
@@ -50,7 +49,7 @@ public class HoverPanelSelection implements MouseListener{
 		case EQUIPE:
 			this.vueAccueil.getControleur().setPanelFiltresEquipes();
 			vueAccueil.viderCartes();
-			vueAccueil.ajouterCartesEquipe(BDSelect.getListeEquipes());
+			vueAccueil.ajouterCartesEquipe(BDSelect.getClassementGeneral());
 			vueAccueil.getLblTitreCartes().setText("Equipes");
 			vueAccueil.ajusterGrille();
 			break;
