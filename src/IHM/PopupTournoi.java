@@ -62,21 +62,9 @@ public class PopupTournoi extends JDialog {
 		JLabel lblDateFin = new JLabel(t.getDateFin().toString());
 		panelDates.add(lblDateFin);
 
-		JPanel panelInscription = new JPanel();
-		panelHead.add(panelInscription);
 
-		JLabel lblInscription = new JLabel("Date limite d'inscription : " + t.getDateFinInscriptions().toString());
-		panelInscription.add(lblInscription);
 
-		if (!t.isTournoiPlein()) {
-			JButton btnInscription = new JButton("Inscrire une équipe");
-			btnInscription.addActionListener(controleur);
-			btnInscription.setName("inscription");
-			panelInscription.add(btnInscription);
-		} else {
-			JLabel lblPlein = new JLabel("Le tournoi est plein");
-			panelInscription.add(lblPlein);
-		}
+		
 
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
@@ -100,13 +88,20 @@ public class PopupTournoi extends JDialog {
 			panellblEquipe.add(lbllblEquipe);
 		}
 
-		JPanel panelBtnVoirLesRencontres = new JPanel();
-		contentPanel.add(panelBtnVoirLesRencontres, BorderLayout.SOUTH);
-
-		JButton btnVoirLesRencontres = new JButton("Voir les rencontres");
-		btnVoirLesRencontres.addActionListener(controleur);
-		btnVoirLesRencontres.setName("voirRencontres");
-		panelBtnVoirLesRencontres.add(btnVoirLesRencontres);
+		JPanel panelInscription = new JPanel();
+		contentPanel.add(panelInscription, BorderLayout.SOUTH);
+		JLabel lblInscription = new JLabel("Date limite d'inscription : " + t.getDateFinInscriptions().toString());
+		panelInscription.add(lblInscription);
+		
+		if (!t.isTournoiPlein()) {
+			JButton btnInscription = new JButton("Inscrire une équipe");
+			btnInscription.addActionListener(controleur);
+			btnInscription.setName("inscription");
+			panelInscription.add(btnInscription);
+		} else {
+			JLabel lblPlein = new JLabel("Le tournoi est plein");
+			panelInscription.add(lblPlein);
+		}
 
 		for (Equipe e : tournoi.getClassement()) {
 			JPanel panelEquipe = new JPanel();
