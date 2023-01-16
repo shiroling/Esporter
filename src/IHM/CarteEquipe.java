@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import DBlink.BDSelect;
 import DBlink.Equipe;
+import java.awt.GridLayout;
 
 public class CarteEquipe extends Carte {
 	
@@ -18,13 +20,14 @@ public class CarteEquipe extends Carte {
 	public CarteEquipe(Equipe equipe) {
 		super();
 		this.equipe=equipe;
-		
-		setLayout(new FlowLayout(FlowLayout.CENTER, 5, 55));
 		setBackground(new Color(255,255,255));
+		setLayout(new GridLayout(2, 1, 0, 0));
 		
+		JPanel panelNom = new JPanel();
+		add(panelNom);
 		JLabel lblNomEquipe = new JLabel(equipe.getNom());
 		lblNomEquipe.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
-		add(lblNomEquipe);
+		panelNom.add(lblNomEquipe);
 		
 		List<JPanel> listPanelAHover = new ArrayList<>();
 		listPanelAHover.add(this);
@@ -32,6 +35,16 @@ public class CarteEquipe extends Carte {
 
 		this.setName("CarteJeu");
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+		
+		
+		JPanel panelPoint = new JPanel();
+		add(panelPoint);
+		
+		JLabel lblPoint = new JLabel("Nombre de points : "+BDSelect.getPointsEquipe(equipe.getId()));
+		lblPoint.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
+		panelPoint.add(lblPoint);
+		panelPoint.setBackground(new Color(0,0,0,0));
+		panelNom.setBackground(new Color(0,0,0,0));
 	}
 	
 	public Equipe getEquipe() {

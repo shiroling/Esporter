@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -54,7 +55,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		
 		ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
 		
-		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).toList();
+		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).collect(Collectors.toList());
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscrire Equipe");
 		getContentPane().setLayout(new BorderLayout());

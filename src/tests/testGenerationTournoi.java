@@ -12,7 +12,8 @@ import DBlink.Tournoi;
 public class testGenerationTournoi {
 	public static void main(String[] args) throws Exception {
 		
-		/*
+		
+		
 		Poule p = new Poule(675);
 		System.out.println(p.estFinie());
 		
@@ -22,8 +23,8 @@ public class testGenerationTournoi {
 		}
 		
 		System.out.println(p.estFinie());
-		
-		*/
+
+
 		Tournoi t = new Tournoi(260);
 		List<Poule> lp = t.getListePoulesSimples();		
 		for (Poule poule : lp) {
