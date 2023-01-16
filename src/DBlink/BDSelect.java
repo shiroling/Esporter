@@ -465,12 +465,15 @@ public class BDSelect {
 	public static Date getDateInscriptionEquipe(int idTournoi, int idEquipe) {
 		Connection connex = ConnexionBase.getConnectionBase();
 		try {
-			Statement st = connex.createStatement();
-			ResultSet rs = st.executeQuery("Select dateInscription from inscrit where id_tournoi = " + idTournoi
-					+ " and id_equipe = " + idEquipe);
+			PreparedStatement st = connex.prepareStatement("Select dateInscription from inscrit where id_tournoi = ? and id_tournoi = ?");
+			st.setInt(1, idTournoi);
+			st.setInt(2, idEquipe);
+			
+			
+			
+			ResultSet rs = st.executeQuery();
 			rs.next();
 			Date result = rs.getDate(1);
-			rs.close();
 			st.close();
 			return result;
 		} catch (Exception e) {
@@ -499,6 +502,7 @@ public class BDSelect {
 		}
 	}
 	
+	@Deprecated
 	public static float getAgeMoyenEquipe(int idEquipe) {
 		try {
 			Statement st = ConnexionBase.getConnectionBase().createStatement();
@@ -676,6 +680,26 @@ public class BDSelect {
 			List<Equipe> lc = new ArrayList<>();
 			while (rs.next()) {
 				lc.add(new Equipe(rs.getInt(1)));	
+			}
+			st.close();
+			return lc;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static List<Equipe> getClassementGeneral() {
+		try {
+			Statement st = ConnexionBase.getConnectionBase().createStatement();
+			ResultSet rs = st.executeQuery("SELECT id_equipe, points from classement_general");
+
+			List<Equipe> lc = new ArrayList<>();
+			Equipe e = null; 
+			while (rs.next()) {
+				e = new Equipe(rs.getInt(1));
+				e.setPoints(rs.getInt(2));
+				lc.add(e);
 			}
 			st.close();
 			return lc;

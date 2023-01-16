@@ -330,17 +330,17 @@ public class AccueilV2 {
 		int temp =frame.getWidth()-panelFiltre.getWidth()-scrollPaneMain.getVerticalScrollBar().getWidth()-20-10;
 		// si les cartes ont une largeure superieur a 300 pixel on reduit le nombre de colone pour ne pas avoir de scroll horizontaux  
 		
-			if (temp < tailleCarte*2) {
-				// on set la taille de la grille pour eviter d'avoir trop de colones
-				// le +1 est pour de la securité au niveau de l'interface
-				panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
-			} else if (temp >= tailleCarte*2) {
-				if (temp >= tailleCarte*3) {
-					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
-				}else {
-					panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
-				}
+		if (temp < tailleCarte*2) {
+			// on set la taille de la grille pour eviter d'avoir trop de colones
+			// le +1 est pour de la securité au niveau de l'interface
+			panelCartes.setLayout(new GridLayout(panelCartes.getComponentCount() + 1, 1, 20, 20));
+		} else if (temp >= tailleCarte*2) {
+			if (temp >= tailleCarte*3) {
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 3) + 1, 3, 20, 20));
+			}else {
+				panelCartes.setLayout(new GridLayout((panelCartes.getComponentCount() / 2) + 1, 2, 20, 20));
 			}
+		}
 		
 		
 		//corriger problemes d'actualisation 
