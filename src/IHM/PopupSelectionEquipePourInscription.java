@@ -6,26 +6,27 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
-
+import java.util.stream.Collectors;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import Controleur.ControleurPopupInscrireEquipe;
+
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Tournoi;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class PopupSelectionEquipePourInscription extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Ecurie ecurie;
+	private PopupTournoi popupTournoi;
 	private JScrollPane scrollPane;
 	private Equipe equipeSelectionnee;
 	private Tournoi tournoi;
@@ -34,7 +35,7 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(2), new Tournoi(172));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -42,18 +43,19 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	/**
 	 * Create the dialog.
 	 */
-	public PopupSelectionEquipePourInscription(Ecurie ecurie, Tournoi tournoi) {
+	public PopupSelectionEquipePourInscription(Ecurie ecurie, PopupTournoi popupTournoi) {
 		this.ecurie = ecurie;
-		this.tournoi = tournoi;
+		this.tournoi = popupTournoi.getTournoi();
+		this.popupTournoi = popupTournoi;
 		
 		ControleurPopupInscrireEquipe controleur = new ControleurPopupInscrireEquipe(this);
 		
-		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).toList();
+		List<Equipe> equipes = this.ecurie.getListeEquipe().stream().filter(e -> e.getJeu().getId() == tournoi.getIdJeu()).filter(e -> tournoi.isInscrite(e) == false).collect(Collectors.toList());
 		setBounds(100, 100, 450, 300);
 		setTitle("Inscrire Equipe");
 		getContentPane().setLayout(new BorderLayout());
@@ -156,5 +158,9 @@ public class PopupSelectionEquipePourInscription extends JDialog {
 	
 	public JLabel getLblAucuneEquipeSelectionee() {
 		return this.lblAucuneEquipeSelectionnee;
+	}
+	
+	public PopupTournoi getPopupTournoi() {
+		return this.popupTournoi;
 	}
 }

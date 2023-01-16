@@ -23,6 +23,8 @@ public class PopupTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Tournoi tournoi;
+	private JPanel panellblEquipe;
+	private JPanel panelEquipes;
 
 	/**
 	 * Create the dialog.
@@ -113,6 +115,9 @@ public class PopupTournoi extends JDialog {
 				JLabel equipe = new JLabel(e.getNom() + "-- Vainqueur");
 			} else {
 				JLabel equipe = new JLabel(e.getNom());
+				equipe.setName("Equipe");
+				equipe.addMouseListener(AccueilV2.getMa());
+				panelEquipe.add(equipe);
 			}
 			JLabel equipe = new JLabel(e.getNom());
 			equipe.setName("Equipe");
@@ -124,6 +129,19 @@ public class PopupTournoi extends JDialog {
 
 	public Tournoi getTournoi() {
 		return this.tournoi;
+	}
+	
+	public void actualiserPopupTournoi() {
+		panelEquipes.removeAll();
+		for (Equipe e : tournoi.getListEquipesParticipantes()) {
+			JPanel panelEquipe = new JPanel();
+			panelEquipes.add(panelEquipe);
+			JLabel equipe = new JLabel(e.getNom());
+			equipe.setName("Equipe");
+			equipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(equipe);
+		}
+		panelEquipes.updateUI();
 	}
 
 }

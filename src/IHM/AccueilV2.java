@@ -290,16 +290,16 @@ public class AccueilV2 {
 						JLabel jl = (JLabel) obj;
 						switch (jl.getName()) {
 						case "Joueur":
-							procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()));
+							procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()), controleur);
 							break;
 						case "Equipe":
-							procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()));
+							procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()), controleur);
 							break;
 						case "Ecurie":
-							procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()));
+							procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()), controleur);
 							break;
 						case "Tournoi":
-							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()));
+							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
 							break;
 						case "Rencontre":
 							// System.out.println("lol je sais pas comment faire pour ca");
@@ -311,7 +311,7 @@ public class AccueilV2 {
 					}
 					break;
 				default:
-					throw new IllegalArgumentException("Unexpected value: " + controleur.getState());
+					throw new IllegalArgumentException("Unexpected value: ");
 				}
 
 			}
@@ -498,7 +498,7 @@ public class AccueilV2 {
 		ajusterGrille();
 	}
 	
-	public static void procedureCreerPopup(BDEntity e) {
+	public static void procedureCreerPopup(BDEntity e, ControleurAccueil controleurAccueil) {
 		JDialog pop = null;
 		if (e instanceof Ecurie)	{
 			pop = new PopupEcurie((Ecurie) e);
@@ -516,7 +516,7 @@ public class AccueilV2 {
 			pop = new PopupTournoi((Tournoi) e);
 		}
 		if (e instanceof Rencontre)	{
-			pop = new PopupRencontre((Rencontre) e);
+			pop = new PopupRencontre((Rencontre) e, controleurAccueil);
 		}
 		
 		pop.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -525,32 +525,32 @@ public class AccueilV2 {
 	
 	@Deprecated
 	private void procedureCreePopupJoueur(Joueur j) {
-		procedureCreerPopup(j);
+		procedureCreerPopup(j, controleur);
 	}
 	
 	@Deprecated
 	public void procedureCreePopupJeu(Jeu j) {
-		procedureCreerPopup(j);
+		procedureCreerPopup(j, controleur);
 	}
 	
 	@Deprecated
 	public void procedureCreePopupEcurie(Ecurie e) {
-		procedureCreerPopup(e);
+		procedureCreerPopup(e, controleur);
 	}
 
 	@Deprecated
 	public void procedureCreePopupEquipe(Equipe e) {
-		procedureCreerPopup(e);
+		procedureCreerPopup(e, controleur);
 	}
 
 	@Deprecated
 	public void procedureCreePopupTournoi(Tournoi t) {
-		procedureCreerPopup(t);
+		procedureCreerPopup(t, controleur);
 	}
 
 	@Deprecated
 	public void procedureCreePopupRencontre(Rencontre r) {
-		procedureCreerPopup(r);
+		procedureCreerPopup(r, controleur);
 	}
 
 	public static ControleurAccueil getControleur() {

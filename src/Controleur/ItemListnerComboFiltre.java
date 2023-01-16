@@ -112,7 +112,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 			}
 			
 			if(!(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString().equals("Tous"))) {
-				equipes = Filters.filtrer(equipes, Filters.estEquipeFromEcurie, Jeu.getJeuFromName(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString()).getId());
+				equipes = Filters.filtrer(equipes, Filters.estEquipeSurJeu, Jeu.getJeuFromName(controleurAccueil.getComboFiltreJeuEquipe().getSelectedItem().toString()).getId());
 			}
 			
 			this.setCartesEquipeDansAccueil(equipes);;
