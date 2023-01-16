@@ -484,27 +484,15 @@ public class BDSelect {
 	// Acquisitions calculées
 	public static int getPointsEquipe(int idEquipe) {
 		try {
-			int points = 0;
-			List<Rencontre> listeMatchs = BDSelect.getListeRencontreFromEquipe(idEquipe);
-			for (Rencontre r : listeMatchs) {
-				Statement st = ConnexionBase.getConnectionBase().createStatement();
-				ResultSet rs = st.executeQuery("Select id_tournoi from rencontre r, poule p WHERE r.id_rencontre = " + r.getId() + " AND r.id_poule = p.id_poule;");
-				Tournoi t = new Tournoi(rs.getInt(1));
-				if (r.getVainqueur().getId() == idEquipe) {
-					switch (t.getPortee()) {
-					case LOCAL:
-						points *= 1;
-						break;
-					case NATIONAL:
-						points *= 2;
-						break;
-					case INTERNATIONAL:
-						points *= 3;
-						break;
-					}
-				}
-			}
-			return points;
+			CallableStatement st = ConnexionBase.getConnectionBase().prepareCall("{? =  call GET_PTS_EQUIPE(?) }");
+			st.registerOutParameter(1, Types.INTEGER); // enregistrement du paramètre de sortie
+			st.setInt(2, idEquipe); // enregistrement du premier paramètre d'entrée
+
+			st.execute(); // appel de la fonction
+
+			int result = st.getInt(1); // récupération du résultat	
+			st.close();
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
