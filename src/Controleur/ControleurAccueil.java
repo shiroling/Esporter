@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -587,6 +588,17 @@ public class ControleurAccueil implements ActionListener {
 			comboFiltreJeuEquipe.setModel(new DefaultComboBoxModel<String>(nomJeux));
 			comboFiltreJeuEquipe.addItemListener(itemListner);
 			panelCombo.add(comboFiltreJeuEquipe);
+			
+			JPanel panelCheckBoxClassement = new JPanel();
+			this.vue.getPanelFiltre().add(panelCheckBoxClassement);
+			panelCheckBoxClassement.setLayout(new GridLayout(0, 2, 0, 0));
+			
+			JLabel lblCheckBox = new JLabel("Classement");
+			lblCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			
+			JCheckBox trierClassement = new JCheckBox();
+			
+			
 		}
 		this.vue.getPanelFiltre().updateUI();
 	}

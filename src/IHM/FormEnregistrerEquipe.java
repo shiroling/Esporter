@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControleurFormEnrengistrerEquipe;
 import DBlink.Ecurie;
 import DBlink.Jeu;
 
@@ -43,6 +44,8 @@ public class FormEnregistrerEquipe extends JDialog {
 	 */
 	public FormEnregistrerEquipe(Ecurie ecurie) {
 		this.ecurie = ecurie;
+		
+		ControleurFormEnrengistrerEquipe controleur = new ControleurFormEnrengistrerEquipe(this);
 		
 		setTitle("Nouvelle equipe");
 		setBounds(100, 100, 333, 289);
@@ -117,14 +120,16 @@ public class FormEnregistrerEquipe extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Créer");
-				setName("CreerEquipe");
+				okButton.setName("CreerEquipe");
+				okButton.addActionListener(controleur);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Annuler");
-				setName("Annuler");
+				cancelButton.setName("Annuler");
+				cancelButton.addActionListener(controleur);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
