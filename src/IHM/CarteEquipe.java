@@ -43,7 +43,8 @@ public class CarteEquipe extends Carte {
 		JLabel lblPoint = new JLabel("Nombre de points : "+BDSelect.getPointsEquipe(equipe.getId()));
 		lblPoint.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelPoint.add(lblPoint);
-		
+		panelPoint.setBackground(new Color(0,0,0,0));
+		panelNom.setBackground(new Color(0,0,0,0));
 	}
 	
 	public Equipe getEquipe() {
