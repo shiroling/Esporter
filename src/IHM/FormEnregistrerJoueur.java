@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControleurFormEnrengistrerJoueur;
 import DBlink.Equipe;
 
 public class FormEnregistrerJoueur extends JDialog {
@@ -28,6 +29,7 @@ public class FormEnregistrerJoueur extends JDialog {
 	private JComboBox comboJourNaissance;
 	private JComboBox comboMoiNaissance;
 	private JComboBox comboAnneeNaissance;
+	private JLabel lblDateNaissance;
 	
 
 	/**
@@ -78,12 +80,19 @@ public class FormEnregistrerJoueur extends JDialog {
 	public JComboBox getComboAnneeNaissance() {
 		return comboAnneeNaissance;
 	}
+	
+	public JLabel getLblDateNaissance() {
+		return lblDateNaissance;
+	}
 
 	/**
 	 * Create the dialog.
 	 */
 	public FormEnregistrerJoueur(Equipe equipe) {
 		this.equipe = equipe;
+		
+		ControleurFormEnrengistrerJoueur controleur = new ControleurFormEnrengistrerJoueur(this);
+		
 		setTitle("Nouveau Joueur");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -94,6 +103,7 @@ public class FormEnregistrerJoueur extends JDialog {
 			{
 				JButton okButton = new JButton("Créer");
 				okButton.setName("Creer");
+				okButton.addActionListener(controleur);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -101,6 +111,7 @@ public class FormEnregistrerJoueur extends JDialog {
 			{
 				JButton cancelButton = new JButton("Annuler");
 				cancelButton.setName("Annuler");
+				cancelButton.addActionListener(controleur);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -142,7 +153,7 @@ public class FormEnregistrerJoueur extends JDialog {
 					JPanel panelLblDateNaissance = new JPanel();
 					panelLbl.add(panelLblDateNaissance);
 					{
-						JLabel lblDateNaissance = new JLabel("Date naissance");
+						lblDateNaissance = new JLabel("Date naissance");
 						panelLblDateNaissance.add(lblDateNaissance);
 					}
 				}
