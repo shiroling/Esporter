@@ -69,12 +69,14 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
 			PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
 		
+			
+			checkDate("Date Début Tournoi", dateDebutTournois);
 			//Si la date n'est pas valide, alors mettre le libellé en rouge
 			if (!(dateDebutTournois.estDateValide()) && !(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
 				this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
 				this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
 			} else if (dateDebutTournois.estDateValide()) {
-				this.vue.getLabelDateDebutTournoi().setText("Date Début Tournoi");
+				this.vue.getLabelDateDebutTournoi().setText();
 				this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
 			}
 			
@@ -135,6 +137,22 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			break;
 		}
 	}
+	
+	private boolean checkDate(String s, PreDate dateDebutTournois) {
+		if (dateDebutTournois.estDateValide() && !dateDebutTournois.) {		// date valide
+			this.vue.getLabelDateDebutTournoi().setText(s);
+			this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
+			return true;
+		}
+		//Si la date n'est pas valide et label pas en rouge, alors mettre le libellé en rouge
+		if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
+			this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
+			this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
+		}
+		return false;
+	}
+	
+	
 	
 	//Return True si le formulaire est Valide.
 	private boolean estFormulaireValide() {
