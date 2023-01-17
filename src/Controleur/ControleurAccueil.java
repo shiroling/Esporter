@@ -119,7 +119,7 @@ public class ControleurAccueil implements ActionListener {
 
 	private void setVueEquipe() {
 		vue.viderCartes();
-		vue.ajouterCartesEquipe(BDSelect.getListeEquipes());
+		vue.ajouterCartesEquipe(BDSelect.getClassementGeneral());
 		vue.getLblTitreCartes().setText("Equipes");
 		this.setPanelFiltresEquipes();
 	}
@@ -589,15 +589,21 @@ public class ControleurAccueil implements ActionListener {
 			comboFiltreJeuEquipe.addItemListener(itemListner);
 			panelCombo.add(comboFiltreJeuEquipe);
 			
+			/*
 			JPanel panelCheckBoxClassement = new JPanel();
 			this.vue.getPanelFiltre().add(panelCheckBoxClassement);
 			panelCheckBoxClassement.setLayout(new GridLayout(0, 2, 0, 0));
 			
 			JLabel lblCheckBox = new JLabel("Classement");
 			lblCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			panelCheckBoxClassement.add(lblCheckBox);
+			
+			ControleurStateChangeCheckBoxClassement ctrlChackBox = new ControleurStateChangeCheckBoxClassement(vue);
 			
 			JCheckBox trierClassement = new JCheckBox();
-			
+			trierClassement.addChangeListener(ctrlChackBox);
+			panelCheckBoxClassement.add(trierClassement);
+			*/
 			
 		}
 		this.vue.getPanelFiltre().updateUI();
