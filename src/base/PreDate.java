@@ -1,6 +1,9 @@
 package base;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class PreDate {
 	
@@ -40,6 +43,12 @@ public class PreDate {
 				return false;
 			}
 		}
+		Instant i = Instant.now();
+		LocalDate localDate = LocalDate.ofInstant(i, ZoneId.systemDefault());
+        Date date = Date.valueOf(localDate);
+        if((this.toDate().before(date))) {
+        	return false;
+        }
 		return true;
 	}
 	
