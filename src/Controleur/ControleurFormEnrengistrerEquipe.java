@@ -37,7 +37,8 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 				this.vue.getLblnomEquipe().setText("Nom (déjà pris)");
 				this.vue.getLblnomEquipe().setForeground(Color.RED);
 			} else {
-				//Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
+				//Appeller 4 fois form creer Joueur
+				Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
 				this.vue.dispose();
 			}
 			break;
