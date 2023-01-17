@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import IHM.FormEnregistrerJoueur;
+import base.Mois;
+import base.PreDate;
 
 public class ControleurFormEnrengistrerJoueur implements ActionListener {
 	
@@ -46,8 +48,16 @@ public class ControleurFormEnrengistrerJoueur implements ActionListener {
 			}
 			
 			
+			PreDate dateNaissance = new PreDate(Integer.parseInt(this.vue.getComboAnneeNaissance().getSelectedItem().toString()), Mois.stringToMois(this.vue.getComboMoiNaissance().getSelectedItem().toString()).getMoisChiffre(), Integer.parseInt(this.vue.getComboJourNaissance().getSelectedItem().toString()));
+			
+			if(!(dateNaissance.estDateValide())) {
+				this.vue.getLblDateNaissance().setForeground(Color.RED);
+			} else {
+				this.vue.getLblDateNaissance().setForeground(Color.BLACK);
+			}
+			
 			if(this.estFormulaireValide()) {
-				//Creer
+				System.out.println("Je creer le joueur !");
 			}
 			
 			break;
@@ -60,7 +70,8 @@ public class ControleurFormEnrengistrerJoueur implements ActionListener {
 	private boolean estFormulaireValide() {
 		return (this.vue.getLblNomJoueur().getForeground().equals(Color.BLACK) 
 				&& this.vue.getLblPrenomJoueur().getForeground().equals(Color.BLACK) 
-				&& this.vue.getLblPseudoJoueur().getForeground().equals(Color.BLACK));
+				&& this.vue.getLblPseudoJoueur().getForeground().equals(Color.BLACK)
+				&& this.vue.getLblDateNaissance().getForeground().equals(Color.BLACK));
 	}
 
 }
