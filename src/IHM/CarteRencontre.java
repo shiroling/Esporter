@@ -75,6 +75,12 @@ public class CarteRencontre extends Carte {
 		lblNomTournoi.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
 		panelNomTournoi.add(lblNomTournoi);
 		super.addHoverPannels(listPanelAHover);
+		
+		if (rencontre.getPoule().isFinale()) {
+			JLabel lblFinal = new JLabel("-- Finale");
+			lblFinal.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
+			panelNomTournoi.add(lblFinal);
+		}
 
 		this.setName("CarteRencontre");
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
