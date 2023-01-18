@@ -317,10 +317,6 @@ public class AccueilV2 {
 						case "Tournoi":
 							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
 							break;
-						case "Rencontre":
-							// System.out.println("lol je sais pas comment faire pour ca");
-							// procedureCreePopupRencontre();
-							break;
 						default:
 							break;
 						}
