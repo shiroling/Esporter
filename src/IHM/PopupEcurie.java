@@ -68,7 +68,7 @@ public class PopupEcurie extends JDialog {
 				JPanel panelNomEquipe = new JPanel();
 				lblEquipe = new JLabel(eq.getNom());
 				lblEquipe.setName("Equipe");
-				lblEquipe.addMouseListener(AccueilV2.getMa());
+				lblEquipe.addMouseListener(Accueil.getMa());
 				lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 				lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
 				panelNomEquipe.add(lblEquipe);

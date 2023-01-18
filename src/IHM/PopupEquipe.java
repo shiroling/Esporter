@@ -61,7 +61,7 @@ public class PopupEquipe extends JDialog {
 		for (Joueur j : e.getListJoueur()) {	
 			JLabel lblJoueur = new JLabel(j.getPseudo());
 			lblJoueur.setName("Joueur");
-			lblJoueur.addMouseListener(AccueilV2.getMa());
+			lblJoueur.addMouseListener(Accueil.getMa());
 			panelJoueurs.add(lblJoueur);
 		}
 	}

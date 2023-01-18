@@ -59,7 +59,7 @@ public class PopupRencontre extends JDialog {
 
 		
 		JLabel lblEquipe1 = new JLabel(r.getEquipes().get(0).getNom());
-		lblEquipe1.addMouseListener(AccueilV2.getMa());
+		lblEquipe1.addMouseListener(Accueil.getMa());
 		lblEquipe1.setName("Equipe");
 		panelEquipes.add(lblEquipe1);
 		
@@ -67,7 +67,7 @@ public class PopupRencontre extends JDialog {
 		panelEquipes.add(lblseparateur);
 		
 		JLabel lblEquipe2 = new JLabel(r.getEquipes().get(1).getNom());
-		lblEquipe1.addMouseListener(AccueilV2.getMa());
+		lblEquipe1.addMouseListener(Accueil.getMa());
 		lblEquipe1.setName("Equipe");
 		panelEquipes.add(lblEquipe2);
 		
@@ -127,7 +127,7 @@ public class PopupRencontre extends JDialog {
 		for (Component c : panelEq1.getComponents()) {
 			JLabel panel = (JLabel)c;
 			panel.setName("Joueur");
-			panel.addMouseListener(AccueilV2.getMa());
+			panel.addMouseListener(Accueil.getMa());
 		}
 		
 		JPanel panelEq2 = new JPanel();
@@ -152,7 +152,7 @@ public class PopupRencontre extends JDialog {
 		for (Component c : panelEq2.getComponents()) {
 			JLabel panel = (JLabel)c;
 			panel.setName("Joueur");
-			panel.addMouseListener(AccueilV2.getMa());
+			panel.addMouseListener(Accueil.getMa());
 		}
 	}
 	

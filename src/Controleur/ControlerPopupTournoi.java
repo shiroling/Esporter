@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import DBlink.Ecurie;
-import IHM.AccueilV2;
+import IHM.Accueil;
 import IHM.ConnexionV2;
 import IHM.PopupSelectionEquipePourInscription;
 import IHM.PopupTournoi;
@@ -21,7 +21,7 @@ public class ControlerPopupTournoi implements ActionListener {
 	public ControlerPopupTournoi(PopupTournoi vue) {
 		super();
 		this.vue = vue;
-		this.controleurAccueil = AccueilV2.getControleur();
+		this.controleurAccueil = Accueil.getControleur();
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ControlerPopupTournoi implements ActionListener {
 		switch (btn.getName()) {
 		case "inscription":
 			if (controleurAccueil.getConnexionState() != ConnexionState.MANAGER) {
-				ConnexionV2 fenetreConnnexion = new ConnexionV2(AccueilV2.getControleur(), ConnexionState.MANAGER);
+				ConnexionV2 fenetreConnnexion = new ConnexionV2(Accueil.getControleur(), ConnexionState.MANAGER);
 			}
 			if (controleurAccueil.getConnexionState() == ConnexionState.MANAGER) {
 				PopupSelectionEquipePourInscription dialog = new PopupSelectionEquipePourInscription(new Ecurie(this.controleurAccueil.getIdLog()), this.vue);

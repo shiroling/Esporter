@@ -8,13 +8,13 @@ import javax.swing.event.ChangeListener;
 
 import DBlink.BDSelect;
 import DBlink.Equipe;
-import IHM.AccueilV2;
+import IHM.Accueil;
 
 public class ControleurStateChangeCheckBoxClassement implements ChangeListener{
 	
-	private AccueilV2 vue;
+	private Accueil vue;
 	
-	public ControleurStateChangeCheckBoxClassement(AccueilV2 vue) {
+	public ControleurStateChangeCheckBoxClassement(Accueil vue) {
 		super();
 		this.vue = vue;
 	}
