@@ -37,7 +37,7 @@ import base.ConnexionState;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
-public class AccueilV2 {
+public class Accueil {
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panelCartes;
@@ -66,7 +66,7 @@ public class AccueilV2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AccueilV2 window = new AccueilV2();
+					Accueil window = new Accueil();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,7 +78,7 @@ public class AccueilV2 {
 	/**
 	 * Create the application.
 	 */
-	public AccueilV2() {
+	public Accueil() {
 		initialize();
 
 	}
@@ -91,7 +91,7 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AccueilV2.class.getResource("/icon/icon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/icon/icon.png")));
 		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
@@ -460,13 +460,13 @@ public class AccueilV2 {
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
 		case ARBITRE:
-			lblEtatConx.setText("Connecte:Arbitre");
+			lblEtatConx.setText("Connecté : Arbitre");
 			break;
 		case MANAGER:
-			lblEtatConx.setText("Connecte:Manager");
+			lblEtatConx.setText("Connecté : Manager");
 			break;
 		case GESTIONNAIRE:
-			lblEtatConx.setText("Connecte:Gestionaire");
+			lblEtatConx.setText("Connecté : Gestionaire");
 			break;
 		case NON_CONNECTE:
 			lblEtatConx.setText("");

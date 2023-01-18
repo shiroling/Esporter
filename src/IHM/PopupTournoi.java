@@ -111,7 +111,7 @@ public class PopupTournoi extends JDialog {
 			JLabel lblPlace = new JLabel(equipes.indexOf(e)+1+"-");
 			JLabel equipe = new JLabel(e.getNom());
 			equipe.setName("Equipe");
-			equipe.addMouseListener(AccueilV2.getMa());
+			equipe.addMouseListener(Accueil.getMa());
 			panelEquipe.add(lblPlace);
 			panelEquipe.add(equipe);
 			flowLayout = (FlowLayout) panelEquipe.getLayout();
@@ -130,7 +130,7 @@ public class PopupTournoi extends JDialog {
 			panelEquipes.add(panelEquipe);
 			JLabel equipe = new JLabel(e.getNom());
 			equipe.setName("Equipe");
-			equipe.addMouseListener(AccueilV2.getMa());
+			equipe.addMouseListener(Accueil.getMa());
 			FlowLayout flowLayout = (FlowLayout) panelEquipe.getLayout();
 			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelEquipe.add(equipe);

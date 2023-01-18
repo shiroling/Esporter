@@ -31,8 +31,8 @@ public class PanelSelection extends JPanel {
 		}
 	}
 	
-	public PanelSelection(AccueilV2 vueAccueil, Selection selection) {		
-		hover = new HoverPanelSelection(this, selection, vueAccueil);
+	public PanelSelection(Accueil vueAccueil, Selection selection) {		
+		HoverPanelSelection hover = new HoverPanelSelection(this, selection, vueAccueil);
 		
 		setLayout(new BorderLayout(0, 0));
 		addMouseListener(hover);

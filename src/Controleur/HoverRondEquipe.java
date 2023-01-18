@@ -6,7 +6,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import IHM.PanelArrondi;
 import IHM.PopupIndiquerVainqueur;
 
 public class HoverRondEquipe implements MouseListener{

@@ -1,9 +1,6 @@
 package IHM;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -61,7 +58,7 @@ public class PopupEquipe extends JDialog {
 		for (Joueur j : e.getListJoueur()) {	
 			JLabel lblJoueur = new JLabel(j.getPseudo());
 			lblJoueur.setName("Joueur");
-			lblJoueur.addMouseListener(AccueilV2.getMa());
+			lblJoueur.addMouseListener(Accueil.getMa());
 			panelJoueurs.add(lblJoueur);
 		}
 	}

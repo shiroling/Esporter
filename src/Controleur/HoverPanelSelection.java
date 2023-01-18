@@ -11,7 +11,8 @@ import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
-import IHM.AccueilV2;
+import IHM.Accueil;
+
 import IHM.PanelSelection;
 import IHM.PanelSelection.Selection;
 
@@ -19,9 +20,9 @@ public class HoverPanelSelection implements MouseListener{
 	
 	private PanelSelection vue;
 	private Selection select;
-	private AccueilV2 vueAccueil;
+	private Accueil vueAccueil;
 
-	public HoverPanelSelection(PanelSelection vue, Selection select, AccueilV2 vueAccueil) {
+	public HoverPanelSelection(PanelSelection vue, Selection select, Accueil vueAccueil) {
 		super();
 		this.vue = vue;
 		this.select = select;

@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -22,7 +21,7 @@ import DBlink.Equipe;
 import DBlink.Jeu;
 import DBlink.Rencontre;
 import DBlink.Tournoi;
-import IHM.AccueilV2;
+import IHM.Accueil;
 import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import IHM.FormEnregistrerEquipe;
@@ -33,7 +32,7 @@ public class ControleurAccueil implements ActionListener {
 
 	private Etat state;
 	private EtatPanel etatPanelMain;
-	private AccueilV2 vue;
+	private Accueil vue;
 	private Object obj;
 	private JButton btn;
 	private ConnexionState connexionState;
@@ -55,7 +54,7 @@ public class ControleurAccueil implements ActionListener {
 	private List<Equipe> equipes;
 	private List<Ecurie> ecuries;
 
-	public ControleurAccueil(AccueilV2 vue) {
+	public ControleurAccueil(Accueil vue) {
 		this.state = Etat.ACCUEIL_SANS_VOLET;
 		this.etatPanelMain = EtatPanel.TOURNOI;
 		this.vue = vue;
@@ -111,7 +110,6 @@ public class ControleurAccueil implements ActionListener {
 		this.ecuries = BDSelect.getListeEcurie();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		obj = e.getSource();
@@ -195,7 +193,7 @@ public class ControleurAccueil implements ActionListener {
 		this.setPanelFiltresTournois();
 	}
 
-	public AccueilV2 getVueAccueil() {
+	public Accueil getVueAccueil() {
 		return this.vue;
 	}
 
