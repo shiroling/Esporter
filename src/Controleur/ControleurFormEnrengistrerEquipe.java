@@ -58,6 +58,7 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 				}
 				
 				FenMessage fen = new FenMessage("Equipe '" + equipe.getNom() + "' à bien été créée");
+				fen.setVisible(true);
 				this.vue.dispose();
 			}
 			break;

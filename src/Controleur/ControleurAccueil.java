@@ -24,6 +24,7 @@ import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
+import IHM.FormEnregistrerEquipe;
 import base.ConnexionState;
 import base.Portee;
 
@@ -80,6 +81,9 @@ public class ControleurAccueil implements ActionListener {
 				break;
 			case "btnCreerTournoi":
 				procedureCreerTournoi();
+				break;
+			case "btnCreerEquipe":
+				procedureCreerEquipe();
 				break;
 			case "btnDeconnexion":
 				setConnexionState(ConnexionState.NON_CONNECTE);
@@ -163,6 +167,18 @@ public class ControleurAccueil implements ActionListener {
 			formTournoi.setVisible(true);
 		}
 	}
+	
+	private void procedureCreerEquipe() {
+		if (connexionState != ConnexionState.MANAGER) {
+			new ConnexionV2(this, ConnexionState.MANAGER);
+		}
+		if (connexionState == ConnexionState.MANAGER) {
+			FormEnregistrerEquipe formEquipe = new FormEnregistrerEquipe(new Ecurie(idLog));
+			formEquipe.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			formEquipe.setVisible(true);
+		}
+	}
+
 
 	public void procedureInscriptionTournoi(Tournoi t) {
 		if (connexionState != ConnexionState.MANAGER) {
@@ -181,6 +197,33 @@ public class ControleurAccueil implements ActionListener {
 	public void setConnexionState(ConnexionState c) {
 		vue.ChangementConx(c);
 		this.connexionState = c;
+		
+		switch(this.connexionState) {
+		case NON_CONNECTE :
+			this.vue.getLblBtnCreerTournoi().setVisible(false);
+			this.vue.getBtnCreeTournois().setVisible(false);
+			this.vue.getLblCreerEquipe().setVisible(false);
+			this.vue.getBtnCreerEquipe().setVisible(false);
+			break;
+		case GESTIONNAIRE :
+			this.vue.getLblBtnCreerTournoi().setVisible(true);
+			this.vue.getBtnCreeTournois().setVisible(true);
+			this.vue.getLblCreerEquipe().setVisible(false);
+			this.vue.getBtnCreerEquipe().setVisible(false);
+			break;
+		case ARBITRE :
+			this.vue.getLblBtnCreerTournoi().setVisible(false);
+			this.vue.getBtnCreeTournois().setVisible(false);
+			this.vue.getLblCreerEquipe().setVisible(false);
+			this.vue.getBtnCreerEquipe().setVisible(false);
+			break;
+		case MANAGER :
+			this.vue.getLblBtnCreerTournoi().setVisible(false);
+			this.vue.getBtnCreeTournois().setVisible(false);
+			this.vue.getLblCreerEquipe().setVisible(true);
+			this.vue.getBtnCreerEquipe().setVisible(true);
+			break;
+		}
 	}
 
 	public ConnexionState getConnexionState() {
@@ -200,10 +243,14 @@ public class ControleurAccueil implements ActionListener {
 	}
 	
 	public void setPanelVide() {
+		this.vue.getLblTitreFiltre().setVisible(false);;
 		this.vue.getPanelFiltre().removeAll();
 	}
 
 	public void setPanelFiltresTournois() {
+		if(this.vue.getLblTitreFiltre() != null) {
+			this.vue.getLblTitreFiltre().setVisible(true);
+		}
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -373,6 +420,7 @@ public class ControleurAccueil implements ActionListener {
 	}
 
 	public void setPanelFiltresRencontres() {
+		this.vue.getLblTitreFiltre().setVisible(true);
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -516,6 +564,7 @@ public class ControleurAccueil implements ActionListener {
 	}
 
 	public void setPanelFiltresEquipes() {
+		this.vue.getLblTitreFiltre().setVisible(true);
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 

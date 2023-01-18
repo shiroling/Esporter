@@ -35,6 +35,7 @@ import DBlink.Tournoi;
 import IHM.PanelSelection.Selection;
 import base.ConnexionState;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -49,6 +50,11 @@ public class AccueilV2 {
 	private int tailleCarte;
 	private JPanel panelLblTitreCartes;
 	private JScrollPane scrollPaneMain;
+	private JLabel lblCreerEquipe;
+	private BtnStyleV2 btnCreerEquipe;
+	private JLabel lblCreerTournoi;
+	private BtnStyleV2 btnCreeTournois;
+	private JLabel lblTitreFiltre;
 
 	/**
 	 * 
@@ -83,7 +89,8 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setTitle("ESporter");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AccueilV2.class.getResource("/icon/icon.png")));
+		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);
@@ -94,10 +101,6 @@ public class AccueilV2 {
 		JPanel panelHeader = new JPanel();
 		frame.getContentPane().add(panelHeader, BorderLayout.NORTH);
 		panelHeader.setLayout(new BorderLayout(0, 0));
-
-		JLabel lblNomApp = new JLabel("ESporter");
-		lblNomApp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panelHeader.add(lblNomApp, BorderLayout.CENTER);
 
 		JPanel panelEspace = new JPanel();
 		panelHeader.add(panelEspace, BorderLayout.WEST);
@@ -129,16 +132,30 @@ public class AccueilV2 {
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
-		panelAdmin.setLayout(new GridLayout(2, 2, 0, 0));
+		panelAdmin.setLayout(new GridLayout(3, 2, 0, 0));
+		
+		lblCreerEquipe = new JLabel("Manager :");
+		lblCreerEquipe.setVisible(false);
+		panelAdmin.add(lblCreerEquipe);
+		
+		btnCreerEquipe = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		btnCreerEquipe.setVisible(false);
+		btnCreerEquipe.setText("Creer Equipe");
+		btnCreerEquipe.setForeground(Color.WHITE);
+		btnCreerEquipe.setName("btnCreerEquipe");
+		btnCreerEquipe.addActionListener(controleur);
+		panelAdmin.add(btnCreerEquipe);
 
-		JLabel lbladmin = new JLabel("administration");
-		panelAdmin.add(lbladmin);
+		lblCreerTournoi = new JLabel("Gestionaire :");
+		lblCreerTournoi.setVisible(false);
+		panelAdmin.add(lblCreerTournoi);
 
-		BtnStyleV2 btnCreeTournois = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		btnCreeTournois = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
+		btnCreeTournois.setVisible(false);
 		panelAdmin.add(btnCreeTournois);
 
 		lblEtatConx = new JLabel("Connecte:gestionaire");
@@ -160,7 +177,7 @@ public class AccueilV2 {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
 		
-		JLabel lblTitreFiltre = new JLabel("Filtrer les résultats");
+		lblTitreFiltre = new JLabel("Filtrer les résultats");
 		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelTitreFiltre.add(lblTitreFiltre);
 
@@ -269,10 +286,6 @@ public class AccueilV2 {
 							break;
 						case "Tournoi":
 							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
-							break;
-						case "Rencontre":
-							// System.out.println("lol je sais pas comment faire pour ca");
-							// procedureCreePopupRencontre();
 							break;
 						default:
 							break;
@@ -544,6 +557,26 @@ public class AccueilV2 {
 	
 	public JPanel getPanelCartes() {
 		return this.panelCartes;
+	}
+
+	public JLabel getLblCreerEquipe() {
+		return lblCreerEquipe;
+	}
+
+	public BtnStyleV2 getBtnCreerEquipe() {
+		return btnCreerEquipe;
+	}
+
+	public JLabel getLblBtnCreerTournoi() {
+		return lblCreerTournoi;
+	}
+
+	public BtnStyleV2 getBtnCreeTournois() {
+		return btnCreeTournois;
+	}
+
+	public JLabel getLblTitreFiltre() {
+		return lblTitreFiltre;
 	}
 
 }
