@@ -80,6 +80,7 @@ public class AccueilV2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		frame.setTitle("EMA");
 		tailleCarte=0;
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
