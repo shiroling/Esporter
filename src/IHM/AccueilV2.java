@@ -56,6 +56,7 @@ public class AccueilV2 {
 	private BtnStyleV2 btnCreeTournois;
 	private JLabel lblTitreFiltre;
 	private JPanel panelEspace;
+	private List<Tournoi> tournois;
 
 	/**
 	 * 
@@ -296,7 +297,8 @@ public class AccueilV2 {
 			}
 		};
 		
-		this.ajouterCartesTournois(BDSelect.getListeTournois());
+		this.controleur.updateTournois();
+		this.ajouterCartesTournois(this.getControleur().getTournois());
 		this.getLblTitreCartes().setText("Tournois");
 	}
 

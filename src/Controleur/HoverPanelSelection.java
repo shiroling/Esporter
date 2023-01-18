@@ -3,8 +3,14 @@ package Controleur;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import DBlink.BDSelect;
+import DBlink.Ecurie;
+import DBlink.Equipe;
+import DBlink.Jeu;
+import DBlink.Rencontre;
+import DBlink.Tournoi;
 import IHM.AccueilV2;
 import IHM.PanelSelection;
 import IHM.PanelSelection.Selection;
@@ -24,39 +30,46 @@ public class HoverPanelSelection implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		ControleurAccueil ctrlAcceuil = vueAccueil.getControleur();
+		
 		switch(this.select) {
 		case TOURNOI:
-			this.vueAccueil.getControleur().setPanelFiltresTournois();
+			ctrlAcceuil.setPanelFiltresTournois();
+			ctrlAcceuil.updateTournois();
 			vueAccueil.viderCartes();
-			vueAccueil.ajouterCartesTournois(BDSelect.getListeTournois());
+			vueAccueil.ajouterCartesTournois(ctrlAcceuil.getTournois());
 			vueAccueil.getLblTitreCartes().setText("Tournois");
 			vueAccueil.ajusterGrille();
 			break;
 		case RENCONTRE:
 			this.vueAccueil.getControleur().setPanelFiltresRencontres();
+			ctrlAcceuil.updateRencontres();
 			vueAccueil.viderCartes();
 			vueAccueil.getLblTitreCartes().setText("Matchs");
-			vueAccueil.ajouterCartesMatch(BDSelect.getListeRencontre());
+			vueAccueil.ajouterCartesMatch(ctrlAcceuil.getRencontres());
 			vueAccueil.ajusterGrille();
 			break;
 		case JEU:
 			this.vueAccueil.getControleur().setPanelVide();
+			ctrlAcceuil.updateJeux();
 			vueAccueil.viderCartes();
-			vueAccueil.ajouterCartesJeu(BDSelect.getListeJeux());
+			vueAccueil.ajouterCartesJeu(ctrlAcceuil.getJeux());
 			vueAccueil.getLblTitreCartes().setText("Jeux");
 			vueAccueil.ajusterGrille();
 			break;
 		case EQUIPE:
 			this.vueAccueil.getControleur().setPanelFiltresEquipes();
+			ctrlAcceuil.updateEquipes();
 			vueAccueil.viderCartes();
-			vueAccueil.ajouterCartesEquipe(BDSelect.getClassementGeneral());
+			vueAccueil.ajouterCartesEquipe(ctrlAcceuil.getEquipes());
 			vueAccueil.getLblTitreCartes().setText("Equipes");
 			vueAccueil.ajusterGrille();
 			break;
 		case ECURIE:
 			this.vueAccueil.getControleur().setPanelVide();
+			ctrlAcceuil.updateEcuries();
 			vueAccueil.viderCartes();
-			vueAccueil.ajouterCartesEcurie(BDSelect.getListeEcurie());
+			vueAccueil.ajouterCartesEcurie(ctrlAcceuil.getEcuries());
 			vueAccueil.getLblTitreCartes().setText("Ecuries");
 			vueAccueil.ajusterGrille();
 			break;
@@ -88,5 +101,5 @@ public class HoverPanelSelection implements MouseListener{
 		this.vue.getPanelLigneHover().repaint();
 		this.vue.revalidate();
 	}
-
+	
 }
