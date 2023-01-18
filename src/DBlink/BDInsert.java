@@ -224,8 +224,23 @@ public class BDInsert {
 		}
 	}
 	
-	
-	
-	
-	
+	public static void insererJoueur(String nom, String prenom, Date naissance, String pseudo, int idEquipe) {
+		Connection connex = ConnexionBase.getConnectionBase();
+		try {
+			PreparedStatement st = connex.prepareStatement("Insert into Joueur values (seq_joueur.nextval, ?, ?, ?, ?, ?)");
+			st.setString(1, nom);
+			st.setString(2, prenom);
+			st.setDate(3, naissance);
+			st.setString(4, pseudo);
+			st.setInt(5, idEquipe);
+			st.executeUpdate();
+			st.close();
+
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+		
+	}
 }
+
+	
