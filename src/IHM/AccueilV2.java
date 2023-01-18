@@ -55,6 +55,7 @@ public class AccueilV2 {
 	private BtnStyleV2 btnCreerEquipe;
 	private JLabel lblCreerTournoi;
 	private BtnStyleV2 btnCreeTournois;
+	private JLabel lblTitreFiltre;
 
 	/**
 	 * 
@@ -181,7 +182,7 @@ public class AccueilV2 {
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
 		
-		JLabel lblTitreFiltre = new JLabel("Filtrer les résultats");
+		lblTitreFiltre = new JLabel("Filtrer les résultats");
 		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelTitreFiltre.add(lblTitreFiltre);
 
@@ -611,6 +612,10 @@ public class AccueilV2 {
 
 	public BtnStyleV2 getBtnCreeTournois() {
 		return btnCreeTournois;
+	}
+
+	public JLabel getLblTitreFiltre() {
+		return lblTitreFiltre;
 	}
 
 }

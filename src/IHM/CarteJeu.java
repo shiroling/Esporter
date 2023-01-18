@@ -61,8 +61,6 @@ public class CarteJeu extends Carte {
 		List<JPanel> listPanelAHover = new ArrayList<>();
 		listPanelAHover.add(panelNomJeu);
 		listPanelAHover.add(panelLogoJeu);
-		
-		super.addHoverPannels(listPanelAHover);
 
 		this.setName("CarteJeu");
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
