@@ -89,12 +89,15 @@ public class PopupTournoi extends JDialog {
 		JLabel lblInscription = new JLabel("Date limite d'inscription : " + t.getDateFinInscriptions().toString());
 		panelInscription.add(lblInscription);
 
-		if (!t.isTournoiPlein()) {
+		if (!t.isTournoiPlein() && !t.isFini()) {
 			JButton btnInscription = new JButton("Inscrire une équipe");
 			btnInscription.addActionListener(controleur);
 			btnInscription.setName("inscription");
 			panelInscription.add(btnInscription);
-		} else {
+		} else if (t.isFini()){
+			JLabel lblFini = new JLabel("Le tournoi est fini");
+			panelInscription.add(lblFini);
+		}else {
 			JLabel lblPlein = new JLabel("Le tournoi est plein");
 			panelInscription.add(lblPlein);
 		}
