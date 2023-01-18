@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,6 +54,8 @@ public class AccueilV2 {
 	private BtnStyleV2 btnCreerEquipe;
 	private JLabel lblCreerTournoi;
 	private BtnStyleV2 btnCreeTournois;
+	private JLabel lblTitreFiltre;
+	private JPanel panelEspace;
 
 	/**
 	 * 
@@ -98,23 +99,6 @@ public class AccueilV2 {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel panelHeader = new JPanel();
-		frame.getContentPane().add(panelHeader, BorderLayout.NORTH);
-		panelHeader.setLayout(new BorderLayout(0, 0));
-
-		JPanel panelEspace = new JPanel();
-		panelHeader.add(panelEspace, BorderLayout.WEST);
-		
-		JPanel panelConnexion = new JPanel();
-		panelHeader.add(panelConnexion, BorderLayout.EAST);
-		
-		btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
-		btnSeConnecter.setText("Se connecter");
-		btnSeConnecter.setForeground(Color.WHITE);
-		btnSeConnecter.addActionListener(getControleur());
-		btnSeConnecter.setName("seConnecter");
-		panelConnexion.add(btnSeConnecter);
-
 		JPanel panelFonctionalites = new JPanel();
 		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
 		panelFonctionalites.setLayout(new BorderLayout(0, 0));
@@ -132,7 +116,7 @@ public class AccueilV2 {
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
-		panelAdmin.setLayout(new GridLayout(3, 2, 0, 0));
+		panelAdmin.setLayout(new GridLayout(4, 2, 0, 0));
 		
 		lblCreerEquipe = new JLabel("Manager :");
 		lblCreerEquipe.setVisible(false);
@@ -171,13 +155,20 @@ public class AccueilV2 {
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
 		
+		btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		panelAdmin.add(btnSeConnecter);
+		btnSeConnecter.setText("Se connecter");
+		btnSeConnecter.setForeground(Color.WHITE);
+		btnSeConnecter.addActionListener(getControleur());
+		btnSeConnecter.setName("seConnecter");
+		
 		JPanel panelTitreFiltre = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panelTitreFiltre.getLayout();
 		flowLayout.setVgap(20);
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelFiltrePlusAdmin.add(panelTitreFiltre, BorderLayout.NORTH);
 		
-		JLabel lblTitreFiltre = new JLabel("Filtrer les résultats");
+		lblTitreFiltre = new JLabel("Filtrer les résultats");
 		lblTitreFiltre.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 15));
 		panelTitreFiltre.add(lblTitreFiltre);
 
@@ -186,9 +177,9 @@ public class AccueilV2 {
 		panelBtnSelection.setLayout(new GridLayout(0, 1, 0, 0));
 		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
 		
-		JPanel panelEspaceFoctionalite = new JPanel();
-		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 40));
-		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
+		/*JPanel panelEspaceFoctionalite = new JPanel();
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 20));
+		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);*/
 		
 		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
 		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
@@ -196,42 +187,18 @@ public class AccueilV2 {
 		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
 		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
 		
+		panelEspace = new JPanel();
+		panelEspace.setLayout(null);
+		panelEspace.setPreferredSize(new Dimension(0, 10));
+		panelBtnSelection.add(panelEspace);
+		
+		
 		panelBtnSelection.add(selectTournoi);
 		panelBtnSelection.add(selectRencontre);
 		panelBtnSelection.add(selectJeu);
 		panelBtnSelection.add(selectEquipe);
 		panelBtnSelection.add(selectEcurie);
-		/*
-		JButton btnTournois = new JButton("Tournois");
-		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTournois.addActionListener(controleur);
-		btnTournois.setName("Tournois");
-		panelBtnSelection.add(btnTournois);
 
-		JButton btnMatch = new JButton("Match");
-		btnMatch.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnMatch.addActionListener(controleur);
-		btnMatch.setName("Match");
-		panelBtnSelection.add(btnMatch);
-
-		JButton btnJeu = new JButton("Jeu");
-		btnJeu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnJeu.addActionListener(controleur);
-		btnJeu.setName("Jeu");
-		panelBtnSelection.add(btnJeu);
-
-		JButton btnEquipe = new JButton("Equipe");
-		btnEquipe.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnEquipe.addActionListener(controleur);
-		btnEquipe.setName("Equipe");
-		panelBtnSelection.add(btnEquipe);
-
-		JButton btnEcurie = new JButton("Ecurie");
-		btnEcurie.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnEcurie.addActionListener(controleur);
-		btnEcurie.setName("Ecurie");
-		panelBtnSelection.add(btnEcurie);
-		*/
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
@@ -316,10 +283,6 @@ public class AccueilV2 {
 							break;
 						case "Tournoi":
 							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
-							break;
-						case "Rencontre":
-							// System.out.println("lol je sais pas comment faire pour ca");
-							// procedureCreePopupRencontre();
 							break;
 						default:
 							break;
@@ -607,6 +570,10 @@ public class AccueilV2 {
 
 	public BtnStyleV2 getBtnCreeTournois() {
 		return btnCreeTournois;
+	}
+
+	public JLabel getLblTitreFiltre() {
+		return lblTitreFiltre;
 	}
 
 }
