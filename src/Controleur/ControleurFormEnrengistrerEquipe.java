@@ -15,6 +15,13 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 	
 	private FormEnregistrerEquipe vue;
 
+	public ControleurFormEnrengistrerEquipe(FormEnregistrerEquipe vue) {
+		super();
+		this.vue = vue;
+	}
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton btn = (JButton) e.getSource();
@@ -25,13 +32,15 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 			if(nomEquipe.equals("")) {
 				this.vue.getLblnomEquipe().setText("Nom (vide)");
 				this.vue.getLblnomEquipe().setForeground(Color.RED);
+				this.vue.getLblnomEquipe().updateUI();
 			} else if(BDSelect.equipeDejaPresente(nomEquipe)){
 				this.vue.getLblnomEquipe().setText("Nom (déjà pris)");
 				this.vue.getLblnomEquipe().setForeground(Color.RED);
 			} else {
-				//Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
+				//Appeller 4 fois form creer Joueur
+				Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
+				this.vue.dispose();
 			}
-			this.vue.dispose();
 			break;
 		case "Annuler":
 			this.vue.dispose();

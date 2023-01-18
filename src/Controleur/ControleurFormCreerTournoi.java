@@ -65,36 +65,40 @@ public class ControleurFormCreerTournoi implements ActionListener {
 				this.vue.getLabelJeuxAjoutes().setForeground(new Color(51, 51, 51));
 			}
 
-			PreDate dateDebutTournois = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourDebutTournoi()));
-			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
-			PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
 		
+			PreDate dateDebutTournois = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeDebutTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiDebutTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourDebutTournoi()));
 			//Si la date n'est pas valide, alors mettre le libellé en rouge
-			if (!(dateDebutTournois.estDateValide()) && !(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-				this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
-				this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
-			} else if (dateDebutTournois.estDateValide()) {
+			if (dateDebutTournois.estDateValide() && !dateDebutTournois.estPassee()) {
 				this.vue.getLabelDateDebutTournoi().setText("Date Début Tournoi");
 				this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
+			} else
+			if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
+				this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
+				this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
 			}
 			
+			PreDate dateFinTournois =  new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinTournoi()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinTournoi()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinTournoi()));
 			//Si la date n'est pas valide, alors mettre le libellé en rouge
-			if (!(dateFinTournois.estDateValide()) && !(this.vue.getLabelDateFinTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-				this.vue.getLabelDateFinTournoi().setText(this.vue.getLabelDateFinTournoi().getText() + "*");
-				this.vue.getLabelDateFinTournoi().setForeground(new Color(255, 0, 0));
-			} else if (dateFinTournois.estDateValide()) {
+			if (dateFinTournois.estDateValide() && !dateFinTournois.estPassee()) {
 				this.vue.getLabelDateFinTournoi().setText("Date Fin Tournoi");
 				this.vue.getLabelDateFinTournoi().setForeground(new Color(51, 51, 51));
+			}else
+			if (!(this.vue.getLabelDateFinTournoi().getForeground().equals(new Color(255, 0, 0)))) {
+				this.vue.getLabelDateFinTournoi().setText(this.vue.getLabelDateFinTournoi().getText() + "*");
+				this.vue.getLabelDateFinTournoi().setForeground(new Color(255, 0, 0));
 			} 
 			
+			PreDate dateFinInscription = new PreDate(Integer.parseInt(this.vue.getSelectedValueComboAnneeFinInscription()), Mois.stringToMois(this.vue.getSelectedValueComboMoiFinInscription()).getMoisChiffre(), Integer.parseInt(this.vue.getSelectedValueComboJourFinInscription()));
 			//Si la date n'est pas valide, alors mettre le libellé en rouge
-			if (!(dateFinInscription.estDateValide()) && !(this.vue.getLabelDateFinInscription().getForeground().equals(new Color(255, 0, 0)))) {
-				this.vue.getLabelDateFinInscription().setText(this.vue.getLabelDateFinInscription().getText() + "*");
-				this.vue.getLabelDateFinInscription().setForeground(new Color(255, 0, 0));
-			} else if (dateFinInscription.estDateValide()) {
+			if (dateFinInscription.estDateValide() && !dateFinInscription.estPassee()) {
 				this.vue.getLabelDateFinInscription().setText("Date Fin Inscription");
 				this.vue.getLabelDateFinInscription().setForeground(new Color(51, 51, 51));
+			} else
+			if (!(this.vue.getLabelDateFinInscription().getForeground().equals(new Color(255, 0, 0)))) {
+				this.vue.getLabelDateFinInscription().setText(this.vue.getLabelDateFinInscription().getText() + "*");
+				this.vue.getLabelDateFinInscription().setForeground(new Color(255, 0, 0));
 			}
+			
 			
 			//Si la date Fin tournoi est avant la Date debut Tournoi, alors mettre les deux libélé en Rouge
 			if(dateFinTournois.toDate().compareTo(dateDebutTournois.toDate()) < 0) {
@@ -135,6 +139,22 @@ public class ControleurFormCreerTournoi implements ActionListener {
 			break;
 		}
 	}
+	
+	private boolean checkDate(String s, PreDate dateDebutTournois) {
+		if (dateDebutTournois.estDateValide() && !dateDebutTournois.estPassee()) {		// date valide
+			this.vue.getLabelDateDebutTournoi().setText(s);
+			this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
+			return true;
+		}
+		//Si la date n'est pas valide et label pas en rouge, alors mettre le libellé en rouge
+		if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
+			this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
+			this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
+		}
+		return false;
+	}
+	
+	
 	
 	//Return True si le formulaire est Valide.
 	private boolean estFormulaireValide() {

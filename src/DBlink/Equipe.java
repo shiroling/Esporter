@@ -10,12 +10,14 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	private String nom;
 	private int idJeu;
 	private int idEcurie;
+	private int points;
 	
 	public Equipe(int id) {
 		super(id);
 		this.nom = null;
 		this.idJeu = -1;
 		this.idEcurie = -1;
+		this.points = -1;
 	}
 
 	public void init() {
@@ -35,7 +37,17 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	public void setIdEcurie(int idEcurie) {
 		this.idEcurie = idEcurie;
 	}
-
+	
+	public void setPoints(int pts) {
+		this.points = pts;
+	}
+	
+	public int getPoints() {
+		if(this.points == -1) {
+			this.setPoints(BDSelect.getPointsEquipe(this.getId()));
+		}
+		return points;
+	}
 
 	public int getId() {
 		return super.getId();
@@ -148,10 +160,6 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 
 	private float getAgeMoyen() {
 		return BDSelect.getAgeMoyenEquipe(this.getId());
-	}
-
-	private int getPoints() {
-		return BDSelect.getPointsEquipe(this.getId());
 	}
 	
 	public static Equipe getEquipeFromNom(String nom) {

@@ -1,6 +1,9 @@
 package base;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class PreDate {
 	
@@ -40,9 +43,19 @@ public class PreDate {
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
+	public boolean estPassee() {
+		Instant i = Instant.now();
+		LocalDate localDate = LocalDate.ofInstant(i, ZoneId.systemDefault());
+        Date date = Date.valueOf(localDate);
+        if((this.toDate().before(date))) {
+        	return false;
+        }
+        return true;
+	}
 	@SuppressWarnings("deprecation")
 	public Date toDate() {
 		return new Date(year - 1900, month, day);
