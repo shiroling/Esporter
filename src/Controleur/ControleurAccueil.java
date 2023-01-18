@@ -168,13 +168,6 @@ public class ControleurAccueil implements ActionListener {
 		if (connexionState != ConnexionState.MANAGER) {
 			ConnexionV2 fenetreConnnexion = new ConnexionV2(this, ConnexionState.GESTIONNAIRE);
 		}
-		if (connexionState == ConnexionState.MANAGER) {
-			System.out.println(t);
-			//
-			//
-			//
-			//
-		}
 	}
 	
 	public Etat getState() {

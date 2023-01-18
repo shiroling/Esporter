@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -185,37 +184,7 @@ public class AccueilV2 {
 		panelBtnSelection.add(selectJeu);
 		panelBtnSelection.add(selectEquipe);
 		panelBtnSelection.add(selectEcurie);
-		/*
-		JButton btnTournois = new JButton("Tournois");
-		btnTournois.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTournois.addActionListener(controleur);
-		btnTournois.setName("Tournois");
-		panelBtnSelection.add(btnTournois);
-
-		JButton btnMatch = new JButton("Match");
-		btnMatch.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnMatch.addActionListener(controleur);
-		btnMatch.setName("Match");
-		panelBtnSelection.add(btnMatch);
-
-		JButton btnJeu = new JButton("Jeu");
-		btnJeu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnJeu.addActionListener(controleur);
-		btnJeu.setName("Jeu");
-		panelBtnSelection.add(btnJeu);
-
-		JButton btnEquipe = new JButton("Equipe");
-		btnEquipe.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnEquipe.addActionListener(controleur);
-		btnEquipe.setName("Equipe");
-		panelBtnSelection.add(btnEquipe);
-
-		JButton btnEcurie = new JButton("Ecurie");
-		btnEcurie.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnEcurie.addActionListener(controleur);
-		btnEcurie.setName("Ecurie");
-		panelBtnSelection.add(btnEcurie);
-		*/
+		
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
