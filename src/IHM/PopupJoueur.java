@@ -20,6 +20,7 @@ public class PopupJoueur extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupJoueur(Joueur j) {
+		setTitle("Joueur : "+j.getPrenom()+" \""+j.getPseudo()+"\" "+j.getNom());
 		setBounds(100, 100, 614, 528);
 		BorderLayout borderLayout = new BorderLayout();
 		borderLayout.setVgap(30);

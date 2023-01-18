@@ -23,6 +23,7 @@ public class PopupEcurie extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupEcurie(Ecurie e) {
+		setTitle("Ecurie : "+e.getNom());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
