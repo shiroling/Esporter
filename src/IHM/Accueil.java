@@ -458,13 +458,13 @@ public class Accueil {
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
 		case ARBITRE:
-			lblEtatConx.setText("Connecte:Arbitre");
+			lblEtatConx.setText("Connecté : Arbitre");
 			break;
 		case MANAGER:
-			lblEtatConx.setText("Connecte:Manager");
+			lblEtatConx.setText("Connecté : Manager");
 			break;
 		case GESTIONNAIRE:
-			lblEtatConx.setText("Connecte:Gestionaire");
+			lblEtatConx.setText("Connecté : Gestionaire");
 			break;
 		case NON_CONNECTE:
 			lblEtatConx.setText("");
