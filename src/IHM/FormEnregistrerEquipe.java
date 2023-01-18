@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import Controleur.ControleurFormEnrengistrerEquipe;
 import DBlink.Ecurie;
 import DBlink.Jeu;
+import java.awt.Color;
 
 public class FormEnregistrerEquipe extends JDialog {
 
@@ -25,6 +26,11 @@ public class FormEnregistrerEquipe extends JDialog {
 	private JTextField textFieldNomEquipe;
 	private JComboBox comboJeux;
 	private JLabel lblNomEquipe;
+	private JLabel lblJoueur1;
+	private JLabel lblJoueur2;
+	private JLabel lblJoueur3;
+	private JLabel lblJoueur4;
+	private JLabel lblJoueurNonAjoutes;
 
 	/**
 	 * Launch the application.
@@ -81,7 +87,16 @@ public class FormEnregistrerEquipe extends JDialog {
 			}
 			{
 				JPanel panelLblAjouterJoueurs = new JPanel();
+				FlowLayout flowLayout = (FlowLayout) panelLblAjouterJoueurs.getLayout();
+				flowLayout.setAlignment(FlowLayout.LEFT);
+				flowLayout.setVgap(18);
 				panelLbl.add(panelLblAjouterJoueurs);
+				{
+					lblJoueurNonAjoutes = new JLabel("Joueurs manquant");
+					lblJoueurNonAjoutes.setForeground(new Color(255, 0, 0));
+					lblJoueurNonAjoutes.setVisible(false);
+					panelLblAjouterJoueurs.add(lblJoueurNonAjoutes);
+				}
 			}
 		}
 		{
@@ -120,6 +135,8 @@ public class FormEnregistrerEquipe extends JDialog {
 					panelAjouterJoueurs.add(panelBtnAjouterJoueur);
 					{
 						JButton btnAjouterJoueurs = new JButton("Ajouter Les Joueurs");
+						btnAjouterJoueurs.setName("AjouterJoueurs");
+						btnAjouterJoueurs.addActionListener(controleur);
 						panelBtnAjouterJoueur.add(btnAjouterJoueurs);
 					}
 				}
@@ -128,20 +145,20 @@ public class FormEnregistrerEquipe extends JDialog {
 					panelAjouterJoueurs.add(panelListJoueurs);
 					panelListJoueurs.setLayout(new GridLayout(4, 1, 0, 0));
 					{
-						JLabel lblJoueur1 = new JLabel("Joueur 1 :");
+						lblJoueur1 = new JLabel("Joueur 1 :");
 						panelListJoueurs.add(lblJoueur1);
 					}
 					{
-						JLabel lblNewLabel_2 = new JLabel("Joueur 2 :");
-						panelListJoueurs.add(lblNewLabel_2);
+						lblJoueur2 = new JLabel("Joueur 2 :");
+						panelListJoueurs.add(lblJoueur2);
 					}
 					{
-						JLabel lblNewLabel_1 = new JLabel("Joueur 3 :");
-						panelListJoueurs.add(lblNewLabel_1);
+						lblJoueur3 = new JLabel("Joueur 3 :");
+						panelListJoueurs.add(lblJoueur3);
 					}
 					{
-						JLabel lblNewLabel_3 = new JLabel("Joueur 4 :");
-						panelListJoueurs.add(lblNewLabel_3);
+						lblJoueur4 = new JLabel("Joueur 4 :");
+						panelListJoueurs.add(lblJoueur4);
 					}
 				}
 			}
@@ -192,5 +209,25 @@ public class FormEnregistrerEquipe extends JDialog {
 	public JLabel getLblnomEquipe() {
 		return lblNomEquipe;
 	}
+
+	public JLabel getLblJoueur1() {
+		return lblJoueur1;
+	}
+
+	public JLabel getLblJoueur2() {
+		return lblJoueur2;
+	}
+
+	public JLabel getLblJoueur3() {
+		return lblJoueur3;
+	}
+
+	public JLabel getLblJoueur4() {
+		return lblJoueur4;
+	}
+
+	public JLabel getLblJoueurNonAjoutes() {
+		return lblJoueurNonAjoutes;
+	}	
 
 }

@@ -13,10 +13,12 @@ import base.PreDate;
 public class ControleurFormEnrengistrerJoueur implements ActionListener {
 	
 	private FormEnregistrerJoueur vue;
+	private ControleurFormEnrengistrerEquipe controleurForEquipe;
 
-	public ControleurFormEnrengistrerJoueur(FormEnregistrerJoueur vue) {
+	public ControleurFormEnrengistrerJoueur(FormEnregistrerJoueur vue, ControleurFormEnrengistrerEquipe controleurForEquipe) {
 		super();
 		this.vue = vue;
+		this.controleurForEquipe = controleurForEquipe;
 	}
 
 	@Override
@@ -57,7 +59,8 @@ public class ControleurFormEnrengistrerJoueur implements ActionListener {
 			}
 			
 			if(this.estFormulaireValide()) {
-				
+				this.controleurForEquipe.addPreJoueur(nomJoueur, prenomJoueur, dateNaissance.toDate(), pseudoJoueur);
+				this.vue.dispose();
 			}
 			
 			break;

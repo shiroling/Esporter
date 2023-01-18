@@ -9,7 +9,7 @@ public class PreJoueur {
     private String pseudo;
     private int idEquipe;
     
-	public PreJoueur(String nom, String prenom, Date naissance, String pseudo, int idEquipe) {
+	public PreJoueur(String nom, String prenom, Date naissance, String pseudo) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
