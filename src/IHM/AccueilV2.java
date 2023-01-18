@@ -183,7 +183,6 @@ public class AccueilV2 {
 		
 		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
 		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
-		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
 		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
 		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
 		
@@ -195,9 +194,10 @@ public class AccueilV2 {
 		
 		panelBtnSelection.add(selectTournoi);
 		panelBtnSelection.add(selectRencontre);
-		panelBtnSelection.add(selectJeu);
 		panelBtnSelection.add(selectEquipe);
 		panelBtnSelection.add(selectEcurie);
+		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
+		panelBtnSelection.add(selectJeu);
 
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
