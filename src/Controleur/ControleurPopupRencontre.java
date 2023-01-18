@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import DBlink.Rencontre;
-import IHM.AccueilV2;
+import IHM.Accueil;
 import IHM.ConnexionV2;
 import IHM.FormCreerTournoi;
 import IHM.PopupIndiquerVainqueur;

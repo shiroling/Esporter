@@ -22,7 +22,7 @@ import java.awt.Color;
 public class FormCreerTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private AccueilV2 vueAccueil;
+	private Accueil vueAccueil;
 	private JTextField textFieldNom;
 	private JLabel lblNom;
 	private JPanel panelJeuxAjoutes;
@@ -61,7 +61,7 @@ public class FormCreerTournoi extends JDialog {
 		return this.idGerant;
 	}
 	
-	public AccueilV2 getVueAccueil() {
+	public Accueil getVueAccueil() {
 		return this.vueAccueil;
 	}
 	
@@ -144,7 +144,7 @@ public class FormCreerTournoi extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FormCreerTournoi(int idGerant, AccueilV2 vueAccueil) {
+	public FormCreerTournoi(int idGerant, Accueil vueAccueil) {
 		this.idGerant = idGerant;
 		this.vueAccueil = vueAccueil;
 		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this, vueAccueil.getControleur());
