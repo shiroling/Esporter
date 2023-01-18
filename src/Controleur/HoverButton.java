@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import IHM.BtnStyle;
-import IHM.BtnStyleV2;
 
 
 public class HoverButton implements MouseListener {

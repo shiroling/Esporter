@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -65,7 +64,6 @@ public class ControleurAccueil implements ActionListener {
 		TOURNOI, RENCONTRE, JEU, EQUIPE, ECURIE;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		obj = e.getSource();

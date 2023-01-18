@@ -3,7 +3,6 @@ package Controleur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import DBlink.Tournoi;
 import IHM.BtnStyleV2;
 import IHM.PopupIndiquerVainqueur;
 
