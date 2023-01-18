@@ -140,22 +140,6 @@ public class ControleurFormCreerTournoi implements ActionListener {
 		}
 	}
 	
-	private boolean checkDate(String s, PreDate dateDebutTournois) {
-		if (dateDebutTournois.estDateValide() && !dateDebutTournois.estPassee()) {		// date valide
-			this.vue.getLabelDateDebutTournoi().setText(s);
-			this.vue.getLabelDateDebutTournoi().setForeground(new Color(51, 51, 51));
-			return true;
-		}
-		//Si la date n'est pas valide et label pas en rouge, alors mettre le libellé en rouge
-		if (!(this.vue.getLabelDateDebutTournoi().getForeground().equals(new Color(255, 0, 0)))) {
-			this.vue.getLabelDateDebutTournoi().setText(this.vue.getLabelDateDebutTournoi().getText() + "*");
-			this.vue.getLabelDateDebutTournoi().setForeground(new Color(255, 0, 0));
-		}
-		return false;
-	}
-	
-	
-	
 	//Return True si le formulaire est Valide.
 	private boolean estFormulaireValide() {
 		if(this.vue.getLabelNom().getForeground().equals(new Color(255, 0, 0)) ||
