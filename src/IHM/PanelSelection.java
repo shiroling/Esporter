@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 public class PanelSelection extends JPanel {
 	
 	private JPanel panelLigneHover;
+	private HoverPanelSelection hover;
 	
 	public static enum Selection {
 		TOURNOI("Tournois"), RENCONTRE("Matchs"), JEU("Jeux"), EQUIPE("Equipes"), ECURIE("Ecuries");
@@ -60,5 +61,10 @@ public class PanelSelection extends JPanel {
 	public JPanel getPanelLigneHover() {
 		return this.panelLigneHover;
 	}
+
+	public HoverPanelSelection getHover() {
+		return hover;
+	}
+	
 	
 }

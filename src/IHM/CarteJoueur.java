@@ -3,8 +3,6 @@ package IHM;
 import java.awt.Font;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import DBlink.Joueur;
 
 public class CarteJoueur extends Carte {
