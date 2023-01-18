@@ -250,10 +250,14 @@ public class ControleurAccueil implements ActionListener {
 	}
 	
 	public void setPanelVide() {
+		this.vue.getLblTitreFiltre().setVisible(false);;
 		this.vue.getPanelFiltre().removeAll();
 	}
 
 	public void setPanelFiltresTournois() {
+		if(this.vue.getLblTitreFiltre() != null) {
+			this.vue.getLblTitreFiltre().setVisible(true);
+		}
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -423,6 +427,7 @@ public class ControleurAccueil implements ActionListener {
 	}
 
 	public void setPanelFiltresRencontres() {
+		this.vue.getLblTitreFiltre().setVisible(true);
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -566,6 +571,7 @@ public class ControleurAccueil implements ActionListener {
 	}
 
 	public void setPanelFiltresEquipes() {
+		this.vue.getLblTitreFiltre().setVisible(true);
 		this.vue.getPanelFiltre().removeAll();
 		this.vue.getPanelFiltre().setLayout(new GridLayout(6, 1, 0, 0));
 
