@@ -24,6 +24,7 @@ public class PopupEquipe extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupEquipe(Equipe e) {
+		setTitle("Equipe : "+e.getNom());
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

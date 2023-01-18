@@ -36,6 +36,7 @@ import DBlink.Tournoi;
 import IHM.PanelSelection.Selection;
 import base.ConnexionState;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 public class AccueilV2 {
 	private static MouseAdapter ma;
@@ -88,7 +89,8 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setTitle("ESporter");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AccueilV2.class.getResource("/icon/icon.png")));
+		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
 		borderLayout.setHgap(10);

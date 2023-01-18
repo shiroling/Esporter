@@ -27,6 +27,7 @@ public class PopupTournoi extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupTournoi(Tournoi t) {
+		this.setTitle("Tournoi : "+t.getNom());
 		ControlerPopupTournoi controleur = new ControlerPopupTournoi(this);
 
 		tournoi = t;

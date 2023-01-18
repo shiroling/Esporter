@@ -19,7 +19,9 @@ public class PopupJeu extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	
 	public PopupJeu(Jeu j) {
+		setTitle("Jeu : "+j.getNom());
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());

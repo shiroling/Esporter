@@ -42,6 +42,7 @@ public class PopupVoirRencontreTournoi extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupVoirRencontreTournoi(Tournoi tournoi) {
+		
 		this.tournoi = tournoi;
 		
 		setBounds(100, 100, 450, 300);
