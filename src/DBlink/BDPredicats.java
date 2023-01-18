@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.sql.Types;
 
 import base.Portee;
-import oracle.jdbc.proxy.annotation.Pre;
 
 public class BDPredicats {
 
