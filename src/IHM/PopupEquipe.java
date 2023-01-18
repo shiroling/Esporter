@@ -32,12 +32,19 @@ public class PopupEquipe extends JDialog {
 		
 		JPanel panelHead = new JPanel();
 		contentPanel.add(panelHead, BorderLayout.NORTH);
+		panelHead.setLayout(new GridLayout(2, 2, 0, 0));
 		
 		JPanel panelNom = new JPanel();
 		panelHead.add(panelNom);
 		
 		JLabel lblNom = new JLabel(e.getNom());
 		panelNom.add(lblNom);
+		
+		JPanel panelPoints = new JPanel();
+		panelHead.add(panelPoints);
+		
+		JLabel lblPoints = new JLabel("Nombre de points :"+e.getPoints());
+		panelPoints.add(lblPoints);
 		
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
@@ -52,6 +59,8 @@ public class PopupEquipe extends JDialog {
 		
 		for (Joueur j : e.getListJoueur()) {	
 			JLabel lblJoueur = new JLabel(j.getPseudo());
+			lblJoueur.setName("Joueur");
+			lblJoueur.addMouseListener(AccueilV2.getMa());
 			panelJoueurs.add(lblJoueur);
 		}
 	}

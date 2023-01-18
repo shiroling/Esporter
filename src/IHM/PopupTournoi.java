@@ -2,7 +2,7 @@ package IHM;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,12 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Controleur.ControlerPopupTournoi;
-import Controleur.ControleurAccueil;
-import DBlink.BDSelect;
 import DBlink.Equipe;
-import DBlink.Poule;
-import DBlink.Rencontre;
 import DBlink.Tournoi;
+import java.awt.FlowLayout;
 
 public class PopupTournoi extends JDialog {
 
@@ -62,10 +59,6 @@ public class PopupTournoi extends JDialog {
 		JLabel lblDateFin = new JLabel(t.getDateFin().toString());
 		panelDates.add(lblDateFin);
 
-
-
-		
-
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp, BorderLayout.CENTER);
 		panelCorp.setLayout(new GridLayout(0, 1, 0, 0));
@@ -78,6 +71,8 @@ public class PopupTournoi extends JDialog {
 		panelEquipes.setLayout(new GridLayout(t.getListEquipesParticipantes().size() + 1, 1, 0, 0));
 
 		JPanel panellblEquipe = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panellblEquipe.getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		panelEquipes.add(panellblEquipe);
 
 		if (t.isFini()) {
@@ -92,7 +87,7 @@ public class PopupTournoi extends JDialog {
 		contentPanel.add(panelInscription, BorderLayout.SOUTH);
 		JLabel lblInscription = new JLabel("Date limite d'inscription : " + t.getDateFinInscriptions().toString());
 		panelInscription.add(lblInscription);
-		
+
 		if (!t.isTournoiPlein()) {
 			JButton btnInscription = new JButton("Inscrire une équipe");
 			btnInscription.addActionListener(controleur);
@@ -103,37 +98,37 @@ public class PopupTournoi extends JDialog {
 			panelInscription.add(lblPlein);
 		}
 
-		for (Equipe e : tournoi.getClassement()) {
+		List<Equipe> equipes = tournoi.getClassement();
+		for (Equipe e : equipes) {
+
 			JPanel panelEquipe = new JPanel();
 			panelEquipes.add(panelEquipe);
-			if (e == tournoi.getClassement().get(0)) {
-				JLabel equipe = new JLabel(e.getNom() + "-- Vainqueur");
-			} else {
-				JLabel equipe = new JLabel(e.getNom());
-				equipe.setName("Equipe");
-				equipe.addMouseListener(AccueilV2.getMa());
-				panelEquipe.add(equipe);
-			}
+
+			JLabel lblPlace = new JLabel(equipes.indexOf(e)+1+"-");
 			JLabel equipe = new JLabel(e.getNom());
 			equipe.setName("Equipe");
 			equipe.addMouseListener(AccueilV2.getMa());
+			panelEquipe.add(lblPlace);
 			panelEquipe.add(equipe);
-
+			flowLayout = (FlowLayout) panelEquipe.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
 		}
 	}
 
 	public Tournoi getTournoi() {
 		return this.tournoi;
 	}
-	
+
 	public void actualiserPopupTournoi() {
 		panelEquipes.removeAll();
-		for (Equipe e : tournoi.getListEquipesParticipantes()) {
+		for (Equipe e : tournoi.getClassement()) {
 			JPanel panelEquipe = new JPanel();
 			panelEquipes.add(panelEquipe);
 			JLabel equipe = new JLabel(e.getNom());
 			equipe.setName("Equipe");
 			equipe.addMouseListener(AccueilV2.getMa());
+			FlowLayout flowLayout = (FlowLayout) panelEquipe.getLayout();
+			flowLayout.setAlignment(FlowLayout.LEFT);
 			panelEquipe.add(equipe);
 		}
 		panelEquipes.updateUI();

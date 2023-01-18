@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Controleur.ControleurFormEnrengistrerEquipe;
 import Controleur.ControleurFormEnrengistrerJoueur;
 import DBlink.Equipe;
 
@@ -22,7 +23,6 @@ public class FormEnregistrerJoueur extends JDialog {
 	private JTextField textFieldNomJoueur;
 	private JTextField textFieldPrenomJoueur;
 	private JTextField textFieldPseudo;
-	private Equipe equipe;
 	private JLabel lblNomJoueur;
 	private JLabel lblPrenomJoueur;
 	private JLabel lblPseudoJoueur;
@@ -31,11 +31,12 @@ public class FormEnregistrerJoueur extends JDialog {
 	private JComboBox comboAnneeNaissance;
 	private JLabel lblDateNaissance;
 	
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		try {
 			FormEnregistrerJoueur dialog = new FormEnregistrerJoueur(new Equipe(1));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -43,7 +44,7 @@ public class FormEnregistrerJoueur extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public JTextField getTextFieldNomJoueur() {
 		return textFieldNomJoueur;
@@ -88,10 +89,10 @@ public class FormEnregistrerJoueur extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public FormEnregistrerJoueur(Equipe equipe) {
-		this.equipe = equipe;
+	public FormEnregistrerJoueur(ControleurFormEnrengistrerEquipe controleurFormEquipe) {
+		setModal(true);
 		
-		ControleurFormEnrengistrerJoueur controleur = new ControleurFormEnrengistrerJoueur(this);
+		ControleurFormEnrengistrerJoueur controleur = new ControleurFormEnrengistrerJoueur(this, controleurFormEquipe);
 		
 		setTitle("Nouveau Joueur");
 		setBounds(100, 100, 450, 300);
@@ -225,10 +226,6 @@ public class FormEnregistrerJoueur extends JDialog {
 				}
 			}
 		}
-	}
-	
-	public Equipe getEquipe() {
-		return this.equipe;
 	}
 
 }
