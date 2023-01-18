@@ -50,6 +50,10 @@ public class AccueilV2 {
 	private int tailleCarte;
 	private JPanel panelLblTitreCartes;
 	private JScrollPane scrollPaneMain;
+	private JLabel lblCreerEquipe;
+	private BtnStyleV2 btnCreerEquipe;
+	private JLabel lblCreerTournoi;
+	private BtnStyleV2 btnCreeTournois;
 
 	/**
 	 * 
@@ -130,16 +134,30 @@ public class AccueilV2 {
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
-		panelAdmin.setLayout(new GridLayout(2, 2, 0, 0));
+		panelAdmin.setLayout(new GridLayout(3, 2, 0, 0));
+		
+		lblCreerEquipe = new JLabel("Manager :");
+		lblCreerEquipe.setVisible(false);
+		panelAdmin.add(lblCreerEquipe);
+		
+		btnCreerEquipe = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		btnCreerEquipe.setVisible(false);
+		btnCreerEquipe.setText("Creer Equipe");
+		btnCreerEquipe.setForeground(Color.WHITE);
+		btnCreerEquipe.setName("btnCreerEquipe");
+		btnCreerEquipe.addActionListener(controleur);
+		panelAdmin.add(btnCreerEquipe);
 
-		JLabel lbladmin = new JLabel("administration");
-		panelAdmin.add(lbladmin);
+		lblCreerTournoi = new JLabel("Gestionaire :");
+		lblCreerTournoi.setVisible(false);
+		panelAdmin.add(lblCreerTournoi);
 
-		BtnStyleV2 btnCreeTournois = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		btnCreeTournois = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
 		btnCreeTournois.setText("Creer Tournoi");
 		btnCreeTournois.setForeground(Color.WHITE);
 		btnCreeTournois.setName("btnCreerTournoi");
 		btnCreeTournois.addActionListener(controleur);
+		btnCreeTournois.setVisible(false);
 		panelAdmin.add(btnCreeTournois);
 
 		lblEtatConx = new JLabel("Connecte:gestionaire");
@@ -575,6 +593,22 @@ public class AccueilV2 {
 	
 	public JPanel getPanelCartes() {
 		return this.panelCartes;
+	}
+
+	public JLabel getLblCreerEquipe() {
+		return lblCreerEquipe;
+	}
+
+	public BtnStyleV2 getBtnCreerEquipe() {
+		return btnCreerEquipe;
+	}
+
+	public JLabel getLblBtnCreerTournoi() {
+		return lblCreerTournoi;
+	}
+
+	public BtnStyleV2 getBtnCreeTournois() {
+		return btnCreeTournois;
 	}
 
 }
