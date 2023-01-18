@@ -91,6 +91,7 @@ public class FormEnregistrerJoueur extends JDialog {
 	 */
 	public FormEnregistrerJoueur(ControleurFormEnrengistrerEquipe controleurFormEquipe) {
 		setModal(true);
+		setLocation(300,300);
 		
 		ControleurFormEnrengistrerJoueur controleur = new ControleurFormEnrengistrerJoueur(this, controleurFormEquipe);
 		
