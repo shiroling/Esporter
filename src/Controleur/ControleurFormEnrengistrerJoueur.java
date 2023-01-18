@@ -57,7 +57,7 @@ public class ControleurFormEnrengistrerJoueur implements ActionListener {
 			}
 			
 			if(this.estFormulaireValide()) {
-				System.out.println("Je creer le joueur !");
+				
 			}
 			
 			break;

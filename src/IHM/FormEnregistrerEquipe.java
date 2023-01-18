@@ -48,7 +48,7 @@ public class FormEnregistrerEquipe extends JDialog {
 		ControleurFormEnrengistrerEquipe controleur = new ControleurFormEnrengistrerEquipe(this);
 		
 		setTitle("Nouvelle equipe");
-		setBounds(100, 100, 333, 289);
+		setBounds(100, 100, 484, 288);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -79,6 +79,10 @@ public class FormEnregistrerEquipe extends JDialog {
 					panelLblNomJeu.add(lblNomJeu);
 				}
 			}
+			{
+				JPanel panelLblAjouterJoueurs = new JPanel();
+				panelLbl.add(panelLblAjouterJoueurs);
+			}
 		}
 		{
 			JPanel panelChampsSaisie = new JPanel();
@@ -102,6 +106,43 @@ public class FormEnregistrerEquipe extends JDialog {
 					comboJeux = new JComboBox();
 					comboJeux.setModel(new DefaultComboBoxModel(Jeu.toStrings()));
 					panelComboJeu.add(comboJeux);
+				}
+			}
+			{
+				JPanel panelAjouterJoueurs = new JPanel();
+				panelChampsSaisie.add(panelAjouterJoueurs);
+				panelAjouterJoueurs.setLayout(new GridLayout(0, 2, 0, 0));
+				{
+					JPanel panelBtnAjouterJoueur = new JPanel();
+					FlowLayout flowLayout = (FlowLayout) panelBtnAjouterJoueur.getLayout();
+					flowLayout.setHgap(30);
+					flowLayout.setVgap(15);
+					panelAjouterJoueurs.add(panelBtnAjouterJoueur);
+					{
+						JButton btnAjouterJoueurs = new JButton("Ajouter Les Joueurs");
+						panelBtnAjouterJoueur.add(btnAjouterJoueurs);
+					}
+				}
+				{
+					JPanel panelListJoueurs = new JPanel();
+					panelAjouterJoueurs.add(panelListJoueurs);
+					panelListJoueurs.setLayout(new GridLayout(4, 1, 0, 0));
+					{
+						JLabel lblJoueur1 = new JLabel("Joueur 1 :");
+						panelListJoueurs.add(lblJoueur1);
+					}
+					{
+						JLabel lblNewLabel_2 = new JLabel("Joueur 2 :");
+						panelListJoueurs.add(lblNewLabel_2);
+					}
+					{
+						JLabel lblNewLabel_1 = new JLabel("Joueur 3 :");
+						panelListJoueurs.add(lblNewLabel_1);
+					}
+					{
+						JLabel lblNewLabel_3 = new JLabel("Joueur 4 :");
+						panelListJoueurs.add(lblNewLabel_3);
+					}
 				}
 			}
 		}
