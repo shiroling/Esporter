@@ -1,6 +1,6 @@
 package DBlink;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PreJoueur {
 	private String nom;
@@ -36,6 +36,10 @@ public class PreJoueur {
 
 	public int getIdEquipe() {
 		return idEquipe;
+	}
+	
+	public void insert() {
+		BDInsert.insererJoueur(this.getNom(), this.getPrenom(), this.getNaissance(), this.getPseudo(), this.getIdEquipe());
 	}
 
 }
