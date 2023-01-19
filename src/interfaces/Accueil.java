@@ -57,7 +57,6 @@ public class Accueil {
 	private BtnStyleV2 btnCreeTournois;
 	private JLabel lblTitreFiltre;
 	private JPanel panelEspace;
-	private List<Tournoi> tournois;
 
 	/**
 	 * 
