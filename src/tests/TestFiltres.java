@@ -8,12 +8,12 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import DBlink.BDEntity;
-import DBlink.Equipe;
-import DBlink.Filters;
-import DBlink.Rencontre;
-import DBlink.Tournoi;
-import base.Portee;
+import commun.Portee;
+import contoleur_bd.BDEntity;
+import contoleur_bd.Equipe;
+import contoleur_bd.Filters;
+import contoleur_bd.Rencontre;
+import contoleur_bd.Tournoi;
 
 public class TestFiltres {
 

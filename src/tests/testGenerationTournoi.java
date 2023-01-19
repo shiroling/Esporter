@@ -2,12 +2,12 @@ package tests;
 
 import java.util.List;
 
-import DBlink.BDInsert;
-import DBlink.BDSelect;
-import DBlink.Equipe;
-import DBlink.Poule;
-import DBlink.Rencontre;
-import DBlink.Tournoi;
+import contoleur_bd.BDInsert;
+import contoleur_bd.BDSelect;
+import contoleur_bd.Equipe;
+import contoleur_bd.Poule;
+import contoleur_bd.Rencontre;
+import contoleur_bd.Tournoi;
 
 public class testGenerationTournoi {
 	public static void main(String[] args) throws Exception {
