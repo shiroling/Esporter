@@ -11,6 +11,7 @@ import javax.swing.border.LineBorder;
 
 import DBlink.BDSelect;
 import DBlink.Equipe;
+
 import java.awt.GridLayout;
 
 public class CarteEquipe extends Carte {

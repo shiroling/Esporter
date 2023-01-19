@@ -223,6 +223,8 @@ public class ControleurAccueil implements ActionListener {
 			this.vue.getLblCreerEquipe().setVisible(true);
 			this.vue.getBtnCreerEquipe().setVisible(true);
 			break;
+		default:
+			break;
 		}
 	}
 

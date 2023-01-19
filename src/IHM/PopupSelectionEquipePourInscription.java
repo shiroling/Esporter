@@ -16,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Controleur.ControleurPopupInscrireEquipe;
-
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Tournoi;

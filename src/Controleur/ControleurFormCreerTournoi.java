@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
 import DBlink.Jeu;
 import DBlink.Tournoi;
 import IHM.FenMessage;

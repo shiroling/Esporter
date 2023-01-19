@@ -3,13 +3,14 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-import DBlink.Rencontre;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import DBlink.Rencontre;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

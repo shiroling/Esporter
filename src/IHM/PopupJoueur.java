@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import DBlink.Joueur;
+
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 
