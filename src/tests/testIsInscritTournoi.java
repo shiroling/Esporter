@@ -1,7 +1,7 @@
 package tests;
 
-import DBlink.Equipe;
-import DBlink.Tournoi;
+import contoleur_bd.Equipe;
+import contoleur_bd.Tournoi;
 
 public class testIsInscritTournoi {
 	public static void main(String[] args) {
