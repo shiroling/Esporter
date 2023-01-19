@@ -37,7 +37,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 	public void itemStateChanged(ItemEvent e) {
 		switch (this.state) {
 		case TOURNOI:
-			List<Tournoi> tournois = BDSelect.getListeTournois();
+			List<Tournoi> tournois = this.controleurAccueil.getTournois();
 			
 			switch(controleurAccueil.getComboFiltreAvencementTournoi().getSelectedItem().toString()) {
 			case "En Cours":
@@ -79,7 +79,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 			this.setCartesTournoiDansAccueil(tournois);
 			break;
 		case RENCONTRE:
-			List<Rencontre> rencontres = BDSelect.getListeRencontre();
+			List<Rencontre> rencontres = this.controleurAccueil.getRencontres();
 			
 			switch(controleurAccueil.getComboFiltreAvencementRencontre().getSelectedItem().toString()) {
 			case "A Venir":
@@ -105,7 +105,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 			this.setCartesRencontreDansAccueil(rencontres);
 			break;
 		case EQUIPE:
-			List<Equipe> equipes = BDSelect.getListeEquipes();
+			List<Equipe> equipes = this.controleurAccueil.getEquipes();
 			
 			if(!(controleurAccueil.getComboFiltreEcuriesEquipe().getSelectedItem().toString().equals("Tous"))) {
 				equipes = Filters.filtrer(equipes, Filters.estEquipeFromEcurie, Ecurie.getEcurieFromNom(controleurAccueil.getComboFiltreEcuriesEquipe().getSelectedItem().toString()).getId());

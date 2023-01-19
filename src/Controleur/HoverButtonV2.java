@@ -3,7 +3,6 @@ package Controleur;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import IHM.BtnStyle;
 import IHM.BtnStyleV2;
 
 

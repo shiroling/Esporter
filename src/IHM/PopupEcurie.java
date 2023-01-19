@@ -2,6 +2,7 @@ package IHM;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -14,6 +15,10 @@ import javax.swing.border.EmptyBorder;
 import DBlink.Ecurie;
 import DBlink.Equipe;
 import DBlink.Joueur;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JScrollPane;
 
 public class PopupEcurie extends JDialog {
 
@@ -23,6 +28,7 @@ public class PopupEcurie extends JDialog {
 	 * Create the dialog.
 	 */
 	public PopupEcurie(Ecurie e) {
+		
 		setTitle("Ecurie : "+e.getNom());
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -33,23 +39,27 @@ public class PopupEcurie extends JDialog {
 
 		JPanel panelEnTete = new JPanel();
 		contentPanel.add(panelEnTete, BorderLayout.NORTH);
-
-		JLabel photo = new JLabel("");
-		panelEnTete.add(photo);
-
-		JLabel lblNom = new JLabel(e.getNom());
-		lblNom.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
-		panelEnTete.add(lblNom);
+				panelEnTete.setLayout(new GridLayout(2, 0, 0, 0));
+		
+				JLabel lblNom = new JLabel(e.getNom());
+				lblNom.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNom.setFont(new Font("Microsoft YaHei UI", Font.BOLD, 20));
+				panelEnTete.add(lblNom);
+		
+		JLabel lblNewLabel = new JLabel("Manager : "+ e.getNomManager());
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panelEnTete.add(lblNewLabel);
 
 		JPanel panelCorp = new JPanel();
 		contentPanel.add(panelCorp);
-
+		
 		JPanel panelListeEquipe = new JPanel();
 		JLabel lblEquipe = new JLabel();
 		JPanel panelEquipe = new JPanel();
 		if (e.getListeEquipe().size() == 0) {
 			panelEquipe = new JPanel();
 			lblEquipe = new JLabel("Cette écurie n'a pas encore enregistré d'équipe.");
+			lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
 			panelEquipe.add(lblEquipe);
 			panelListeEquipe.add(panelEquipe);
 		} else {
@@ -58,30 +68,30 @@ public class PopupEcurie extends JDialog {
 				JPanel panelNomEquipe = new JPanel();
 				lblEquipe = new JLabel(eq.getNom());
 				lblEquipe.setName("Equipe");
-				lblEquipe.addMouseListener(AccueilV2.getMa());
-				lblEquipe.setFont(new Font("Tahoma", Font.BOLD, 20));
+				lblEquipe.addMouseListener(Accueil.getMa());
+				lblEquipe.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				lblEquipe.setHorizontalAlignment(SwingConstants.LEFT);
 				panelNomEquipe.add(lblEquipe);
-				panelNomEquipe.add(new JLabel(":"));
 				panelEquipe.add(panelNomEquipe);
-				JPanel panelJoueurs = new JPanel();
-
-				for (Joueur joueur : eq.getListJoueur()) {
-					JLabel lbljoueur = new JLabel(joueur.getPseudo());
-					lbljoueur.setName("Joueur");
-					lbljoueur.setHorizontalAlignment(SwingConstants.LEFT);
-					lbljoueur.setFont(new Font("Tahoma", Font.PLAIN, 16));
-					lbljoueur.addMouseListener(AccueilV2.getMa());
-					panelJoueurs.add(lbljoueur);
-				}
-				panelEquipe.add(panelJoueurs);
-				panelEquipe.setLayout(new GridLayout(0, 1, 0, 0));
 				panelListeEquipe.add(panelEquipe);
+				FlowLayout flowLayout = (FlowLayout) panelEquipe.getLayout();
+				flowLayout.setAlignment(FlowLayout.LEFT);
 			}
 		}
-		panelCorp.add(panelListeEquipe);
+		panelCorp.setLayout(new BorderLayout(0, 0));
 		panelListeEquipe.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JLabel lbltitreequipe = new JLabel("Equipes : ");
+		lbltitreequipe.setHorizontalAlignment(SwingConstants.LEFT);
+		panelCorp.add(lbltitreequipe, BorderLayout.NORTH);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panelCorp.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setViewportView(panelListeEquipe);
+		
+		
 		setVisible(true);
-		this.setMinimumSize(new Dimension(contentPanel.getWidth() * 2,
+		this.setMinimumSize(new Dimension(contentPanel.getWidth(),
 				(e.getListeEquipe().size() + 1) * panelEquipe.getHeight() + panelEnTete.getHeight()));
 	}
 

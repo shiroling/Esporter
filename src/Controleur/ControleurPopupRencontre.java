@@ -4,12 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
-
-import DBlink.Rencontre;
-import IHM.AccueilV2;
 import IHM.ConnexionV2;
-import IHM.FormCreerTournoi;
 import IHM.PopupIndiquerVainqueur;
 import IHM.PopupRencontre;
 import base.ConnexionState;

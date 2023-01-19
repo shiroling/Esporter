@@ -38,7 +38,7 @@ import base.ConnexionState;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
-public class AccueilV2 {
+public class Accueil {
 	private static MouseAdapter ma;
 	private JFrame frame;
 	private JPanel panelCartes;
@@ -56,6 +56,8 @@ public class AccueilV2 {
 	private JLabel lblCreerTournoi;
 	private BtnStyleV2 btnCreeTournois;
 	private JLabel lblTitreFiltre;
+	private JPanel panelEspace;
+	private List<Tournoi> tournois;
 
 	/**
 	 * 
@@ -65,7 +67,7 @@ public class AccueilV2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AccueilV2 window = new AccueilV2();
+					Accueil window = new Accueil();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,7 +79,7 @@ public class AccueilV2 {
 	/**
 	 * Create the application.
 	 */
-	public AccueilV2() {
+	public Accueil() {
 		initialize();
 
 	}
@@ -90,7 +92,7 @@ public class AccueilV2 {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(AccueilV2.class.getResource("/icon/icon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/icon/icon.png")));
 		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
@@ -98,23 +100,6 @@ public class AccueilV2 {
 		// frame.setBounds(100, 100, 933, 592);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JPanel panelHeader = new JPanel();
-		frame.getContentPane().add(panelHeader, BorderLayout.NORTH);
-		panelHeader.setLayout(new BorderLayout(0, 0));
-
-		JPanel panelEspace = new JPanel();
-		panelHeader.add(panelEspace, BorderLayout.WEST);
-		
-		JPanel panelConnexion = new JPanel();
-		panelHeader.add(panelConnexion, BorderLayout.EAST);
-		
-		btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
-		btnSeConnecter.setText("Se connecter");
-		btnSeConnecter.setForeground(Color.WHITE);
-		btnSeConnecter.addActionListener(getControleur());
-		btnSeConnecter.setName("seConnecter");
-		panelConnexion.add(btnSeConnecter);
 
 		JPanel panelFonctionalites = new JPanel();
 		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
@@ -133,7 +118,7 @@ public class AccueilV2 {
 
 		JPanel panelAdmin = new JPanel();
 		panelFiltrePlusAdmin.add(panelAdmin, BorderLayout.SOUTH);
-		panelAdmin.setLayout(new GridLayout(3, 2, 0, 0));
+		panelAdmin.setLayout(new GridLayout(4, 2, 0, 0));
 		
 		lblCreerEquipe = new JLabel("Manager :");
 		lblCreerEquipe.setVisible(false);
@@ -172,6 +157,13 @@ public class AccueilV2 {
 		btnDeconnexion.setVisible(false);
 		panelAdmin.add(btnDeconnexion);
 		
+		btnSeConnecter = new BtnStyleV2(BtnStyleV2.COLOR_BASE_BLEU, BtnStyleV2.COLOR_OVER_BLEU, BtnStyleV2.COLOR_CLIC_BLEU, 30);
+		panelAdmin.add(btnSeConnecter);
+		btnSeConnecter.setText("Se connecter");
+		btnSeConnecter.setForeground(Color.WHITE);
+		btnSeConnecter.addActionListener(getControleur());
+		btnSeConnecter.setName("seConnecter");
+		
 		JPanel panelTitreFiltre = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panelTitreFiltre.getLayout();
 		flowLayout.setVgap(20);
@@ -187,22 +179,28 @@ public class AccueilV2 {
 		panelBtnSelection.setLayout(new GridLayout(0, 1, 0, 0));
 		//panelBtnSelection.setLayout(new GridLayout(0, 2, 20, 20));
 		
-		JPanel panelEspaceFoctionalite = new JPanel();
-		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 40));
-		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);
+		/*JPanel panelEspaceFoctionalite = new JPanel();
+		panelEspaceFoctionalite.setPreferredSize(new Dimension(0, 20));
+		panelBtnSelection.add(panelEspaceFoctionalite, BorderLayout.NORTH);*/
 		
 		PanelSelection selectTournoi = new PanelSelection(this, Selection.TOURNOI);
 		PanelSelection selectRencontre = new PanelSelection(this, Selection.RENCONTRE);
-		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
 		PanelSelection selectEquipe = new PanelSelection(this, Selection.EQUIPE);
 		PanelSelection selectEcurie = new PanelSelection(this, Selection.ECURIE);
 		
+		panelEspace = new JPanel();
+		panelEspace.setLayout(null);
+		panelEspace.setPreferredSize(new Dimension(0, 10));
+		panelBtnSelection.add(panelEspace);
+		
+		
 		panelBtnSelection.add(selectTournoi);
 		panelBtnSelection.add(selectRencontre);
-		panelBtnSelection.add(selectJeu);
 		panelBtnSelection.add(selectEquipe);
 		panelBtnSelection.add(selectEcurie);
-		
+		PanelSelection selectJeu = new PanelSelection(this, Selection.JEU);
+		panelBtnSelection.add(selectJeu);
+
 		JPanel panelMain = new JPanel();
 		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
@@ -300,7 +298,8 @@ public class AccueilV2 {
 			}
 		};
 		
-		this.ajouterCartesTournois(BDSelect.getListeTournois());
+		this.controleur.updateTournois();
+		this.ajouterCartesTournois(this.getControleur().getTournois());
 		this.getLblTitreCartes().setText("Tournois");
 	}
 
@@ -462,13 +461,13 @@ public class AccueilV2 {
 	public void ChangementConx(ConnexionState c) {
 		switch (c) {
 		case ARBITRE:
-			lblEtatConx.setText("Connecte:Arbitre");
+			lblEtatConx.setText("Connecté : Arbitre");
 			break;
 		case MANAGER:
-			lblEtatConx.setText("Connecte:Manager");
+			lblEtatConx.setText("Connecté : Manager");
 			break;
 		case GESTIONNAIRE:
-			lblEtatConx.setText("Connecte:Gestionaire");
+			lblEtatConx.setText("Connecté : Gestionaire");
 			break;
 		case NON_CONNECTE:
 			lblEtatConx.setText("");
