@@ -91,7 +91,7 @@ public class Accueil {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/icon/icon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/ressources/icon.png")));
 		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
@@ -435,7 +435,6 @@ public class Accueil {
 		CarteJeu ct;
 		for (Jeu jeu : jeux) {
 			ct = new CarteJeu(jeu);
-			ct.addMouseListener(ma);
 			panelCartes.add(ct);
 		}
 		ajusterGrilleQuandAjout();
