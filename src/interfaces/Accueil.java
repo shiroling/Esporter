@@ -33,6 +33,7 @@ import contoleur_bd.Rencontre;
 import contoleur_bd.Tournoi;
 import controleur_ihm.ControleurAccueil;
 import controleur_ihm.ControleurAccueil.Etat;
+import controleur_ihm.mouthAdapteruAccueil;
 import interfaces.PanelSelection.Selection;
 
 import java.awt.FlowLayout;
@@ -104,7 +105,7 @@ public class Accueil {
 		JPanel panelFonctionalites = new JPanel();
 		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
 		panelFonctionalites.setLayout(new BorderLayout(0, 0));
-
+		
 		JPanel panelFiltrePlusAdmin = new JPanel();
 		panelFiltrePlusAdmin.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelFonctionalites.add(panelFiltrePlusAdmin);
@@ -113,7 +114,7 @@ public class Accueil {
 		panelFiltre = new JPanel();
 		panelFiltrePlusAdmin.add(panelFiltre, BorderLayout.CENTER);
 		panelFiltre.setLayout(new GridLayout(0, 1, 0, 0));
-		
+
 		controleur.setPanelFiltresTournois();
 
 		JPanel panelAdmin = new JPanel();
@@ -231,72 +232,7 @@ public class Accueil {
 		});
 		frame.setMinimumSize(new Dimension(800, 600));
 
-		ma = new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Object obj = e.getSource();
-				switch (controleur.getState()) {
-				case ACCUEIL_SANS_VOLET:
-					controleur.setState(Etat.ACCUEIL_AVEC_VOLET);
-					if (obj instanceof CarteEcurie) {
-						CarteEcurie ce = (CarteEcurie) obj;
-						procedureCreePopupEcurie(ce.getEcurie());
-					} else if (obj instanceof CarteTournois) {
-						CarteTournois ct = (CarteTournois) obj;
-						procedureCreePopupTournoi(ct.getTournoi());
-					} else if (obj instanceof CarteEquipe) {
-						CarteEquipe ce = (CarteEquipe) obj;
-						procedureCreePopupEquipe(ce.getEquipe());
-					} else if (obj instanceof CarteJeu) {
-						CarteJeu ce = (CarteJeu) obj;
-						procedureCreePopupJeu(ce.getJeu());
-					} else if (obj instanceof CarteRencontre) {
-						CarteRencontre cr = (CarteRencontre) obj;
-						procedureCreePopupRencontre(cr.getRencontre());
-					}
-					break;
-				case ACCUEIL_AVEC_VOLET:
-					if (obj instanceof CarteEcurie) {
-						CarteEcurie ce = (CarteEcurie) obj;
-						procedureCreePopupEcurie(ce.getEcurie());
-					} else if (obj instanceof CarteTournois) {
-						CarteTournois ct = (CarteTournois) obj;
-						procedureCreePopupTournoi(ct.getTournoi());
-					} else if (obj instanceof CarteEquipe) {
-						CarteEquipe ce = (CarteEquipe) obj;
-						procedureCreePopupEquipe(ce.getEquipe());
-					} else if (obj instanceof CarteJeu) {
-						CarteJeu ce = (CarteJeu) obj;
-						procedureCreePopupJeu(ce.getJeu());
-					} else if (obj instanceof CarteRencontre) {
-						CarteRencontre cr = (CarteRencontre) obj;
-						procedureCreePopupRencontre(cr.getRencontre());
-					} else if (obj instanceof JLabel) {
-						JLabel jl = (JLabel) obj;
-						switch (jl.getName()) {
-						case "Joueur":
-							procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()), controleur);
-							break;
-						case "Equipe":
-							procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()), controleur);
-							break;
-						case "Ecurie":
-							procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()), controleur);
-							break;
-						case "Tournoi":
-							procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
-							break;
-						default:
-							break;
-						}
-					}
-					break;
-				default:
-					throw new IllegalArgumentException("Unexpected value: ");
-				}
-
-			}
-		};
+		ma = new mouthAdapteruAccueil(this);
 		
 		this.controleur.updateTournois();
 		this.ajouterCartesTournois(this.getControleur().getTournois());
