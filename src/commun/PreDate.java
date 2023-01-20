@@ -48,14 +48,9 @@ public class PreDate {
 	}
 	
 	public boolean estPassee() {
-		Instant i = Instant.now();
-		LocalDate localDate = LocalDate.ofInstant(i, ZoneId.systemDefault());
-        Date date = Date.valueOf(localDate);
-        if((this.toDate().before(date))) {
-        	return false;
-        }
-        return true;
-	}
+        return (this.toDate()).before(new Date(System.currentTimeMillis()));
+    }
+	
 	@SuppressWarnings("deprecation")
 	public Date toDate() {
 		return new Date(year - 1900, month, day);
