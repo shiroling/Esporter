@@ -31,7 +31,7 @@ public class BDPredicats {
 
 	public static boolean existeNomTournoi(String nomTournoi) {
 		try {
-			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select Count(id_tournoi)as count from Tournoi where nom LIKE '%?%';");
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("Select Count(id_tournoi)as count from Tournoi where CONTAINS(NOM, ?, 1) > 0");
 			st.setString(1, nomTournoi);
 			ResultSet rs = st.executeQuery();
 			rs.next();
