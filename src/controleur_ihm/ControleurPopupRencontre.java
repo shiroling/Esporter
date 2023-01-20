@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import commun.ConnexionState;
 import interfaces.ConnexionV2;
+import interfaces.FenMessage;
 import interfaces.PopupIndiquerVainqueur;
 import interfaces.PopupRencontre;
 
@@ -33,7 +34,7 @@ public class ControleurPopupRencontre implements ActionListener{
 			if (controleurAccueil.getConnexionState() == ConnexionState.ARBITRE && this.vue.getRencontre().isArbitre(controleurAccueil.getIdLog())) {
 				new PopupIndiquerVainqueur(this.vue.getRencontre());
 			} else if(controleurAccueil.getConnexionState() == ConnexionState.ARBITRE) {
-				//Ouvre une fenetre "Vous n'etes pas l'arbitre du match"
+				//dk,dkd,
 			} else {
 				//Vous n'etes pas arbitre
 			}
