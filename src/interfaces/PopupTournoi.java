@@ -68,7 +68,7 @@ public class PopupTournoi extends JDialog {
 		JScrollPane scrollPaneEquipe = new JScrollPane();
 		panelCorp.add(scrollPaneEquipe);
 
-		JPanel panelEquipes = new JPanel();
+		panelEquipes = new JPanel();
 		scrollPaneEquipe.setViewportView(panelEquipes);
 		panelEquipes.setLayout(new GridLayout(t.getListEquipesParticipantes().size() + 1, 1, 0, 0));
 
@@ -102,8 +102,9 @@ public class PopupTournoi extends JDialog {
 			JLabel lblPlein = new JLabel("Le tournoi est plein");
 			panelInscription.add(lblPlein);
 		}
-
-		List<Equipe> equipes = tournoi.getClassement();
+		
+		List<Equipe> equipes = tournoi.getListEquipesParticipantes();
+		System.out.println("SIZE : " + equipes.size());
 		for (Equipe e : equipes) {
 
 			JPanel panelEquipe = new JPanel();
@@ -126,7 +127,7 @@ public class PopupTournoi extends JDialog {
 
 	public void actualiserPopupTournoi() {
 		panelEquipes.removeAll();
-		for (Equipe e : tournoi.getClassement()) {
+		for (Equipe e : tournoi.getListEquipesParticipantes()) {
 			JPanel panelEquipe = new JPanel();
 			panelEquipes.add(panelEquipe);
 			JLabel equipe = new JLabel(e.getNom());
