@@ -89,6 +89,21 @@ public class BDPredicats {
 	        return false;
 	    }
 	}
+	
+	public static boolean isArbitre(String nom, String mdp) {
+	    try {
+	    	PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_ARBITRE FROM ARBITRE where nom = ? AND mdp = ?");
+	        st.setString(1, nom);
+	        st.setString(2, mdp);
+	    	ResultSet rs = st.executeQuery();
+	    	boolean check = rs.next();
+	    	st.close();
+	    	return check;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 
 	public static boolean estTournoiEnCours(int id) {
 		try {
