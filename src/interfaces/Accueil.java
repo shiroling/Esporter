@@ -82,7 +82,6 @@ public class Accueil {
 		initialize();
 
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -91,7 +90,7 @@ public class Accueil {
 		ConnexionBase.getConnectionBase();
 		controleur = new ControleurAccueil(this);
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("/ressources/icon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("../ressources/icon.png")));
 		frame.setTitle("EMA");
 		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
 		borderLayout.setVgap(10);
