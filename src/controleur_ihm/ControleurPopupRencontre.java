@@ -32,11 +32,14 @@ public class ControleurPopupRencontre implements ActionListener{
 				new ConnexionV2(controleurAccueil, ConnexionState.ARBITRE);
 			}
 			if (controleurAccueil.getConnexionState() == ConnexionState.ARBITRE && this.vue.getRencontre().isArbitre(controleurAccueil.getIdLog())) {
-				new PopupIndiquerVainqueur(this.vue.getRencontre());
+				PopupIndiquerVainqueur indiquerVainqueur = new PopupIndiquerVainqueur(this.vue.getRencontre());
+				indiquerVainqueur.setVisible(true);
 			} else if(controleurAccueil.getConnexionState() == ConnexionState.ARBITRE) {
-				//dk,dkd,
+				FenMessage dialog = new FenMessage("Vous n'êtes pas arbitre de ce match");
+				dialog.setVisible(true);
 			} else {
-				//Vous n'etes pas arbitre
+				FenMessage dialog = new FenMessage("Vous n'êtes pas arbitre");
+				dialog.setVisible(true);
 			}
 			break;
 		}

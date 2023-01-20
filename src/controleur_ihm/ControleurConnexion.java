@@ -38,6 +38,14 @@ public class ControleurConnexion implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (connexionVisee) {
 		case ARBITRE:
+			if (BDPredicats.isArbitre(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
+				controleurAccueil.setConnexionState(ConnexionState.ARBITRE);
+				controleurAccueil.cacherBtnConnexion();
+				controleurAccueil.setIdLog(BDSelect.getIdArbitreFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
+				this.connexionVue.dispose();
+			} else {
+				procedureConnexionEchouee();
+			}
 			break;
 		case GESTIONNAIRE:
 			if (BDPredicats.isGestionnaire(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
