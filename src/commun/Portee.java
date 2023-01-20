@@ -15,7 +15,6 @@ public enum Portee {
 	}
 	
 	public static String[] toStrings() {
-		System.out.println(LOCAL.getName());
 		String[] portees = {LOCAL.getName(), NATIONAL.getName(), INTERNATIONAL.getName()};
 		return portees;
 	}
