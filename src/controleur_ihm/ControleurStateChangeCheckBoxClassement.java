@@ -19,6 +19,7 @@ public class ControleurStateChangeCheckBoxClassement implements ChangeListener{
 		this.vue = vue;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		JCheckBox check = (JCheckBox) e.getSource();

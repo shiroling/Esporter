@@ -15,7 +15,6 @@ public class PreJoueur {
 		this.prenom = prenom;
 		this.naissance = naissance;
 		this.pseudo = pseudo;
-		this.idEquipe = idEquipe;
 	}
 
 	public String getNom() {

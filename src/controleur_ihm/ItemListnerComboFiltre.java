@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 
 import commun.Portee;
 import contoleur_bd.BDEntity;
-import contoleur_bd.BDSelect;
 import contoleur_bd.Ecurie;
 import contoleur_bd.Equipe;
 import contoleur_bd.Filters;
@@ -120,6 +119,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void setCartesTournoiDansAccueil(List<Tournoi> tournois) {
 		if(tournois.size() == 0 ) {
 			JLabel lblAucunEntite = new JLabel("-- Aucun Tournoi --");
@@ -134,6 +134,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void setCartesRencontreDansAccueil(List<Rencontre> rencontres) {
 		if(rencontres.size() == 0 ) {
 			JLabel lblAucunEntite = new JLabel("-- Aucun Match --");
@@ -148,6 +149,7 @@ public class ItemListnerComboFiltre implements ItemListener {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void setCartesEquipeDansAccueil(List<Equipe> equipes) {
 		if(equipes.size() == 0 ) {
 			JLabel lblAucunEntite = new JLabel("-- Aucune Equipe --");

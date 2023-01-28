@@ -2,9 +2,7 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.awt.GridLayout;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -18,8 +16,6 @@ import contoleur_bd.BDSelect;
 import contoleur_bd.Filters;
 import contoleur_bd.Rencontre;
 import contoleur_bd.Tournoi;
-
-import java.awt.GridLayout;
 
 public class PopupVoirRencontreTournoi extends JDialog {
 

@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.List;
 
@@ -15,13 +16,10 @@ import contoleur_bd.Equipe;
 import contoleur_bd.Tournoi;
 import controleur_ihm.ControlerPopupTournoi;
 
-import java.awt.FlowLayout;
-
 public class PopupTournoi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Tournoi tournoi;
-	private JPanel panellblEquipe;
 	private JPanel panelEquipes;
 
 	/**

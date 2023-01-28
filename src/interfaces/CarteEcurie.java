@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import contoleur_bd.Ecurie;
-
-import java.awt.Color;
 
 public class CarteEcurie extends Carte {
 

@@ -9,17 +9,12 @@ import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import contoleur_bd.Ecurie;
 import contoleur_bd.Equipe;
-import contoleur_bd.Joueur;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
 
 public class PopupEcurie extends JDialog {
 

@@ -1,16 +1,16 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import contoleur_bd.Equipe;
 import contoleur_bd.Joueur;
-
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import java.awt.GridLayout;
 
 public class PopupEquipe extends JDialog {
 

@@ -28,6 +28,7 @@ import interfaces.ConnexionV2;
 import interfaces.FormCreerTournoi;
 import interfaces.FormEnregistrerEquipe;
 
+@SuppressWarnings("deprecation")
 public class ControleurAccueil implements ActionListener {
 
 	private Etat state;

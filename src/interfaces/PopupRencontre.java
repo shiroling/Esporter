@@ -2,11 +2,13 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import contoleur_bd.Equipe;
@@ -14,24 +16,16 @@ import contoleur_bd.Rencontre;
 import controleur_ihm.ControleurAccueil;
 import controleur_ihm.ControleurPopupRencontre;
 
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-
 public class PopupRencontre extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Rencontre rencontre;
-	private ControleurAccueil controleurAccueil;
 	
 	/**
 	 * Create the dialog.
 	 */
 	public PopupRencontre(Rencontre r, ControleurAccueil controleurAccueil) {
 		this.rencontre = r;
-		this.controleurAccueil = controleurAccueil;
 		Equipe equipe1 = r.getEquipes().get(0);
 		Equipe equipe2 = r.getEquipes().get(1);
 		
