@@ -161,7 +161,7 @@ public class Equipe extends BDEntity implements Comparable<Equipe> {
 	private float getAgeMoyen() {
 		return BDSelect.getAgeMoyenEquipe(this.getId());
 	}
-	
+
 	public static Equipe getEquipeFromNom(String nom) {
 		return new Equipe(BDSelect.getIdEquipeFromNom(nom));
 	}

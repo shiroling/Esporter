@@ -7,14 +7,11 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import controleur_ihm.HoverCarte;
 
 public class Carte extends JPanel {
-	
-	private List<JPanel> listPanelAHover;
-	
+		
 	public Carte() {
 		super();
 		setBackground(Color.WHITE);
@@ -25,7 +22,6 @@ public class Carte extends JPanel {
 	}
 	
 	public void addHoverPannels(List<JPanel> listPanelAHover) {
-		this.listPanelAHover = listPanelAHover;
 		HoverCarte hoverCarte = new HoverCarte(this, listPanelAHover);
 		addMouseListener(hoverCarte);
 	}

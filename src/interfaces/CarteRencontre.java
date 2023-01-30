@@ -1,19 +1,16 @@
 package interfaces;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
-
-import javax.swing.JLabel;
-
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import contoleur_bd.Rencontre;
-
-import java.awt.Color;
-import java.awt.FlowLayout;
 
 public class CarteRencontre extends Carte {
 	private Rencontre rencontre;

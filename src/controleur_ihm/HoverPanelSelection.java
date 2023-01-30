@@ -3,14 +3,7 @@ package controleur_ihm;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
-import contoleur_bd.BDSelect;
-import contoleur_bd.Ecurie;
-import contoleur_bd.Equipe;
-import contoleur_bd.Jeu;
-import contoleur_bd.Rencontre;
-import contoleur_bd.Tournoi;
 import interfaces.Accueil;
 import interfaces.PanelSelection;
 import interfaces.PanelSelection.Selection;
@@ -28,9 +21,10 @@ public class HoverPanelSelection implements MouseListener{
 		this.vueAccueil = vueAccueil;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		ControleurAccueil ctrlAcceuil = vueAccueil.getControleur();
+		ControleurAccueil ctrlAcceuil = Accueil.getControleur();
 		
 		switch(this.select) {
 		case TOURNOI:
@@ -42,7 +36,7 @@ public class HoverPanelSelection implements MouseListener{
 			vueAccueil.ajusterGrille();
 			break;
 		case RENCONTRE:
-			this.vueAccueil.getControleur().setPanelFiltresRencontres();
+			Accueil.getControleur().setPanelFiltresRencontres();
 			ctrlAcceuil.updateRencontres();
 			vueAccueil.viderCartes();
 			vueAccueil.getLblTitreCartes().setText("Matchs");
@@ -50,7 +44,7 @@ public class HoverPanelSelection implements MouseListener{
 			vueAccueil.ajusterGrille();
 			break;
 		case JEU:
-			this.vueAccueil.getControleur().setPanelVide();
+			Accueil.getControleur().setPanelVide();
 			ctrlAcceuil.updateJeux();
 			vueAccueil.viderCartes();
 			vueAccueil.ajouterCartesJeu(ctrlAcceuil.getJeux());
@@ -58,7 +52,7 @@ public class HoverPanelSelection implements MouseListener{
 			vueAccueil.ajusterGrille();
 			break;
 		case EQUIPE:
-			this.vueAccueil.getControleur().setPanelFiltresEquipes();
+			Accueil.getControleur().setPanelFiltresEquipes();
 			ctrlAcceuil.updateEquipes();
 			vueAccueil.viderCartes();
 			vueAccueil.ajouterCartesEquipe(ctrlAcceuil.getEquipes());
@@ -66,7 +60,7 @@ public class HoverPanelSelection implements MouseListener{
 			vueAccueil.ajusterGrille();
 			break;
 		case ECURIE:
-			this.vueAccueil.getControleur().setPanelVide();
+			Accueil.getControleur().setPanelVide();
 			ctrlAcceuil.updateEcuries();
 			vueAccueil.viderCartes();
 			vueAccueil.ajouterCartesEcurie(ctrlAcceuil.getEcuries());

@@ -1,8 +1,6 @@
 
 package commun;
 
-import java.util.stream.Stream;
-
 public enum Portee {
 	LOCAL("Local"), 
 	NATIONAL("National"),

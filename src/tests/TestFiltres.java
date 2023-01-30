@@ -5,11 +5,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import commun.Portee;
-import contoleur_bd.BDEntity;
 import contoleur_bd.Equipe;
 import contoleur_bd.Filters;
 import contoleur_bd.Rencontre;

@@ -2,27 +2,20 @@ package interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import contoleur_bd.Equipe;
 import contoleur_bd.Rencontre;
 import controleur_ihm.ControleurPopupSelectionerVainqueur;
 import controleur_ihm.HoverRondEquipe;
-
-import javax.swing.JLabel;
 
 public class PopupIndiquerVainqueur extends JDialog {
 	

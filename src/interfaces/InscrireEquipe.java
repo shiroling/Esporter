@@ -3,13 +3,13 @@ package interfaces;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class InscrireEquipe extends JDialog {
 
@@ -45,8 +45,8 @@ public class InscrireEquipe extends JDialog {
 			contentPanel.add(lblEquipe);
 		}
 		{
-			JComboBox comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Equipe"}));
+			JComboBox<Object> comboBox = new JComboBox<Object>();
+			comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Equipe"}));
 			contentPanel.add(comboBox);
 		}
 		{

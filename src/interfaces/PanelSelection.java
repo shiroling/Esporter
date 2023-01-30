@@ -1,16 +1,16 @@
 package interfaces;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-
-import controleur_ihm.HoverPanelSelection;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import controleur_ihm.HoverPanelSelection;
 
 public class PanelSelection extends JPanel {
 	
