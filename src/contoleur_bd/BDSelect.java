@@ -576,6 +576,22 @@ public class BDSelect {
 	    }
 	}
 	
+	public static int getIdArbitreFromLogs(String nom, String mdp) {
+	    try {
+			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_ARBITRE FROM ARBITRE where nom = ? AND mdp = ?");
+			st.setString(1, nom);
+			st.setString(2, mdp);
+			ResultSet rs = st.executeQuery();
+	    	rs.next();
+	        int var = rs.getInt("ID_ARBITRE");
+			st.close();
+			return var;	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1;
+	    }
+	}
+	
 	public static int getIdManagerFromLogs(String nom, String mdp) {
 	    try {
 			PreparedStatement st = ConnexionBase.getConnectionBase().prepareStatement("SELECT ID_ECURIE FROM Ecurie where NOM_MANAGER = ? AND MDP_MANAGER = ?");
