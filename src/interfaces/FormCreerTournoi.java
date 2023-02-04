@@ -17,7 +17,6 @@ import commun.Mois;
 import contoleur_bd.Jeu;
 import controleur_ihm.ControleurFormCreerTournoi;
 
-import java.awt.Color;
 
 public class FormCreerTournoi extends JDialog {
 
@@ -26,20 +25,20 @@ public class FormCreerTournoi extends JDialog {
 	private JTextField textFieldNom;
 	private JLabel lblNom;
 	private JPanel panelJeuxAjoutes;
-	private JComboBox comboPortee;
-	private JComboBox comboJourDebutTournoi;
-	private JComboBox comboMoiDebutTournoi;
-	private JComboBox comboAnneeDebutTournoi;
-	private JComboBox comboJourFinTournoi;
-	private JComboBox comboMoiFinTournoi;
-	private JComboBox comboAnneeFinTournoi;
-	private JComboBox comboJourFinInscription;
-	private JComboBox comboMoiFinInscription;
-	private JComboBox comboAnneeFinInscription;
+	private JComboBox<String> comboPortee;
+	private JComboBox<String> comboJourDebutTournoi;
+	private JComboBox<String> comboMoiDebutTournoi;
+	private JComboBox<String> comboAnneeDebutTournoi;
+	private JComboBox<String> comboJourFinTournoi;
+	private JComboBox<String> comboMoiFinTournoi;
+	private JComboBox<String> comboAnneeFinTournoi;
+	private JComboBox<String> comboJourFinInscription;
+	private JComboBox<String> comboMoiFinInscription;
+	private JComboBox<String> comboAnneeFinInscription;
 	private JLabel lblDateDebutTournoi;
 	private JLabel lblDateFinTournoi;
 	private JLabel lblDateFinInscription;
-	private JComboBox comboJeux;
+	private JComboBox<String> comboJeux;
 	private JButton btnAjouterJeu;
 	private JLabel lblJeuxAjoutes;
 	private int idGerant;
@@ -97,11 +96,11 @@ public class FormCreerTournoi extends JDialog {
 		return this.lblDateFinInscription;
 	}
 	
-	public JComboBox getComboJeux() {
+	public JComboBox<String> getComboJeux() {
 		return this.comboJeux;
 	}
 	
-	public JComboBox getComboPortee() {
+	public JComboBox<String> getComboPortee() {
 		return this.comboPortee;
 	}
 	
@@ -147,7 +146,7 @@ public class FormCreerTournoi extends JDialog {
 	public FormCreerTournoi(int idGerant, Accueil vueAccueil) {
 		this.idGerant = idGerant;
 		this.vueAccueil = vueAccueil;
-		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this, vueAccueil.getControleur());
+		ControleurFormCreerTournoi c = new ControleurFormCreerTournoi(this, Accueil.getControleur());
 		setTitle("Nouveau tournoi");
 		setBounds(100, 100, 379, 438);
 		getContentPane().setLayout(new BorderLayout());
@@ -241,8 +240,8 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					comboPortee = new JComboBox();
-					comboPortee.setModel(new DefaultComboBoxModel(new String[] {"Local", "National", "International"}));
+					comboPortee = new JComboBox<String>();
+					comboPortee.setModel(new DefaultComboBoxModel<String>(new String[] {"Local", "National", "International"}));
 					panel.add(comboPortee);
 				}
 			}
@@ -252,21 +251,21 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					comboJourDebutTournoi = new JComboBox();
+					comboJourDebutTournoi = new JComboBox<String>();
 					comboJourDebutTournoi.setName("combo");
-					comboJourDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+					comboJourDebutTournoi.setModel(new DefaultComboBoxModel<String>(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourDebutTournoi);
 				}
 				{
-					comboMoiDebutTournoi = new JComboBox();
+					comboMoiDebutTournoi = new JComboBox<String>();
 					comboMoiDebutTournoi.setName("combo");
-					comboMoiDebutTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
+					comboMoiDebutTournoi.setModel(new DefaultComboBoxModel<String>(Mois.toStrings()));
 					panel.add(comboMoiDebutTournoi);
 				}
 				{
-					comboAnneeDebutTournoi = new JComboBox();
+					comboAnneeDebutTournoi = new JComboBox<String>();
 					comboAnneeDebutTournoi.setName("combo");
-					comboAnneeDebutTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
+					comboAnneeDebutTournoi.setModel(new DefaultComboBoxModel<String>(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeDebutTournoi);
 				}
 			}
@@ -276,21 +275,21 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					comboJourFinTournoi = new JComboBox();
+					comboJourFinTournoi = new JComboBox<String>();
 					comboJourFinTournoi.setName("combo");
-					comboJourFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+					comboJourFinTournoi.setModel(new DefaultComboBoxModel<String>(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinTournoi);
 				}
 				{
-					comboMoiFinTournoi = new JComboBox();
+					comboMoiFinTournoi = new JComboBox<String>();
 					comboMoiFinTournoi.setName("combo");
-					comboMoiFinTournoi.setModel(new DefaultComboBoxModel(Mois.toStrings()));
+					comboMoiFinTournoi.setModel(new DefaultComboBoxModel<String>(Mois.toStrings()));
 					panel.add(comboMoiFinTournoi);
 				}
 				{
-					comboAnneeFinTournoi = new JComboBox();
+					comboAnneeFinTournoi = new JComboBox<String>();
 					comboAnneeFinTournoi.setName("combo");
-					comboAnneeFinTournoi.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
+					comboAnneeFinTournoi.setModel(new DefaultComboBoxModel<String>(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinTournoi);
 				}
 			}
@@ -300,21 +299,21 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					comboJourFinInscription = new JComboBox();
+					comboJourFinInscription = new JComboBox<String>();
 					comboJourFinInscription.setName("combo");
-					comboJourFinInscription.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+					comboJourFinInscription.setModel(new DefaultComboBoxModel<String>(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 					panel.add(comboJourFinInscription);
 				}
 				{
-					comboMoiFinInscription = new JComboBox();
+					comboMoiFinInscription = new JComboBox<String>();
 					comboMoiFinInscription.setName("combo");
-					comboMoiFinInscription.setModel(new DefaultComboBoxModel(Mois.toStrings()));
+					comboMoiFinInscription.setModel(new DefaultComboBoxModel<String>(Mois.toStrings()));
 					panel.add(comboMoiFinInscription);
 				}
 				{
-					comboAnneeFinInscription = new JComboBox();
+					comboAnneeFinInscription = new JComboBox<String>();
 					comboAnneeFinInscription.setName("combo");
-					comboAnneeFinInscription.setModel(new DefaultComboBoxModel(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
+					comboAnneeFinInscription.setModel(new DefaultComboBoxModel<String>(new String[] {"2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
 					panel.add(comboAnneeFinInscription);
 				}
 			}
@@ -324,8 +323,8 @@ public class FormCreerTournoi extends JDialog {
 				flowLayout.setAlignment(FlowLayout.LEFT);
 				PanelChampsSaisie.add(panel);
 				{
-					comboJeux = new JComboBox();
-					comboJeux.setModel(new DefaultComboBoxModel(Jeu.toStrings()));
+					comboJeux = new JComboBox<String>();
+					comboJeux.setModel(new DefaultComboBoxModel<String>(Jeu.toStrings()));
 					panel.add(comboJeux);
 				}
 			}

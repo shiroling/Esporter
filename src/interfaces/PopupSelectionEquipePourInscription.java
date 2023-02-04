@@ -4,10 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -20,7 +21,6 @@ import contoleur_bd.Equipe;
 import contoleur_bd.Tournoi;
 import controleur_ihm.ControleurPopupInscrireEquipe;
 
-@SuppressWarnings("serial")
 public class PopupSelectionEquipePourInscription extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

@@ -49,7 +49,6 @@ public class ControleurFormEnrengistrerEquipe implements ActionListener{
 			} else if(this.preJoueurs.size() < 4) {
 				this.vue.getLblJoueurNonAjoutes().setVisible(true);
 			} else {
-				System.out.println("tout bon");
 				Equipe.inserer(nomEquipe, Jeu.getJeuFromName(this.vue.getComboJeux().getSelectedItem().toString()).getId(), this.vue.getEcurie().getId());
 				Equipe equipe = Equipe.getEquipeFromNom(nomEquipe);
 				

@@ -22,12 +22,13 @@ public class mouthAdapteruAccueil extends MouseAdapter {
 
 	public mouthAdapteruAccueil(Accueil vue) {
 		super();
-		this.vue = vue;
+		mouthAdapteruAccueil.vue = vue;
 	}
-
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		ControleurAccueil controleur = vue.getControleur();
+		ControleurAccueil controleur = Accueil.getControleur();
 		Object obj = e.getSource();
 		if (obj instanceof CarteEcurie) {
 			CarteEcurie ce = (CarteEcurie) obj;
@@ -48,16 +49,16 @@ public class mouthAdapteruAccueil extends MouseAdapter {
 			JLabel jl = (JLabel) obj;
 			switch (jl.getName()) {
 			case "Joueur":
-				vue.procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()), controleur);
+				Accueil.procedureCreerPopup(Joueur.getJoueurFromPseudo(jl.getText()), controleur);
 				break;
 			case "Equipe":
-				vue.procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()), controleur);
+				Accueil.procedureCreerPopup(Equipe.getEquipeFromNom(jl.getText()), controleur);
 				break;
 			case "Ecurie":
-				vue.procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()), controleur);
+				Accueil.procedureCreerPopup(Ecurie.getEcurieFromNom(jl.getText()), controleur);
 				break;
 			case "Tournoi":
-				vue.procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
+				Accueil.procedureCreerPopup(Tournoi.getTournoiFromNom(jl.getText()), controleur);
 				break;
 			default:
 				break;

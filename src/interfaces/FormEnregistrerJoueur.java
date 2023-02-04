@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import contoleur_bd.Equipe;
 import controleur_ihm.ControleurFormEnrengistrerEquipe;
 import controleur_ihm.ControleurFormEnrengistrerJoueur;
 
@@ -26,9 +25,9 @@ public class FormEnregistrerJoueur extends JDialog {
 	private JLabel lblNomJoueur;
 	private JLabel lblPrenomJoueur;
 	private JLabel lblPseudoJoueur;
-	private JComboBox comboJourNaissance;
-	private JComboBox comboMoiNaissance;
-	private JComboBox comboAnneeNaissance;
+	private JComboBox<String> comboJourNaissance;
+	private JComboBox<String> comboMoiNaissance;
+	private JComboBox<String> comboAnneeNaissance;
 	private JLabel lblDateNaissance;
 	
 	
@@ -70,15 +69,15 @@ public class FormEnregistrerJoueur extends JDialog {
 		return lblPseudoJoueur;
 	}
 
-	public JComboBox getComboJourNaissance() {
+	public JComboBox<String> getComboJourNaissance() {
 		return comboJourNaissance;
 	}
 
-	public JComboBox getComboMoiNaissance() {
+	public JComboBox<String> getComboMoiNaissance() {
 		return comboMoiNaissance;
 	}
 
-	public JComboBox getComboAnneeNaissance() {
+	public JComboBox<String> getComboAnneeNaissance() {
 		return comboAnneeNaissance;
 	}
 	
@@ -199,19 +198,19 @@ public class FormEnregistrerJoueur extends JDialog {
 					panelChampsSaisie.add(panelTextFieldDateNaissance);
 					panelTextFieldDateNaissance.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
 					{
-						comboJourNaissance = new JComboBox();
-						comboJourNaissance.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+						comboJourNaissance = new JComboBox<String>();
+						comboJourNaissance.setModel(new DefaultComboBoxModel<String>(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 						comboJourNaissance.setName("combo");
 						panelTextFieldDateNaissance.add(comboJourNaissance);
 					}
 					{
-						comboMoiNaissance = new JComboBox();
-						comboMoiNaissance.setModel(new DefaultComboBoxModel(new String[] {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"}));
+						comboMoiNaissance = new JComboBox<String>();
+						comboMoiNaissance.setModel(new DefaultComboBoxModel<String>(new String[] {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"}));
 						comboMoiNaissance.setName("combo");
 						panelTextFieldDateNaissance.add(comboMoiNaissance);
 					}
 					{
-						comboAnneeNaissance = new JComboBox();
+						comboAnneeNaissance = new JComboBox<String>();
 						
 						List<Integer> annees = new ArrayList<>();
 						for(int i = 0; i + 1900 < 2024 ; i++) {
@@ -220,7 +219,7 @@ public class FormEnregistrerJoueur extends JDialog {
 						
 						String[] anneesToString = annees.stream().map(Object::toString).toArray(String[]::new);
 						
-						comboAnneeNaissance.setModel(new DefaultComboBoxModel(anneesToString));
+						comboAnneeNaissance.setModel(new DefaultComboBoxModel<String>(anneesToString));
 						comboAnneeNaissance.setName("combo");
 						panelTextFieldDateNaissance.add(comboAnneeNaissance);
 					}

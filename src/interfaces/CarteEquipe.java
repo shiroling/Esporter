@@ -1,6 +1,7 @@
 package interfaces;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,6 @@ import javax.swing.border.LineBorder;
 
 import contoleur_bd.BDSelect;
 import contoleur_bd.Equipe;
-
-import java.awt.GridLayout;
 
 public class CarteEquipe extends Carte {
 	

@@ -5,12 +5,13 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -23,7 +24,6 @@ import javax.swing.border.LineBorder;
 
 import commun.ConnexionState;
 import contoleur_bd.BDEntity;
-import contoleur_bd.BDSelect;
 import contoleur_bd.ConnexionBase;
 import contoleur_bd.Ecurie;
 import contoleur_bd.Equipe;
@@ -32,12 +32,8 @@ import contoleur_bd.Joueur;
 import contoleur_bd.Rencontre;
 import contoleur_bd.Tournoi;
 import controleur_ihm.ControleurAccueil;
-import controleur_ihm.ControleurAccueil.Etat;
 import controleur_ihm.mouthAdapteruAccueil;
 import interfaces.PanelSelection.Selection;
-
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
 
 public class Accueil {
 	private static MouseAdapter ma;
@@ -232,8 +228,8 @@ public class Accueil {
 
 		ma = new mouthAdapteruAccueil(this);
 		
-		this.controleur.updateTournois();
-		this.ajouterCartesTournois(this.getControleur().getTournois());
+		Accueil.controleur.updateTournois();
+		this.ajouterCartesTournois(Accueil.getControleur().getTournois());
 		this.getLblTitreCartes().setText("Tournois");
 	}
 
@@ -438,10 +434,6 @@ public class Accueil {
 		pop.setVisible(true);
 	}
 	
-	@Deprecated
-	private void procedureCreePopupJoueur(Joueur j) {
-		procedureCreerPopup(j, controleur);
-	}
 	
 	@Deprecated
 	public void procedureCreePopupJeu(Jeu j) {

@@ -12,12 +12,10 @@ import interfaces.Carte;
 public class HoverCarte implements MouseListener{
 	
 	private Carte vue;
-	private List<JPanel> listPanel;
 	
 	public HoverCarte(Carte vue, List<JPanel> listPanel) {
 		super();
 		this.vue = vue;
-		this.listPanel = listPanel;
 	}
 
 	@Override

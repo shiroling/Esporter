@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -18,14 +19,12 @@ import contoleur_bd.Ecurie;
 import contoleur_bd.Jeu;
 import controleur_ihm.ControleurFormEnrengistrerEquipe;
 
-import java.awt.Color;
-
 public class FormEnregistrerEquipe extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Ecurie ecurie;
 	private JTextField textFieldNomEquipe;
-	private JComboBox comboJeux;
+	private JComboBox<String> comboJeux;
 	private JLabel lblNomEquipe;
 	private JLabel lblJoueur1;
 	private JLabel lblJoueur2;
@@ -119,8 +118,8 @@ public class FormEnregistrerEquipe extends JDialog {
 				panelChampsSaisie.add(panelComboJeu);
 				panelComboJeu.setLayout(new FlowLayout(FlowLayout.LEFT, 30, 15));
 				{
-					comboJeux = new JComboBox();
-					comboJeux.setModel(new DefaultComboBoxModel(Jeu.toStrings()));
+					comboJeux = new JComboBox<String>();
+					comboJeux.setModel(new DefaultComboBoxModel<String>(Jeu.toStrings()));
 					panelComboJeu.add(comboJeux);
 				}
 			}
@@ -203,7 +202,7 @@ public class FormEnregistrerEquipe extends JDialog {
 		return textFieldNomEquipe;
 	}
 
-	public JComboBox getComboJeux() {
+	public JComboBox<String> getComboJeux() {
 		return comboJeux;
 	}
 	

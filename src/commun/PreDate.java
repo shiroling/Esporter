@@ -1,9 +1,6 @@
 package commun;
 
 import java.sql.Date;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class PreDate {
 	
@@ -56,6 +53,7 @@ public class PreDate {
 		return new Date(year - 1900, month, day);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static String toStringDateFormatterEuropean(Date date) {
 		int year = date.getYear() + 1900;
         int month = date.getMonth() + 1;

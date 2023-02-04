@@ -3,8 +3,6 @@ package tests;
 import java.util.List;
 
 import contoleur_bd.BDInsert;
-import contoleur_bd.BDSelect;
-import contoleur_bd.Equipe;
 import contoleur_bd.Poule;
 import contoleur_bd.Rencontre;
 import contoleur_bd.Tournoi;
