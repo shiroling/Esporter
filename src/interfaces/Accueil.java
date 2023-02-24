@@ -34,6 +34,7 @@ import contoleur_bd.Tournoi;
 import controleur_ihm.ControleurAccueil;
 import controleur_ihm.mouthAdapteruAccueil;
 import interfaces.PanelSelection.Selection;
+import javax.swing.BoxLayout;
 
 public class Accueil {
 	private static MouseAdapter ma;
@@ -89,14 +90,13 @@ public class Accueil {
 		frame = new JFrame();
 		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Accueil.class.getResource("../ressources/icon.png")));
 		frame.setTitle("EMA");
-		BorderLayout borderLayout = (BorderLayout) frame.getContentPane().getLayout();
-		borderLayout.setVgap(10);
-		borderLayout.setHgap(10);
 		// frame.setBounds(100, 100, 933, 592);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Pour l'app directement en full screen décommenter cette ligne
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelFonctionalites = new JPanel();
+		panelFonctionalites.setAlignmentX(Component.LEFT_ALIGNMENT);
 		frame.getContentPane().add(panelFonctionalites, BorderLayout.WEST);
 		panelFonctionalites.setLayout(new BorderLayout(0, 0));
 		
@@ -197,7 +197,7 @@ public class Accueil {
 		panelBtnSelection.add(selectJeu);
 
 		JPanel panelMain = new JPanel();
-		frame.getContentPane().add(panelMain, BorderLayout.CENTER);
+		frame.getContentPane().add(panelMain);
 		panelMain.setBorder(new EmptyBorder(0,0,0,0));
 		panelMain.setLayout(new BorderLayout(0, 0));
 

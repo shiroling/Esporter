@@ -30,7 +30,7 @@ import interfaces.FormEnregistrerEquipe;
 
 @SuppressWarnings("deprecation")
 public class ControleurAccueil implements ActionListener {
-
+	
 	private Etat state;
 	private EtatPanel etatPanelMain;
 	private Accueil vue;
@@ -67,9 +67,9 @@ public class ControleurAccueil implements ActionListener {
 		ACCUEIL_SANS_VOLET, ACCUEIL_AVEC_VOLET;
 	}
 	
-	public enum EtatPanel {
-		TOURNOI, RENCONTRE, JEU, EQUIPE, ECURIE;
-	}
+		public enum EtatPanel {
+			TOURNOI, RENCONTRE, JEU, EQUIPE, ECURIE;
+		}
 	
 	public List<Tournoi> getTournois() {
 		return tournois;
