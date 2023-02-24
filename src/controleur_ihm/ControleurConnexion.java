@@ -38,6 +38,7 @@ public class ControleurConnexion implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (connexionVisee) {
 		case ARBITRE:
+			System.out.println("arbitre");
 			if (BDPredicats.isArbitre(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) {
 				controleurAccueil.setConnexionState(ConnexionState.ARBITRE);
 				controleurAccueil.cacherBtnConnexion();
@@ -78,6 +79,12 @@ public class ControleurConnexion implements ActionListener{
 				controleurAccueil.setConnexionState(ConnexionState.GESTIONNAIRE);
 				controleurAccueil.cacherBtnConnexion();
 				controleurAccueil.setIdLog(BDSelect.getIdGerantFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
+				this.connexionVue.dispose();
+			}
+			else if ((BDPredicats.isArbitre(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword()))) ) {
+				controleurAccueil.setConnexionState(ConnexionState.ARBITRE);
+				controleurAccueil.cacherBtnConnexion();
+				controleurAccueil.setIdLog(BDSelect.getIdArbitreFromLogs(this.connexionVue.getTextFieldUsername().getText(), String.valueOf(this.connexionVue.getTextFieldPassword().getPassword())));
 				this.connexionVue.dispose();
 			}
 			else {
